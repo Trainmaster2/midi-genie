@@ -1,0 +1,224 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xFA7B9F300729EB31",
+      "device": "xc7a35tcpg236-1",
+      "gen_directory": "../../../../midi-genie.gen/sources_1/bd/design_1",
+      "name": "design_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2022.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "clk_wiz_0": "",
+      "rgb_off": "",
+      "system_ila_0": ""
+    },
+    "ports": {
+      "sys_clock": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "design_1_sys_clock",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "12000000"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0"
+          }
+        }
+      },
+      "reset": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
+      },
+      "rgb_led": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "led": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
+      },
+      "nes_cpu_addr": {
+        "direction": "I",
+        "left": "14",
+        "right": "0"
+      },
+      "nes_cpu_data": {
+        "direction": "I",
+        "left": "7",
+        "right": "0"
+      },
+      "nes_cpu_rw": {
+        "direction": "I"
+      },
+      "nes_romsel": {
+        "direction": "I"
+      },
+      "nes_m2": {
+        "direction": "I"
+      },
+      "nes_system_clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "design_1_nes_system_clk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "21480000"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "midi_out": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "xci_name": "design_1_clk_wiz_0_0",
+        "xci_path": "ip\\design_1_clk_wiz_0_0\\design_1_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "CLK_IN1_BOARD_INTERFACE": {
+            "value": "sys_clock"
+          },
+          "RESET_BOARD_INTERFACE": {
+            "value": "reset"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
+      "rgb_off": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "design_1_xlconstant_0_0",
+        "xci_path": "ip\\design_1_xlconstant_0_0\\design_1_xlconstant_0_0.xci",
+        "inst_hier_path": "rgb_off",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "7"
+          },
+          "CONST_WIDTH": {
+            "value": "3"
+          }
+        }
+      },
+      "system_ila_0": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "xci_name": "design_1_system_ila_0_0",
+        "xci_path": "ip\\design_1_system_ila_0_0\\design_1_system_ila_0_0.xci",
+        "inst_hier_path": "system_ila_0",
+        "parameters": {
+          "C_MON_TYPE": {
+            "value": "NATIVE"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "6"
+          }
+        }
+      }
+    },
+    "nets": {
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "system_ila_0/clk"
+        ]
+      },
+      "nes_cpu_addr_1": {
+        "ports": [
+          "nes_cpu_addr",
+          "system_ila_0/probe2"
+        ]
+      },
+      "nes_cpu_data_1": {
+        "ports": [
+          "nes_cpu_data",
+          "system_ila_0/probe3"
+        ]
+      },
+      "nes_cpu_rw_1": {
+        "ports": [
+          "nes_cpu_rw",
+          "system_ila_0/probe5"
+        ]
+      },
+      "nes_m2_1": {
+        "ports": [
+          "nes_m2",
+          "system_ila_0/probe1"
+        ]
+      },
+      "nes_romsel_1": {
+        "ports": [
+          "nes_romsel",
+          "system_ila_0/probe4"
+        ]
+      },
+      "nes_system_clk_1": {
+        "ports": [
+          "nes_system_clk",
+          "system_ila_0/probe0"
+        ]
+      },
+      "reset_1": {
+        "ports": [
+          "reset",
+          "clk_wiz_0/reset"
+        ]
+      },
+      "rgb_off_dout": {
+        "ports": [
+          "rgb_off/dout",
+          "rgb_led"
+        ]
+      },
+      "sys_clock_1": {
+        "ports": [
+          "sys_clock",
+          "clk_wiz_0/clk_in1"
+        ]
+      }
+    }
+  }
+}

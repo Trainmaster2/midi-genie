@@ -1,2 +1,77 @@
 /SP_kicad/SP_kicad-backups
 /SP_kicad/fp-info-cache
+
+#########################################################################################
+##  Project    : Collect of various scripts for working with EDA-tools (ASIC/FPGA/etc) ##
+##  Link       : https://github.com/iDoka/eda-scripts                                  ##
+##  Description: .gitignore                                                            ##
+##  Usage      : just rename or add contain to .gitignore                              ##
+##  License    : MIT                                                                   ##
+#########################################################################################
+
+## log files
+/midi-genie/*.log
+/midi-genie/*.jou
+/midi-genie/*.rpt
+/midi-genie/*.vdi
+
+## bitstream
+/midi-genie/*.bit
+/midi-genie/*.bin
+/midi-genie/*.mcs
+/midi-genie/*.svf
+/midi-genie/*.image
+
+## netlist
+/midi-genie/*.edf
+/midi-genie/*.edif
+/midi-genie/*.vn
+/midi-genie/*.vm
+
+## SDF
+/midi-genie/*.sdf
+
+## sim dump
+/midi-genie/*.vcd
+/midi-genie/*.saif
+/midi-genie/*.tcf
+/midi-genie/*.wdb
+
+## others
+/midi-genie/unisims
+
+## C-files
+/midi-genie/*.elf
+/midi-genie/*.a
+/midi-genie/*.sa
+/midi-genie/*.so
+/midi-genie/*.lib
+
+## dirs
+/midi-genie/midi-genie.cache/
+/midi-genie/midi-genie.hw/
+/midi-genie/midi-genie.ip_user_files/
+/midi-genie/midi-genie.runs/
+/midi-genie/midi-genie.sim/
+
+###### for Xilinx Vivado|ISE
+/midi-genie/.Xil/
+/midi-genie/.cache/
+/midi-genie/fsm_encoding.os
+/midi-genie/tab_*/
+/midi-genie/webtalk.*
+/midi-genie/vivado_pid*.str
+/midi-genie/hs_err_pid*
+/midi-genie/xelab.*
+/midi-genie/xsim.*
+/midi-genie/xvlog.*
+/midi-genie/*.cache
+/midi-genie/*.sim
+/midi-genie/*.runs
+/midi-genie/*.hw
+/midi-genie/*.backup.*
+/midi-genie/*.debug
+
+## checkpoint files
+/midi-genie/*.dcp
+
