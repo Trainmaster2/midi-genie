@@ -82,7 +82,6 @@ set_property -dict { PACKAGE_PIN U3    IOSTANDARD LVCMOS33 } [get_ports { nes_cp
 set_property -dict { PACKAGE_PIN U7    IOSTANDARD LVCMOS33 } [get_ports { nes_m2 }]; #IO_L19P_T3_34 Sch=pio[45]
 set_property -dict { PACKAGE_PIN W7    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[11] }]; #IO_L13P_T2_MRCC_34 Sch=pio[46]
 set_property -dict { PACKAGE_PIN U8    IOSTANDARD LVCMOS33 } [get_ports { nes_system_clk }]; #IO_L14P_T2_SRCC_34 Sch=pio[47]
-# create_clock -add -name sys_clk_pin -period 83.33 -waveform {0 41.66} [get_ports { nes_system_clk }];
 set_property -dict { PACKAGE_PIN V8    IOSTANDARD LVCMOS33 } [get_ports { midi_out }]; #IO_L14N_T2_SRCC_34 Sch=pio[48]
 
 ## UART

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xFA7B9F300729EB31",
+      "boundary_crc": "0xFA7B9F3048AE21BF",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../midi-genie.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -13,7 +13,9 @@
     "design_tree": {
       "clk_wiz_0": "",
       "rgb_off": "",
-      "system_ila_0": ""
+      "system_ila_0": "",
+      "rst_clk_wiz_0_100M": "",
+      "led_concat": ""
     },
     "ports": {
       "sys_clock": {
@@ -40,19 +42,6 @@
           }
         }
       },
-      "reset": {
-        "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_HIGH"
-          }
-        }
-      },
       "rgb_led": {
         "direction": "O",
         "left": "2",
@@ -61,7 +50,13 @@
       "led": {
         "direction": "O",
         "left": "1",
-        "right": "0"
+        "right": "0",
+        "parameters": {
+          "PortWidth": {
+            "value": "2",
+            "value_src": "ip_prop"
+          }
+        }
       },
       "nes_cpu_addr": {
         "direction": "I",
@@ -109,6 +104,19 @@
       },
       "midi_out": {
         "direction": "O"
+      },
+      "reset": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
       }
     },
     "components": {
@@ -156,13 +164,32 @@
             "value": "6"
           }
         }
+      },
+      "rst_clk_wiz_0_100M": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "xci_name": "design_1_rst_clk_wiz_0_100M_3",
+        "xci_path": "ip\\design_1_rst_clk_wiz_0_100M_3\\design_1_rst_clk_wiz_0_100M_3.xci",
+        "inst_hier_path": "rst_clk_wiz_0_100M"
+      },
+      "led_concat": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "design_1_xlconcat_0_1",
+        "xci_path": "ip\\design_1_xlconcat_0_1\\design_1_xlconcat_0_1.xci",
+        "inst_hier_path": "led_concat"
       }
     },
     "nets": {
       "clk_wiz_0_clk_out1": {
         "ports": [
           "clk_wiz_0/clk_out1",
+          "rst_clk_wiz_0_100M/slowest_sync_clk",
           "system_ila_0/clk"
+        ]
+      },
+      "clk_wiz_0_locked": {
+        "ports": [
+          "clk_wiz_0/locked",
+          "rst_clk_wiz_0_100M/dcm_locked"
         ]
       },
       "nes_cpu_addr_1": {
@@ -204,7 +231,8 @@
       "reset_1": {
         "ports": [
           "reset",
-          "clk_wiz_0/reset"
+          "clk_wiz_0/reset",
+          "rst_clk_wiz_0_100M/ext_reset_in"
         ]
       },
       "rgb_off_dout": {
@@ -217,6 +245,12 @@
         "ports": [
           "sys_clock",
           "clk_wiz_0/clk_in1"
+        ]
+      },
+      "xlconcat_0_dout": {
+        "ports": [
+          "led_concat/dout",
+          "led"
         ]
       }
     }
