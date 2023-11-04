@@ -22,13 +22,17 @@ begin
     procDetect: process(Clk, Reset) is
         variable last_m2 : std_logic := '0';
         variable count   : natural range 0 to 50 := 0;
+        variable rising  : boolean;
+        variable falling : boolean;
     begin
         if Reset = '0' then
             NES_rst <= '0';
             last_m2 := M2;
             count := 0;
         elsif rising_edge(Clk) then
-            if last_m2 = M2 then
+            rising := rising_edge(M2);
+            falling := falling_edge(M2);
+            if rising or falling then
                 if count < 50 then
                     count := count + 1;
                 else

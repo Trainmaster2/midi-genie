@@ -42,8 +42,8 @@ set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33 } [get_ports { rgb_le
 set_property -dict { PACKAGE_PIN M3    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[13] }]; #IO_L8N_T1_AD14N_35 Sch=pio[01]
 set_property -dict { PACKAGE_PIN L3    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[8] }]; #IO_L8P_T1_AD14P_35 Sch=pio[02]
 set_property -dict { PACKAGE_PIN A16   IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[14] }]; #IO_L12P_T1_MRCC_16 Sch=pio[03]
-set_property -dict { PACKAGE_PIN K3    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[7]  }]; #IO_L7N_T1_AD6N_35 Sch=pio[04]
-set_property -dict { PACKAGE_PIN C15   IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_data[7]  }]; #IO_L11P_T1_SRCC_16 Sch=pio[05]
+set_property -dict { PACKAGE_PIN K3    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[7] }]; #IO_L7N_T1_AD6N_35 Sch=pio[04]
+set_property -dict { PACKAGE_PIN C15   IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_data[7] }]; #IO_L11P_T1_SRCC_16 Sch=pio[05]
 set_property -dict { PACKAGE_PIN H1    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[6] }]; #IO_L3P_T0_DQS_AD5P_35 Sch=pio[06]
 set_property -dict { PACKAGE_PIN A15   IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_data[6] }]; #IO_L6N_T0_VREF_16 Sch=pio[07]
 set_property -dict { PACKAGE_PIN B15   IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[5] }]; #IO_L11N_T1_SRCC_16 Sch=pio[08]
@@ -70,18 +70,18 @@ set_property -dict { PACKAGE_PIN P1    IOSTANDARD LVCMOS33 } [get_ports { nes_ro
 #set_property -dict { PACKAGE_PIN V2    IOSTANDARD LVCMOS33 } [get_ports { pio33 }]; #IO_L5P_T0_34 Sch=pio[33]
 #set_property -dict { PACKAGE_PIN W3    IOSTANDARD LVCMOS33 } [get_ports { pio34 }]; #IO_L6N_T0_VREF_34 Sch=pio[34]
 #set_property -dict { PACKAGE_PIN V3    IOSTANDARD LVCMOS33 } [get_ports { pio35 }]; #IO_L6P_T0_34 Sch=pio[35]
-#set_property -dict { PACKAGE_PIN W5    IOSTANDARD LVCMOS33 } [get_ports { pio36 }]; #IO_L12P_T1_MRCC_34 Sch=pio[36]
+set_property -dict { PACKAGE_PIN W5    IOSTANDARD LVCMOS33 } [get_ports { nes_system_clk }]; #IO_L12P_T1_MRCC_34 Sch=pio[36]
 #set_property -dict { PACKAGE_PIN V4    IOSTANDARD LVCMOS33 } [get_ports { pio37 }]; #IO_L11N_T1_SRCC_34 Sch=pio[37]
-#set_property -dict { PACKAGE_PIN U4    IOSTANDARD LVCMOS33 } [get_ports { pio38 }]; #IO_L11P_T1_SRCC_34 Sch=pio[38]
+set_property -dict { PACKAGE_PIN U4    IOSTANDARD LVCMOS33 } [get_ports { nes_m2 }]; #IO_L11P_T1_SRCC_34 Sch=pio[38]
 #set_property -dict { PACKAGE_PIN V5    IOSTANDARD LVCMOS33 } [get_ports { pio39 }]; #IO_L16N_T2_34 Sch=pio[39]
 #set_property -dict { PACKAGE_PIN W4    IOSTANDARD LVCMOS33 } [get_ports { pio40 }]; #IO_L12N_T1_MRCC_34 Sch=pio[40]
 #set_property -dict { PACKAGE_PIN U5    IOSTANDARD LVCMOS33 } [get_ports { pio41 }]; #IO_L16P_T2_34 Sch=pio[41]
 set_property -dict { PACKAGE_PIN U2    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[9] }]; #IO_L9N_T1_DQS_34 Sch=pio[42]
 set_property -dict { PACKAGE_PIN W6    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[12] }]; #IO_L13N_T2_MRCC_34 Sch=pio[43]
 set_property -dict { PACKAGE_PIN U3    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[10] }]; #IO_L9P_T1_DQS_34 Sch=pio[44]
-set_property -dict { PACKAGE_PIN U7    IOSTANDARD LVCMOS33 } [get_ports { nes_m2 }]; #IO_L19P_T3_34 Sch=pio[45]
+# set_property -dict { PACKAGE_PIN U7    IOSTANDARD LVCMOS33 } [get_ports { nes_m2 }]; #IO_L19P_T3_34 Sch=pio[45]
 set_property -dict { PACKAGE_PIN W7    IOSTANDARD LVCMOS33 } [get_ports { nes_cpu_addr[11] }]; #IO_L13P_T2_MRCC_34 Sch=pio[46]
-set_property -dict { PACKAGE_PIN U8    IOSTANDARD LVCMOS33 } [get_ports { nes_system_clk }]; #IO_L14P_T2_SRCC_34 Sch=pio[47]
+# set_property -dict { PACKAGE_PIN U8    IOSTANDARD LVCMOS33 } [get_ports { nes_system_clk }]; #IO_L14P_T2_SRCC_34 Sch=pio[47]
 set_property -dict { PACKAGE_PIN V8    IOSTANDARD LVCMOS33 } [get_ports { midi_out }]; #IO_L14N_T2_SRCC_34 Sch=pio[48]
 
 ## UART
@@ -129,4 +129,5 @@ set_property -dict { PACKAGE_PIN V8    IOSTANDARD LVCMOS33 } [get_ports { midi_o
 #set_property -dict { PACKAGE_PIN P19   IOSTANDARD LVCMOS33 } [get_ports { RamOEn     }]; #IO_L10P_T1_D14_14 Sch=sram-oe
 #set_property -dict { PACKAGE_PIN R19   IOSTANDARD LVCMOS33 } [get_ports { RamWEn     }]; #IO_L10N_T1_D15_14 Sch=sram-we
 #set_property -dict { PACKAGE_PIN N19   IOSTANDARD LVCMOS33 } [get_ports { RamCEn     }]; #IO_L9N_T1_DQS_D13_14 Sch=sram-ce
+
 
