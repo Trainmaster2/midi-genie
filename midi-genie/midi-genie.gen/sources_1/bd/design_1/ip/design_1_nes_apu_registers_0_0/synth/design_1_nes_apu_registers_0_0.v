@@ -57,8 +57,10 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_nes_apu_registers_0_0 (
   Clk,
+  Reset,
   CPU_Clk,
   CPU_M2,
+  CPU_Rst,
   CPU_Addr,
   CPU_Data,
   CPU_RomSel,
@@ -73,13 +75,19 @@ module design_1_nes_apu_registers_0_0 (
   Update
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Clk CLK" *)
 input wire Clk;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CPU_Clk, FREQ_HZ 21477272, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_nes_system_clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 Reset RST" *)
+input wire Reset;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CPU_Clk, ASSOCIATED_RESET CPU_Rst, FREQ_HZ 21477272, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_nes_system_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CPU_Clk CLK" *)
 input wire CPU_Clk;
 input wire CPU_M2;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CPU_Rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 CPU_Rst RST" *)
+input wire CPU_Rst;
 input wire [14 : 0] CPU_Addr;
 input wire [7 : 0] CPU_Data;
 input wire CPU_RomSel;
@@ -95,8 +103,10 @@ output wire Update;
 
   nes_apu_registers inst (
     .Clk(Clk),
+    .Reset(Reset),
     .CPU_Clk(CPU_Clk),
     .CPU_M2(CPU_M2),
+    .CPU_Rst(CPU_Rst),
     .CPU_Addr(CPU_Addr),
     .CPU_Data(CPU_Data),
     .CPU_RomSel(CPU_RomSel),

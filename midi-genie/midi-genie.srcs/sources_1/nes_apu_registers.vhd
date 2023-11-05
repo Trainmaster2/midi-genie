@@ -7,8 +7,10 @@ use work.nes_apu_records.all;
 entity nes_apu_registers is
     port (
         Clk                 : in  std_logic;
+        Reset               : in  std_logic := '1';
         CPU_Clk             : in  std_logic;
         CPU_M2              : in  std_logic;
+        CPU_Rst             : in  std_logic := '1';
         CPU_Addr            : in  std_logic_vector(14 downto 0) := (others => '0');
         CPU_Data            : in  std_logic_vector(7 downto 0) := (others => '0');
         CPU_RomSel          : in  std_logic := '0';
@@ -42,9 +44,17 @@ begin
     APU_Status_Out   <= f_APU_STATUS_2_VECTOR(APU_Status);
     APU_Counter_Out  <= f_APU_FRAME_COUNTER_2_VECTOR(APU_Counter);
 
-    procDetect: process(CPU_M2) is
+    procDetect: process(CPU_M2, Reset, CPU_Rst) is
     begin
-        if falling_edge(CPU_M2) then
+        if (Reset = '0') or (CPU_Rst = '0') then
+            APU_Pulse1   <= c_APU_PULSE_INIT;
+            APU_Pulse2   <= c_APU_PULSE_INIT;
+            APU_Triangle <= c_APU_TRIANGLE_INIT;
+            APU_Noise    <= c_APU_NOISE_INIT;
+            APU_DMC      <= c_APU_DMC_INIT;
+            APU_Status   <= c_APU_STATUS_INIT;
+            APU_Counter  <= c_APU_FRAME_COUNTER_INIT;
+        elsif falling_edge(CPU_M2) then
             if (CPU_RomSel = '1') and (CPU_RW = '0') then
                 case (CPU_Addr) is
                     when X"4000" =>

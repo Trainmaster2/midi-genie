@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov  5 15:08:49 2023" VIVADOVERSION="2022.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov  5 15:24:53 2023" VIVADOVERSION="2022.2">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:cmod_a7-35t:part0:1.2" DEVICE="7a35t" NAME="design_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -47,7 +47,6 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="system_ila_0" PORT="probe0"/>
         <CONNECTION INSTANCE="nes_apu_registers_0" PORT="CPU_Clk"/>
-        <CONNECTION INSTANCE="nes_reset_0" PORT="Clk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="midi_out" SIGIS="undef"/>
@@ -61,7 +60,11 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="system_ila_0" PORT="probe1"/>
         <CONNECTION INSTANCE="nes_apu_registers_0" PORT="CPU_M2"/>
-        <CONNECTION INSTANCE="nes_reset_0" PORT="M2"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="btn1" SIGIS="undef" SIGNAME="External_Ports_btn1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="nes_reset" PORT="Op1"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -811,16 +814,8 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="0" NAME="In0" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_NES_rst">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="NES_rst"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="In1" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="test2"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="In0" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="In1" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="1" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="led_concat_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="led"/>
@@ -841,6 +836,11 @@
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" NAME="Reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_clk_wiz_0_100M_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rst_clk_wiz_0_100M" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT CLKFREQUENCY="21477272" DIR="I" NAME="CPU_Clk" SIGIS="clk" SIGNAME="External_Ports_nes_system_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="nes_system_clk"/>
@@ -849,6 +849,11 @@
         <PORT DIR="I" NAME="CPU_M2" SIGIS="undef" SIGNAME="External_Ports_nes_m2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="nes_m2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="CPU_Rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="nes_reset_Res">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="nes_reset" PORT="Res"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="14" NAME="CPU_Addr" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_nes_cpu_addr">
@@ -914,68 +919,24 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="1" FULLNAME="/nes_reset_0" HWVERSION="1.0" INSTANCE="nes_reset_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="nes_reset" VLNV="xilinx.com:module_ref:nes_reset:1.0">
+    <MODULE COREREVISION="2" FULLNAME="/nes_reset" HWVERSION="2.0" INSTANCE="nes_reset" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="util_vector_logic" VLNV="xilinx.com:ip:util_vector_logic:2.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_nes_reset_0_0"/>
+        <PARAMETER NAME="C_OPERATION" VALUE="not"/>
+        <PARAMETER NAME="C_SIZE" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_util_vector_logic_0_0"/>
+        <PARAMETER NAME="LOGO_FILE" VALUE="data/sym_notgate.png"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="21477272" DIR="I" NAME="Clk" SIGIS="clk" SIGNAME="External_Ports_nes_system_clk">
+        <PORT DIR="I" LEFT="0" NAME="Op1" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_btn1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="nes_system_clk"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="btn1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="Reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_clk_wiz_0_100M_peripheral_aresetn">
+        <PORT DIR="O" LEFT="0" NAME="Res" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_Res">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="rst_clk_wiz_0_100M" PORT="peripheral_aresetn"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M2" SIGIS="undef" SIGNAME="External_Ports_nes_m2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="nes_m2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="NES_rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="nes_reset_0_NES_rst">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe14"/>
-            <CONNECTION INSTANCE="led_concat" PORT="In0"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="test" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe15"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="test2" SIGIS="undef" SIGNAME="nes_reset_0_test2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe16"/>
-            <CONNECTION INSTANCE="led_concat" PORT="In1"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="test3" SIGIS="undef" SIGNAME="nes_reset_0_test3">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe17"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="test4" SIGIS="undef" SIGNAME="nes_reset_0_test4">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe18"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="test5" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test5">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe19"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="test6" SIGIS="undef" SIGNAME="nes_reset_0_test6">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe20"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="test7" SIGIS="undef" SIGNAME="nes_reset_0_test7">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe21"/>
+            <CONNECTION INSTANCE="nes_apu_registers_0" PORT="CPU_Rst"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1041,7 +1002,7 @@
         <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst"/>
         <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="rst_clk_wiz_0_100M_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="Reset"/>
+            <CONNECTION INSTANCE="nes_apu_registers_0" PORT="Reset"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -3616,7 +3577,7 @@
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="22"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="14"/>
         <PARAMETER NAME="C_XLNX_HW_PROBE_INFO" VALUE="DEFAULT"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_system_ila_0_0"/>
         <PARAMETER NAME="C_PROBE70_WIDTH" VALUE="1"/>
@@ -4957,46 +4918,6 @@
         <PORT DIR="I" LEFT="0" NAME="probe13" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_registers_0_Update">
           <CONNECTIONS>
             <CONNECTION INSTANCE="nes_apu_registers_0" PORT="Update"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe14" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_NES_rst">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="NES_rst"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="probe15" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="test"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe16" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="test2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe17" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test3">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="test3"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe18" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test4">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="test4"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="probe19" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test5">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="test5"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe20" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test6">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="test6"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe21" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_0_test7">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_reset_0" PORT="test7"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xFA7B9F30EEB53AFA",
+      "boundary_crc": "0xF74415E38C942D64",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../midi-genie.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -17,7 +17,7 @@
       "rst_clk_wiz_0_100M": "",
       "led_concat": "",
       "nes_apu_registers_0": "",
-      "nes_reset_0": ""
+      "nes_reset": ""
     },
     "ports": {
       "sys_clock": {
@@ -141,6 +141,19 @@
             "value_src": "default"
           }
         }
+      },
+      "btn1": {
+        "direction": "I",
+        "parameters": {
+          "PortType": {
+            "value": "undef",
+            "value_src": "ip_prop"
+          },
+          "PortType.PROP_SRC": {
+            "value": "false",
+            "value_src": "ip_prop"
+          }
+        }
       }
     },
     "components": {
@@ -185,7 +198,7 @@
             "value": "NATIVE"
           },
           "C_NUM_OF_PROBES": {
-            "value": "22"
+            "value": "14"
           }
         }
       },
@@ -224,6 +237,10 @@
             "type": "clk",
             "direction": "I",
             "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "Reset",
+                "value_src": "constant"
+              },
               "FREQ_HZ": {
                 "value": "100000000",
                 "value_src": "ip_prop"
@@ -238,10 +255,24 @@
               }
             }
           },
+          "Reset": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
           "CPU_Clk": {
             "type": "clk",
             "direction": "I",
             "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "CPU_Rst",
+                "value_src": "constant"
+              },
               "FREQ_HZ": {
                 "value": "21477272",
                 "value_src": "user_prop"
@@ -268,6 +299,10 @@
                 "value_src": "default_prop"
               }
             }
+          },
+          "CPU_Rst": {
+            "type": "rst",
+            "direction": "I"
           },
           "CPU_Addr": {
             "direction": "I",
@@ -325,95 +360,28 @@
           }
         }
       },
-      "nes_reset_0": {
-        "vlnv": "xilinx.com:module_ref:nes_reset:1.0",
-        "xci_name": "design_1_nes_reset_0_0",
-        "xci_path": "ip\\design_1_nes_reset_0_0\\design_1_nes_reset_0_0.xci",
-        "inst_hier_path": "nes_reset_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "nes_reset",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "Clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "Reset",
-                "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "21477272",
-                "value_src": "user_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "design_1_nes_system_clk",
-                "value_src": "default_prop"
-              }
-            }
+      "nes_reset": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "design_1_util_vector_logic_0_0",
+        "xci_path": "ip\\design_1_util_vector_logic_0_0\\design_1_util_vector_logic_0_0.xci",
+        "inst_hier_path": "nes_reset",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
           },
-          "Reset": {
-            "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "const_prop"
-              }
-            }
-          },
-          "M2": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "1789773",
-                "value_src": "user_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "design_1_nes_m2",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "NES_rst": {
-            "type": "rst",
-            "direction": "O"
-          },
-          "test": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "test2": {
-            "direction": "O"
-          },
-          "test3": {
-            "direction": "O"
-          },
-          "test4": {
-            "direction": "O"
-          },
-          "test5": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "test6": {
-            "direction": "O"
-          },
-          "test7": {
-            "direction": "O"
+          "C_SIZE": {
+            "value": "1"
           }
         }
       }
     },
     "nets": {
+      "btn1_1": {
+        "ports": [
+          "btn1",
+          "nes_reset/Op1"
+        ]
+      },
       "clk_wiz_0_clk_out1": {
         "ports": [
           "clk_wiz_0/clk_out1",
@@ -501,58 +469,7 @@
         "ports": [
           "nes_m2",
           "system_ila_0/probe1",
-          "nes_apu_registers_0/CPU_M2",
-          "nes_reset_0/M2"
-        ]
-      },
-      "nes_reset_0_NES_rst": {
-        "ports": [
-          "nes_reset_0/NES_rst",
-          "system_ila_0/probe14",
-          "led_concat/In0"
-        ]
-      },
-      "nes_reset_0_test": {
-        "ports": [
-          "nes_reset_0/test",
-          "system_ila_0/probe15"
-        ]
-      },
-      "nes_reset_0_test2": {
-        "ports": [
-          "nes_reset_0/test2",
-          "system_ila_0/probe16",
-          "led_concat/In1"
-        ]
-      },
-      "nes_reset_0_test3": {
-        "ports": [
-          "nes_reset_0/test3",
-          "system_ila_0/probe17"
-        ]
-      },
-      "nes_reset_0_test4": {
-        "ports": [
-          "nes_reset_0/test4",
-          "system_ila_0/probe18"
-        ]
-      },
-      "nes_reset_0_test5": {
-        "ports": [
-          "nes_reset_0/test5",
-          "system_ila_0/probe19"
-        ]
-      },
-      "nes_reset_0_test6": {
-        "ports": [
-          "nes_reset_0/test6",
-          "system_ila_0/probe20"
-        ]
-      },
-      "nes_reset_0_test7": {
-        "ports": [
-          "nes_reset_0/test7",
-          "system_ila_0/probe21"
+          "nes_apu_registers_0/CPU_M2"
         ]
       },
       "nes_romsel_1": {
@@ -566,8 +483,7 @@
         "ports": [
           "nes_system_clk",
           "system_ila_0/probe0",
-          "nes_apu_registers_0/CPU_Clk",
-          "nes_reset_0/Clk"
+          "nes_apu_registers_0/CPU_Clk"
         ]
       },
       "reset_1": {
@@ -586,13 +502,19 @@
       "rst_clk_wiz_0_100M_peripheral_aresetn": {
         "ports": [
           "rst_clk_wiz_0_100M/peripheral_aresetn",
-          "nes_reset_0/Reset"
+          "nes_apu_registers_0/Reset"
         ]
       },
       "sys_clock_1": {
         "ports": [
           "sys_clock",
           "clk_wiz_0/clk_in1"
+        ]
+      },
+      "util_vector_logic_0_Res": {
+        "ports": [
+          "nes_reset/Res",
+          "nes_apu_registers_0/CPU_Rst"
         ]
       },
       "xlconcat_0_dout": {
