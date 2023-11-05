@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x18B5BF09CF8A4149",
+      "boundary_crc": "0xB4F009C9708EB6A1",
       "design_src": "SBD",
       "device": "xc7a35tcpg236-1",
       "name": "bd_f60c",
@@ -115,6 +115,41 @@
         "direction": "I",
         "left": "0",
         "right": "0"
+      },
+      "probe15": {
+        "direction": "I",
+        "left": "3",
+        "right": "0"
+      },
+      "probe16": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
+      },
+      "probe17": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
+      },
+      "probe18": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
+      },
+      "probe19": {
+        "direction": "I",
+        "left": "3",
+        "right": "0"
+      },
+      "probe20": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
+      },
+      "probe21": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
       }
     },
     "components": {
@@ -152,7 +187,7 @@
             "value": "Native"
           },
           "C_NUM_OF_PROBES": {
-            "value": "15"
+            "value": "22"
           },
           "C_PROBE0_MU_CNT": {
             "value": "1"
@@ -208,6 +243,51 @@
           "C_PROBE14_WIDTH": {
             "value": "1"
           },
+          "C_PROBE15_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE15_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE15_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE16_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE16_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE16_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE17_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE17_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE17_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE18_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE18_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE18_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE19_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE19_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE19_WIDTH": {
+            "value": "4"
+          },
           "C_PROBE1_MU_CNT": {
             "value": "1"
           },
@@ -215,6 +295,24 @@
             "value": "0"
           },
           "C_PROBE1_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE20_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE20_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE20_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE21_MU_CNT": {
+            "value": "1"
+          },
+          "C_PROBE21_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE21_WIDTH": {
             "value": "1"
           },
           "C_PROBE2_MU_CNT": {
@@ -347,10 +445,52 @@
           "ila_lib/probe14"
         ]
       },
+      "probe15_1": {
+        "ports": [
+          "probe15",
+          "ila_lib/probe15"
+        ]
+      },
+      "probe16_1": {
+        "ports": [
+          "probe16",
+          "ila_lib/probe16"
+        ]
+      },
+      "probe17_1": {
+        "ports": [
+          "probe17",
+          "ila_lib/probe17"
+        ]
+      },
+      "probe18_1": {
+        "ports": [
+          "probe18",
+          "ila_lib/probe18"
+        ]
+      },
+      "probe19_1": {
+        "ports": [
+          "probe19",
+          "ila_lib/probe19"
+        ]
+      },
       "probe1_1": {
         "ports": [
           "probe1",
           "ila_lib/probe1"
+        ]
+      },
+      "probe20_1": {
+        "ports": [
+          "probe20",
+          "ila_lib/probe20"
+        ]
+      },
+      "probe21_1": {
+        "ports": [
+          "probe21",
+          "ila_lib/probe21"
         ]
       },
       "probe2_1": {

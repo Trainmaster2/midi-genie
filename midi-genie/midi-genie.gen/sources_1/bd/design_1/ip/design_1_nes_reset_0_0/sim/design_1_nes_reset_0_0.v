@@ -58,10 +58,17 @@ module design_1_nes_reset_0_0 (
   Clk,
   Reset,
   M2,
-  NES_rst
+  NES_rst,
+  test,
+  test2,
+  test3,
+  test4,
+  test5,
+  test6,
+  test7
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 21477272, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_nes_system_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Clk CLK" *)
 input wire Clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -71,11 +78,25 @@ input wire M2;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME NES_rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 NES_rst RST" *)
 output wire NES_rst;
+output wire [3 : 0] test;
+output wire test2;
+output wire test3;
+output wire test4;
+output wire [3 : 0] test5;
+output wire test6;
+output wire test7;
 
   nes_reset inst (
     .Clk(Clk),
     .Reset(Reset),
     .M2(M2),
-    .NES_rst(NES_rst)
+    .NES_rst(NES_rst),
+    .test(test),
+    .test2(test2),
+    .test3(test3),
+    .test4(test4),
+    .test5(test5),
+    .test6(test6),
+    .test7(test7)
   );
 endmodule

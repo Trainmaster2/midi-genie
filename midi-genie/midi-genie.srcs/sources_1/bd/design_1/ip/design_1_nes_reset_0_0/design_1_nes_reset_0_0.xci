@@ -41,7 +41,14 @@
         "Clk": [ { "direction": "in" } ],
         "Reset": [ { "direction": "in" } ],
         "M2": [ { "direction": "in", "driver_value": "0x0" } ],
-        "NES_rst": [ { "direction": "out", "driver_value": "0x0" } ]
+        "NES_rst": [ { "direction": "out", "driver_value": "0x0" } ],
+        "test": [ { "direction": "out", "size_left": "3", "size_right": "0", "driver_value": "0" } ],
+        "test2": [ { "direction": "out", "driver_value": "0x0" } ],
+        "test3": [ { "direction": "out", "driver_value": "0x0" } ],
+        "test4": [ { "direction": "out", "driver_value": "0x0" } ],
+        "test5": [ { "direction": "out", "size_left": "3", "size_right": "0", "driver_value": "0" } ],
+        "test6": [ { "direction": "out", "driver_value": "0x0" } ],
+        "test7": [ { "direction": "out", "driver_value": "0x0" } ]
       },
       "interfaces": {
         "NES_rst": {
@@ -74,10 +81,10 @@
           "mode": "slave",
           "parameters": {
             "ASSOCIATED_RESET": [ { "value": "Reset", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
-            "FREQ_HZ": [ { "value": "100000000", "value_src": "ip_propagated", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
+            "FREQ_HZ": [ { "value": "21477272", "value_src": "user_prop", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "FREQ_TOLERANCE_HZ": [ { "value": "0", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
-            "PHASE": [ { "value": "0.0", "value_src": "ip_propagated", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "float", "is_ips_inferred": true, "is_static_object": false } ],
-            "CLK_DOMAIN": [ { "value": "/clk_wiz_0_clk_out1", "value_src": "ip_propagated", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
+            "PHASE": [ { "value": "0.0", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "float", "is_ips_inferred": true, "is_static_object": false } ],
+            "CLK_DOMAIN": [ { "value": "design_1_nes_system_clk", "value_src": "default_prop", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "ASSOCIATED_BUSIF": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "ASSOCIATED_PORT": [ { "value": "", "value_permission": "bd_and_user", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "INSERT_VIP": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "simulation.rtl", "is_ips_inferred": true, "is_static_object": false } ]

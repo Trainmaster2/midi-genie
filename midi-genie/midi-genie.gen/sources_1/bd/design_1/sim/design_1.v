@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-//Date        : Sat Nov  4 13:04:51 2023
+//Date        : Sun Nov  5 15:08:43 2023
 //Host        : TM2s-PC running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_board_cnt=3,da_clkrst_cnt=11,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_board_cnt=3,da_clkrst_cnt=12,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (led,
     midi_out,
@@ -49,6 +49,13 @@ module design_1
   wire nes_cpu_rw_1;
   wire nes_m2_1;
   wire nes_reset_0_NES_rst;
+  wire [3:0]nes_reset_0_test;
+  wire nes_reset_0_test2;
+  wire nes_reset_0_test3;
+  wire nes_reset_0_test4;
+  wire [3:0]nes_reset_0_test5;
+  wire nes_reset_0_test6;
+  wire nes_reset_0_test7;
   wire nes_romsel_1;
   wire nes_system_clk_1;
   wire reset_1;
@@ -74,7 +81,7 @@ module design_1
         .reset(reset_1));
   design_1_xlconcat_0_1 led_concat
        (.In0(nes_reset_0_NES_rst),
-        .In1(1'b0),
+        .In1(nes_reset_0_test2),
         .dout(xlconcat_0_dout));
   design_1_nes_apu_registers_0_0 nes_apu_registers_0
        (.APU_Counter_Out(nes_apu_registers_0_Counter),
@@ -93,10 +100,17 @@ module design_1
         .Clk(clk_wiz_0_clk_out1),
         .Update(nes_apu_registers_0_Update));
   design_1_nes_reset_0_0 nes_reset_0
-       (.Clk(clk_wiz_0_clk_out1),
+       (.Clk(nes_system_clk_1),
         .M2(nes_m2_1),
         .NES_rst(nes_reset_0_NES_rst),
-        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn));
+        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn),
+        .test(nes_reset_0_test),
+        .test2(nes_reset_0_test2),
+        .test3(nes_reset_0_test3),
+        .test4(nes_reset_0_test4),
+        .test5(nes_reset_0_test5),
+        .test6(nes_reset_0_test6),
+        .test7(nes_reset_0_test7));
   design_1_xlconstant_0_0 rgb_off
        (.dout(rgb_off_dout));
   design_1_rst_clk_wiz_0_100M_3 rst_clk_wiz_0_100M
@@ -115,7 +129,14 @@ module design_1
         .probe12(nes_apu_registers_0_Counter),
         .probe13(nes_apu_registers_0_Update),
         .probe14(nes_reset_0_NES_rst),
+        .probe15(nes_reset_0_test),
+        .probe16(nes_reset_0_test2),
+        .probe17(nes_reset_0_test3),
+        .probe18(nes_reset_0_test4),
+        .probe19(nes_reset_0_test5),
         .probe2(nes_cpu_addr_1),
+        .probe20(nes_reset_0_test6),
+        .probe21(nes_reset_0_test7),
         .probe3(nes_cpu_data_1),
         .probe4(nes_romsel_1),
         .probe5(nes_cpu_rw_1),

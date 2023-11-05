@@ -185,7 +185,7 @@
             "value": "NATIVE"
           },
           "C_NUM_OF_PROBES": {
-            "value": "15"
+            "value": "22"
           }
         }
       },
@@ -199,7 +199,15 @@
         "vlnv": "xilinx.com:ip:xlconcat:2.1",
         "xci_name": "design_1_xlconcat_0_1",
         "xci_path": "ip\\design_1_xlconcat_0_1\\design_1_xlconcat_0_1.xci",
-        "inst_hier_path": "led_concat"
+        "inst_hier_path": "led_concat",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "1"
+          },
+          "IN1_WIDTH": {
+            "value": "1"
+          }
+        }
       },
       "nes_apu_registers_0": {
         "vlnv": "xilinx.com:module_ref:nes_apu_registers:1.0",
@@ -337,16 +345,12 @@
                 "value_src": "constant"
               },
               "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
+                "value": "21477272",
+                "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
+                "value": "design_1_nes_system_clk",
+                "value_src": "default_prop"
               }
             }
           },
@@ -380,6 +384,31 @@
           "NES_rst": {
             "type": "rst",
             "direction": "O"
+          },
+          "test": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "test2": {
+            "direction": "O"
+          },
+          "test3": {
+            "direction": "O"
+          },
+          "test4": {
+            "direction": "O"
+          },
+          "test5": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "test6": {
+            "direction": "O"
+          },
+          "test7": {
+            "direction": "O"
           }
         }
       }
@@ -390,8 +419,7 @@
           "clk_wiz_0/clk_out1",
           "rst_clk_wiz_0_100M/slowest_sync_clk",
           "system_ila_0/clk",
-          "nes_apu_registers_0/Clk",
-          "nes_reset_0/Clk"
+          "nes_apu_registers_0/Clk"
         ]
       },
       "clk_wiz_0_locked": {
@@ -484,6 +512,49 @@
           "led_concat/In0"
         ]
       },
+      "nes_reset_0_test": {
+        "ports": [
+          "nes_reset_0/test",
+          "system_ila_0/probe15"
+        ]
+      },
+      "nes_reset_0_test2": {
+        "ports": [
+          "nes_reset_0/test2",
+          "system_ila_0/probe16",
+          "led_concat/In1"
+        ]
+      },
+      "nes_reset_0_test3": {
+        "ports": [
+          "nes_reset_0/test3",
+          "system_ila_0/probe17"
+        ]
+      },
+      "nes_reset_0_test4": {
+        "ports": [
+          "nes_reset_0/test4",
+          "system_ila_0/probe18"
+        ]
+      },
+      "nes_reset_0_test5": {
+        "ports": [
+          "nes_reset_0/test5",
+          "system_ila_0/probe19"
+        ]
+      },
+      "nes_reset_0_test6": {
+        "ports": [
+          "nes_reset_0/test6",
+          "system_ila_0/probe20"
+        ]
+      },
+      "nes_reset_0_test7": {
+        "ports": [
+          "nes_reset_0/test7",
+          "system_ila_0/probe21"
+        ]
+      },
       "nes_romsel_1": {
         "ports": [
           "nes_romsel",
@@ -495,7 +566,8 @@
         "ports": [
           "nes_system_clk",
           "system_ila_0/probe0",
-          "nes_apu_registers_0/CPU_Clk"
+          "nes_apu_registers_0/CPU_Clk",
+          "nes_reset_0/Clk"
         ]
       },
       "reset_1": {
