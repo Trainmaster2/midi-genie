@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-//Date        : Sun Nov  5 15:24:48 2023
+//Date        : Sun Nov  5 17:37:59 2023
 //Host        : TM2s-PC running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -39,14 +39,13 @@ module design_1
   wire btn1_1;
   wire clk_wiz_0_clk_out1;
   wire clk_wiz_0_locked;
-  wire [1:0]nes_apu_registers_0_Counter;
-  wire [28:0]nes_apu_registers_0_DMC;
-  wire [15:0]nes_apu_registers_0_Noise;
-  wire [31:0]nes_apu_registers_0_Pulse1;
-  wire [31:0]nes_apu_registers_0_Pulse2;
-  wire [6:0]nes_apu_registers_0_Status;
-  wire [30:0]nes_apu_registers_0_Triangle;
-  wire nes_apu_registers_0_Update;
+  wire [1:0]nes_apu_0_APU_Counter_Out;
+  wire [28:0]nes_apu_0_APU_DMC_Out;
+  wire [15:0]nes_apu_0_APU_Noise_Out;
+  wire [42:0]nes_apu_0_APU_Pulse1_Out;
+  wire [42:0]nes_apu_0_APU_Pulse2_Out;
+  wire [6:0]nes_apu_0_APU_Status_Out;
+  wire [41:0]nes_apu_0_APU_Triangle_Out;
   wire [14:0]nes_cpu_addr_1;
   wire [7:0]nes_cpu_data_1;
   wire nes_cpu_rw_1;
@@ -80,14 +79,14 @@ module design_1
        (.In0(1'b0),
         .In1(1'b0),
         .dout(xlconcat_0_dout));
-  design_1_nes_apu_registers_0_0 nes_apu_registers_0
-       (.APU_Counter_Out(nes_apu_registers_0_Counter),
-        .APU_DMC_Out(nes_apu_registers_0_DMC),
-        .APU_Noise_Out(nes_apu_registers_0_Noise),
-        .APU_Pulse1_Out(nes_apu_registers_0_Pulse1),
-        .APU_Pulse2_Out(nes_apu_registers_0_Pulse2),
-        .APU_Status_Out(nes_apu_registers_0_Status),
-        .APU_Triangle_Out(nes_apu_registers_0_Triangle),
+  design_1_nes_apu_0_0 nes_apu_0
+       (.APU_Counter_Out(nes_apu_0_APU_Counter_Out),
+        .APU_DMC_Out(nes_apu_0_APU_DMC_Out),
+        .APU_Noise_Out(nes_apu_0_APU_Noise_Out),
+        .APU_Pulse1_Out(nes_apu_0_APU_Pulse1_Out),
+        .APU_Pulse2_Out(nes_apu_0_APU_Pulse2_Out),
+        .APU_Status_Out(nes_apu_0_APU_Status_Out),
+        .APU_Triangle_Out(nes_apu_0_APU_Triangle_Out),
         .CPU_Addr(nes_cpu_addr_1),
         .CPU_Clk(nes_system_clk_1),
         .CPU_Data(nes_cpu_data_1),
@@ -96,8 +95,7 @@ module design_1
         .CPU_RomSel(nes_romsel_1),
         .CPU_Rst(util_vector_logic_0_Res),
         .Clk(clk_wiz_0_clk_out1),
-        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn),
-        .Update(nes_apu_registers_0_Update));
+        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn));
   design_1_util_vector_logic_0_0 nes_reset
        (.Op1(btn1_1),
         .Res(util_vector_logic_0_Res));
@@ -114,16 +112,15 @@ module design_1
        (.clk(clk_wiz_0_clk_out1),
         .probe0(nes_system_clk_1),
         .probe1(nes_m2_1),
-        .probe10(nes_apu_registers_0_DMC),
-        .probe11(nes_apu_registers_0_Status),
-        .probe12(nes_apu_registers_0_Counter),
-        .probe13(nes_apu_registers_0_Update),
+        .probe10(nes_apu_0_APU_DMC_Out),
+        .probe11(nes_apu_0_APU_Status_Out),
+        .probe12(nes_apu_0_APU_Counter_Out),
         .probe2(nes_cpu_addr_1),
         .probe3(nes_cpu_data_1),
         .probe4(nes_romsel_1),
         .probe5(nes_cpu_rw_1),
-        .probe6(nes_apu_registers_0_Pulse1),
-        .probe7(nes_apu_registers_0_Pulse2),
-        .probe8(nes_apu_registers_0_Triangle),
-        .probe9(nes_apu_registers_0_Noise));
+        .probe6(nes_apu_0_APU_Pulse1_Out),
+        .probe7(nes_apu_0_APU_Pulse2_Out),
+        .probe8(nes_apu_0_APU_Triangle_Out),
+        .probe9(nes_apu_0_APU_Noise_Out));
 endmodule

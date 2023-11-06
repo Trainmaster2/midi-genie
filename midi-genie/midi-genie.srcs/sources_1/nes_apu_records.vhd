@@ -13,11 +13,12 @@ package nes_apu_records is
         sweep_period        : std_logic_vector(2 downto 0);
         sweep_negate        : std_logic;
         sweep_shift         : std_logic_vector(2 downto 0);
-        timer               : std_logic_vector(10 downto 0);
+        timer_load          : std_logic_vector(10 downto 0);
         length_counter      : std_logic_vector(4 downto 0);
+        timer               : std_logic_vector(10 downto 0);
     end record t_APU_PULSE;
 
-    constant c_APU_PULSE_VECTOR : integer := 32;
+    constant c_APU_PULSE_VECTOR : integer := 43;
     constant c_APU_PULSE_INIT   : t_APU_PULSE := (duty => (others => '0'),
                                                   length_counter_halt => '0',
                                                   constant_volume => '0',
@@ -26,8 +27,9 @@ package nes_apu_records is
                                                   sweep_period => (others => '0'),
                                                   sweep_negate => '0',
                                                   sweep_shift => (others => '0'),
-                                                  timer => (others => '0'),
-                                                  length_counter => (others => '0'));
+                                                  timer_load => (others => '0'),
+                                                  length_counter => (others => '0'),
+                                                  timer => (others => '0'));
 
     function f_APU_PULSE_2_VECTOR (rec: t_APU_PULSE) return std_logic_vector;
     function f_VECTOR_2_APU_PULSE (vec: std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0)) return t_APU_PULSE;
@@ -40,17 +42,19 @@ package nes_apu_records is
     type t_APU_TRIANGLE is record
         length_counter_halt : std_logic;
         linear_counter_load : std_logic_vector(6 downto 0);
-        timer               : std_logic_vector(10 downto 0);
+        timer_load          : std_logic_vector(10 downto 0);
         length_counter      : std_logic_vector(4 downto 0);
         linear_counter      : std_logic_vector(6 downto 0);
+        timer               : std_logic_vector(10 downto 0);
     end record t_APU_TRIANGLE;
 
-    constant c_APU_TRIANGLE_VECTOR : integer := 31;
+    constant c_APU_TRIANGLE_VECTOR : integer := 42;
     constant c_APU_TRIANGLE_INIT   : t_APU_TRIANGLE := (length_counter_halt => '0',
                                                         linear_counter_load => (others => '0'),
-                                                        timer => (others => '0'),
+                                                        timer_load => (others => '0'),
                                                         length_counter => (others => '0'),
-                                                        linear_counter => (others => '0'));
+                                                        linear_counter => (others => '0'),
+                                                        timer => (others => '0'));
 
     function f_APU_TRIANGLE_2_VECTOR (rec: t_APU_TRIANGLE) return std_logic_vector;
     function f_VECTOR_2_APU_TRIANGLE (vec: std_logic_vector(c_APU_TRIANGLE_VECTOR - 1 downto 0)) return t_APU_TRIANGLE;
@@ -152,23 +156,24 @@ package body nes_apu_records is
     function f_APU_PULSE_2_VECTOR (rec: t_APU_PULSE) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0);
     begin
-        vec := rec.duty & rec.length_counter_halt & rec.constant_volume & rec.volume & rec.sweep_enable & rec.sweep_period & rec.sweep_negate & rec.sweep_shift & rec.timer & rec.length_counter;
+        vec := rec.duty & rec.length_counter_halt & rec.constant_volume & rec.volume & rec.sweep_enable & rec.sweep_period & rec.sweep_negate & rec.sweep_shift & rec.timer_load & rec.length_counter & rec.timer;
         return vec;
     end;
 
     function f_VECTOR_2_APU_PULSE (vec: std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0)) return t_APU_PULSE is
         variable rec_out : t_APU_PULSE;
     begin
-        rec_out.duty                := vec(31 downto 30);
-        rec_out.length_counter_halt := vec(29);
-        rec_out.constant_volume     := vec(28);
-        rec_out.volume              := vec(27 downto 24);
-        rec_out.sweep_enable        := vec(23);
-        rec_out.sweep_period        := vec(22 downto 20);
-        rec_out.sweep_negate        := vec(19);
-        rec_out.sweep_shift         := vec(18 downto 16);
-        rec_out.timer               := vec(15 downto 5);
-        rec_out.length_counter      := vec(4 downto 0);
+        rec_out.duty                := vec(42 downto 41);
+        rec_out.length_counter_halt := vec(40);
+        rec_out.constant_volume     := vec(39);
+        rec_out.volume              := vec(38 downto 35);
+        rec_out.sweep_enable        := vec(34);
+        rec_out.sweep_period        := vec(33 downto 31);
+        rec_out.sweep_negate        := vec(30);
+        rec_out.sweep_shift         := vec(29 downto 27);
+        rec_out.timer_load          := vec(26 downto 16);
+        rec_out.length_counter      := vec(15 downto 11);
+        rec_out.timer               := vec(10 downto 0);
         return rec_out;
     end;
 
@@ -198,7 +203,7 @@ package body nes_apu_records is
         variable rec_out : t_APU_PULSE;
     begin
         rec_out := rec;
-        rec_out.timer(7 downto 0) := vec;
+        rec_out.timer_load(7 downto 0) := vec;
         return rec_out;
     end;
 
@@ -206,8 +211,8 @@ package body nes_apu_records is
         variable rec_out : t_APU_PULSE;
     begin
         rec_out := rec;
-        rec_out.length_counter     := vec(7 downto 3);
-        rec_out.timer(10 downto 8) := vec(2 downto 0);
+        rec_out.length_counter          := vec(7 downto 3);
+        rec_out.timer_load(10 downto 8) := vec(2 downto 0);
         return rec_out;
     end;
     
@@ -215,18 +220,19 @@ package body nes_apu_records is
     function f_APU_TRIANGLE_2_VECTOR (rec: t_APU_TRIANGLE) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_TRIANGLE_VECTOR - 1 downto 0);
     begin
-        vec := rec.length_counter_halt & rec.linear_counter_load & rec.timer & rec.length_counter & rec.linear_counter;
+        vec := rec.length_counter_halt & rec.linear_counter_load & rec.timer_load & rec.length_counter & rec.linear_counter & rec.timer;
         return vec;
     end;
 
     function f_VECTOR_2_APU_TRIANGLE (vec: std_logic_vector(c_APU_TRIANGLE_VECTOR - 1 downto 0)) return t_APU_TRIANGLE is
         variable rec_out : t_APU_TRIANGLE;
     begin
-        rec_out.length_counter_halt := vec(30);
-        rec_out.linear_counter_load := vec(29 downto 23);
-        rec_out.timer               := vec(22 downto 12);
-        rec_out.length_counter      := vec(11 downto 7);
-        rec_out.linear_counter      := vec(6 downto 0);
+        rec_out.length_counter_halt := vec(41);
+        rec_out.linear_counter_load := vec(40 downto 34);
+        rec_out.timer_load          := vec(33 downto 23);
+        rec_out.length_counter      := vec(22 downto 18);
+        rec_out.linear_counter      := vec(17 downto 11);
+        rec_out.timer               := vec(10 downto 0);
         return rec_out;
     end;
 
@@ -243,7 +249,7 @@ package body nes_apu_records is
         variable rec_out : t_APU_TRIANGLE;
     begin
         rec_out := rec;
-        rec_out.timer(7 downto 0) := vec;
+        rec_out.timer_load(7 downto 0) := vec;
         return rec_out;
     end;
 
@@ -251,9 +257,9 @@ package body nes_apu_records is
         variable rec_out : t_APU_TRIANGLE;
     begin
         rec_out := rec;
-        rec_out.length_counter     := vec(7 downto 3);
-        rec_out.timer(10 downto 8) := vec(2 downto 0);
-        rec_out.linear_counter     := rec.linear_counter_load;
+        rec_out.length_counter          := vec(7 downto 3);
+        rec_out.timer_load(10 downto 8) := vec(2 downto 0);
+        rec_out.linear_counter          := rec.linear_counter_load;
         return rec_out;
     end;
     

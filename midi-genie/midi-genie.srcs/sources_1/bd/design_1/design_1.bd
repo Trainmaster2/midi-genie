@@ -16,8 +16,8 @@
       "system_ila_0": "",
       "rst_clk_wiz_0_100M": "",
       "led_concat": "",
-      "nes_apu_registers_0": "",
-      "nes_reset": ""
+      "nes_reset": "",
+      "nes_apu_0": ""
     },
     "ports": {
       "sys_clock": {
@@ -198,7 +198,7 @@
             "value": "NATIVE"
           },
           "C_NUM_OF_PROBES": {
-            "value": "14"
+            "value": "13"
           }
         }
       },
@@ -222,14 +222,28 @@
           }
         }
       },
-      "nes_apu_registers_0": {
-        "vlnv": "xilinx.com:module_ref:nes_apu_registers:1.0",
-        "xci_name": "design_1_nes_apu_registers_0_0",
-        "xci_path": "ip\\design_1_nes_apu_registers_0_0\\design_1_nes_apu_registers_0_0.xci",
-        "inst_hier_path": "nes_apu_registers_0",
+      "nes_reset": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "design_1_util_vector_logic_0_0",
+        "xci_path": "ip\\design_1_util_vector_logic_0_0\\design_1_util_vector_logic_0_0.xci",
+        "inst_hier_path": "nes_reset",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
+      },
+      "nes_apu_0": {
+        "vlnv": "xilinx.com:module_ref:nes_apu:1.0",
+        "xci_name": "design_1_nes_apu_0_0",
+        "xci_path": "ip\\design_1_nes_apu_0_0\\design_1_nes_apu_0_0.xci",
+        "inst_hier_path": "nes_apu_0",
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "nes_apu_registers",
+          "ref_name": "nes_apu",
           "boundary_crc": "0x0"
         },
         "ports": {
@@ -322,17 +336,17 @@
           },
           "APU_Pulse1_Out": {
             "direction": "O",
-            "left": "31",
+            "left": "42",
             "right": "0"
           },
           "APU_Pulse2_Out": {
             "direction": "O",
-            "left": "31",
+            "left": "42",
             "right": "0"
           },
           "APU_Triangle_Out": {
             "direction": "O",
-            "left": "30",
+            "left": "41",
             "right": "0"
           },
           "APU_Noise_Out": {
@@ -354,23 +368,6 @@
             "direction": "O",
             "left": "1",
             "right": "0"
-          },
-          "Update": {
-            "direction": "O"
-          }
-        }
-      },
-      "nes_reset": {
-        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-        "xci_name": "design_1_util_vector_logic_0_0",
-        "xci_path": "ip\\design_1_util_vector_logic_0_0\\design_1_util_vector_logic_0_0.xci",
-        "inst_hier_path": "nes_reset",
-        "parameters": {
-          "C_OPERATION": {
-            "value": "not"
-          },
-          "C_SIZE": {
-            "value": "1"
           }
         }
       }
@@ -387,7 +384,7 @@
           "clk_wiz_0/clk_out1",
           "rst_clk_wiz_0_100M/slowest_sync_clk",
           "system_ila_0/clk",
-          "nes_apu_registers_0/Clk"
+          "nes_apu_0/Clk"
         ]
       },
       "clk_wiz_0_locked": {
@@ -396,94 +393,88 @@
           "rst_clk_wiz_0_100M/dcm_locked"
         ]
       },
-      "nes_apu_registers_0_Counter": {
+      "nes_apu_0_APU_Counter_Out": {
         "ports": [
-          "nes_apu_registers_0/APU_Counter_Out",
+          "nes_apu_0/APU_Counter_Out",
           "system_ila_0/probe12"
         ]
       },
-      "nes_apu_registers_0_DMC": {
+      "nes_apu_0_APU_DMC_Out": {
         "ports": [
-          "nes_apu_registers_0/APU_DMC_Out",
+          "nes_apu_0/APU_DMC_Out",
           "system_ila_0/probe10"
         ]
       },
-      "nes_apu_registers_0_Noise": {
+      "nes_apu_0_APU_Noise_Out": {
         "ports": [
-          "nes_apu_registers_0/APU_Noise_Out",
+          "nes_apu_0/APU_Noise_Out",
           "system_ila_0/probe9"
         ]
       },
-      "nes_apu_registers_0_Pulse1": {
+      "nes_apu_0_APU_Pulse1_Out": {
         "ports": [
-          "nes_apu_registers_0/APU_Pulse1_Out",
+          "nes_apu_0/APU_Pulse1_Out",
           "system_ila_0/probe6"
         ]
       },
-      "nes_apu_registers_0_Pulse2": {
+      "nes_apu_0_APU_Pulse2_Out": {
         "ports": [
-          "nes_apu_registers_0/APU_Pulse2_Out",
+          "nes_apu_0/APU_Pulse2_Out",
           "system_ila_0/probe7"
         ]
       },
-      "nes_apu_registers_0_Status": {
+      "nes_apu_0_APU_Status_Out": {
         "ports": [
-          "nes_apu_registers_0/APU_Status_Out",
+          "nes_apu_0/APU_Status_Out",
           "system_ila_0/probe11"
         ]
       },
-      "nes_apu_registers_0_Triangle": {
+      "nes_apu_0_APU_Triangle_Out": {
         "ports": [
-          "nes_apu_registers_0/APU_Triangle_Out",
+          "nes_apu_0/APU_Triangle_Out",
           "system_ila_0/probe8"
-        ]
-      },
-      "nes_apu_registers_0_Update": {
-        "ports": [
-          "nes_apu_registers_0/Update",
-          "system_ila_0/probe13"
         ]
       },
       "nes_cpu_addr_1": {
         "ports": [
           "nes_cpu_addr",
           "system_ila_0/probe2",
-          "nes_apu_registers_0/CPU_Addr"
+          "nes_apu_0/CPU_Addr"
         ]
       },
       "nes_cpu_data_1": {
         "ports": [
           "nes_cpu_data",
           "system_ila_0/probe3",
-          "nes_apu_registers_0/CPU_Data"
+          "nes_apu_0/CPU_Data"
         ]
       },
       "nes_cpu_rw_1": {
         "ports": [
           "nes_cpu_rw",
           "system_ila_0/probe5",
-          "nes_apu_registers_0/CPU_RW"
+          "nes_apu_0/CPU_RW"
         ]
       },
       "nes_m2_1": {
         "ports": [
           "nes_m2",
           "system_ila_0/probe1",
-          "nes_apu_registers_0/CPU_M2"
+          "nes_apu_0/CPU_M2"
         ]
       },
       "nes_romsel_1": {
         "ports": [
           "nes_romsel",
           "system_ila_0/probe4",
-          "nes_apu_registers_0/CPU_RomSel"
+          "nes_apu_0/CPU_RomSel"
         ]
       },
       "nes_system_clk_1": {
         "ports": [
           "nes_system_clk",
           "system_ila_0/probe0",
-          "nes_apu_registers_0/CPU_Clk"
+          "nes_apu_0/CPU_Clk"
         ]
       },
       "reset_1": {
@@ -502,7 +493,7 @@
       "rst_clk_wiz_0_100M_peripheral_aresetn": {
         "ports": [
           "rst_clk_wiz_0_100M/peripheral_aresetn",
-          "nes_apu_registers_0/Reset"
+          "nes_apu_0/Reset"
         ]
       },
       "sys_clock_1": {
@@ -514,7 +505,7 @@
       "util_vector_logic_0_Res": {
         "ports": [
           "nes_reset/Res",
-          "nes_apu_registers_0/CPU_Rst"
+          "nes_apu_0/CPU_Rst"
         ]
       },
       "xlconcat_0_dout": {
