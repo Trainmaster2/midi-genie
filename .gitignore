@@ -1,4 +1,8 @@
 /.stfolder/
+/.vscode/
+
+/algorithm test/test
+/algorithm test/*.o
 
 /SP_kicad/SP_kicad-backups
 /SP_kicad/fp-info-cache
