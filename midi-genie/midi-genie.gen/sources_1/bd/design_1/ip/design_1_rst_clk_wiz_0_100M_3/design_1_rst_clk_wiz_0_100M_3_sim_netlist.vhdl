@@ -1,11 +1,11 @@
--- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
--- Date        : Wed Sep 13 22:36:45 2023
--- Host        : TM2s-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top design_1_rst_clk_wiz_0_100M_3 -prefix
---               design_1_rst_clk_wiz_0_100M_3_ design_1_rst_clk_wiz_0_100M_1_sim_netlist.vhdl
--- Design      : design_1_rst_clk_wiz_0_100M_1
+-- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
+-- Date        : Mon Jan  8 16:19:30 2024
+-- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_3/design_1_rst_clk_wiz_0_100M_3_sim_netlist.vhdl
+-- Design      : design_1_rst_clk_wiz_0_100M_3
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7a35tcpg236-1
@@ -26,6 +26,8 @@ entity design_1_rst_clk_wiz_0_100M_3_cdc_sync is
     mb_debug_sys_rst : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_rst_clk_wiz_0_100M_3_cdc_sync : entity is "cdc_sync";
 end design_1_rst_clk_wiz_0_100M_3_cdc_sync;
 
 architecture STRUCTURE of design_1_rst_clk_wiz_0_100M_3_cdc_sync is
@@ -245,6 +247,8 @@ entity design_1_rst_clk_wiz_0_100M_3_upcnt_n is
     seq_cnt_en : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_rst_clk_wiz_0_100M_3_upcnt_n : entity is "upcnt_n";
 end design_1_rst_clk_wiz_0_100M_3_upcnt_n;
 
 architecture STRUCTURE of design_1_rst_clk_wiz_0_100M_3_upcnt_n is
@@ -409,6 +413,8 @@ entity design_1_rst_clk_wiz_0_100M_3_lpf is
     mb_debug_sys_rst : in STD_LOGIC;
     aux_reset_in : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_rst_clk_wiz_0_100M_3_lpf : entity is "lpf";
 end design_1_rst_clk_wiz_0_100M_3_lpf;
 
 architecture STRUCTURE of design_1_rst_clk_wiz_0_100M_3_lpf is
@@ -597,6 +603,8 @@ entity design_1_rst_clk_wiz_0_100M_3_sequence_psr is
     lpf_int : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_rst_clk_wiz_0_100M_3_sequence_psr : entity is "sequence_psr";
 end design_1_rst_clk_wiz_0_100M_3_sequence_psr;
 
 architecture STRUCTURE of design_1_rst_clk_wiz_0_100M_3_sequence_psr is
@@ -935,6 +943,8 @@ entity design_1_rst_clk_wiz_0_100M_3_proc_sys_reset is
   attribute C_NUM_PERP_ARESETN of design_1_rst_clk_wiz_0_100M_3_proc_sys_reset : entity is 1;
   attribute C_NUM_PERP_RST : integer;
   attribute C_NUM_PERP_RST of design_1_rst_clk_wiz_0_100M_3_proc_sys_reset : entity is 1;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_rst_clk_wiz_0_100M_3_proc_sys_reset : entity is "proc_sys_reset";
 end design_1_rst_clk_wiz_0_100M_3_proc_sys_reset;
 
 architecture STRUCTURE of design_1_rst_clk_wiz_0_100M_3_proc_sys_reset is
@@ -1061,11 +1071,11 @@ entity design_1_rst_clk_wiz_0_100M_3 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of design_1_rst_clk_wiz_0_100M_3 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of design_1_rst_clk_wiz_0_100M_3 : entity is "design_1_rst_clk_wiz_0_100M_1,proc_sys_reset,{}";
+  attribute CHECK_LICENSE_TYPE of design_1_rst_clk_wiz_0_100M_3 : entity is "design_1_rst_clk_wiz_0_100M_3,proc_sys_reset,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_rst_clk_wiz_0_100M_3 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of design_1_rst_clk_wiz_0_100M_3 : entity is "proc_sys_reset,Vivado 2022.2";
+  attribute x_core_info of design_1_rst_clk_wiz_0_100M_3 : entity is "proc_sys_reset,Vivado 2022.2.2";
 end design_1_rst_clk_wiz_0_100M_3;
 
 architecture STRUCTURE of design_1_rst_clk_wiz_0_100M_3 is

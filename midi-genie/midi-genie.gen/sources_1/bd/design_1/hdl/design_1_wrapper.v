@@ -1,8 +1,8 @@
-//Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+//Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-//Date        : Sun Nov  5 17:37:59 2023
-//Host        : TM2s-PC running 64-bit major release  (build 9200)
+//Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
+//Date        : Mon Jan  8 16:18:37 2024
+//Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
 //Purpose     : IP block netlist
@@ -21,7 +21,9 @@ module design_1_wrapper
     nes_system_clk,
     reset,
     rgb_led,
-    sys_clock);
+    sys_clock,
+    usb_uart_rxd,
+    usb_uart_txd);
   input btn1;
   output [1:0]led;
   output midi_out;
@@ -34,6 +36,8 @@ module design_1_wrapper
   input reset;
   output [2:0]rgb_led;
   input sys_clock;
+  input usb_uart_rxd;
+  output usb_uart_txd;
 
   wire btn1;
   wire [1:0]led;
@@ -47,6 +51,8 @@ module design_1_wrapper
   wire reset;
   wire [2:0]rgb_led;
   wire sys_clock;
+  wire usb_uart_rxd;
+  wire usb_uart_txd;
 
   design_1 design_1_i
        (.btn1(btn1),
@@ -60,5 +66,7 @@ module design_1_wrapper
         .nes_system_clk(nes_system_clk),
         .reset(reset),
         .rgb_led(rgb_led),
-        .sys_clock(sys_clock));
+        .sys_clock(sys_clock),
+        .usb_uart_rxd(usb_uart_rxd),
+        .usb_uart_txd(usb_uart_txd));
 endmodule

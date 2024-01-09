@@ -1,10 +1,10 @@
-// Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-// Date        : Tue Sep 12 21:54:36 2023
-// Host        : TM2s-PC running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub -rename_top design_1_clk_wiz_0_0 -prefix
-//               design_1_clk_wiz_0_0_ design_1_clk_wiz_0_0_stub.v
+// Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
+// Date        : Mon Jan  8 16:19:30 2024
+// Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
+// Command     : write_verilog -force -mode synth_stub
+//               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0_stub.v
 // Design      : design_1_clk_wiz_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a35tcpg236-1

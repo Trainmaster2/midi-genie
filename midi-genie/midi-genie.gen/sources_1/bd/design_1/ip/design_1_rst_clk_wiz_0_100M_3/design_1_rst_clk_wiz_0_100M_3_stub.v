@@ -1,11 +1,11 @@
-// Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-// Date        : Wed Sep 13 22:36:45 2023
-// Host        : TM2s-PC running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub -rename_top design_1_rst_clk_wiz_0_100M_3 -prefix
-//               design_1_rst_clk_wiz_0_100M_3_ design_1_rst_clk_wiz_0_100M_1_stub.v
-// Design      : design_1_rst_clk_wiz_0_100M_1
+// Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
+// Date        : Mon Jan  8 16:19:30 2024
+// Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
+// Command     : write_verilog -force -mode synth_stub
+//               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_rst_clk_wiz_0_100M_3/design_1_rst_clk_wiz_0_100M_3_stub.v
+// Design      : design_1_rst_clk_wiz_0_100M_3
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a35tcpg236-1
 // --------------------------------------------------------------------------------
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* x_core_info = "proc_sys_reset,Vivado 2022.2" *)
+(* x_core_info = "proc_sys_reset,Vivado 2022.2.2" *)
 module design_1_rst_clk_wiz_0_100M_3(slowest_sync_clk, ext_reset_in, aux_reset_in, 
   mb_debug_sys_rst, dcm_locked, mb_reset, bus_struct_reset, peripheral_reset, 
   interconnect_aresetn, peripheral_aresetn)

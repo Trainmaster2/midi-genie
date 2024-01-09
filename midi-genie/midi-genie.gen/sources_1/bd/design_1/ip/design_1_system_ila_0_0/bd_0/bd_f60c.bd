@@ -8,7 +8,7 @@
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "scoped": "true",
       "synth_flow_mode": "None",
-      "tool_version": "2022.2",
+      "tool_version": "2022.2.2",
       "validated": "true"
     },
     "design_tree": {
@@ -111,7 +111,7 @@
       "ila_lib": {
         "vlnv": "xilinx.com:ip:ila:6.2",
         "xci_name": "bd_f60c_ila_lib_0",
-        "xci_path": "ip\\ip_0\\bd_f60c_ila_lib_0.xci",
+        "xci_path": "ip/ip_0/bd_f60c_ila_lib_0.xci",
         "inst_hier_path": "ila_lib",
         "parameters": {
           "ALL_PROBE_SAME_MU": {
