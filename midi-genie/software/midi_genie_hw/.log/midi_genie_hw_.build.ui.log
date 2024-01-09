@@ -1,7 +1,7 @@
-2024-01-09T01:53:49.30790300255-01:53:49 **** Build of project midi_genie_hw ****
-000-buildplatform.sh 46377 midi_genie_hw  
+2024-01-09T11:16:43.63902400255-11:16:43 **** Build of project midi_genie_hw ****
+000-buildplatform.sh 39919 midi_genie_hw  
 000-XSDB Server Channel: tcfchan#1
-000-Reading the platform  : "midi_genie_hw"
+000-/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin
 000-Building the BSP Library for domain  - standalone_microblaze_0 on processor microblaze_0
 000-make --no-print-directory seq_libs
 000-
@@ -12,66 +12,68 @@
 000-Running Make include in microblaze_0/libsrc/bram_v4_8/src
 000-
 000-make -C microblaze_0/libsrc/bram_v4_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
-000-PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -W
-000-all -Wextra -fno-tree-loop-distribute-patterns"
+000-PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
+000-ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
 000-Running Make include in microblaze_0/libsrc/cpu_v2_16/src
 000-
 000-make -C microblaze_0/libsrc/cpu_v2_16/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
-000-PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -W
-000-all -Wextra -fno-tree-loop-distribute-patterns"
+000-PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
+000-ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
 000-Running Make include in microblaze_0/libsrc/intc_v3_15/src
 000-
 000-make -C microblaze_0/libsrc/intc_v3_15/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
-000-MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -
-000-Wall -Wextra -fno-tree-loop-distribute-patterns"
+000-MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffu
+000-nction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
 000-Running Make include in microblaze_0/libsrc/standalone_v8_0/src
 000-
 000-make -C microblaze_0/libsrc/standalone_v8_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar
-000-" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-secti
-000-ons -Wall -Wextra -fno-tree-loop-distribute-patterns"
+000-" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g
+000- -ffunction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
 000-Running Make include in microblaze_0/libsrc/uartlite_v3_7/src
 000-
 000-make -C microblaze_0/libsrc/uartlite_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" 
-000-"COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-section
-000-s -Wall -Wextra -fno-tree-loop-distribute-patterns"
+000-"COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -
+000-ffunction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
 000-Running Make libs in microblaze_0/libsrc/bram_v4_8/src
 000-
-000-make -C microblaze_0/libsrc/bram_v4_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
-000-ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall
-000- -Wextra -fno-tree-loop-distribute-patterns"
-000-
 000-Running Make libs in microblaze_0/libsrc/cpu_v2_16/src
 000-
+000-make -C microblaze_0/libsrc/bram_v4_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
+000-ER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffuncti
+000-on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+000-
 000-make -C microblaze_0/libsrc/cpu_v2_16/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
-000-ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall
-000- -Wextra -fno-tree-loop-distribute-patterns"
+000-ER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffuncti
+000-on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
 000-Running Make libs in microblaze_0/libsrc/intc_v3_15/src
 000-
+000-make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
+000-LER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunct
+000-ion-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+000-
 000-Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
 000-
-000-make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
-000-LER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wal
-000-l -Wextra -fno-tree-loop-distribute-patterns"
-000-
 000-make -C microblaze_0/libsrc/standalone_v8_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "
-000-COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections
-000- -Wall -Wextra -fno-tree-loop-distribute-patterns"
+000-COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -f
+000-function-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
 000-Running Make libs in microblaze_0/libsrc/uartlite_v3_7/src
 000-
 000-make -C microblaze_0/libsrc/uartlite_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
-000-MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -
-000-Wall -Wextra -fno-tree-loop-distribute-patterns"
+000-MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffu
+000-nction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
 000/midi_genie_hw81-1-1'#pragma message: For the sleep routines, assembly instructions are used'0-microblaze_sleep.c:81:9: note: '#pragma message: For the sleep routines, assembly instructions are used'
 000-   81 | #pragma message ("For the sleep routines, assembly instructions are used")
 000-      |         ^~~~~~~
+000-DEBUG NON_LTO_OBJECTS is ../../../lib/microblaze_interrupt_handler.o
+000-
 000-Finished building libraries parallelly.
 000-
 000-make --no-print-directory archive
@@ -98,8 +100,9 @@
 000-microblaze_0/lib/xuartlite_intr.o microblaze_0/lib/xuartlite_l.o microblaze_0/lib/xuartlite_selftest.o microblaze_0/lib/xuartli
 000-te_sinit.o microblaze_0/lib/xuartlite_stats.o
 000-
+000-/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/bin/../x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ar.real: creating microblaze_0/lib/libxil.a
 000-Finished building libraries
 000-
 00255-
-01:54:00 Build Finished (took 11s.59ms)
+11:16:52 Build Finished (took 9s.264ms)
 

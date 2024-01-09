@@ -14547,11 +14547,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jan 08 22:32:46 UTC 2024</spirit:value>
+            <spirit:value>Tue Jan 09 19:04:13 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:d43f5849</spirit:value>
+            <spirit:value>9:5440d860</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14565,11 +14565,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jan 08 22:32:46 UTC 2024</spirit:value>
+            <spirit:value>Tue Jan 09 19:09:10 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:d43f5849</spirit:value>
+            <spirit:value>9:5440d860</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14585,11 +14585,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jan 08 22:32:46 UTC 2024</spirit:value>
+            <spirit:value>Tue Jan 09 19:09:10 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:d43f5849</spirit:value>
+            <spirit:value>9:5440d860</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14605,11 +14605,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jan 08 22:32:46 UTC 2024</spirit:value>
+            <spirit:value>Tue Jan 09 19:04:13 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0c9308a6</spirit:value>
+            <spirit:value>9:ebf3dc30</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14625,11 +14625,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jan 08 22:32:46 UTC 2024</spirit:value>
+            <spirit:value>Tue Jan 09 19:09:10 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0c9308a6</spirit:value>
+            <spirit:value>9:ebf3dc30</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14643,11 +14643,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jan 08 22:35:23 UTC 2024</spirit:value>
+            <spirit:value>Tue Jan 09 19:10:30 UTC 2024</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:d43f5849</spirit:value>
+            <spirit:value>9:5440d860</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -25218,17 +25218,17 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_USE_DIV</spirit:name>
         <spirit:displayName>Enable Integer Divider</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_DIV" spirit:choiceRef="choice_pairs_4873554b">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_DIV" spirit:choiceRef="choice_pairs_4873554b">1</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_USE_HW_MUL</spirit:name>
         <spirit:displayName>Enable Integer Multiplier</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_HW_MUL" spirit:choiceRef="choice_pairs_1075faf2">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_HW_MUL" spirit:choiceRef="choice_pairs_1075faf2">1</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_USE_FPU</spirit:name>
         <spirit:displayName>Enable Floating Point Unit</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_FPU" spirit:choiceRef="choice_pairs_7bfd418d">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_FPU" spirit:choiceRef="choice_pairs_7bfd418d">1</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_USE_REORDER_INSTR</spirit:name>
@@ -25252,7 +25252,7 @@
         <spirit:vendorExtensions>
           <xilinx:parameterInfo>
             <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="MODELPARAM_ENABLEMENT.C_DIV_ZERO_EXCEPTION" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_DIV&apos;)) = 1">false</xilinx:isEnabled>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="MODELPARAM_ENABLEMENT.C_DIV_ZERO_EXCEPTION" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_DIV&apos;)) = 1">true</xilinx:isEnabled>
             </xilinx:enablement>
           </xilinx:parameterInfo>
         </spirit:vendorExtensions>
@@ -25264,7 +25264,7 @@
         <spirit:vendorExtensions>
           <xilinx:parameterInfo>
             <xilinx:enablement>
-              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="MODELPARAM_ENABLEMENT.C_FPU_EXCEPTION" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_FPU&apos;)) = 1">false</xilinx:isEnabled>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="MODELPARAM_ENABLEMENT.C_FPU_EXCEPTION" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C_USE_FPU&apos;)) = 1">true</xilinx:isEnabled>
             </xilinx:enablement>
           </xilinx:parameterInfo>
         </spirit:vendorExtensions>
@@ -26261,12 +26261,6 @@
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>data/mb_bootloop_le.elf</spirit:name>
-        <spirit:userFileType>elf</spirit:userFileType>
-        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>design_1_microblaze_0_0.xdc</spirit:name>
         <spirit:userFileType>xdc</spirit:userFileType>
       </spirit:file>
@@ -27027,7 +27021,7 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
     <spirit:parameter>
       <spirit:name>C_USE_DIV</spirit:name>
       <spirit:displayName>Enable Integer Divider</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_DIV" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1030" spirit:configGroups="1 Instructions">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_DIV" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1030" spirit:configGroups="1 Instructions">1</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -27039,7 +27033,7 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
     <spirit:parameter>
       <spirit:name>C_USE_HW_MUL</spirit:name>
       <spirit:displayName>Enable Integer Multiplier</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_HW_MUL" spirit:choiceRef="choice_pairs_1075faf2" spirit:order="1020" spirit:configGroups="1 Instructions">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_HW_MUL" spirit:choiceRef="choice_pairs_1075faf2" spirit:order="1020" spirit:configGroups="1 Instructions">1</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -27051,7 +27045,7 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
     <spirit:parameter>
       <spirit:name>C_USE_FPU</spirit:name>
       <spirit:displayName>Enable Floating Point Unit</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_FPU" spirit:choiceRef="choice_pairs_7bfd418d" spirit:order="1010" spirit:configGroups="1 Instructions">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_FPU" spirit:choiceRef="choice_pairs_7bfd418d" spirit:order="1010" spirit:configGroups="1 Instructions">1</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -27115,7 +27109,7 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.C_DIV_ZERO_EXCEPTION">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.C_DIV_ZERO_EXCEPTION">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
@@ -27127,7 +27121,7 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.C_FPU_EXCEPTION">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.C_FPU_EXCEPTION">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
@@ -28979,8 +28973,11 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_I_LMB_PROTOCOL" xilinx:valuePermission="bd_and_user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_M_AXI_DC_USER_SIGNALS" xilinx:valueSource="propagated"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_M_AXI_IC_USER_SIGNALS" xilinx:valueSource="propagated"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_DIV" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_EXT_BRK" xilinx:valueSource="propagated"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_EXT_NM_BRK" xilinx:valueSource="propagated"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_FPU" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_HW_MUL" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_INTERRUPT" xilinx:valueSource="propagated" xilinx:valuePermission="bd_and_user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_NON_SECURE" xilinx:valueSource="propagated"/>
       </xilinx:configElementInfos>

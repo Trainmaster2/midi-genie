@@ -409,6 +409,15 @@
           },
           "C_I_LMB": {
             "value": "1"
+          },
+          "C_USE_DIV": {
+            "value": "1"
+          },
+          "C_USE_FPU": {
+            "value": "1"
+          },
+          "C_USE_HW_MUL": {
+            "value": "1"
           }
         },
         "interface_ports": {

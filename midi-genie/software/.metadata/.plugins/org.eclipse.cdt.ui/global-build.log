@@ -1,7 +1,7 @@
-01:53:49 **** Build of project midi_genie_hw ****
-buildplatform.sh 46377 midi_genie_hw  
+11:16:43 **** Build of project midi_genie_hw ****
+buildplatform.sh 39919 midi_genie_hw  
 XSDB Server Channel: tcfchan#1
-Reading the platform  : "midi_genie_hw"
+/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin
 Building the BSP Library for domain  - standalone_microblaze_0 on processor microblaze_0
 make --no-print-directory seq_libs
 
@@ -12,66 +12,68 @@ make -j 10 --no-print-directory par_libs
 Running Make include in microblaze_0/libsrc/bram_v4_8/src
 
 make -C microblaze_0/libsrc/bram_v4_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
-PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -W
-all -Wextra -fno-tree-loop-distribute-patterns"
+PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
+ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make include in microblaze_0/libsrc/cpu_v2_16/src
 
 make -C microblaze_0/libsrc/cpu_v2_16/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
-PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -W
-all -Wextra -fno-tree-loop-distribute-patterns"
+PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
+ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make include in microblaze_0/libsrc/intc_v3_15/src
 
 make -C microblaze_0/libsrc/intc_v3_15/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
-MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -
-Wall -Wextra -fno-tree-loop-distribute-patterns"
+MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffu
+nction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make include in microblaze_0/libsrc/standalone_v8_0/src
 
 make -C microblaze_0/libsrc/standalone_v8_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar
-" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-secti
-ons -Wall -Wextra -fno-tree-loop-distribute-patterns"
+" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g
+ -ffunction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make include in microblaze_0/libsrc/uartlite_v3_7/src
 
 make -C microblaze_0/libsrc/uartlite_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" 
-"COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-section
-s -Wall -Wextra -fno-tree-loop-distribute-patterns"
+"COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -
+ffunction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make libs in microblaze_0/libsrc/bram_v4_8/src
 
-make -C microblaze_0/libsrc/bram_v4_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
-ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall
- -Wextra -fno-tree-loop-distribute-patterns"
-
 Running Make libs in microblaze_0/libsrc/cpu_v2_16/src
 
+make -C microblaze_0/libsrc/bram_v4_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
+ER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffuncti
+on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
 make -C microblaze_0/libsrc/cpu_v2_16/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
-ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall
- -Wextra -fno-tree-loop-distribute-patterns"
+ER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffuncti
+on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make libs in microblaze_0/libsrc/intc_v3_15/src
 
+make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
+LER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunct
+ion-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
 Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
 
-make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
-LER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wal
-l -Wextra -fno-tree-loop-distribute-patterns"
-
 make -C microblaze_0/libsrc/standalone_v8_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "
-COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections
- -Wall -Wextra -fno-tree-loop-distribute-patterns"
+COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -f
+function-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make libs in microblaze_0/libsrc/uartlite_v3_7/src
 
 make -C microblaze_0/libsrc/uartlite_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
-MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -
-Wall -Wextra -fno-tree-loop-distribute-patterns"
+MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffu
+nction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 microblaze_sleep.c:81:9: note: '#pragma message: For the sleep routines, assembly instructions are used'
    81 | #pragma message ("For the sleep routines, assembly instructions are used")
       |         ^~~~~~~
+DEBUG NON_LTO_OBJECTS is ../../../lib/microblaze_interrupt_handler.o
+
 Finished building libraries parallelly.
 
 make --no-print-directory archive
@@ -98,9 +100,10 @@ pt_wrap.o microblaze_0/lib/xio.o microblaze_0/lib/xplatform_info.o microblaze_0/
 microblaze_0/lib/xuartlite_intr.o microblaze_0/lib/xuartlite_l.o microblaze_0/lib/xuartlite_selftest.o microblaze_0/lib/xuartli
 te_sinit.o microblaze_0/lib/xuartlite_stats.o
 
+/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/bin/../x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ar.real: creating microblaze_0/lib/libxil.a
 Finished building libraries
 
-01:54:05 **** Build of configuration Debug for project midi_genie ****
+11:17:00 **** Build of configuration Debug for project midi_genie ****
 make all 
 Building file: ../src/calc.cpp
 Invoking: MicroBlaze g++ compiler
@@ -115,7 +118,7 @@ Finished building: ../src/main.cpp
 Building target: midi_genie.elf
 Invoking: MicroBlaze g++ linker
 mb-g++ -Wl,-T -Wl,../src/lscript.ld -L/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bsplib/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "midi_genie.elf" ./src/calc.o ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,-lstdc++,--end-group
-/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ld.real: midi_genie.elf section `.heap' will not fit in region `microblaze_0_local_memory_ilmb_bram_if_cntlr_Mem_microblaze_0_local_memory_dlmb_bram_if_cntlr_Mem'
-/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ld.real: region `microblaze_0_local_memory_ilmb_bram_if_cntlr_Mem_microblaze_0_local_memory_dlmb_bram_if_cntlr_Mem' overflowed by 1888 bytes
+/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ld.real: midi_genie.elf section `.stack' will not fit in region `microblaze_0_local_memory_ilmb_bram_if_cntlr_Mem_microblaze_0_local_memory_dlmb_bram_if_cntlr_Mem'
+/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ld.real: region `microblaze_0_local_memory_ilmb_bram_if_cntlr_Mem_microblaze_0_local_memory_dlmb_bram_if_cntlr_Mem' overflowed by 320 bytes
 collect2.real: error: ld returned 1 exit status
 make: *** [makefile:50: midi_genie.elf] Error 1

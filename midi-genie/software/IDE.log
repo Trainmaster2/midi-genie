@@ -196,3 +196,24 @@ after 3000
 01:53:57 INFO  : Result from executing command 'getProjects': midi_genie_hw
 01:53:57 INFO  : Result from executing command 'getPlatforms': midi_genie_hw|/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/midi_genie_hw.xpfm
 01:54:00 INFO  : Checking for BSP changes to sync application flags for project 'midi_genie'...
+11:16:01 DEBUG : Logs will be stored at '/home/trainmaster2/Documents/midi-genie/midi-genie/software/IDE.log'.
+11:16:02 INFO  : Launching XSCT server: xsct -n  -interactive /home/trainmaster2/Documents/midi-genie/midi-genie/software/temp_xsdb_launch_script.tcl
+11:16:03 ERROR : Error encountered while initializing user repository paths
+Reason: No Platforms Found.
+
+
+11:16:03 INFO  : Platform repository initialization has completed.
+11:16:03 INFO  : Registering command handlers for Vitis TCF services
+11:16:04 INFO  : XSCT server has started successfully.
+11:16:04 INFO  : Successfully done setting XSCT server connection channel  
+11:16:04 INFO  : plnx-install-location is set to ''
+11:16:04 INFO  : Successfully done query RDI_DATADIR 
+11:16:04 INFO  : Successfully done setting workspace for the tool. 
+11:16:36 INFO  : Hardware specification for platform project 'midi_genie_hw' is updated.
+11:16:49 INFO  : Result from executing command 'getProjects': midi_genie_hw
+11:16:49 INFO  : Result from executing command 'getPlatforms': 
+11:16:52 INFO  : Checking for BSP changes to sync application flags for project 'midi_genie'...
+11:17:02 INFO  : The hardware specification used by project 'midi_genie' is out of sync with the platform. Resource files extracted from the hardware specification will be updated.
+11:17:02 INFO  : The file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit' stored in project is removed.
+11:17:02 INFO  : The file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.mmi' stored in project is removed.
+11:17:02 INFO  : The updated bitstream files are copied from platform to folder '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream' in project 'midi_genie'.

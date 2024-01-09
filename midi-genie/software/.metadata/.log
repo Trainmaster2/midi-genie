@@ -1403,3 +1403,235 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY com.xilinx.sdx.core 1 0 2024-01-09 01:54:06.865
 !MESSAGE Build step failed, canceling full build chain.
+!SESSION 2024-01-09 11:15:50.185 -----------------------------------------------
+eclipse.buildId=2022.2
+java.version=11.0.11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.osgi 4 0 2024-01-09 11:15:50.678
+!MESSAGE Bundle reference:file:org.apache.log4j_1.2.15.v201012070815.jar not found.
+
+!ENTRY org.eclipse.osgi 4 0 2024-01-09 11:15:50.720
+!MESSAGE Bundle reference:file:org.slf4j.impl.log4j12_1.7.2.v20131105-2200.jar not found.
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-01-09 11:15:58.217
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 4 4 2024-01-09 11:16:00.375
+!MESSAGE Plug-in 'org.eclipse.ui.editors' contributed an invalid Menu Extension (Path: 'navigate' is invalid): org.eclipse.ui.edit.text.gotoLastEditPosition
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.300
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-4: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.300
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-24
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.300
+!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-11
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.372
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-4: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.372
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-24
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.372
+!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-11
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.372
+!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-4: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.373
+!MESSAGE XSCT Command: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Thread: Thread-24
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.373
+!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/data]. Thread: Worker-4: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:04.374
+!MESSAGE XSCT command with result: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Result: [null, ]. Thread: Thread-24
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-01-09 11:16:04.765
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-01-09 11:16:04.766
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-01-09 11:16:04.766
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:18.256
+!MESSAGE XSCT Command: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Thread: Worker-5: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:23.543
+!MESSAGE XSCT command with result: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Result: [null, ]. Thread: Worker-5: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:23.597
+!MESSAGE XSCT Command: [platform active {midi_genie_hw}], Thread: Worker-5: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:23.598
+!MESSAGE XSCT command with result: [platform active {midi_genie_hw}], Result: [null, ]. Thread: Worker-5: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:26.103
+!MESSAGE XSCT Command: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Thread: Worker-5: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:36.529
+!MESSAGE XSCT command with result: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Result: [null, ]. Thread: Worker-5: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:16:52.990
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:00.159
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:00.164
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:00.165
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:00.166
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:00.167
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-01-09 11:17:00.168
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:00.172
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:00.173
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2024-01-09 11:17:01.133
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:02.545
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:02.546
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:02.549
+!MESSAGE XSCT Command: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:02.558
+!MESSAGE XSCT command with result: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Result: [null, ]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:02.559
+!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:02.561
+!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"device": "7a35t",
+"family": "artix7",
+"timestamp": "Tue Jan  9 11:09:11 2024",
+"vivado_version": "2022.2.2",
+"part": "xc7a35tcpg236-1",
+}]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:02.561
+!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-01-09 11:17:02.566
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"axi_uartlite_0": {"hier_name": "axi_uartlite_0",
+"type": "axi_uartlite",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"clk_wiz_0": {"hier_name": "clk_wiz_0",
+"type": "clk_wiz",
+"version": "6.0",
+"ip_type": "PERIPHERAL",
+},
+"led_concat": {"hier_name": "led_concat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"mdm_1": {"hier_name": "mdm_1",
+"type": "mdm",
+"version": "3.2",
+"ip_type": "DEBUG",
+},
+"microblaze_0": {"hier_name": "microblaze_0",
+"type": "microblaze",
+"version": "11.0",
+"ip_type": "PROCESSOR",
+},
+"microblaze_0_axi_intc": {"hier_name": "microblaze_0_axi_intc",
+"type": "axi_intc",
+"version": "4.1",
+"ip_type": "INTERRUPT_CNTLR",
+},
+"microblaze_0_axi_periph": {"hier_name": "microblaze_0_axi_periph",
+"type": "axi_interconnect",
+"version": "2.1",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_dlmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_dlmb_v10": {"hier_name": "microblaze_0_local_memory_dlmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_ilmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_ilmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_ilmb_v10": {"hier_name": "microblaze_0_local_memory_ilmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_lmb_bram": {"hier_name": "microblaze_0_local_memory_lmb_bram",
+"type": "blk_mem_gen",
+"version": "8.4",
+"ip_type": "MEMORY",
+},
+"microblaze_0_xlconcat": {"hier_name": "microblaze_0_xlconcat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"nes_apu_0": {"hier_name": "nes_apu_0",
+"type": "nes_apu",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"nes_reset": {"hier_name": "nes_reset",
+"type": "util_vector_logic",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"rgb_off": {"hier_name": "rgb_off",
+"type": "xlconstant",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"rst_clk_wiz_0_100M": {"hier_name": "rst_clk_wiz_0_100M",
+"type": "proc_sys_reset",
+"version": "5.0",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_0": {"hier_name": "system_ila_0",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_0_ila_lib": {"hier_name": "system_ila_0/system_ila_0_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+}]. Thread: Worker-0: Build Project
