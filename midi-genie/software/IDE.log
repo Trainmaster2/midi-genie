@@ -217,3 +217,43 @@ Reason: No Platforms Found.
 11:17:02 INFO  : The file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit' stored in project is removed.
 11:17:02 INFO  : The file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.mmi' stored in project is removed.
 11:17:02 INFO  : The updated bitstream files are copied from platform to folder '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream' in project 'midi_genie'.
+11:22:12 INFO  : Checking for BSP changes to sync application flags for project 'midi_genie'...
+11:23:14 INFO  : Checking for BSP changes to sync application flags for project 'midi_genie'...
+11:24:07 INFO  : Checking for BSP changes to sync application flags for project 'midi_genie'...
+11:38:46 INFO  : Checking for BSP changes to sync application flags for project 'midi_genie'...
+11:39:19 INFO  : Checking for BSP changes to sync application flags for project 'midi_genie'...
+11:39:27 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+11:39:27 INFO  : Jtag cable 'Digilent Cmod A7 - 35T 210328B7E907A' is selected.
+11:39:27 INFO  : 'jtag frequency' command is executed.
+11:39:27 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}' command is executed.
+11:39:28 INFO  : Device configured successfully with "/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit"
+11:39:28 INFO  : Context for processor 'microblaze_0' is selected.
+11:39:28 INFO  : Hardware design and registers information is loaded from '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa'.
+11:39:28 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+11:39:28 INFO  : Context for processor 'microblaze_0' is selected.
+11:39:28 INFO  : System reset is completed.
+11:39:31 INFO  : 'after 3000' command is executed.
+11:39:31 INFO  : Context for processor 'microblaze_0' is selected.
+11:39:32 INFO  : The application '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf' is downloaded to processor 'microblaze_0'.
+11:39:32 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}
+fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf
+----------------End of Script----------------
+
+11:39:32 INFO  : Context for processor 'microblaze_0' is selected.
+11:39:32 INFO  : 'con' command is executed.
+11:39:32 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+11:39:32 INFO  : Launch script is exported to file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_system/_ide/scripts/systemdebugger_midi_genie_system_standalone.tcl'
