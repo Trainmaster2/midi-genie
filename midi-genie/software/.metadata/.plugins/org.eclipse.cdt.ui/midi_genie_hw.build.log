@@ -1,6 +1,7 @@
-18:21:53 **** Build of project midi_genie_hw ****
-buildplatform.sh 41409 midi_genie_hw  
+01:53:49 **** Build of project midi_genie_hw ****
+buildplatform.sh 46377 midi_genie_hw  
 XSDB Server Channel: tcfchan#1
+Reading the platform  : "midi_genie_hw"
 Building the BSP Library for domain  - standalone_microblaze_0 on processor microblaze_0
 make --no-print-directory seq_libs
 
@@ -22,11 +23,11 @@ all -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make include in microblaze_0/libsrc/intc_v3_15/src
 
-Running Make include in microblaze_0/libsrc/standalone_v8_0/src
-
 make -C microblaze_0/libsrc/intc_v3_15/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
 MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -
 Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+Running Make include in microblaze_0/libsrc/standalone_v8_0/src
 
 make -C microblaze_0/libsrc/standalone_v8_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar
 " "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-secti
@@ -52,11 +53,11 @@ ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLA
 
 Running Make libs in microblaze_0/libsrc/intc_v3_15/src
 
+Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
+
 make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
 LER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wal
 l -Wextra -fno-tree-loop-distribute-patterns"
-
-Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
 
 make -C microblaze_0/libsrc/standalone_v8_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "
 COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections
@@ -71,8 +72,6 @@ Wall -Wextra -fno-tree-loop-distribute-patterns"
 microblaze_sleep.c:81:9: note: '#pragma message: For the sleep routines, assembly instructions are used'
    81 | #pragma message ("For the sleep routines, assembly instructions are used")
       |         ^~~~~~~
-DEBUG NON_LTO_OBJECTS is ../../../lib/microblaze_interrupt_handler.o
-
 Finished building libraries parallelly.
 
 make --no-print-directory archive
@@ -99,9 +98,8 @@ pt_wrap.o microblaze_0/lib/xio.o microblaze_0/lib/xplatform_info.o microblaze_0/
 microblaze_0/lib/xuartlite_intr.o microblaze_0/lib/xuartlite_l.o microblaze_0/lib/xuartlite_selftest.o microblaze_0/lib/xuartli
 te_sinit.o microblaze_0/lib/xuartlite_stats.o
 
-/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/bin/../x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ar.real: creating microblaze_0/lib/libxil.a
 Finished building libraries
 
 
-18:22:02 Build Finished (took 9s.250ms)
+01:54:00 Build Finished (took 11s.59ms)
 

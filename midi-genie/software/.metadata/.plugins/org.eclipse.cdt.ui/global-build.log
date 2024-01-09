@@ -1,6 +1,7 @@
-18:21:53 **** Build of project midi_genie_hw ****
-buildplatform.sh 41409 midi_genie_hw  
+01:53:49 **** Build of project midi_genie_hw ****
+buildplatform.sh 46377 midi_genie_hw  
 XSDB Server Channel: tcfchan#1
+Reading the platform  : "midi_genie_hw"
 Building the BSP Library for domain  - standalone_microblaze_0 on processor microblaze_0
 make --no-print-directory seq_libs
 
@@ -22,11 +23,11 @@ all -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make include in microblaze_0/libsrc/intc_v3_15/src
 
-Running Make include in microblaze_0/libsrc/standalone_v8_0/src
-
 make -C microblaze_0/libsrc/intc_v3_15/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
 MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -
 Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+Running Make include in microblaze_0/libsrc/standalone_v8_0/src
 
 make -C microblaze_0/libsrc/standalone_v8_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar
 " "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-secti
@@ -52,11 +53,11 @@ ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLA
 
 Running Make libs in microblaze_0/libsrc/intc_v3_15/src
 
+Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
+
 make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
 LER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wal
 l -Wextra -fno-tree-loop-distribute-patterns"
-
-Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
 
 make -C microblaze_0/libsrc/standalone_v8_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "
 COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections
@@ -71,8 +72,6 @@ Wall -Wextra -fno-tree-loop-distribute-patterns"
 microblaze_sleep.c:81:9: note: '#pragma message: For the sleep routines, assembly instructions are used'
    81 | #pragma message ("For the sleep routines, assembly instructions are used")
       |         ^~~~~~~
-DEBUG NON_LTO_OBJECTS is ../../../lib/microblaze_interrupt_handler.o
-
 Finished building libraries parallelly.
 
 make --no-print-directory archive
@@ -99,11 +98,15 @@ pt_wrap.o microblaze_0/lib/xio.o microblaze_0/lib/xplatform_info.o microblaze_0/
 microblaze_0/lib/xuartlite_intr.o microblaze_0/lib/xuartlite_l.o microblaze_0/lib/xuartlite_selftest.o microblaze_0/lib/xuartli
 te_sinit.o microblaze_0/lib/xuartlite_stats.o
 
-/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/bin/../x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ar.real: creating microblaze_0/lib/libxil.a
 Finished building libraries
 
-18:22:08 **** Build of configuration Debug for project midi_genie ****
+01:54:05 **** Build of configuration Debug for project midi_genie ****
 make all 
+Building file: ../src/calc.cpp
+Invoking: MicroBlaze g++ compiler
+mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/calc.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/calc.d" -MT"src/calc.o" -o "src/calc.o" "../src/calc.cpp"
+Finished building: ../src/calc.cpp
+ 
 Building file: ../src/main.cpp
 Invoking: MicroBlaze g++ compiler
 mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cpp"
@@ -111,15 +114,8 @@ Finished building: ../src/main.cpp
  
 Building target: midi_genie.elf
 Invoking: MicroBlaze g++ linker
-mb-g++ -Wl,-T -Wl,../src/lscript.ld -L/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bsplib/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "midi_genie.elf" ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,-lstdc++,--end-group
-Finished building target: midi_genie.elf
- 
-Invoking: MicroBlaze Print Size
-mb-size midi_genie.elf  |tee "midi_genie.elf.size"
-   text	   data	    bss	    dec	    hex	filename
-   5712	    324	   3108	   9144	   23b8	midi_genie.elf
-Finished building: midi_genie.elf.size
- 
-18:22:12 **** Build of configuration Debug for project midi_genie_system ****
-make all 
-Skipping SD card image generation. Reason: The system project only has applications for microblaze processors.
+mb-g++ -Wl,-T -Wl,../src/lscript.ld -L/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bsplib/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "midi_genie.elf" ./src/calc.o ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,-lstdc++,--end-group
+/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ld.real: midi_genie.elf section `.heap' will not fit in region `microblaze_0_local_memory_ilmb_bram_if_cntlr_Mem_microblaze_0_local_memory_dlmb_bram_if_cntlr_Mem'
+/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ld.real: region `microblaze_0_local_memory_ilmb_bram_if_cntlr_Mem_microblaze_0_local_memory_dlmb_bram_if_cntlr_Mem' overflowed by 1888 bytes
+collect2.real: error: ld returned 1 exit status
+make: *** [makefile:50: midi_genie.elf] Error 1

@@ -18,3 +18,5 @@ platform generate -domains
 platform active {midi_genie_hw}
 platform generate -quick
 platform generate
+platform generate
+platform generate
