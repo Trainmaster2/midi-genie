@@ -1,10 +1,10 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Mon Jan  8 14:35:03 2024
+-- Date        : Mon Jan  8 14:35:02 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_mdm_1_1/design_1_mdm_1_1_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_mdm_1_1 -prefix
+--               design_1_mdm_1_1_ design_1_mdm_1_1_sim_netlist.vhdl
 -- Design      : design_1_mdm_1_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -38,8 +38,6 @@ entity design_1_mdm_1_1_MB_BSCANE2 is
     Dbg_TDO_0 : in STD_LOGIC;
     \Use_Serial_Unified_Completion.completion_status_reg[15]\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_MB_BSCANE2 : entity is "MB_BSCANE2";
 end design_1_mdm_1_1_MB_BSCANE2;
 
 architecture STRUCTURE of design_1_mdm_1_1_MB_BSCANE2 is
@@ -163,8 +161,6 @@ entity design_1_mdm_1_1_MB_BUFGCE_1 is
     Dbg_Clk_0 : out STD_LOGIC;
     DRCK : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_MB_BUFGCE_1 : entity is "MB_BUFGCE_1";
 end design_1_mdm_1_1_MB_BUFGCE_1;
 
 architecture STRUCTURE of design_1_mdm_1_1_MB_BUFGCE_1 is
@@ -262,8 +258,6 @@ entity design_1_mdm_1_1_MB_FDC_1 is
     Dbg_Rst_0 : in STD_LOGIC;
     Debug_SYS_Rst : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_MB_FDC_1 : entity is "MB_FDC_1";
 end design_1_mdm_1_1_MB_FDC_1;
 
 architecture STRUCTURE of design_1_mdm_1_1_MB_FDC_1 is
@@ -857,8 +851,6 @@ entity design_1_mdm_1_1_MB_FDRE_1 is
     Dbg_Shift_0_3 : in STD_LOGIC;
     Dbg_Shift_0_4 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_MB_FDRE_1 : entity is "MB_FDRE_1";
 end design_1_mdm_1_1_MB_FDRE_1;
 
 architecture STRUCTURE of design_1_mdm_1_1_MB_FDRE_1 is
@@ -904,8 +896,6 @@ entity design_1_mdm_1_1_MB_LUT1 is
     Ext_JTAG_TDI : out STD_LOGIC;
     I0 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_MB_LUT1 : entity is "MB_LUT1";
 end design_1_mdm_1_1_MB_LUT1;
 
 architecture STRUCTURE of design_1_mdm_1_1_MB_LUT1 is
@@ -949,8 +939,6 @@ entity design_1_mdm_1_1_MB_SRL16E is
     shift_Count_reg : in STD_LOGIC_VECTOR ( 0 to 0 );
     config_TDO_2 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_MB_SRL16E : entity is "MB_SRL16E";
 end design_1_mdm_1_1_MB_SRL16E;
 
 architecture STRUCTURE of design_1_mdm_1_1_MB_SRL16E is
@@ -1195,8 +1183,6 @@ entity design_1_mdm_1_1_JTAG_CONTROL is
     \Use_Serial_Unified_Completion.Data_Read_Status.count_reg[5]_1\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \shift_Count_reg[0]_1\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_JTAG_CONTROL : entity is "JTAG_CONTROL";
 end design_1_mdm_1_1_JTAG_CONTROL;
 
 architecture STRUCTURE of design_1_mdm_1_1_JTAG_CONTROL is
@@ -2690,8 +2676,6 @@ entity design_1_mdm_1_1_MDM_Core is
     AR : in STD_LOGIC_VECTOR ( 0 to 0 );
     \^sel\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_MDM_Core : entity is "MDM_Core";
 end design_1_mdm_1_1_MDM_Core;
 
 architecture STRUCTURE of design_1_mdm_1_1_MDM_Core is
@@ -4851,8 +4835,6 @@ entity design_1_mdm_1_1_MDM is
   attribute C_USE_CROSS_TRIGGER of design_1_mdm_1_1_MDM : entity is 0;
   attribute C_USE_UART : integer;
   attribute C_USE_UART of design_1_mdm_1_1_MDM : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_mdm_1_1_MDM : entity is "MDM";
   attribute bscan_debug_core : string;
   attribute bscan_debug_core of design_1_mdm_1_1_MDM : entity is "FALSE";
   attribute dont_touch : string;

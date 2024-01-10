@@ -566,6 +566,22 @@
 
 /******************************************************************/
 
+
+/* Peripheral Definitions for peripheral MIDI_FIFO_WRITER */
+#define XPAR_MIDI_FIFO_WRITER_BASEADDR 0x00010000
+#define XPAR_MIDI_FIFO_WRITER_HIGHADDR 0x00010FFF
+
+
+/******************************************************************/
+
+
+/* Canonical Definitions for peripheral MIDI_FIFO_WRITER */
+#define XPAR_AXI_FIFO_WRITER_0_BASEADDR 0x00010000
+#define XPAR_AXI_FIFO_WRITER_0_HIGHADDR 0x00010FFF
+
+
+/******************************************************************/
+
 #define XPAR_INTC_MAX_NUM_INTR_INPUTS 2
 #define XPAR_XINTC_HAS_IPR 1
 #define XPAR_XINTC_HAS_SIE 1
