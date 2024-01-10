@@ -1,0 +1,25 @@
+#include "xparameters.h"
+#include "xil_types.h"
+#include "xil_printf.h"
+#include "xil_io.h"
+
+#include "calc.h"
+#include "midi.h"
+
+// Get device IDs from xparameters.h
+#define MIDI_OUT	XPAR_MIDI_FIFO_WRITER_BASEADDR
+
+int main() {
+	xil_printf("Hello, world!\r\n");
+
+	int note, bend;
+	pulse2midi(254, note, bend);
+	xil_printf("%d %d\r\n", note, bend);
+	reset_notes_hard(0);
+	channel_pitch(0, 8192);
+	note_on(0, 60, 0xff);
+	for (int i = 0; i < 100; i++) {Xil_Out32(MIDI_OUT, 0b11'00000000'00000000'00000000);}
+	channel_pitch(0, 0xFFFF);
+
+	while (true) {}
+}

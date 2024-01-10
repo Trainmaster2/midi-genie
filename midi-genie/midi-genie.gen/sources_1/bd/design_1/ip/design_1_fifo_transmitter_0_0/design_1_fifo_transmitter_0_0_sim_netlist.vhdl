@@ -1,7 +1,7 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Tue Jan  9 23:57:22 2024
+-- Date        : Wed Jan 10 13:02:05 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_fifo_transmitter_0_0/design_1_fifo_transmitter_0_0_sim_netlist.vhdl
@@ -29,11 +29,10 @@ end design_1_fifo_transmitter_0_0_fifo_transmitter;
 
 architecture STRUCTURE of design_1_fifo_transmitter_0_0_fifo_transmitter is
   signal Midi0_out : STD_LOGIC;
-  signal Midi_i_10_n_0 : STD_LOGIC;
+  signal Midi_i_12_n_0 : STD_LOGIC;
   signal Midi_i_13_n_0 : STD_LOGIC;
   signal Midi_i_14_n_0 : STD_LOGIC;
   signal Midi_i_15_n_0 : STD_LOGIC;
-  signal Midi_i_16_n_0 : STD_LOGIC;
   signal Midi_i_1_n_0 : STD_LOGIC;
   signal Midi_i_3_n_0 : STD_LOGIC;
   signal Midi_i_5_n_0 : STD_LOGIC;
@@ -41,11 +40,9 @@ architecture STRUCTURE of design_1_fifo_transmitter_0_0_fifo_transmitter is
   signal Midi_i_7_n_0 : STD_LOGIC;
   signal Midi_i_8_n_0 : STD_LOGIC;
   signal Midi_i_9_n_0 : STD_LOGIC;
+  signal Midi_reg_i_10_n_0 : STD_LOGIC;
   signal Midi_reg_i_11_n_0 : STD_LOGIC;
-  signal Midi_reg_i_12_n_0 : STD_LOGIC;
   signal Midi_reg_i_4_n_0 : STD_LOGIC;
-  signal bitnum : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal bytenum : STD_LOGIC;
   signal counter : STD_LOGIC_VECTOR ( 11 downto 0 );
   signal counter2 : STD_LOGIC_VECTOR ( 11 downto 1 );
   signal \counter2_carry__0_n_0\ : STD_LOGIC;
@@ -58,18 +55,25 @@ architecture STRUCTURE of design_1_fifo_transmitter_0_0_fifo_transmitter is
   signal counter2_carry_n_1 : STD_LOGIC;
   signal counter2_carry_n_2 : STD_LOGIC;
   signal counter2_carry_n_3 : STD_LOGIC;
+  signal final : STD_LOGIC;
   signal p_0_in : STD_LOGIC;
-  signal p_1_in : STD_LOGIC;
   signal p_2_in : STD_LOGIC_VECTOR ( 11 downto 0 );
   signal \procTransmit.bitnum[0]_i_1_n_0\ : STD_LOGIC;
   signal \procTransmit.bitnum[1]_i_1_n_0\ : STD_LOGIC;
   signal \procTransmit.bitnum[2]_i_1_n_0\ : STD_LOGIC;
   signal \procTransmit.bitnum[3]_i_1_n_0\ : STD_LOGIC;
+  signal \procTransmit.bitnum_reg_n_0_[0]\ : STD_LOGIC;
+  signal \procTransmit.bitnum_reg_n_0_[1]\ : STD_LOGIC;
+  signal \procTransmit.bitnum_reg_n_0_[2]\ : STD_LOGIC;
+  signal \procTransmit.bitnum_reg_n_0_[3]\ : STD_LOGIC;
   signal \procTransmit.bytenum[0]_i_1_n_0\ : STD_LOGIC;
   signal \procTransmit.bytenum[1]_i_1_n_0\ : STD_LOGIC;
+  signal \procTransmit.bytenum[1]_i_2_n_0\ : STD_LOGIC;
+  signal \procTransmit.bytenum[1]_i_3_n_0\ : STD_LOGIC;
   signal \procTransmit.bytenum_reg_n_0_[0]\ : STD_LOGIC;
   signal \procTransmit.bytenum_reg_n_0_[1]\ : STD_LOGIC;
   signal \procTransmit.counter[11]_i_1_n_0\ : STD_LOGIC;
+  signal \procTransmit.final_i_1_n_0\ : STD_LOGIC;
   signal \procTransmit.midi_rec_reg[byte_n_0_0][0]\ : STD_LOGIC;
   signal \procTransmit.midi_rec_reg[byte_n_0_0][1]\ : STD_LOGIC;
   signal \procTransmit.midi_rec_reg[byte_n_0_0][2]\ : STD_LOGIC;
@@ -96,11 +100,11 @@ architecture STRUCTURE of design_1_fifo_transmitter_0_0_fifo_transmitter is
   signal \procTransmit.midi_rec_reg[byte_n_0_2][7]\ : STD_LOGIC;
   signal \procTransmit.midi_rec_reg[numbytes]\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \procTransmit.midi_rec_reg[numbytes]0\ : STD_LOGIC;
+  signal \procTransmit.running_i_1_n_0\ : STD_LOGIC;
   signal read_buf_i_1_n_0 : STD_LOGIC;
   signal read_buf_i_3_n_0 : STD_LOGIC;
+  signal read_buf_i_4_n_0 : STD_LOGIC;
   signal read_buf_i_5_n_0 : STD_LOGIC;
-  signal read_buf_i_6_n_0 : STD_LOGIC;
-  signal read_buf_i_7_n_0 : STD_LOGIC;
   signal \^read_buf_reg_0\ : STD_LOGIC;
   signal read_fifo : STD_LOGIC;
   signal read_fifo_i_1_n_0 : STD_LOGIC;
@@ -108,71 +112,67 @@ architecture STRUCTURE of design_1_fifo_transmitter_0_0_fifo_transmitter is
   signal \NLW_counter2_carry__1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
   signal \NLW_counter2_carry__1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of Midi_i_5 : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of Midi_i_7 : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of Midi_i_3 : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of Midi_i_6 : label is "soft_lutpair0";
   attribute ADDER_THRESHOLD : integer;
   attribute ADDER_THRESHOLD of counter2_carry : label is 35;
   attribute ADDER_THRESHOLD of \counter2_carry__0\ : label is 35;
   attribute ADDER_THRESHOLD of \counter2_carry__1\ : label is 35;
-  attribute SOFT_HLUTNM of \procTransmit.bitnum[0]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \procTransmit.bitnum[0]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \procTransmit.bitnum[1]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \procTransmit.bitnum[2]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \procTransmit.bitnum[3]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \procTransmit.bytenum[0]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \procTransmit.bytenum[1]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \procTransmit.counter[10]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \procTransmit.counter[11]_i_2\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \procTransmit.counter[1]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \procTransmit.counter[2]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \procTransmit.counter[3]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \procTransmit.counter[4]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \procTransmit.counter[5]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \procTransmit.counter[6]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \procTransmit.counter[7]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \procTransmit.counter[8]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \procTransmit.counter[9]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of read_buf_i_5 : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of read_buf_i_6 : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of read_buf_i_7 : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \procTransmit.bitnum[2]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \procTransmit.bitnum[3]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \procTransmit.counter[0]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \procTransmit.counter[10]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \procTransmit.counter[11]_i_2\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \procTransmit.counter[1]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \procTransmit.counter[2]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \procTransmit.counter[3]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \procTransmit.counter[4]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \procTransmit.counter[5]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \procTransmit.counter[6]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \procTransmit.counter[7]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \procTransmit.counter[8]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \procTransmit.counter[9]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of read_buf_i_4 : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of read_buf_i_5 : label is "soft_lutpair3";
 begin
   read_buf_reg_0 <= \^read_buf_reg_0\;
-Midi_i_1: unisim.vcomponents.LUT6
+Midi_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFF00E0000000E0"
+      INIT => X"0C8C"
     )
         port map (
-      I0 => FifoData(25),
-      I1 => FifoData(24),
-      I2 => read_fifo,
-      I3 => \^read_buf_reg_0\,
-      I4 => running,
-      I5 => Midi_i_3_n_0,
+      I0 => read_buf_i_3_n_0,
+      I1 => \procTransmit.counter[11]_i_1_n_0\,
+      I2 => running,
+      I3 => final,
       O => Midi_i_1_n_0
     );
-Midi_i_10: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FACF0ACFFAC00AC0"
-    )
-        port map (
-      I0 => \procTransmit.midi_rec_reg[byte_n_0_2][0]\,
-      I1 => \procTransmit.midi_rec_reg[byte_n_0_2][1]\,
-      I2 => bitnum(1),
-      I3 => bitnum(0),
-      I4 => \procTransmit.midi_rec_reg[byte_n_0_2][2]\,
-      I5 => \procTransmit.midi_rec_reg[byte_n_0_2][3]\,
-      O => Midi_i_10_n_0
-    );
-Midi_i_13: unisim.vcomponents.LUT6
+Midi_i_12: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FACF0ACFFAC00AC0"
     )
         port map (
       I0 => \procTransmit.midi_rec_reg[byte_n_0_0][4]\,
       I1 => \procTransmit.midi_rec_reg[byte_n_0_0][5]\,
-      I2 => bitnum(1),
-      I3 => bitnum(0),
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
       I4 => \procTransmit.midi_rec_reg[byte_n_0_0][6]\,
       I5 => \procTransmit.midi_rec_reg[byte_n_0_0][7]\,
+      O => Midi_i_12_n_0
+    );
+Midi_i_13: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FACF0ACFFAC00AC0"
+    )
+        port map (
+      I0 => \procTransmit.midi_rec_reg[byte_n_0_0][0]\,
+      I1 => \procTransmit.midi_rec_reg[byte_n_0_0][1]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
+      I4 => \procTransmit.midi_rec_reg[byte_n_0_0][2]\,
+      I5 => \procTransmit.midi_rec_reg[byte_n_0_0][3]\,
       O => Midi_i_13_n_0
     );
 Midi_i_14: unisim.vcomponents.LUT6
@@ -180,12 +180,12 @@ Midi_i_14: unisim.vcomponents.LUT6
       INIT => X"FACF0ACFFAC00AC0"
     )
         port map (
-      I0 => \procTransmit.midi_rec_reg[byte_n_0_0][0]\,
-      I1 => \procTransmit.midi_rec_reg[byte_n_0_0][1]\,
-      I2 => bitnum(1),
-      I3 => bitnum(0),
-      I4 => \procTransmit.midi_rec_reg[byte_n_0_0][2]\,
-      I5 => \procTransmit.midi_rec_reg[byte_n_0_0][3]\,
+      I0 => \procTransmit.midi_rec_reg[byte_n_0_1][4]\,
+      I1 => \procTransmit.midi_rec_reg[byte_n_0_1][5]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
+      I4 => \procTransmit.midi_rec_reg[byte_n_0_1][6]\,
+      I5 => \procTransmit.midi_rec_reg[byte_n_0_1][7]\,
       O => Midi_i_14_n_0
     );
 Midi_i_15: unisim.vcomponents.LUT6
@@ -193,93 +193,80 @@ Midi_i_15: unisim.vcomponents.LUT6
       INIT => X"FACF0ACFFAC00AC0"
     )
         port map (
-      I0 => \procTransmit.midi_rec_reg[byte_n_0_1][4]\,
-      I1 => \procTransmit.midi_rec_reg[byte_n_0_1][5]\,
-      I2 => bitnum(1),
-      I3 => bitnum(0),
-      I4 => \procTransmit.midi_rec_reg[byte_n_0_1][6]\,
-      I5 => \procTransmit.midi_rec_reg[byte_n_0_1][7]\,
-      O => Midi_i_15_n_0
-    );
-Midi_i_16: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FACF0ACFFAC00AC0"
-    )
-        port map (
       I0 => \procTransmit.midi_rec_reg[byte_n_0_1][0]\,
       I1 => \procTransmit.midi_rec_reg[byte_n_0_1][1]\,
-      I2 => bitnum(1),
-      I3 => bitnum(0),
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
       I4 => \procTransmit.midi_rec_reg[byte_n_0_1][2]\,
       I5 => \procTransmit.midi_rec_reg[byte_n_0_1][3]\,
-      O => Midi_i_16_n_0
+      O => Midi_i_15_n_0
     );
 Midi_i_2: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0000FBF8"
+      INIT => X"0000EFEA"
     )
         port map (
-      I0 => Midi_reg_i_4_n_0,
-      I1 => \procTransmit.bytenum_reg_n_0_[1]\,
-      I2 => Midi_i_5_n_0,
-      I3 => Midi_i_6_n_0,
-      I4 => Midi_i_7_n_0,
+      I0 => Midi_i_3_n_0,
+      I1 => Midi_reg_i_4_n_0,
+      I2 => \procTransmit.bytenum_reg_n_0_[1]\,
+      I3 => Midi_i_5_n_0,
+      I4 => Midi_i_6_n_0,
       O => Midi0_out
     );
-Midi_i_3: unisim.vcomponents.LUT6
+Midi_i_3: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000000000000008"
+      INIT => X"1000"
     )
         port map (
-      I0 => counter(0),
-      I1 => counter2(7),
-      I2 => counter2(9),
-      I3 => counter2(6),
-      I4 => read_buf_i_6_n_0,
-      I5 => read_buf_i_5_n_0,
+      I0 => \procTransmit.bitnum_reg_n_0_[2]\,
+      I1 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[3]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
       O => Midi_i_3_n_0
     );
-Midi_i_5: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0040"
-    )
-        port map (
-      I0 => bitnum(1),
-      I1 => bitnum(0),
-      I2 => bitnum(3),
-      I3 => bitnum(2),
-      O => Midi_i_5_n_0
-    );
-Midi_i_6: unisim.vcomponents.LUT3
+Midi_i_5: unisim.vcomponents.LUT3
     generic map(
       INIT => X"E4"
     )
         port map (
       I0 => \procTransmit.bytenum_reg_n_0_[0]\,
-      I1 => Midi_reg_i_11_n_0,
-      I2 => Midi_reg_i_12_n_0,
-      O => Midi_i_6_n_0
+      I1 => Midi_reg_i_10_n_0,
+      I2 => Midi_reg_i_11_n_0,
+      O => Midi_i_5_n_0
     );
-Midi_i_7: unisim.vcomponents.LUT5
+Midi_i_6: unisim.vcomponents.LUT5
     generic map(
       INIT => X"0001FFFF"
     )
         port map (
-      I0 => bitnum(2),
-      I1 => bitnum(3),
-      I2 => bitnum(1),
-      I3 => bitnum(0),
+      I0 => \procTransmit.bitnum_reg_n_0_[2]\,
+      I1 => \procTransmit.bitnum_reg_n_0_[3]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
       I4 => running,
-      O => Midi_i_7_n_0
+      O => Midi_i_6_n_0
     );
-Midi_i_8: unisim.vcomponents.LUT3
+Midi_i_7: unisim.vcomponents.LUT3
     generic map(
       INIT => X"56"
     )
         port map (
-      I0 => bitnum(2),
-      I1 => bitnum(0),
-      I2 => bitnum(1),
+      I0 => \procTransmit.bitnum_reg_n_0_[2]\,
+      I1 => \procTransmit.bitnum_reg_n_0_[0]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      O => Midi_i_7_n_0
+    );
+Midi_i_8: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FACF0ACFFAC00AC0"
+    )
+        port map (
+      I0 => \procTransmit.midi_rec_reg[byte_n_0_2][4]\,
+      I1 => \procTransmit.midi_rec_reg[byte_n_0_2][5]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
+      I4 => \procTransmit.midi_rec_reg[byte_n_0_2][6]\,
+      I5 => \procTransmit.midi_rec_reg[byte_n_0_2][7]\,
       O => Midi_i_8_n_0
     );
 Midi_i_9: unisim.vcomponents.LUT6
@@ -287,12 +274,12 @@ Midi_i_9: unisim.vcomponents.LUT6
       INIT => X"FACF0ACFFAC00AC0"
     )
         port map (
-      I0 => \procTransmit.midi_rec_reg[byte_n_0_2][4]\,
-      I1 => \procTransmit.midi_rec_reg[byte_n_0_2][5]\,
-      I2 => bitnum(1),
-      I3 => bitnum(0),
-      I4 => \procTransmit.midi_rec_reg[byte_n_0_2][6]\,
-      I5 => \procTransmit.midi_rec_reg[byte_n_0_2][7]\,
+      I0 => \procTransmit.midi_rec_reg[byte_n_0_2][0]\,
+      I1 => \procTransmit.midi_rec_reg[byte_n_0_2][1]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
+      I4 => \procTransmit.midi_rec_reg[byte_n_0_2][2]\,
+      I5 => \procTransmit.midi_rec_reg[byte_n_0_2][3]\,
       O => Midi_i_9_n_0
     );
 Midi_reg: unisim.vcomponents.FDPE
@@ -306,26 +293,26 @@ Midi_reg: unisim.vcomponents.FDPE
       PRE => p_0_in,
       Q => Midi
     );
+Midi_reg_i_10: unisim.vcomponents.MUXF7
+     port map (
+      I0 => Midi_i_12_n_0,
+      I1 => Midi_i_13_n_0,
+      O => Midi_reg_i_10_n_0,
+      S => Midi_i_7_n_0
+    );
 Midi_reg_i_11: unisim.vcomponents.MUXF7
      port map (
-      I0 => Midi_i_13_n_0,
-      I1 => Midi_i_14_n_0,
+      I0 => Midi_i_14_n_0,
+      I1 => Midi_i_15_n_0,
       O => Midi_reg_i_11_n_0,
-      S => Midi_i_8_n_0
-    );
-Midi_reg_i_12: unisim.vcomponents.MUXF7
-     port map (
-      I0 => Midi_i_15_n_0,
-      I1 => Midi_i_16_n_0,
-      O => Midi_reg_i_12_n_0,
-      S => Midi_i_8_n_0
+      S => Midi_i_7_n_0
     );
 Midi_reg_i_4: unisim.vcomponents.MUXF7
      port map (
-      I0 => Midi_i_9_n_0,
-      I1 => Midi_i_10_n_0,
+      I0 => Midi_i_8_n_0,
+      I1 => Midi_i_9_n_0,
       O => Midi_reg_i_4_n_0,
-      S => Midi_i_8_n_0
+      S => Midi_i_7_n_0
     );
 counter2_carry: unisim.vcomponents.CARRY4
      port map (
@@ -370,7 +357,7 @@ counter2_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => running,
-      I1 => bitnum(0),
+      I1 => \procTransmit.bitnum_reg_n_0_[0]\,
       O => \procTransmit.bitnum[0]_i_1_n_0\
     );
 \procTransmit.bitnum[1]_i_1\: unisim.vcomponents.LUT5
@@ -378,10 +365,10 @@ counter2_carry: unisim.vcomponents.CARRY4
       INIT => X"0BF00000"
     )
         port map (
-      I0 => bitnum(2),
-      I1 => bitnum(3),
-      I2 => bitnum(1),
-      I3 => bitnum(0),
+      I0 => \procTransmit.bitnum_reg_n_0_[2]\,
+      I1 => \procTransmit.bitnum_reg_n_0_[3]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
       I4 => running,
       O => \procTransmit.bitnum[1]_i_1_n_0\
     );
@@ -391,9 +378,9 @@ counter2_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => running,
-      I1 => bitnum(1),
-      I2 => bitnum(0),
-      I3 => bitnum(2),
+      I1 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[0]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[2]\,
       O => \procTransmit.bitnum[2]_i_1_n_0\
     );
 \procTransmit.bitnum[3]_i_1\: unisim.vcomponents.LUT5
@@ -401,10 +388,10 @@ counter2_carry: unisim.vcomponents.CARRY4
       INIT => X"68CC0000"
     )
         port map (
-      I0 => bitnum(2),
-      I1 => bitnum(3),
-      I2 => bitnum(1),
-      I3 => bitnum(0),
+      I0 => \procTransmit.bitnum_reg_n_0_[2]\,
+      I1 => \procTransmit.bitnum_reg_n_0_[3]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[0]\,
       I4 => running,
       O => \procTransmit.bitnum[3]_i_1_n_0\
     );
@@ -417,7 +404,7 @@ counter2_carry: unisim.vcomponents.CARRY4
       CE => Midi_i_1_n_0,
       CLR => p_0_in,
       D => \procTransmit.bitnum[0]_i_1_n_0\,
-      Q => bitnum(0)
+      Q => \procTransmit.bitnum_reg_n_0_[0]\
     );
 \procTransmit.bitnum_reg[1]\: unisim.vcomponents.FDCE
     generic map(
@@ -428,7 +415,7 @@ counter2_carry: unisim.vcomponents.CARRY4
       CE => Midi_i_1_n_0,
       CLR => p_0_in,
       D => \procTransmit.bitnum[1]_i_1_n_0\,
-      Q => bitnum(1)
+      Q => \procTransmit.bitnum_reg_n_0_[1]\
     );
 \procTransmit.bitnum_reg[2]\: unisim.vcomponents.FDCE
     generic map(
@@ -439,7 +426,7 @@ counter2_carry: unisim.vcomponents.CARRY4
       CE => Midi_i_1_n_0,
       CLR => p_0_in,
       D => \procTransmit.bitnum[2]_i_1_n_0\,
-      Q => bitnum(2)
+      Q => \procTransmit.bitnum_reg_n_0_[2]\
     );
 \procTransmit.bitnum_reg[3]\: unisim.vcomponents.FDCE
     generic map(
@@ -450,31 +437,56 @@ counter2_carry: unisim.vcomponents.CARRY4
       CE => Midi_i_1_n_0,
       CLR => p_0_in,
       D => \procTransmit.bitnum[3]_i_1_n_0\,
-      Q => bitnum(3)
+      Q => \procTransmit.bitnum_reg_n_0_[3]\
     );
-\procTransmit.bytenum[0]_i_1\: unisim.vcomponents.LUT5
+\procTransmit.bytenum[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00FFBE00"
+      INIT => X"FFFF3FFF00004000"
     )
         port map (
-      I0 => \procTransmit.midi_rec_reg[numbytes]\(0),
-      I1 => \procTransmit.bytenum_reg_n_0_[1]\,
-      I2 => \procTransmit.midi_rec_reg[numbytes]\(1),
-      I3 => bytenum,
-      I4 => \procTransmit.bytenum_reg_n_0_[0]\,
+      I0 => \procTransmit.bytenum[1]_i_2_n_0\,
+      I1 => running,
+      I2 => read_buf_i_3_n_0,
+      I3 => Midi_i_3_n_0,
+      I4 => final,
+      I5 => \procTransmit.bytenum_reg_n_0_[0]\,
       O => \procTransmit.bytenum[0]_i_1_n_0\
     );
-\procTransmit.bytenum[1]_i_1\: unisim.vcomponents.LUT5
+\procTransmit.bytenum[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"45FFA200"
+      INIT => X"FFFF1FFF00004000"
     )
         port map (
-      I0 => \procTransmit.bytenum_reg_n_0_[0]\,
-      I1 => \procTransmit.midi_rec_reg[numbytes]\(0),
-      I2 => \procTransmit.midi_rec_reg[numbytes]\(1),
-      I3 => bytenum,
-      I4 => \procTransmit.bytenum_reg_n_0_[1]\,
+      I0 => \procTransmit.bytenum[1]_i_2_n_0\,
+      I1 => \procTransmit.bytenum_reg_n_0_[0]\,
+      I2 => running,
+      I3 => read_buf_i_3_n_0,
+      I4 => \procTransmit.bytenum[1]_i_3_n_0\,
+      I5 => \procTransmit.bytenum_reg_n_0_[1]\,
       O => \procTransmit.bytenum[1]_i_1_n_0\
+    );
+\procTransmit.bytenum[1]_i_2\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"9009"
+    )
+        port map (
+      I0 => \procTransmit.midi_rec_reg[numbytes]\(1),
+      I1 => \procTransmit.bytenum_reg_n_0_[1]\,
+      I2 => \procTransmit.midi_rec_reg[numbytes]\(0),
+      I3 => \procTransmit.bytenum_reg_n_0_[0]\,
+      O => \procTransmit.bytenum[1]_i_2_n_0\
+    );
+\procTransmit.bytenum[1]_i_3\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFFFBF"
+    )
+        port map (
+      I0 => final,
+      I1 => \procTransmit.bitnum_reg_n_0_[0]\,
+      I2 => \procTransmit.bitnum_reg_n_0_[3]\,
+      I3 => \procTransmit.bitnum_reg_n_0_[1]\,
+      I4 => \procTransmit.bitnum_reg_n_0_[2]\,
+      O => \procTransmit.bytenum[1]_i_3_n_0\
     );
 \procTransmit.bytenum_reg[0]\: unisim.vcomponents.FDCE
     generic map(
@@ -514,7 +526,7 @@ counter2_carry: unisim.vcomponents.CARRY4
         port map (
       I0 => counter2(10),
       I1 => running,
-      I2 => Midi_i_3_n_0,
+      I2 => read_buf_i_3_n_0,
       O => p_2_in(10)
     );
 \procTransmit.counter[11]_i_1\: unisim.vcomponents.LUT5
@@ -536,7 +548,7 @@ counter2_carry: unisim.vcomponents.CARRY4
         port map (
       I0 => counter2(11),
       I1 => running,
-      I2 => Midi_i_3_n_0,
+      I2 => read_buf_i_3_n_0,
       O => p_2_in(11)
     );
 \procTransmit.counter[1]_i_1\: unisim.vcomponents.LUT2
@@ -600,7 +612,7 @@ counter2_carry: unisim.vcomponents.CARRY4
         port map (
       I0 => counter2(7),
       I1 => running,
-      I2 => Midi_i_3_n_0,
+      I2 => read_buf_i_3_n_0,
       O => p_2_in(7)
     );
 \procTransmit.counter[8]_i_1\: unisim.vcomponents.LUT2
@@ -753,15 +765,38 @@ counter2_carry: unisim.vcomponents.CARRY4
       D => p_2_in(9),
       Q => counter(9)
     );
-\procTransmit.midi_rec[numbytes][1]_i_1\: unisim.vcomponents.LUT4
+\procTransmit.final_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0008"
+      INIT => X"0FFF8000"
     )
         port map (
-      I0 => Reset,
-      I1 => read_fifo,
-      I2 => running,
-      I3 => \^read_buf_reg_0\,
+      I0 => \procTransmit.bytenum[1]_i_2_n_0\,
+      I1 => Midi_i_3_n_0,
+      I2 => read_buf_i_3_n_0,
+      I3 => running,
+      I4 => final,
+      O => \procTransmit.final_i_1_n_0\
+    );
+\procTransmit.final_reg\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => '1',
+      CLR => p_0_in,
+      D => \procTransmit.final_i_1_n_0\,
+      Q => final
+    );
+\procTransmit.midi_rec[numbytes][1]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0020"
+    )
+        port map (
+      I0 => read_fifo,
+      I1 => \^read_buf_reg_0\,
+      I2 => Reset,
+      I3 => running,
       O => \procTransmit.midi_rec_reg[numbytes]0\
     );
 \procTransmit.midi_rec_reg[byte0][0]\: unisim.vcomponents.FDRE
@@ -972,18 +1007,16 @@ counter2_carry: unisim.vcomponents.CARRY4
       Q => \procTransmit.midi_rec_reg[numbytes]\(1),
       R => '0'
     );
-\procTransmit.running_i_1\: unisim.vcomponents.LUT6
+\procTransmit.running_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"2AA2AAAAAAAA2AA2"
+      INIT => X"2AAA"
     )
         port map (
       I0 => \procTransmit.counter[11]_i_1_n_0\,
-      I1 => bytenum,
-      I2 => \procTransmit.midi_rec_reg[numbytes]\(1),
-      I3 => \procTransmit.bytenum_reg_n_0_[1]\,
-      I4 => \procTransmit.midi_rec_reg[numbytes]\(0),
-      I5 => \procTransmit.bytenum_reg_n_0_[0]\,
-      O => p_1_in
+      I1 => running,
+      I2 => final,
+      I3 => read_buf_i_3_n_0,
+      O => \procTransmit.running_i_1_n_0\
     );
 \procTransmit.running_reg\: unisim.vcomponents.FDCE
     generic map(
@@ -993,19 +1026,19 @@ counter2_carry: unisim.vcomponents.CARRY4
       C => Clk,
       CE => '1',
       CLR => p_0_in,
-      D => p_1_in,
+      D => \procTransmit.running_i_1_n_0\,
       Q => running
     );
 read_buf_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"D1CCCCCCD181D181"
+      INIT => X"DCCCCCCCD8D81111"
     )
         port map (
       I0 => FifoEmpty,
       I1 => \^read_buf_reg_0\,
-      I2 => running,
-      I3 => read_buf_i_3_n_0,
-      I4 => bytenum,
+      I2 => read_buf_i_3_n_0,
+      I3 => final,
+      I4 => running,
       I5 => \procTransmit.counter[11]_i_1_n_0\,
       O => read_buf_i_1_n_0
     );
@@ -1017,61 +1050,40 @@ read_buf_i_2: unisim.vcomponents.LUT1
       I0 => Reset,
       O => p_0_in
     );
-read_buf_i_3: unisim.vcomponents.LUT4
+read_buf_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9009"
+      INIT => X"0000000000000008"
     )
         port map (
-      I0 => \procTransmit.midi_rec_reg[numbytes]\(1),
-      I1 => \procTransmit.bytenum_reg_n_0_[1]\,
-      I2 => \procTransmit.midi_rec_reg[numbytes]\(0),
-      I3 => \procTransmit.bytenum_reg_n_0_[0]\,
+      I0 => counter(0),
+      I1 => counter2(7),
+      I2 => counter2(9),
+      I3 => counter2(8),
+      I4 => read_buf_i_4_n_0,
+      I5 => read_buf_i_5_n_0,
       O => read_buf_i_3_n_0
     );
-read_buf_i_4: unisim.vcomponents.LUT5
+read_buf_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"10000000"
+      INIT => X"FFFD"
     )
         port map (
-      I0 => read_buf_i_5_n_0,
-      I1 => read_buf_i_6_n_0,
-      I2 => read_buf_i_7_n_0,
-      I3 => Midi_i_5_n_0,
-      I4 => running,
-      O => bytenum
+      I0 => counter2(10),
+      I1 => counter2(5),
+      I2 => counter2(1),
+      I3 => counter2(6),
+      O => read_buf_i_4_n_0
     );
 read_buf_i_5: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFEF"
     )
         port map (
-      I0 => counter2(1),
+      I0 => counter2(3),
       I1 => counter2(4),
       I2 => counter2(11),
-      I3 => counter2(3),
+      I3 => counter2(2),
       O => read_buf_i_5_n_0
-    );
-read_buf_i_6: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFD"
-    )
-        port map (
-      I0 => counter2(10),
-      I1 => counter2(8),
-      I2 => counter2(2),
-      I3 => counter2(5),
-      O => read_buf_i_6_n_0
-    );
-read_buf_i_7: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"1000"
-    )
-        port map (
-      I0 => counter2(6),
-      I1 => counter2(9),
-      I2 => counter2(7),
-      I3 => counter(0),
-      O => read_buf_i_7_n_0
     );
 read_buf_reg: unisim.vcomponents.FDCE
     generic map(
@@ -1086,13 +1098,13 @@ read_buf_reg: unisim.vcomponents.FDCE
     );
 read_fifo_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"AAE2"
+      INIT => X"BA8A"
     )
         port map (
       I0 => read_fifo,
-      I1 => Reset,
-      I2 => \^read_buf_reg_0\,
-      I3 => running,
+      I1 => running,
+      I2 => Reset,
+      I3 => \^read_buf_reg_0\,
       O => read_fifo_i_1_n_0
     );
 read_fifo_reg: unisim.vcomponents.FDRE

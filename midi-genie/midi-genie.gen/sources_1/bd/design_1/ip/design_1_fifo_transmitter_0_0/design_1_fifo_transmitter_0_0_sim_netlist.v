@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Tue Jan  9 23:57:22 2024
+// Date        : Wed Jan 10 13:02:05 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_fifo_transmitter_0_0/design_1_fifo_transmitter_0_0_sim_netlist.v
@@ -65,11 +65,10 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
   wire FifoEmpty;
   wire Midi;
   wire Midi0_out;
-  wire Midi_i_10_n_0;
+  wire Midi_i_12_n_0;
   wire Midi_i_13_n_0;
   wire Midi_i_14_n_0;
   wire Midi_i_15_n_0;
-  wire Midi_i_16_n_0;
   wire Midi_i_1_n_0;
   wire Midi_i_3_n_0;
   wire Midi_i_5_n_0;
@@ -77,12 +76,10 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
   wire Midi_i_7_n_0;
   wire Midi_i_8_n_0;
   wire Midi_i_9_n_0;
+  wire Midi_reg_i_10_n_0;
   wire Midi_reg_i_11_n_0;
-  wire Midi_reg_i_12_n_0;
   wire Midi_reg_i_4_n_0;
   wire Reset;
-  wire [3:0]bitnum;
-  wire bytenum;
   wire [11:0]counter;
   wire [11:1]counter2;
   wire counter2_carry__0_n_0;
@@ -95,18 +92,25 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
   wire counter2_carry_n_1;
   wire counter2_carry_n_2;
   wire counter2_carry_n_3;
+  wire final;
   wire p_0_in;
-  wire p_1_in;
   wire [11:0]p_2_in;
   wire \procTransmit.bitnum[0]_i_1_n_0 ;
   wire \procTransmit.bitnum[1]_i_1_n_0 ;
   wire \procTransmit.bitnum[2]_i_1_n_0 ;
   wire \procTransmit.bitnum[3]_i_1_n_0 ;
+  wire \procTransmit.bitnum_reg_n_0_[0] ;
+  wire \procTransmit.bitnum_reg_n_0_[1] ;
+  wire \procTransmit.bitnum_reg_n_0_[2] ;
+  wire \procTransmit.bitnum_reg_n_0_[3] ;
   wire \procTransmit.bytenum[0]_i_1_n_0 ;
   wire \procTransmit.bytenum[1]_i_1_n_0 ;
+  wire \procTransmit.bytenum[1]_i_2_n_0 ;
+  wire \procTransmit.bytenum[1]_i_3_n_0 ;
   wire \procTransmit.bytenum_reg_n_0_[0] ;
   wire \procTransmit.bytenum_reg_n_0_[1] ;
   wire \procTransmit.counter[11]_i_1_n_0 ;
+  wire \procTransmit.final_i_1_n_0 ;
   wire \procTransmit.midi_rec_reg[byte_n_0_0][0] ;
   wire \procTransmit.midi_rec_reg[byte_n_0_0][1] ;
   wire \procTransmit.midi_rec_reg[byte_n_0_0][2] ;
@@ -133,11 +137,11 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
   wire \procTransmit.midi_rec_reg[byte_n_0_2][7] ;
   wire [1:0]\procTransmit.midi_rec_reg[numbytes] ;
   wire \procTransmit.midi_rec_reg[numbytes]0 ;
+  wire \procTransmit.running_i_1_n_0 ;
   wire read_buf_i_1_n_0;
   wire read_buf_i_3_n_0;
+  wire read_buf_i_4_n_0;
   wire read_buf_i_5_n_0;
-  wire read_buf_i_6_n_0;
-  wire read_buf_i_7_n_0;
   wire read_buf_reg_0;
   wire read_fifo;
   wire read_fifo_i_1_n_0;
@@ -145,127 +149,115 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
   wire [3:2]NLW_counter2_carry__1_CO_UNCONNECTED;
   wire [3:3]NLW_counter2_carry__1_O_UNCONNECTED;
 
-  LUT6 #(
-    .INIT(64'hFFFF00E0000000E0)) 
+  LUT4 #(
+    .INIT(16'h0C8C)) 
     Midi_i_1
-       (.I0(FifoData[25]),
-        .I1(FifoData[24]),
-        .I2(read_fifo),
-        .I3(read_buf_reg_0),
-        .I4(running),
-        .I5(Midi_i_3_n_0),
+       (.I0(read_buf_i_3_n_0),
+        .I1(\procTransmit.counter[11]_i_1_n_0 ),
+        .I2(running),
+        .I3(final),
         .O(Midi_i_1_n_0));
   LUT6 #(
     .INIT(64'hFACF0ACFFAC00AC0)) 
-    Midi_i_10
-       (.I0(\procTransmit.midi_rec_reg[byte_n_0_2][0] ),
-        .I1(\procTransmit.midi_rec_reg[byte_n_0_2][1] ),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
-        .I4(\procTransmit.midi_rec_reg[byte_n_0_2][2] ),
-        .I5(\procTransmit.midi_rec_reg[byte_n_0_2][3] ),
-        .O(Midi_i_10_n_0));
+    Midi_i_12
+       (.I0(\procTransmit.midi_rec_reg[byte_n_0_0][4] ),
+        .I1(\procTransmit.midi_rec_reg[byte_n_0_0][5] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
+        .I4(\procTransmit.midi_rec_reg[byte_n_0_0][6] ),
+        .I5(\procTransmit.midi_rec_reg[byte_n_0_0][7] ),
+        .O(Midi_i_12_n_0));
   LUT6 #(
     .INIT(64'hFACF0ACFFAC00AC0)) 
     Midi_i_13
-       (.I0(\procTransmit.midi_rec_reg[byte_n_0_0][4] ),
-        .I1(\procTransmit.midi_rec_reg[byte_n_0_0][5] ),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
-        .I4(\procTransmit.midi_rec_reg[byte_n_0_0][6] ),
-        .I5(\procTransmit.midi_rec_reg[byte_n_0_0][7] ),
+       (.I0(\procTransmit.midi_rec_reg[byte_n_0_0][0] ),
+        .I1(\procTransmit.midi_rec_reg[byte_n_0_0][1] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
+        .I4(\procTransmit.midi_rec_reg[byte_n_0_0][2] ),
+        .I5(\procTransmit.midi_rec_reg[byte_n_0_0][3] ),
         .O(Midi_i_13_n_0));
   LUT6 #(
     .INIT(64'hFACF0ACFFAC00AC0)) 
     Midi_i_14
-       (.I0(\procTransmit.midi_rec_reg[byte_n_0_0][0] ),
-        .I1(\procTransmit.midi_rec_reg[byte_n_0_0][1] ),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
-        .I4(\procTransmit.midi_rec_reg[byte_n_0_0][2] ),
-        .I5(\procTransmit.midi_rec_reg[byte_n_0_0][3] ),
+       (.I0(\procTransmit.midi_rec_reg[byte_n_0_1][4] ),
+        .I1(\procTransmit.midi_rec_reg[byte_n_0_1][5] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
+        .I4(\procTransmit.midi_rec_reg[byte_n_0_1][6] ),
+        .I5(\procTransmit.midi_rec_reg[byte_n_0_1][7] ),
         .O(Midi_i_14_n_0));
   LUT6 #(
     .INIT(64'hFACF0ACFFAC00AC0)) 
     Midi_i_15
-       (.I0(\procTransmit.midi_rec_reg[byte_n_0_1][4] ),
-        .I1(\procTransmit.midi_rec_reg[byte_n_0_1][5] ),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
-        .I4(\procTransmit.midi_rec_reg[byte_n_0_1][6] ),
-        .I5(\procTransmit.midi_rec_reg[byte_n_0_1][7] ),
-        .O(Midi_i_15_n_0));
-  LUT6 #(
-    .INIT(64'hFACF0ACFFAC00AC0)) 
-    Midi_i_16
        (.I0(\procTransmit.midi_rec_reg[byte_n_0_1][0] ),
         .I1(\procTransmit.midi_rec_reg[byte_n_0_1][1] ),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
         .I4(\procTransmit.midi_rec_reg[byte_n_0_1][2] ),
         .I5(\procTransmit.midi_rec_reg[byte_n_0_1][3] ),
-        .O(Midi_i_16_n_0));
+        .O(Midi_i_15_n_0));
   LUT5 #(
-    .INIT(32'h0000FBF8)) 
+    .INIT(32'h0000EFEA)) 
     Midi_i_2
-       (.I0(Midi_reg_i_4_n_0),
-        .I1(\procTransmit.bytenum_reg_n_0_[1] ),
-        .I2(Midi_i_5_n_0),
-        .I3(Midi_i_6_n_0),
-        .I4(Midi_i_7_n_0),
+       (.I0(Midi_i_3_n_0),
+        .I1(Midi_reg_i_4_n_0),
+        .I2(\procTransmit.bytenum_reg_n_0_[1] ),
+        .I3(Midi_i_5_n_0),
+        .I4(Midi_i_6_n_0),
         .O(Midi0_out));
-  LUT6 #(
-    .INIT(64'h0000000000000008)) 
-    Midi_i_3
-       (.I0(counter[0]),
-        .I1(counter2[7]),
-        .I2(counter2[9]),
-        .I3(counter2[6]),
-        .I4(read_buf_i_6_n_0),
-        .I5(read_buf_i_5_n_0),
-        .O(Midi_i_3_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
-    .INIT(16'h0040)) 
-    Midi_i_5
-       (.I0(bitnum[1]),
-        .I1(bitnum[0]),
-        .I2(bitnum[3]),
-        .I3(bitnum[2]),
-        .O(Midi_i_5_n_0));
+    .INIT(16'h1000)) 
+    Midi_i_3
+       (.I0(\procTransmit.bitnum_reg_n_0_[2] ),
+        .I1(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[3] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
+        .O(Midi_i_3_n_0));
   LUT3 #(
     .INIT(8'hE4)) 
-    Midi_i_6
+    Midi_i_5
        (.I0(\procTransmit.bytenum_reg_n_0_[0] ),
-        .I1(Midi_reg_i_11_n_0),
-        .I2(Midi_reg_i_12_n_0),
-        .O(Midi_i_6_n_0));
+        .I1(Midi_reg_i_10_n_0),
+        .I2(Midi_reg_i_11_n_0),
+        .O(Midi_i_5_n_0));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h0001FFFF)) 
-    Midi_i_7
-       (.I0(bitnum[2]),
-        .I1(bitnum[3]),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
+    Midi_i_6
+       (.I0(\procTransmit.bitnum_reg_n_0_[2] ),
+        .I1(\procTransmit.bitnum_reg_n_0_[3] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
         .I4(running),
-        .O(Midi_i_7_n_0));
+        .O(Midi_i_6_n_0));
   LUT3 #(
     .INIT(8'h56)) 
+    Midi_i_7
+       (.I0(\procTransmit.bitnum_reg_n_0_[2] ),
+        .I1(\procTransmit.bitnum_reg_n_0_[0] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .O(Midi_i_7_n_0));
+  LUT6 #(
+    .INIT(64'hFACF0ACFFAC00AC0)) 
     Midi_i_8
-       (.I0(bitnum[2]),
-        .I1(bitnum[0]),
-        .I2(bitnum[1]),
+       (.I0(\procTransmit.midi_rec_reg[byte_n_0_2][4] ),
+        .I1(\procTransmit.midi_rec_reg[byte_n_0_2][5] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
+        .I4(\procTransmit.midi_rec_reg[byte_n_0_2][6] ),
+        .I5(\procTransmit.midi_rec_reg[byte_n_0_2][7] ),
         .O(Midi_i_8_n_0));
   LUT6 #(
     .INIT(64'hFACF0ACFFAC00AC0)) 
     Midi_i_9
-       (.I0(\procTransmit.midi_rec_reg[byte_n_0_2][4] ),
-        .I1(\procTransmit.midi_rec_reg[byte_n_0_2][5] ),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
-        .I4(\procTransmit.midi_rec_reg[byte_n_0_2][6] ),
-        .I5(\procTransmit.midi_rec_reg[byte_n_0_2][7] ),
+       (.I0(\procTransmit.midi_rec_reg[byte_n_0_2][0] ),
+        .I1(\procTransmit.midi_rec_reg[byte_n_0_2][1] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
+        .I4(\procTransmit.midi_rec_reg[byte_n_0_2][2] ),
+        .I5(\procTransmit.midi_rec_reg[byte_n_0_2][3] ),
         .O(Midi_i_9_n_0));
   FDPE #(
     .INIT(1'b1)) 
@@ -275,21 +267,21 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .D(Midi0_out),
         .PRE(p_0_in),
         .Q(Midi));
+  MUXF7 Midi_reg_i_10
+       (.I0(Midi_i_12_n_0),
+        .I1(Midi_i_13_n_0),
+        .O(Midi_reg_i_10_n_0),
+        .S(Midi_i_7_n_0));
   MUXF7 Midi_reg_i_11
-       (.I0(Midi_i_13_n_0),
-        .I1(Midi_i_14_n_0),
+       (.I0(Midi_i_14_n_0),
+        .I1(Midi_i_15_n_0),
         .O(Midi_reg_i_11_n_0),
-        .S(Midi_i_8_n_0));
-  MUXF7 Midi_reg_i_12
-       (.I0(Midi_i_15_n_0),
-        .I1(Midi_i_16_n_0),
-        .O(Midi_reg_i_12_n_0),
-        .S(Midi_i_8_n_0));
+        .S(Midi_i_7_n_0));
   MUXF7 Midi_reg_i_4
-       (.I0(Midi_i_9_n_0),
-        .I1(Midi_i_10_n_0),
+       (.I0(Midi_i_8_n_0),
+        .I1(Midi_i_9_n_0),
         .O(Midi_reg_i_4_n_0),
-        .S(Midi_i_8_n_0));
+        .S(Midi_i_7_n_0));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 counter2_carry
        (.CI(1'b0),
@@ -314,40 +306,40 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({NLW_counter2_carry__1_O_UNCONNECTED[3],counter2[11:9]}),
         .S({1'b0,counter[11:9]}));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \procTransmit.bitnum[0]_i_1 
        (.I0(running),
-        .I1(bitnum[0]),
+        .I1(\procTransmit.bitnum_reg_n_0_[0] ),
         .O(\procTransmit.bitnum[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h0BF00000)) 
     \procTransmit.bitnum[1]_i_1 
-       (.I0(bitnum[2]),
-        .I1(bitnum[3]),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
+       (.I0(\procTransmit.bitnum_reg_n_0_[2] ),
+        .I1(\procTransmit.bitnum_reg_n_0_[3] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
         .I4(running),
         .O(\procTransmit.bitnum[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
     .INIT(16'h2A80)) 
     \procTransmit.bitnum[2]_i_1 
        (.I0(running),
-        .I1(bitnum[1]),
-        .I2(bitnum[0]),
-        .I3(bitnum[2]),
+        .I1(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[0] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[2] ),
         .O(\procTransmit.bitnum[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h68CC0000)) 
     \procTransmit.bitnum[3]_i_1 
-       (.I0(bitnum[2]),
-        .I1(bitnum[3]),
-        .I2(bitnum[1]),
-        .I3(bitnum[0]),
+       (.I0(\procTransmit.bitnum_reg_n_0_[2] ),
+        .I1(\procTransmit.bitnum_reg_n_0_[3] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[0] ),
         .I4(running),
         .O(\procTransmit.bitnum[3]_i_1_n_0 ));
   FDCE #(
@@ -357,7 +349,7 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .CE(Midi_i_1_n_0),
         .CLR(p_0_in),
         .D(\procTransmit.bitnum[0]_i_1_n_0 ),
-        .Q(bitnum[0]));
+        .Q(\procTransmit.bitnum_reg_n_0_[0] ));
   FDCE #(
     .INIT(1'b0)) 
     \procTransmit.bitnum_reg[1] 
@@ -365,7 +357,7 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .CE(Midi_i_1_n_0),
         .CLR(p_0_in),
         .D(\procTransmit.bitnum[1]_i_1_n_0 ),
-        .Q(bitnum[1]));
+        .Q(\procTransmit.bitnum_reg_n_0_[1] ));
   FDCE #(
     .INIT(1'b0)) 
     \procTransmit.bitnum_reg[2] 
@@ -373,7 +365,7 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .CE(Midi_i_1_n_0),
         .CLR(p_0_in),
         .D(\procTransmit.bitnum[2]_i_1_n_0 ),
-        .Q(bitnum[2]));
+        .Q(\procTransmit.bitnum_reg_n_0_[2] ));
   FDCE #(
     .INIT(1'b0)) 
     \procTransmit.bitnum_reg[3] 
@@ -381,27 +373,44 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .CE(Midi_i_1_n_0),
         .CLR(p_0_in),
         .D(\procTransmit.bitnum[3]_i_1_n_0 ),
-        .Q(bitnum[3]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT5 #(
-    .INIT(32'h00FFBE00)) 
+        .Q(\procTransmit.bitnum_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hFFFF3FFF00004000)) 
     \procTransmit.bytenum[0]_i_1 
-       (.I0(\procTransmit.midi_rec_reg[numbytes] [0]),
-        .I1(\procTransmit.bytenum_reg_n_0_[1] ),
-        .I2(\procTransmit.midi_rec_reg[numbytes] [1]),
-        .I3(bytenum),
-        .I4(\procTransmit.bytenum_reg_n_0_[0] ),
+       (.I0(\procTransmit.bytenum[1]_i_2_n_0 ),
+        .I1(running),
+        .I2(read_buf_i_3_n_0),
+        .I3(Midi_i_3_n_0),
+        .I4(final),
+        .I5(\procTransmit.bytenum_reg_n_0_[0] ),
         .O(\procTransmit.bytenum[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT5 #(
-    .INIT(32'h45FFA200)) 
+  LUT6 #(
+    .INIT(64'hFFFF1FFF00004000)) 
     \procTransmit.bytenum[1]_i_1 
-       (.I0(\procTransmit.bytenum_reg_n_0_[0] ),
-        .I1(\procTransmit.midi_rec_reg[numbytes] [0]),
-        .I2(\procTransmit.midi_rec_reg[numbytes] [1]),
-        .I3(bytenum),
-        .I4(\procTransmit.bytenum_reg_n_0_[1] ),
+       (.I0(\procTransmit.bytenum[1]_i_2_n_0 ),
+        .I1(\procTransmit.bytenum_reg_n_0_[0] ),
+        .I2(running),
+        .I3(read_buf_i_3_n_0),
+        .I4(\procTransmit.bytenum[1]_i_3_n_0 ),
+        .I5(\procTransmit.bytenum_reg_n_0_[1] ),
         .O(\procTransmit.bytenum[1]_i_1_n_0 ));
+  LUT4 #(
+    .INIT(16'h9009)) 
+    \procTransmit.bytenum[1]_i_2 
+       (.I0(\procTransmit.midi_rec_reg[numbytes] [1]),
+        .I1(\procTransmit.bytenum_reg_n_0_[1] ),
+        .I2(\procTransmit.midi_rec_reg[numbytes] [0]),
+        .I3(\procTransmit.bytenum_reg_n_0_[0] ),
+        .O(\procTransmit.bytenum[1]_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFFFFBF)) 
+    \procTransmit.bytenum[1]_i_3 
+       (.I0(final),
+        .I1(\procTransmit.bitnum_reg_n_0_[0] ),
+        .I2(\procTransmit.bitnum_reg_n_0_[3] ),
+        .I3(\procTransmit.bitnum_reg_n_0_[1] ),
+        .I4(\procTransmit.bitnum_reg_n_0_[2] ),
+        .O(\procTransmit.bytenum[1]_i_3_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
     \procTransmit.bytenum_reg[0] 
@@ -418,19 +427,20 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .CLR(p_0_in),
         .D(\procTransmit.bytenum[1]_i_1_n_0 ),
         .Q(\procTransmit.bytenum_reg_n_0_[1] ));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \procTransmit.counter[0]_i_1 
        (.I0(running),
         .I1(counter[0]),
         .O(p_2_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \procTransmit.counter[10]_i_1 
        (.I0(counter2[10]),
         .I1(running),
-        .I2(Midi_i_3_n_0),
+        .I2(read_buf_i_3_n_0),
         .O(p_2_in[10]));
   LUT5 #(
     .INIT(32'hBABABAAA)) 
@@ -441,72 +451,72 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .I3(FifoData[24]),
         .I4(FifoData[25]),
         .O(\procTransmit.counter[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \procTransmit.counter[11]_i_2 
        (.I0(counter2[11]),
         .I1(running),
-        .I2(Midi_i_3_n_0),
+        .I2(read_buf_i_3_n_0),
         .O(p_2_in[11]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \procTransmit.counter[1]_i_1 
        (.I0(running),
         .I1(counter2[1]),
         .O(p_2_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \procTransmit.counter[2]_i_1 
        (.I0(running),
         .I1(counter2[2]),
         .O(p_2_in[2]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \procTransmit.counter[3]_i_1 
        (.I0(running),
         .I1(counter2[3]),
         .O(p_2_in[3]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \procTransmit.counter[4]_i_1 
        (.I0(running),
         .I1(counter2[4]),
         .O(p_2_in[4]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \procTransmit.counter[5]_i_1 
        (.I0(running),
         .I1(counter2[5]),
         .O(p_2_in[5]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \procTransmit.counter[6]_i_1 
        (.I0(running),
         .I1(counter2[6]),
         .O(p_2_in[6]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \procTransmit.counter[7]_i_1 
        (.I0(counter2[7]),
         .I1(running),
-        .I2(Midi_i_3_n_0),
+        .I2(read_buf_i_3_n_0),
         .O(p_2_in[7]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \procTransmit.counter[8]_i_1 
        (.I0(running),
         .I1(counter2[8]),
         .O(p_2_in[8]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \procTransmit.counter[9]_i_1 
@@ -609,13 +619,30 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .CLR(p_0_in),
         .D(p_2_in[9]),
         .Q(counter[9]));
+  LUT5 #(
+    .INIT(32'h0FFF8000)) 
+    \procTransmit.final_i_1 
+       (.I0(\procTransmit.bytenum[1]_i_2_n_0 ),
+        .I1(Midi_i_3_n_0),
+        .I2(read_buf_i_3_n_0),
+        .I3(running),
+        .I4(final),
+        .O(\procTransmit.final_i_1_n_0 ));
+  FDCE #(
+    .INIT(1'b0)) 
+    \procTransmit.final_reg 
+       (.C(Clk),
+        .CE(1'b1),
+        .CLR(p_0_in),
+        .D(\procTransmit.final_i_1_n_0 ),
+        .Q(final));
   LUT4 #(
-    .INIT(16'h0008)) 
+    .INIT(16'h0020)) 
     \procTransmit.midi_rec[numbytes][1]_i_1 
-       (.I0(Reset),
-        .I1(read_fifo),
-        .I2(running),
-        .I3(read_buf_reg_0),
+       (.I0(read_fifo),
+        .I1(read_buf_reg_0),
+        .I2(Reset),
+        .I3(running),
         .O(\procTransmit.midi_rec_reg[numbytes]0 ));
   FDRE \procTransmit.midi_rec_reg[byte0][0] 
        (.C(Clk),
@@ -773,32 +800,30 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .D(FifoData[25]),
         .Q(\procTransmit.midi_rec_reg[numbytes] [1]),
         .R(1'b0));
-  LUT6 #(
-    .INIT(64'h2AA2AAAAAAAA2AA2)) 
+  LUT4 #(
+    .INIT(16'h2AAA)) 
     \procTransmit.running_i_1 
        (.I0(\procTransmit.counter[11]_i_1_n_0 ),
-        .I1(bytenum),
-        .I2(\procTransmit.midi_rec_reg[numbytes] [1]),
-        .I3(\procTransmit.bytenum_reg_n_0_[1] ),
-        .I4(\procTransmit.midi_rec_reg[numbytes] [0]),
-        .I5(\procTransmit.bytenum_reg_n_0_[0] ),
-        .O(p_1_in));
+        .I1(running),
+        .I2(final),
+        .I3(read_buf_i_3_n_0),
+        .O(\procTransmit.running_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
     \procTransmit.running_reg 
        (.C(Clk),
         .CE(1'b1),
         .CLR(p_0_in),
-        .D(p_1_in),
+        .D(\procTransmit.running_i_1_n_0 ),
         .Q(running));
   LUT6 #(
-    .INIT(64'hD1CCCCCCD181D181)) 
+    .INIT(64'hDCCCCCCCD8D81111)) 
     read_buf_i_1
        (.I0(FifoEmpty),
         .I1(read_buf_reg_0),
-        .I2(running),
-        .I3(read_buf_i_3_n_0),
-        .I4(bytenum),
+        .I2(read_buf_i_3_n_0),
+        .I3(final),
+        .I4(running),
         .I5(\procTransmit.counter[11]_i_1_n_0 ),
         .O(read_buf_i_1_n_0));
   LUT1 #(
@@ -806,50 +831,34 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
     read_buf_i_2
        (.I0(Reset),
         .O(p_0_in));
-  LUT4 #(
-    .INIT(16'h9009)) 
+  LUT6 #(
+    .INIT(64'h0000000000000008)) 
     read_buf_i_3
-       (.I0(\procTransmit.midi_rec_reg[numbytes] [1]),
-        .I1(\procTransmit.bytenum_reg_n_0_[1] ),
-        .I2(\procTransmit.midi_rec_reg[numbytes] [0]),
-        .I3(\procTransmit.bytenum_reg_n_0_[0] ),
+       (.I0(counter[0]),
+        .I1(counter2[7]),
+        .I2(counter2[9]),
+        .I3(counter2[8]),
+        .I4(read_buf_i_4_n_0),
+        .I5(read_buf_i_5_n_0),
         .O(read_buf_i_3_n_0));
-  LUT5 #(
-    .INIT(32'h10000000)) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT4 #(
+    .INIT(16'hFFFD)) 
     read_buf_i_4
-       (.I0(read_buf_i_5_n_0),
-        .I1(read_buf_i_6_n_0),
-        .I2(read_buf_i_7_n_0),
-        .I3(Midi_i_5_n_0),
-        .I4(running),
-        .O(bytenum));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+       (.I0(counter2[10]),
+        .I1(counter2[5]),
+        .I2(counter2[1]),
+        .I3(counter2[6]),
+        .O(read_buf_i_4_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'hFFEF)) 
     read_buf_i_5
-       (.I0(counter2[1]),
+       (.I0(counter2[3]),
         .I1(counter2[4]),
         .I2(counter2[11]),
-        .I3(counter2[3]),
+        .I3(counter2[2]),
         .O(read_buf_i_5_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'hFFFD)) 
-    read_buf_i_6
-       (.I0(counter2[10]),
-        .I1(counter2[8]),
-        .I2(counter2[2]),
-        .I3(counter2[5]),
-        .O(read_buf_i_6_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT4 #(
-    .INIT(16'h1000)) 
-    read_buf_i_7
-       (.I0(counter2[6]),
-        .I1(counter2[9]),
-        .I2(counter2[7]),
-        .I3(counter[0]),
-        .O(read_buf_i_7_n_0));
   FDCE #(
     .INIT(1'b0)) 
     read_buf_reg
@@ -859,12 +868,12 @@ module design_1_fifo_transmitter_0_0_fifo_transmitter
         .D(read_buf_i_1_n_0),
         .Q(read_buf_reg_0));
   LUT4 #(
-    .INIT(16'hAAE2)) 
+    .INIT(16'hBA8A)) 
     read_fifo_i_1
        (.I0(read_fifo),
-        .I1(Reset),
-        .I2(read_buf_reg_0),
-        .I3(running),
+        .I1(running),
+        .I2(Reset),
+        .I3(read_buf_reg_0),
         .O(read_fifo_i_1_n_0));
   FDRE #(
     .INIT(1'b0)) 

@@ -33,6 +33,7 @@ begin
         variable running  : std_logic := '0';
         variable bytenum  : natural range 0 to 2 := 0;
         variable bitnum   : natural range 0 to 9 := 0;
+        variable final    : std_logic := '0';
     begin
         if Reset = '0' then
             read_buf <= '0';
@@ -41,35 +42,41 @@ begin
             running := '0';
             bytenum := 0;
             bitnum := 0;
+            final := '0';
         elsif rising_edge(Clk) then
             if running = '1' then
                 counter := counter + 1;
                 if counter = MIDI_COUNTER then
                     counter := 0;
-                    case bitnum is
-                        when 0 =>
-                            Midi <= '0';
-                            bitnum := 1;
-                        when 9 =>
-                            Midi <= '1';
-                            bitnum := 0;
-                            if bytenum = midi_rec.numbytes then
-                                running := '0';
-                                bytenum := 0;
-                                if FifoEmpty = '0' then
-                                    read_buf <= '1';
+                    if final = '0' then
+                        case bitnum is
+                            when 0 =>
+                                Midi <= '0';
+                                bitnum := 1;
+                            when 9 =>
+                                Midi <= '1';
+                                bitnum := 0;
+                                if bytenum = midi_rec.numbytes then
+                                    final := '1';
+                                    bytenum := 0;
+                                else
+                                    bytenum := bytenum + 1;
                                 end if;
-                            else
-                                bytenum := bytenum + 1;
-                            end if;
-                       when others =>
-                            case bytenum is
-                                when 0 => Midi <= midi_rec.byte0(bitnum-1);
-                                when 1 => Midi <= midi_rec.byte1(bitnum-1);
-                                when 2 => Midi <= midi_rec.byte2(bitnum-1);
-                            end case;
-                            bitnum := bitnum + 1;
-                    end case;
+                            when others =>
+                                case bytenum is
+                                    when 0 => Midi <= midi_rec.byte0(bitnum-1);
+                                    when 1 => Midi <= midi_rec.byte1(bitnum-1);
+                                    when 2 => Midi <= midi_rec.byte2(bitnum-1);
+                                end case;
+                                bitnum := bitnum + 1;
+                        end case;
+                    else
+                        running := '0';
+                        final := '0';
+                        if FifoEmpty = '0' then
+                            read_buf <= '1';
+                        end if;
+                    end if;
                 end if;
             elsif read_buf = '1' then
                 read_buf <= '0';
