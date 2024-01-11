@@ -14,16 +14,40 @@ void debug_pulse(int timer, int expectedNote, int expectedBend);
 void triangle2midi(int timer, int& note, int& bend);
 void debug_triangle(int timer, int expectedNote, int expectedBend);
 
+struct GenericBitField{
+    uint32_t : 15;
+    uint32_t type : 1;
+};
+
+struct NoteBitField{
+    uint32_t timer : 11;
+    uint32_t onoff : 1;
+    uint32_t channel : 3;
+    uint32_t type : 1;
+};
+
+union BitFieldUnion {
+    GenericBitField generic;
+    NoteBitField note;
+    uint32_t raw;
+};
+
 int main()
 {
-    debug_pulse(1, 153, 7700);
-    debug_pulse(253, 69, 8256);
-    debug_pulse(254, 69, 7977);
-    debug_pulse(2047, 33, 7700);
+    // debug_pulse(1, 153, 7700);
+    // debug_pulse(253, 69, 8256);
+    // debug_pulse(254, 69, 7977);
+    // debug_pulse(2047, 33, 7700);
     
-    debug_triangle(8, 115, 7540);
-    debug_triangle(126, 69, 8256);
-    debug_triangle(2033, 21, 8186);
+    // debug_triangle(8, 115, 7540);
+    // debug_triangle(126, 69, 8256);
+    // debug_triangle(2033, 21, 8186);
+
+    BitFieldUnion bitFieldUnion;
+    bitFieldUnion.raw = 0b1'100'0'000'00000010;
+    cout << bitFieldUnion.generic.type << " " << bitFieldUnion.note.type << " " << bitFieldUnion.note.channel << " " << bitFieldUnion.note.onoff << " " << bitFieldUnion.note.timer << endl;
+    bitFieldUnion.note.timer = 0xef;
+    cout << bitFieldUnion.raw << endl;
 }
 
 double note2frequency(double note)
