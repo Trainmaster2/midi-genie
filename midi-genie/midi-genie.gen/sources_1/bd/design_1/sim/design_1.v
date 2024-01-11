@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Wed Jan 10 13:00:44 2024
+//Date        : Wed Jan 10 20:14:24 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1

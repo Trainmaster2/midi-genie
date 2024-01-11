@@ -1,6 +1,6 @@
-13:57:37 **** Incremental Build of configuration Debug for project midi_genie_system ****
+10:04:01 **** Incremental Build of configuration Debug for project midi_genie_system ****
 make all 
 Skipping SD card image generation. Reason: The system project only has applications for microblaze processors.
 
-13:57:38 Build Finished (took 622ms)
+10:04:01 Build Finished (took 624ms)
 

@@ -1,4 +1,4 @@
-13:57:35 **** Incremental Build of configuration Debug for project midi_genie ****
+10:03:58 **** Incremental Build of configuration Debug for project midi_genie ****
 make all 
 Building file: ../src/main.cpp
 Invoking: MicroBlaze g++ compiler
@@ -13,9 +13,9 @@ Finished building target: midi_genie.elf
 Invoking: MicroBlaze Print Size
 mb-size midi_genie.elf  |tee "midi_genie.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  29256	    324	   3108	  32688	   7fb0	midi_genie.elf
+  30268	    324	   6184	  36776	   8fa8	midi_genie.elf
 Finished building: midi_genie.elf.size
  
 
-13:57:36 Build Finished (took 987ms)
+10:03:59 Build Finished (took 1s.75ms)
 
