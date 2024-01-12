@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Wed Jan 10 20:15:29 2024
+// Date        : Thu Jan 11 13:21:21 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_dlmb_bram_if_cntlr_1/design_1_dlmb_bram_if_cntlr_1_sim_netlist.v
@@ -124,7 +124,7 @@ module design_1_dlmb_bram_if_cntlr_1
   (* C_LMB_AWIDTH = "32" *) 
   (* C_LMB_DWIDTH = "32" *) 
   (* C_LMB_PROTOCOL = "0" *) 
-  (* C_MASK = "64'b0000000000000000000000000000000000000000001000010000000000000000" *) 
+  (* C_MASK = "64'b0000000000000000000000000000000000000000001000110000000000000000" *) 
   (* C_MASK1 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) 
   (* C_MASK2 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) 
   (* C_MASK3 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) 
@@ -218,7 +218,7 @@ endmodule
 (* C_ECC_ONOFF_RESET_VALUE = "1" *) (* C_ECC_STATUS_REGISTERS = "0" *) (* C_FAMILY = "artix7" *) 
 (* C_FAULT_INJECT = "0" *) (* C_HIGHADDR = "64'b0000000000000000000000000000000000000000000000001111111111111111" *) (* C_INTERCONNECT = "0" *) 
 (* C_LMB_AWIDTH = "32" *) (* C_LMB_DWIDTH = "32" *) (* C_LMB_PROTOCOL = "0" *) 
-(* C_MASK = "64'b0000000000000000000000000000000000000000001000010000000000000000" *) (* C_MASK1 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) (* C_MASK2 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) 
+(* C_MASK = "64'b0000000000000000000000000000000000000000001000110000000000000000" *) (* C_MASK1 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) (* C_MASK2 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) 
 (* C_MASK3 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) (* C_NUM_LMB = "1" *) (* C_S_AXI_CTRL_ADDR_WIDTH = "32" *) 
 (* C_S_AXI_CTRL_BASEADDR = "32'b11111111111111111111111111111111" *) (* C_S_AXI_CTRL_DATA_WIDTH = "32" *) (* C_S_AXI_CTRL_HIGHADDR = "32'b00000000000000000000000000000000" *) 
 (* C_UE_FAILING_REGISTERS = "0" *) (* C_WRITE_ACCESS = "2" *) (* ORIG_REF_NAME = "lmb_bram_if_cntlr" *) 
@@ -551,51 +551,52 @@ module design_1_dlmb_bram_if_cntlr_1_lmb_bram_if_cntlr
   assign Sl_UE = \<const0> ;
   assign Sl_Wait = \<const0> ;
   assign UE = \<const0> ;
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT4 #(
-    .INIT(16'h0200)) 
+  LUT5 #(
+    .INIT(32'h00020000)) 
     \BRAM_WEN_A[0]_INST_0 
        (.I0(LMB_WriteStrobe),
-        .I1(LMB_ABus[15]),
-        .I2(LMB_ABus[10]),
-        .I3(LMB_BE[0]),
+        .I1(LMB_ABus[10]),
+        .I2(LMB_ABus[14]),
+        .I3(LMB_ABus[15]),
+        .I4(LMB_BE[0]),
         .O(BRAM_WEN_A[0]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'h0200)) 
+  LUT5 #(
+    .INIT(32'h00020000)) 
     \BRAM_WEN_A[1]_INST_0 
        (.I0(LMB_WriteStrobe),
-        .I1(LMB_ABus[15]),
-        .I2(LMB_ABus[10]),
-        .I3(LMB_BE[1]),
+        .I1(LMB_ABus[10]),
+        .I2(LMB_ABus[14]),
+        .I3(LMB_ABus[15]),
+        .I4(LMB_BE[1]),
         .O(BRAM_WEN_A[1]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT4 #(
-    .INIT(16'h0200)) 
+  LUT5 #(
+    .INIT(32'h00020000)) 
     \BRAM_WEN_A[2]_INST_0 
        (.I0(LMB_WriteStrobe),
-        .I1(LMB_ABus[15]),
-        .I2(LMB_ABus[10]),
-        .I3(LMB_BE[2]),
+        .I1(LMB_ABus[10]),
+        .I2(LMB_ABus[14]),
+        .I3(LMB_ABus[15]),
+        .I4(LMB_BE[2]),
         .O(BRAM_WEN_A[2]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'h0200)) 
+  LUT5 #(
+    .INIT(32'h00020000)) 
     \BRAM_WEN_A[3]_INST_0 
        (.I0(LMB_WriteStrobe),
-        .I1(LMB_ABus[15]),
-        .I2(LMB_ABus[10]),
-        .I3(LMB_BE[3]),
+        .I1(LMB_ABus[10]),
+        .I2(LMB_ABus[14]),
+        .I3(LMB_ABus[15]),
+        .I4(LMB_BE[3]),
         .O(BRAM_WEN_A[3]));
   GND GND
        (.G(\<const0> ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT3 #(
-    .INIT(8'h01)) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT4 #(
+    .INIT(16'h0001)) 
     \No_ECC.Sl_Rdy_i_1 
-       (.I0(LMB_ABus[10]),
-        .I1(LMB_ABus[15]),
-        .I2(LMB_Rst),
+       (.I0(LMB_ABus[15]),
+        .I1(LMB_ABus[14]),
+        .I2(LMB_ABus[10]),
+        .I3(LMB_Rst),
         .O(\No_ECC.Sl_Rdy_i_1_n_0 ));
   FDRE \No_ECC.Sl_Rdy_reg 
        (.C(LMB_Clk),
@@ -603,7 +604,7 @@ module design_1_dlmb_bram_if_cntlr_1_lmb_bram_if_cntlr
         .D(\No_ECC.Sl_Rdy_i_1_n_0 ),
         .Q(Sl_Rdy),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \No_ECC.lmb_as_i_1 

@@ -7,7 +7,7 @@
 #include "midi.h"
 
 // Get device IDs from xparameters.h
-#define MIDI_OUT	XPAR_MIDI_FIFO_WRITER_BASEADDR
+#define APU_IN		XPAR_APU_FIFO_READER_BASEADDR
 
 int main() {
 	reset_notes_hard(0);
@@ -24,6 +24,7 @@ int main() {
 		note_on(0, note, 0xff);
 		pitch_bend(0, bend);
 	}
+	xil_printf("%d %d\r\n", Xil_In32(APU_IN), Xil_In32(APU_IN));
 
 	while (true) {}
 }
