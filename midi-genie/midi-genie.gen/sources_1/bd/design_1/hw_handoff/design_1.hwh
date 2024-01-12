@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jan 11 17:53:02 2024" VIVADOVERSION="2022.2.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Jan 11 22:27:34 2024" VIVADOVERSION="2022.2.2">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:cmod_a7-35t:part0:1.1" DEVICE="7a35t" NAME="design_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -663,8 +663,8 @@
         </PORT>
         <PORT DIR="O" NAME="DataAvailable" SIGIS="undef" SIGNAME="apu_fifo_reader_DataAvailable">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="microblaze_0_xlconcat" PORT="In0"/>
             <CONNECTION INSTANCE="system_ila_1" PORT="probe5"/>
+            <CONNECTION INSTANCE="microblaze_0_xlconcat" PORT="In1"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -4161,7 +4161,7 @@
         <PARAMETER NAME="C_KIND_OF_INTR" VALUE="0xFFFFFFFF"/>
         <PARAMETER NAME="C_KIND_OF_EDGE" VALUE="0xFFFFFFFF"/>
         <PARAMETER NAME="C_KIND_OF_LVL" VALUE="0xFFFFFFFF"/>
-        <PARAMETER NAME="C_ASYNC_INTR" VALUE="0xFFFFFFFE"/>
+        <PARAMETER NAME="C_ASYNC_INTR" VALUE="0xFFFFFFFD"/>
         <PARAMETER NAME="C_NUM_SYNC_FF" VALUE="2"/>
         <PARAMETER NAME="C_ADDR_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_IVAR_RESET_VALUE" VALUE="0x0000000000000010"/>
@@ -6444,12 +6444,16 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="0" NAME="In0" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_reader_DataAvailable">
+        <PORT DIR="I" LEFT="0" NAME="In0" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_Res">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="nes_reset" PORT="Res"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="In1" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_reader_DataAvailable">
           <CONNECTIONS>
             <CONNECTION INSTANCE="apu_fifo_reader" PORT="DataAvailable"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="In1" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="1" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="microblaze_0_xlconcat_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="microblaze_0_axi_intc" PORT="intr"/>
@@ -7184,6 +7188,7 @@
         <PORT DIR="O" LEFT="0" NAME="Res" RIGHT="0" SIGIS="undef" SIGNAME="nes_reset_Res">
           <CONNECTIONS>
             <CONNECTION INSTANCE="nes_apu_0" PORT="CPU_Rst"/>
+            <CONNECTION INSTANCE="microblaze_0_xlconcat" PORT="In0"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

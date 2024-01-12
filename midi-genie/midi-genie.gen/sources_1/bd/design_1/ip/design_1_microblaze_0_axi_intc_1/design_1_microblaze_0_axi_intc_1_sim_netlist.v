@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Thu Jan 11 13:21:25 2024
+// Date        : Thu Jan 11 22:29:20 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_microblaze_0_axi_intc_1/design_1_microblaze_0_axi_intc_1_sim_netlist.v
@@ -101,7 +101,7 @@ module design_1_microblaze_0_axi_intc_1
   GND GND
        (.G(\<const0> ));
   (* C_ADDR_WIDTH = "32" *) 
-  (* C_ASYNC_INTR = "32'b11111111111111111111111111111110" *) 
+  (* C_ASYNC_INTR = "32'b11111111111111111111111111111101" *) 
   (* C_CASCADE_MASTER = "0" *) 
   (* C_DISABLE_SYNCHRONIZERS = "1" *) 
   (* C_ENABLE_ASYNC = "0" *) 
@@ -1197,7 +1197,7 @@ module design_1_microblaze_0_axi_intc_1_address_decoder
         .O(ip2bus_wrack_reg));
 endmodule
 
-(* C_ADDR_WIDTH = "32" *) (* C_ASYNC_INTR = "32'b11111111111111111111111111111110" *) (* C_CASCADE_MASTER = "0" *) 
+(* C_ADDR_WIDTH = "32" *) (* C_ASYNC_INTR = "32'b11111111111111111111111111111101" *) (* C_CASCADE_MASTER = "0" *) 
 (* C_DISABLE_SYNCHRONIZERS = "1" *) (* C_ENABLE_ASYNC = "0" *) (* C_EN_CASCADE_MODE = "0" *) 
 (* C_FAMILY = "artix7" *) (* C_HAS_CIE = "1" *) (* C_HAS_FAST = "1" *) 
 (* C_HAS_ILR = "0" *) (* C_HAS_IPR = "1" *) (* C_HAS_IVR = "1" *) 
@@ -1796,9 +1796,9 @@ module design_1_microblaze_0_axi_intc_1_intc_core
   wire [31:0]Douta;
   wire \FSM_sequential_IRQ_LEVEL_GEN.IRQ_LEVEL_FAST_ON_AXI_CLK_GEN.current_state[0]_i_2_n_0 ;
   wire \FSM_sequential_IRQ_LEVEL_GEN.IRQ_LEVEL_FAST_ON_AXI_CLK_GEN.current_state[1]_i_2_n_0 ;
+  (* async_reg = "true" *) wire [0:1]\INTR_DETECT_GEN[0].ASYNC_GEN.intr_ff ;
   wire \INTR_DETECT_GEN[0].EDGE_DETECT_GEN.hw_intr[0]_i_1_n_0 ;
   wire \INTR_DETECT_GEN[0].EDGE_DETECT_GEN.intr_d1 ;
-  (* async_reg = "true" *) wire [0:1]\INTR_DETECT_GEN[1].ASYNC_GEN.intr_ff ;
   wire \INTR_DETECT_GEN[1].EDGE_DETECT_GEN.hw_intr[1]_i_1_n_0 ;
   wire \INTR_DETECT_GEN[1].EDGE_DETECT_GEN.intr_d1 ;
   wire \IPR_GEN.ipr[0]_i_1_n_0 ;
@@ -1996,12 +1996,31 @@ module design_1_microblaze_0_axi_intc_1_intc_core
         .D(\IRQ_LEVEL_GEN.IRQ_LEVEL_FAST_ON_AXI_CLK_GEN.current_state__0 [1]),
         .Q(\IRQ_LEVEL_GEN.IRQ_LEVEL_FAST_ON_AXI_CLK_GEN.current_state [1]),
         .R(SR));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \INTR_DETECT_GEN[0].ASYNC_GEN.intr_ff_reg[0] 
+       (.C(s_axi_aclk),
+        .CE(1'b1),
+        .D(intr[0]),
+        .Q(\INTR_DETECT_GEN[0].ASYNC_GEN.intr_ff [0]),
+        .R(1'b0));
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \INTR_DETECT_GEN[0].ASYNC_GEN.intr_ff_reg[1] 
+       (.C(s_axi_aclk),
+        .CE(1'b1),
+        .D(\INTR_DETECT_GEN[0].ASYNC_GEN.intr_ff [0]),
+        .Q(\INTR_DETECT_GEN[0].ASYNC_GEN.intr_ff [1]),
+        .R(1'b0));
   LUT5 #(
     .INIT(32'h0000AE00)) 
     \INTR_DETECT_GEN[0].EDGE_DETECT_GEN.hw_intr[0]_i_1 
        (.I0(hw_intr[0]),
-        .I1(intr[0]),
+        .I1(\INTR_DETECT_GEN[0].ASYNC_GEN.intr_ff [1]),
         .I2(\INTR_DETECT_GEN[0].EDGE_DETECT_GEN.intr_d1 ),
         .I3(s_axi_aresetn),
         .I4(\REG_GEN[0].IAR_FAST_MODE_GEN.iar_reg_n_0_[0] ),
@@ -2015,34 +2034,15 @@ module design_1_microblaze_0_axi_intc_1_intc_core
   FDRE \INTR_DETECT_GEN[0].EDGE_DETECT_GEN.intr_d1_reg 
        (.C(s_axi_aclk),
         .CE(1'b1),
-        .D(intr[0]),
+        .D(\INTR_DETECT_GEN[0].ASYNC_GEN.intr_ff [1]),
         .Q(\INTR_DETECT_GEN[0].EDGE_DETECT_GEN.intr_d1 ),
         .R(SR));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \INTR_DETECT_GEN[1].ASYNC_GEN.intr_ff_reg[0] 
-       (.C(s_axi_aclk),
-        .CE(1'b1),
-        .D(intr[1]),
-        .Q(\INTR_DETECT_GEN[1].ASYNC_GEN.intr_ff [0]),
-        .R(1'b0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \INTR_DETECT_GEN[1].ASYNC_GEN.intr_ff_reg[1] 
-       (.C(s_axi_aclk),
-        .CE(1'b1),
-        .D(\INTR_DETECT_GEN[1].ASYNC_GEN.intr_ff [0]),
-        .Q(\INTR_DETECT_GEN[1].ASYNC_GEN.intr_ff [1]),
-        .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT5 #(
     .INIT(32'h0000AE00)) 
     \INTR_DETECT_GEN[1].EDGE_DETECT_GEN.hw_intr[1]_i_1 
        (.I0(hw_intr[1]),
-        .I1(\INTR_DETECT_GEN[1].ASYNC_GEN.intr_ff [1]),
+        .I1(intr[1]),
         .I2(\INTR_DETECT_GEN[1].EDGE_DETECT_GEN.intr_d1 ),
         .I3(s_axi_aresetn),
         .I4(\REG_GEN[1].IAR_FAST_MODE_GEN.iar_reg_n_0_[1] ),
@@ -2056,7 +2056,7 @@ module design_1_microblaze_0_axi_intc_1_intc_core
   FDRE \INTR_DETECT_GEN[1].EDGE_DETECT_GEN.intr_d1_reg 
        (.C(s_axi_aclk),
         .CE(1'b1),
-        .D(\INTR_DETECT_GEN[1].ASYNC_GEN.intr_ff [1]),
+        .D(intr[1]),
         .Q(\INTR_DETECT_GEN[1].EDGE_DETECT_GEN.intr_d1 ),
         .R(SR));
   (* SOFT_HLUTNM = "soft_lutpair39" *) 
@@ -2277,7 +2277,7 @@ module design_1_microblaze_0_axi_intc_1_intc_core
         .I4(hw_intr[0]),
         .I5(\REG_GEN[0].IAR_FAST_MODE_GEN.iar_reg0 ),
         .O(\REG_GEN[0].isr[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \REG_GEN[0].isr[0]_i_3 
@@ -2355,7 +2355,7 @@ module design_1_microblaze_0_axi_intc_1_intc_core
         .I4(hw_intr[1]),
         .I5(\REG_GEN[1].IAR_FAST_MODE_GEN.iar_reg0 ),
         .O(\REG_GEN[1].isr[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \REG_GEN[1].isr[1]_i_2 

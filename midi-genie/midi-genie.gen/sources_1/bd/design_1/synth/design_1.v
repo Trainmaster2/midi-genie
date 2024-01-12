@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Thu Jan 11 17:52:56 2024
+//Date        : Thu Jan 11 22:27:23 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -515,8 +515,8 @@ module design_1
         .LMB_Clk(microblaze_0_Clk),
         .SYS_Rst(rst_clk_wiz_0_100M_bus_struct_reset));
   design_1_microblaze_0_xlconcat_1 microblaze_0_xlconcat
-       (.In0(apu_fifo_reader_DataAvailable),
-        .In1(1'b0),
+       (.In0(util_vector_logic_0_Res),
+        .In1(apu_fifo_reader_DataAvailable),
         .dout(microblaze_0_intr));
   design_1_fifo_generator_0_0 midi_fifo
        (.clk(microblaze_0_Clk),

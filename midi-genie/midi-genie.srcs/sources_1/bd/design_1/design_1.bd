@@ -2054,8 +2054,8 @@
       "apu_fifo_reader_DataAvailable": {
         "ports": [
           "apu_fifo_reader/DataAvailable",
-          "microblaze_0_xlconcat/In0",
-          "system_ila_1/probe5"
+          "system_ila_1/probe5",
+          "microblaze_0_xlconcat/In1"
         ]
       },
       "apu_fifo_reader_FifoRead": {
@@ -2297,7 +2297,8 @@
       "util_vector_logic_0_Res": {
         "ports": [
           "nes_reset/Res",
-          "nes_apu_0/CPU_Rst"
+          "nes_apu_0/CPU_Rst",
+          "microblaze_0_xlconcat/In0"
         ]
       },
       "util_vector_logic_0_Res1": {

@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;midi_genie/src/calc.cpp&apos;" deleteContents="false" description="Delete resource &apos;midi_genie/src/calc.cpp&apos;" element1="/midi_genie/src/calc.cpp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1704829146688"/>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;midi_genie/src/calc.cpp&apos;" deleteContents="false" description="Delete resource &apos;midi_genie/src/calc.cpp&apos;" element1="/midi_genie/src/calc.cpp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1704829146688"/>&#x0A;<refactoring comment="Delete resource &apos;midi_genie/src/apu.c&apos;" deleteContents="false" description="Delete resource &apos;midi_genie/src/apu.c&apos;" element1="/midi_genie/src/apu.c" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1705033677481"/>
 </session>
