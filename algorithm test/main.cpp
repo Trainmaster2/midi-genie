@@ -4,6 +4,8 @@
 using std::cout;
 using std::endl;
 
+#define TEST 0
+
 const double TWELVE_ROOT_TWO = 1.0594630943592952645618252949463417007792043174941856285592084314;
 
 double note2frequency(double note);
@@ -43,11 +45,17 @@ int main()
     // debug_triangle(126, 69, 8256);
     // debug_triangle(2033, 21, 8186);
 
-    BitFieldUnion bitFieldUnion;
-    bitFieldUnion.raw = 0b1'100'0'000'00000010;
-    cout << bitFieldUnion.generic.type << " " << bitFieldUnion.note.type << " " << bitFieldUnion.note.channel << " " << bitFieldUnion.note.onoff << " " << bitFieldUnion.note.timer << endl;
-    bitFieldUnion.note.timer = 0xef;
-    cout << bitFieldUnion.raw << endl;
+    // BitFieldUnion bitFieldUnion;
+    // bitFieldUnion.raw = 0b1'100'0'000'00000010;
+    // cout << bitFieldUnion.generic.type << " " << bitFieldUnion.note.type << " " << bitFieldUnion.note.channel << " " << bitFieldUnion.note.onoff << " " << bitFieldUnion.note.timer << endl;
+    // bitFieldUnion.note.timer = 0xef;
+    // cout << bitFieldUnion.raw << endl;
+
+    #if TEST
+    cout << "A" << endl;
+    #else
+    cout << "B" << endl;
+    #endif
 }
 
 double note2frequency(double note)
