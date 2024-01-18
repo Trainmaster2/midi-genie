@@ -1,0 +1,30 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-598,-14",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port S_AXI -pg 1 -lvl 0 -x 0 -y 70 -defaultsOSRD
+preplace port port-id_sys_clk -pg 1 -lvl 0 -x 0 -y 90 -defaultsOSRD
+preplace port port-id_peripheral_aresetn -pg 1 -lvl 0 -x 0 -y 110 -defaultsOSRD
+preplace port port-id_peripheral_areset -pg 1 -lvl 0 -x 0 -y 220 -defaultsOSRD
+preplace port port-id_midi_out -pg 1 -lvl 3 -x 710 -y 320 -defaultsOSRD
+preplace inst midi_fifo_writer -pg 1 -lvl 1 -x 210 -y 90 -defaultsOSRD
+preplace inst midi_fifo -pg 1 -lvl 2 -x 540 -y 140 -defaultsOSRD
+preplace inst fifo_transmitter_0 -pg 1 -lvl 1 -x 210 -y 310 -defaultsOSRD
+preplace netloc axi_fifo_writer_0_FifoData 1 1 1 N 80
+preplace netloc axi_fifo_writer_0_FifoWrite 1 1 1 N 100
+preplace netloc fifo_transmitter_0_FifoRead 1 1 1 390 180n
+preplace netloc fifo_generator_0_dout 1 0 2 50 180 380J
+preplace netloc fifo_generator_0_empty 1 0 2 40 170 370J
+preplace netloc microblaze_0_Clk 1 0 2 30 200 NJ
+preplace netloc rst_clk_wiz_0_100M_peripheral_aresetn 1 0 1 20 110n
+preplace netloc reset_manager_0_peripheral_areset 1 0 2 NJ 220 NJ
+preplace netloc fifo_transmitter_0_Midi 1 1 2 NJ 320 NJ
+preplace netloc microblaze_0_axi_periph_M02_AXI 1 0 1 NJ 70
+levelinfo -pg 1 0 210 540 710
+pagesize -pg 1 -db -bbox -sgen -190 0 820 400
+"
+}
+

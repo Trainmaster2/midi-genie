@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;midi_genie/src/apu.c&apos; to &apos;apu.cpp&apos;" description="Rename resource &apos;apu.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/apu.c" name="apu.cpp" stamp="1705036133317" updateReferences="true"/>
-</session>

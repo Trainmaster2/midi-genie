@@ -57,6 +57,7 @@
 module design_1_apu_fifo_writer_0_0 (
   Clk,
   Reset,
+  CPU_Rst,
   Pulse1_Message,
   Pulse2_Message,
   FifoData,
@@ -69,6 +70,9 @@ input wire Clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 Reset RST" *)
 input wire Reset;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CPU_Rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 CPU_Rst RST" *)
+input wire CPU_Rst;
 input wire [18 : 0] Pulse1_Message;
 input wire [18 : 0] Pulse2_Message;
 output wire [18 : 0] FifoData;
@@ -79,6 +83,7 @@ output wire FifoWrite;
   ) inst (
     .Clk(Clk),
     .Reset(Reset),
+    .CPU_Rst(CPU_Rst),
     .Pulse1_Message(Pulse1_Message),
     .Pulse2_Message(Pulse2_Message),
     .FifoData(FifoData),

@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Wed Jan 17 19:47:52 2024
+// Date        : Thu Jan 18 12:06:48 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_apu_fifo_writer_0_0/design_1_apu_fifo_writer_0_0_sim_netlist.v
@@ -18,17 +18,20 @@
 module design_1_apu_fifo_writer_0_0
    (Clk,
     Reset,
+    CPU_Rst,
     Pulse1_Message,
     Pulse2_Message,
     FifoData,
     FifoWrite);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input Clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 Reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input Reset;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 CPU_Rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CPU_Rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input CPU_Rst;
   input [18:0]Pulse1_Message;
   input [18:0]Pulse2_Message;
   output [18:0]FifoData;
   output FifoWrite;
 
+  wire CPU_Rst;
   wire Clk;
   wire [18:0]FifoData;
   wire FifoWrite;
@@ -37,7 +40,8 @@ module design_1_apu_fifo_writer_0_0
   wire Reset;
 
   design_1_apu_fifo_writer_0_0_apu_fifo_writer inst
-       (.Clk(Clk),
+       (.CPU_Rst(CPU_Rst),
+        .Clk(Clk),
         .FifoData(FifoData),
         .FifoWrite(FifoWrite),
         .Pulse1_Message(Pulse1_Message),
@@ -52,14 +56,17 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
     Pulse1_Message,
     Pulse2_Message,
     Clk,
-    Reset);
+    Reset,
+    CPU_Rst);
   output [18:0]FifoData;
   output FifoWrite;
   input [18:0]Pulse1_Message;
   input [18:0]Pulse2_Message;
   input Clk;
   input Reset;
+  input CPU_Rst;
 
+  wire CPU_Rst;
   wire Clk;
   wire [18:0]FifoData;
   wire FifoData0;
@@ -96,7 +103,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
   wire [18:0]Pulse1_Message;
   wire [18:0]Pulse2_Message;
   wire Reset;
-  wire [18:0]p_1_in;
+  wire [18:0]p_2_in;
   wire [18:0]pulse1_message_last;
   wire [18:0]pulse2_message_last;
   wire pulse2_message_last_0;
@@ -274,7 +281,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[0]),
         .I1(Pulse2_Message[0]),
         .I2(FifoData1),
-        .O(p_1_in[0]));
+        .O(p_2_in[0]));
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -282,7 +289,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[10]),
         .I1(Pulse2_Message[10]),
         .I2(FifoData1),
-        .O(p_1_in[10]));
+        .O(p_2_in[10]));
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -290,7 +297,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[11]),
         .I1(Pulse2_Message[11]),
         .I2(FifoData1),
-        .O(p_1_in[11]));
+        .O(p_2_in[11]));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -298,7 +305,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[12]),
         .I1(Pulse2_Message[12]),
         .I2(FifoData1),
-        .O(p_1_in[12]));
+        .O(p_2_in[12]));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -306,7 +313,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[13]),
         .I1(Pulse2_Message[13]),
         .I2(FifoData1),
-        .O(p_1_in[13]));
+        .O(p_2_in[13]));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -314,7 +321,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[14]),
         .I1(Pulse2_Message[14]),
         .I2(FifoData1),
-        .O(p_1_in[14]));
+        .O(p_2_in[14]));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -322,7 +329,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[15]),
         .I1(Pulse2_Message[15]),
         .I2(FifoData1),
-        .O(p_1_in[15]));
+        .O(p_2_in[15]));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -330,7 +337,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[16]),
         .I1(Pulse2_Message[16]),
         .I2(FifoData1),
-        .O(p_1_in[16]));
+        .O(p_2_in[16]));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -338,7 +345,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[17]),
         .I1(Pulse2_Message[17]),
         .I2(FifoData1),
-        .O(p_1_in[17]));
+        .O(p_2_in[17]));
   LUT2 #(
     .INIT(4'hE)) 
     \FifoData[18]_i_1 
@@ -351,11 +358,12 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[18]),
         .I1(Pulse2_Message[18]),
         .I2(FifoData1),
-        .O(p_1_in[18]));
-  LUT1 #(
-    .INIT(2'h1)) 
+        .O(p_2_in[18]));
+  LUT2 #(
+    .INIT(4'h7)) 
     \FifoData[18]_i_3 
        (.I0(Reset),
+        .I1(CPU_Rst),
         .O(\FifoData[18]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
@@ -364,7 +372,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[1]),
         .I1(Pulse2_Message[1]),
         .I2(FifoData1),
-        .O(p_1_in[1]));
+        .O(p_2_in[1]));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -372,7 +380,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[2]),
         .I1(Pulse2_Message[2]),
         .I2(FifoData1),
-        .O(p_1_in[2]));
+        .O(p_2_in[2]));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -380,7 +388,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[3]),
         .I1(Pulse2_Message[3]),
         .I2(FifoData1),
-        .O(p_1_in[3]));
+        .O(p_2_in[3]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -388,7 +396,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[4]),
         .I1(Pulse2_Message[4]),
         .I2(FifoData1),
-        .O(p_1_in[4]));
+        .O(p_2_in[4]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -396,7 +404,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[5]),
         .I1(Pulse2_Message[5]),
         .I2(FifoData1),
-        .O(p_1_in[5]));
+        .O(p_2_in[5]));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -404,7 +412,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[6]),
         .I1(Pulse2_Message[6]),
         .I2(FifoData1),
-        .O(p_1_in[6]));
+        .O(p_2_in[6]));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -412,7 +420,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[7]),
         .I1(Pulse2_Message[7]),
         .I2(FifoData1),
-        .O(p_1_in[7]));
+        .O(p_2_in[7]));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -420,7 +428,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[8]),
         .I1(Pulse2_Message[8]),
         .I2(FifoData1),
-        .O(p_1_in[8]));
+        .O(p_2_in[8]));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -428,14 +436,14 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.I0(Pulse1_Message[9]),
         .I1(Pulse2_Message[9]),
         .I2(FifoData1),
-        .O(p_1_in[9]));
+        .O(p_2_in[9]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[0] 
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[0]),
+        .D(p_2_in[0]),
         .Q(FifoData[0]));
   FDCE #(
     .INIT(1'b0)) 
@@ -443,7 +451,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[10]),
+        .D(p_2_in[10]),
         .Q(FifoData[10]));
   FDCE #(
     .INIT(1'b0)) 
@@ -451,7 +459,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[11]),
+        .D(p_2_in[11]),
         .Q(FifoData[11]));
   FDCE #(
     .INIT(1'b0)) 
@@ -459,7 +467,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[12]),
+        .D(p_2_in[12]),
         .Q(FifoData[12]));
   FDCE #(
     .INIT(1'b0)) 
@@ -467,7 +475,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[13]),
+        .D(p_2_in[13]),
         .Q(FifoData[13]));
   FDCE #(
     .INIT(1'b0)) 
@@ -475,7 +483,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[14]),
+        .D(p_2_in[14]),
         .Q(FifoData[14]));
   FDCE #(
     .INIT(1'b0)) 
@@ -483,7 +491,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[15]),
+        .D(p_2_in[15]),
         .Q(FifoData[15]));
   FDCE #(
     .INIT(1'b0)) 
@@ -491,7 +499,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[16]),
+        .D(p_2_in[16]),
         .Q(FifoData[16]));
   FDCE #(
     .INIT(1'b0)) 
@@ -499,7 +507,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[17]),
+        .D(p_2_in[17]),
         .Q(FifoData[17]));
   FDCE #(
     .INIT(1'b0)) 
@@ -507,7 +515,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[18]),
+        .D(p_2_in[18]),
         .Q(FifoData[18]));
   FDCE #(
     .INIT(1'b0)) 
@@ -515,7 +523,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[1]),
+        .D(p_2_in[1]),
         .Q(FifoData[1]));
   FDCE #(
     .INIT(1'b0)) 
@@ -523,7 +531,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[2]),
+        .D(p_2_in[2]),
         .Q(FifoData[2]));
   FDCE #(
     .INIT(1'b0)) 
@@ -531,7 +539,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[3]),
+        .D(p_2_in[3]),
         .Q(FifoData[3]));
   FDCE #(
     .INIT(1'b0)) 
@@ -539,7 +547,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[4]),
+        .D(p_2_in[4]),
         .Q(FifoData[4]));
   FDCE #(
     .INIT(1'b0)) 
@@ -547,7 +555,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[5]),
+        .D(p_2_in[5]),
         .Q(FifoData[5]));
   FDCE #(
     .INIT(1'b0)) 
@@ -555,7 +563,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[6]),
+        .D(p_2_in[6]),
         .Q(FifoData[6]));
   FDCE #(
     .INIT(1'b0)) 
@@ -563,7 +571,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[7]),
+        .D(p_2_in[7]),
         .Q(FifoData[7]));
   FDCE #(
     .INIT(1'b0)) 
@@ -571,7 +579,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[8]),
+        .D(p_2_in[8]),
         .Q(FifoData[8]));
   FDCE #(
     .INIT(1'b0)) 
@@ -579,7 +587,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_1_in[9]),
+        .D(p_2_in[9]),
         .Q(FifoData[9]));
   FDCE #(
     .INIT(1'b0)) 

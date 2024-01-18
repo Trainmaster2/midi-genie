@@ -11,6 +11,7 @@ entity apu_fifo_writer is
     port (
         Clk            : in  std_logic;
         Reset          : in  std_logic := '1';
+        CPU_Rst             : in  std_logic := '1';
 
         Pulse1_Message : in  std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
         Pulse2_Message : in  std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
@@ -28,7 +29,7 @@ begin
     procTrigger: process(Clk) is
         variable last_trig : std_logic := '0';
     begin
-        if (Reset = '0') then
+        if (Reset = '0') or (CPU_Rst = '0') then
             FifoData            <= (others => '0');
             FifoWrite           <= '0';
             pulse1_message_last <= (others => '0');

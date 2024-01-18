@@ -567,27 +567,27 @@
 /******************************************************************/
 
 
-/* Peripheral Definitions for peripheral MIDI_FIFO_WRITER */
-#define XPAR_MIDI_FIFO_WRITER_BASEADDR 0x00010000
-#define XPAR_MIDI_FIFO_WRITER_HIGHADDR 0x00010FFF
-
-
 /* Peripheral Definitions for peripheral APU_FIFO_READER */
 #define XPAR_APU_FIFO_READER_BASEADDR 0x00020000
 #define XPAR_APU_FIFO_READER_HIGHADDR 0x00020FFF
 
 
+/* Peripheral Definitions for peripheral MIDI_FIFO_WRITER */
+#define XPAR_MIDI_FIFO_WRITER_BASEADDR 0x00010000
+#define XPAR_MIDI_FIFO_WRITER_HIGHADDR 0x00010FFF
+
+
 /******************************************************************/
-
-
-/* Canonical Definitions for peripheral MIDI_FIFO_WRITER */
-#define XPAR_AXI_FIFO_WRITER_0_BASEADDR 0x00010000
-#define XPAR_AXI_FIFO_WRITER_0_HIGHADDR 0x00010FFF
 
 
 /* Canonical Definitions for peripheral APU_FIFO_READER */
 #define XPAR_AXI_FIFO_READER_0_BASEADDR 0x00020000
 #define XPAR_AXI_FIFO_READER_0_HIGHADDR 0x00020FFF
+
+
+/* Canonical Definitions for peripheral MIDI_FIFO_WRITER */
+#define XPAR_AXI_FIFO_WRITER_0_BASEADDR 0x00010000
+#define XPAR_AXI_FIFO_WRITER_0_HIGHADDR 0x00010FFF
 
 
 /******************************************************************/
@@ -618,8 +618,8 @@
 #define XPAR_INTC_SINGLE_HIGHADDR 0x4120FFFF
 #define XPAR_INTC_SINGLE_DEVICE_ID XPAR_MICROBLAZE_0_AXI_INTC_DEVICE_ID
 #define XPAR_MICROBLAZE_0_AXI_INTC_TYPE 0U
-#define XPAR_NES_RESET_RES_MASK 0X000001U
-#define XPAR_MICROBLAZE_0_AXI_INTC_NES_RESET_RES_INTR 0U
+#define XPAR_SYSTEM_BTN1_MASK 0X000001U
+#define XPAR_MICROBLAZE_0_AXI_INTC_SYSTEM_BTN1_INTR 0U
 #define XPAR_APU_FIFO_READER_FIFOREAD_MASK 0X000002U
 #define XPAR_MICROBLAZE_0_AXI_INTC_APU_FIFO_READER_FIFOREAD_INTR 1U
 

@@ -1,7 +1,7 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Wed Jan 17 19:45:34 2024
+-- Date        : Thu Jan 18 12:07:46 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_system_ila_1_1 -prefix
 --               design_1_system_ila_1_1_ design_1_system_ila_1_1_stub.vhdl
