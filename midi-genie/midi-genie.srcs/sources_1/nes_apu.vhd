@@ -22,11 +22,8 @@ entity nes_apu is
         APU_DMC_Out         : out std_logic_vector(c_APU_DMC_VECTOR - 1 downto 0) := (others => '0');
         APU_Status_Out      : out std_logic_vector(c_APU_STATUS_VECTOR - 1 downto 0) := (others => '0');
         APU_Counter_Out     : out std_logic_vector(c_APU_FRAME_COUNTER_VECTOR - 1 downto 0) := (others => '0');
-        APU_Pulse1_Timer    : out std_logic_vector(11 downto 0) := (others => '0');
-        APU_Pulse1_Volume   : out std_logic_vector(3 downto 0) := (others => '0');
-        APU_Pulse2_Timer    : out std_logic_vector(11 downto 0) := (others => '0');
-        APU_Pulse2_Volume   : out std_logic_vector(3 downto 0) := (others => '0');
-        APU_Triangle_Timer  : out std_logic_vector(11 downto 0) := (others => '0')
+        APU_Pulse1_Message  : out std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
+        APU_Pulse2_Message  : out std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0')
     );
 end nes_apu;
 
@@ -44,19 +41,16 @@ architecture Rtl of nes_apu is
     signal Triangle_On  : std_logic := '0';
 begin
 
-    APU_Pulse1_Out      <= f_APU_PULSE_2_VECTOR(APU_Pulse1);
-    APU_Pulse2_Out      <= f_APU_PULSE_2_VECTOR(APU_Pulse2);
-    APU_Triangle_Out    <= f_APU_TRIANGLE_2_VECTOR(APU_Triangle);
-    APU_Noise_Out       <= f_APU_NOISE_2_VECTOR(APU_Noise);
-    APU_DMC_Out         <= f_APU_DMC_2_VECTOR(APU_DMC);
-    APU_Status_Out      <= f_APU_STATUS_2_VECTOR(APU_Status);
-    APU_Counter_Out     <= f_APU_FRAME_COUNTER_2_VECTOR(APU_Counter);
+    APU_Pulse1_Out     <= f_APU_PULSE_2_VECTOR(APU_Pulse1);
+    APU_Pulse2_Out     <= f_APU_PULSE_2_VECTOR(APU_Pulse2);
+    APU_Triangle_Out   <= f_APU_TRIANGLE_2_VECTOR(APU_Triangle);
+    APU_Noise_Out      <= f_APU_NOISE_2_VECTOR(APU_Noise);
+    APU_DMC_Out        <= f_APU_DMC_2_VECTOR(APU_DMC);
+    APU_Status_Out     <= f_APU_STATUS_2_VECTOR(APU_Status);
+    APU_Counter_Out    <= f_APU_FRAME_COUNTER_2_VECTOR(APU_Counter);
 
-    APU_Pulse1_Timer    <= APU_Pulse1.timer_load & Pulse1_On;
-    APU_Pulse1_Volume   <= APU_Pulse1.volume;
-    APU_Pulse2_Timer    <= APU_Pulse2.timer_load & Pulse2_On;
-    APU_Pulse2_Volume   <= APU_Pulse2.volume;
-    APU_Triangle_Timer  <= APU_Triangle.timer_load & Triangle_On;
+    APU_Pulse1_Message <= f_APU_PULSE_2_MESSAGE('0', Pulse1_On, APU_Pulse1);
+    APU_Pulse2_Message <= f_APU_PULSE_2_MESSAGE('1', Pulse2_On, APU_Pulse2);
 
     procCapture: process(CPU_M2, Reset, CPU_Rst) is
     begin
@@ -100,7 +94,7 @@ begin
                         APU_Triangle <= f_APU_TRIANGLE_REG3(APU_Triangle, CPU_Data);
                     when X"400B" =>
                         APU_Triangle <= f_APU_TRIANGLE_REG4(APU_Triangle, CPU_Data);
-                        -- Triangle_On  <= APU_Status.triangle_active;
+                        Triangle_On  <= APU_Status.triangle_active;
                     
                     when X"400C" =>
                         APU_Noise <= f_APU_NOISE_REG1(APU_Noise, CPU_Data);

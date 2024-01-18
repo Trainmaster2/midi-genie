@@ -1,7 +1,7 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Wed Jan 17 14:48:45 2024
+-- Date        : Wed Jan 17 19:44:31 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_axi_fifo_reader_0_0/design_1_axi_fifo_reader_0_0_stub.vhdl
@@ -35,7 +35,7 @@ entity design_1_axi_fifo_reader_0_0 is
     S_AXI_RREADY : in STD_LOGIC;
     S_AXI_RDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
     S_AXI_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    FifoData : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    FifoData : in STD_LOGIC_VECTOR ( 18 downto 0 );
     FifoEmpty : in STD_LOGIC;
     FifoRead : out STD_LOGIC;
     DataAvailable : out STD_LOGIC
@@ -47,7 +47,7 @@ architecture stub of design_1_axi_fifo_reader_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "S_AXI_ACLK,S_AXI_ARESETN,S_AXI_ARVALID,S_AXI_ARREADY,S_AXI_ARADDR[3:0],S_AXI_ARPROT[2:0],S_AXI_WVALID,S_AXI_WREADY,S_AXI_WDATA[31:0],S_AXI_WSTRB[3:0],S_AXI_BVALID,S_AXI_BREADY,S_AXI_BRESP[1:0],S_AXI_AWVALID,S_AXI_AWREADY,S_AXI_AWADDR[3:0],S_AXI_AWPROT[2:0],S_AXI_RVALID,S_AXI_RREADY,S_AXI_RDATA[31:0],S_AXI_RRESP[1:0],FifoData[15:0],FifoEmpty,FifoRead,DataAvailable";
+attribute black_box_pad_pin of stub : architecture is "S_AXI_ACLK,S_AXI_ARESETN,S_AXI_ARVALID,S_AXI_ARREADY,S_AXI_ARADDR[3:0],S_AXI_ARPROT[2:0],S_AXI_WVALID,S_AXI_WREADY,S_AXI_WDATA[31:0],S_AXI_WSTRB[3:0],S_AXI_BVALID,S_AXI_BREADY,S_AXI_BRESP[1:0],S_AXI_AWVALID,S_AXI_AWREADY,S_AXI_AWADDR[3:0],S_AXI_AWPROT[2:0],S_AXI_RVALID,S_AXI_RREADY,S_AXI_RDATA[31:0],S_AXI_RRESP[1:0],FifoData[18:0],FifoEmpty,FifoRead,DataAvailable";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "axi_fifo_reader,Vivado 2022.2.2";
 begin

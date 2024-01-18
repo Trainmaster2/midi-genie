@@ -52,16 +52,14 @@
 
 (* X_CORE_INFO = "apu_fifo_writer,Vivado 2022.2.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_apu_fifo_writer_0_0,apu_fifo_writer,{}" *)
-(* CORE_GENERATION_INFO = "design_1_apu_fifo_writer_0_0,apu_fifo_writer,{x_ipProduct=Vivado 2022.2.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=apu_fifo_writer,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,FIFO_DATA_WIDTH=16}" *)
+(* CORE_GENERATION_INFO = "design_1_apu_fifo_writer_0_0,apu_fifo_writer,{x_ipProduct=Vivado 2022.2.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=apu_fifo_writer,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,FIFO_DATA_WIDTH=19}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_apu_fifo_writer_0_0 (
   Clk,
   Reset,
-  Pulse1_Timer,
-  Pulse1_Volume,
-  Pulse2_Timer,
-  Pulse2_Volume,
+  Pulse1_Message,
+  Pulse2_Message,
   FifoData,
   FifoWrite
 );
@@ -72,22 +70,18 @@ input wire Clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 Reset RST" *)
 input wire Reset;
-input wire [11 : 0] Pulse1_Timer;
-input wire [3 : 0] Pulse1_Volume;
-input wire [11 : 0] Pulse2_Timer;
-input wire [3 : 0] Pulse2_Volume;
-output wire [15 : 0] FifoData;
+input wire [18 : 0] Pulse1_Message;
+input wire [18 : 0] Pulse2_Message;
+output wire [18 : 0] FifoData;
 output wire FifoWrite;
 
   apu_fifo_writer #(
-    .FIFO_DATA_WIDTH(16)
+    .FIFO_DATA_WIDTH(19)
   ) inst (
     .Clk(Clk),
     .Reset(Reset),
-    .Pulse1_Timer(Pulse1_Timer),
-    .Pulse1_Volume(Pulse1_Volume),
-    .Pulse2_Timer(Pulse2_Timer),
-    .Pulse2_Volume(Pulse2_Volume),
+    .Pulse1_Message(Pulse1_Message),
+    .Pulse2_Message(Pulse2_Message),
     .FifoData(FifoData),
     .FifoWrite(FifoWrite)
   );

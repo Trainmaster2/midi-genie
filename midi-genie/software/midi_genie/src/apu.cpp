@@ -2,6 +2,8 @@
 #include "calc.h"
 #include "midi.h"
 
+PulseBitField pulse1, pulse2;
+
 int connect_apu_interrupts(XIntc *InterruptController)
 {
     int Status;
@@ -35,54 +37,51 @@ void apu_message_handler(void* CallbackRef)
 {
     APUBitField apuMessage;
     read_apu_message(apuMessage);
-    switch (apuMessage.generic.type)
+    switch (apuMessage.generic.channel)
     {
         case 0:
-            print_note_message(apuMessage.note);
-            play_note_message(apuMessage.note);
-            break;
         case 1:
-            print_volume_message(apuMessage.volume);
-            play_volume_message(apuMessage.volume);
+            play_pulse_message(apuMessage.pulse);
             break;
     }
     // XIntc_Acknowledge((XIntc*)CallbackRef, APU_MSG_INT_ID);
 }
 
-void play_note_message(NoteBitField noteMessage)
+void play_pulse_message(PulseBitField pulseMessage)
 {
+    print_pulse_message(pulseMessage);
     int note, bend;
-    switch (noteMessage.channel)
-    {
-        case 0:
-        case 1:
-            reset_notes_soft(noteMessage.channel);
-            if (noteMessage.onoff && noteMessage.timer >= 8)
-            {
-                pulse2midi(noteMessage.timer, note, bend);
-                pitch_bend(noteMessage.channel, bend);
-                note_on(noteMessage.channel, note, 0xFF);
-            }
-            break;
-        case 2:
-            reset_notes_soft(noteMessage.channel);
-            if (noteMessage.onoff)
-            {
-                triangle2midi(noteMessage.timer, note, bend);
-                pitch_bend(noteMessage.channel, bend);
-                note_on(noteMessage.channel, note, 0xFF);
-            }
-            break;
-    }
-}
+    PulseBitField* lastMessage;
 
-void play_volume_message(VolumeBitField volumeMessage)
-{
-    switch (volumeMessage.channel)
+    if (pulseMessage.channel) { lastMessage = &pulse2; }
+    else { lastMessage = &pulse1; }
+
+    if (!pulseMessage.onoff || pulseMessage.timer < 8)
     {
-        case 0:
-        case 1:
-            set_volume(volumeMessage.channel, (volumeMessage.volume << 3) | (volumeMessage.volume >> 1));
-            break;
+        reset_notes_soft(pulseMessage.channel);
     }
+#if USE_VELOCITY
+    else if ((pulseMessage.timer != lastMessage->timer) || (pulseMessage.volume != lastMessage->volume))
+    {
+        pulse2midi(pulseMessage.timer, note, bend);
+        reset_notes_soft(pulseMessage.channel);
+        pitch_bend(pulseMessage.channel, bend);
+        note_on(pulseMessage.channel, note, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1));
+    }
+#else
+    else if (pulseMessage.timer != lastMessage->timer)
+    {
+        pulse2midi(pulseMessage.timer, note, bend);
+        reset_notes_soft(pulseMessage.channel);
+        if (pulseMessage.volume != lastMessage->volume) { set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1)); }
+        pitch_bend(pulseMessage.channel, bend);
+        note_on(pulseMessage.channel, note, 0xFF);
+    }
+    else
+    {
+        set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1));
+    }
+#endif;
+
+    *lastMessage = pulseMessage;
 }

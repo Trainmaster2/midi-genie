@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Wed Jan 17 14:48:45 2024
+// Date        : Wed Jan 17 19:44:31 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode synth_stub
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_axi_fifo_reader_0_0/design_1_axi_fifo_reader_0_0_stub.v
@@ -19,7 +19,7 @@ module design_1_axi_fifo_reader_0_0(S_AXI_ACLK, S_AXI_ARESETN, S_AXI_ARVALID,
   S_AXI_WSTRB, S_AXI_BVALID, S_AXI_BREADY, S_AXI_BRESP, S_AXI_AWVALID, S_AXI_AWREADY, 
   S_AXI_AWADDR, S_AXI_AWPROT, S_AXI_RVALID, S_AXI_RREADY, S_AXI_RDATA, S_AXI_RRESP, FifoData, 
   FifoEmpty, FifoRead, DataAvailable)
-/* synthesis syn_black_box black_box_pad_pin="S_AXI_ACLK,S_AXI_ARESETN,S_AXI_ARVALID,S_AXI_ARREADY,S_AXI_ARADDR[3:0],S_AXI_ARPROT[2:0],S_AXI_WVALID,S_AXI_WREADY,S_AXI_WDATA[31:0],S_AXI_WSTRB[3:0],S_AXI_BVALID,S_AXI_BREADY,S_AXI_BRESP[1:0],S_AXI_AWVALID,S_AXI_AWREADY,S_AXI_AWADDR[3:0],S_AXI_AWPROT[2:0],S_AXI_RVALID,S_AXI_RREADY,S_AXI_RDATA[31:0],S_AXI_RRESP[1:0],FifoData[15:0],FifoEmpty,FifoRead,DataAvailable" */;
+/* synthesis syn_black_box black_box_pad_pin="S_AXI_ACLK,S_AXI_ARESETN,S_AXI_ARVALID,S_AXI_ARREADY,S_AXI_ARADDR[3:0],S_AXI_ARPROT[2:0],S_AXI_WVALID,S_AXI_WREADY,S_AXI_WDATA[31:0],S_AXI_WSTRB[3:0],S_AXI_BVALID,S_AXI_BREADY,S_AXI_BRESP[1:0],S_AXI_AWVALID,S_AXI_AWREADY,S_AXI_AWADDR[3:0],S_AXI_AWPROT[2:0],S_AXI_RVALID,S_AXI_RREADY,S_AXI_RDATA[31:0],S_AXI_RRESP[1:0],FifoData[18:0],FifoEmpty,FifoRead,DataAvailable" */;
   input S_AXI_ACLK;
   input S_AXI_ARESETN;
   input S_AXI_ARVALID;
@@ -41,7 +41,7 @@ module design_1_axi_fifo_reader_0_0(S_AXI_ACLK, S_AXI_ARESETN, S_AXI_ARVALID,
   input S_AXI_RREADY;
   output [31:0]S_AXI_RDATA;
   output [1:0]S_AXI_RRESP;
-  input [15:0]FifoData;
+  input [18:0]FifoData;
   input FifoEmpty;
   output FifoRead;
   output DataAvailable;

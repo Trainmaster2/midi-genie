@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Wed Jan 17 17:15:35 2024
+//Date        : Wed Jan 17 19:46:39 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -40,9 +40,9 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:interface:uart:1.0 usb_uart RxD" *) input usb_uart_rxd;
   (* X_INTERFACE_INFO = "xilinx.com:interface:uart:1.0 usb_uart TxD" *) output usb_uart_txd;
 
-  wire [15:0]Net;
+  wire [18:0]Net;
   wire Net1;
-  wire [15:0]apu_fifo_dout;
+  wire [18:0]apu_fifo_dout;
   wire apu_fifo_empty;
   wire apu_fifo_reader_DataAvailable;
   wire apu_fifo_reader_FifoRead;
@@ -184,15 +184,12 @@ module design_1
   wire [1:0]nes_apu_0_APU_Counter_Out;
   wire [28:0]nes_apu_0_APU_DMC_Out;
   wire [15:0]nes_apu_0_APU_Noise_Out;
+  wire [18:0]nes_apu_0_APU_Pulse1_Message;
   wire [42:0]nes_apu_0_APU_Pulse1_Out;
-  wire [11:0]nes_apu_0_APU_Pulse1_Timer;
-  wire [3:0]nes_apu_0_APU_Pulse1_Volume;
+  wire [18:0]nes_apu_0_APU_Pulse2_Message;
   wire [42:0]nes_apu_0_APU_Pulse2_Out;
-  wire [11:0]nes_apu_0_APU_Pulse2_Timer;
-  wire [3:0]nes_apu_0_APU_Pulse2_Volume;
   wire [6:0]nes_apu_0_APU_Status_Out;
   wire [41:0]nes_apu_0_APU_Triangle_Out;
-  wire [11:0]nes_apu_0_APU_Triangle_Timer;
   wire [14:0]nes_cpu_addr_1;
   wire [7:0]nes_cpu_data_1;
   wire nes_cpu_rw_1;
@@ -262,10 +259,8 @@ module design_1
        (.Clk(microblaze_0_Clk),
         .FifoData(Net),
         .FifoWrite(Net1),
-        .Pulse1_Timer(nes_apu_0_APU_Pulse1_Timer),
-        .Pulse1_Volume(nes_apu_0_APU_Pulse1_Volume),
-        .Pulse2_Timer(nes_apu_0_APU_Pulse2_Timer),
-        .Pulse2_Volume(nes_apu_0_APU_Pulse2_Volume),
+        .Pulse1_Message(nes_apu_0_APU_Pulse1_Message),
+        .Pulse2_Message(nes_apu_0_APU_Pulse2_Message),
         .Reset(rst_clk_wiz_0_100M_peripheral_aresetn));
   design_1_axi_uartlite_0_1 axi_uartlite_0
        (.rx(axi_uartlite_0_UART_RxD),
@@ -563,15 +558,12 @@ module design_1
        (.APU_Counter_Out(nes_apu_0_APU_Counter_Out),
         .APU_DMC_Out(nes_apu_0_APU_DMC_Out),
         .APU_Noise_Out(nes_apu_0_APU_Noise_Out),
+        .APU_Pulse1_Message(nes_apu_0_APU_Pulse1_Message),
         .APU_Pulse1_Out(nes_apu_0_APU_Pulse1_Out),
-        .APU_Pulse1_Timer(nes_apu_0_APU_Pulse1_Timer),
-        .APU_Pulse1_Volume(nes_apu_0_APU_Pulse1_Volume),
+        .APU_Pulse2_Message(nes_apu_0_APU_Pulse2_Message),
         .APU_Pulse2_Out(nes_apu_0_APU_Pulse2_Out),
-        .APU_Pulse2_Timer(nes_apu_0_APU_Pulse2_Timer),
-        .APU_Pulse2_Volume(nes_apu_0_APU_Pulse2_Volume),
         .APU_Status_Out(nes_apu_0_APU_Status_Out),
         .APU_Triangle_Out(nes_apu_0_APU_Triangle_Out),
-        .APU_Triangle_Timer(nes_apu_0_APU_Triangle_Timer),
         .CPU_Addr(nes_cpu_addr_1),
         .CPU_Clk(nes_system_clk_1),
         .CPU_Data(nes_cpu_data_1),
@@ -605,11 +597,8 @@ module design_1
         .probe10(nes_apu_0_APU_DMC_Out),
         .probe11(nes_apu_0_APU_Status_Out),
         .probe12(nes_apu_0_APU_Counter_Out),
-        .probe13(nes_apu_0_APU_Pulse1_Timer),
-        .probe14(nes_apu_0_APU_Pulse1_Volume),
-        .probe15(nes_apu_0_APU_Pulse2_Timer),
-        .probe16(nes_apu_0_APU_Pulse2_Volume),
-        .probe17(nes_apu_0_APU_Triangle_Timer),
+        .probe13(nes_apu_0_APU_Pulse1_Message),
+        .probe14(nes_apu_0_APU_Pulse2_Message),
         .probe2(nes_cpu_addr_1),
         .probe3(nes_cpu_data_1),
         .probe4(nes_romsel_1),
@@ -641,15 +630,12 @@ module design_1
         .clk(microblaze_0_Clk),
         .probe0(Net),
         .probe1(Net1),
-        .probe10(nes_apu_0_APU_Triangle_Timer),
         .probe2(apu_fifo_empty),
         .probe3(apu_fifo_dout),
         .probe4(apu_fifo_reader_FifoRead),
         .probe5(apu_fifo_reader_DataAvailable),
-        .probe6(nes_apu_0_APU_Pulse1_Timer),
-        .probe7(nes_apu_0_APU_Pulse1_Volume),
-        .probe8(nes_apu_0_APU_Pulse2_Timer),
-        .probe9(nes_apu_0_APU_Pulse2_Volume),
+        .probe6(nes_apu_0_APU_Pulse1_Message),
+        .probe7(nes_apu_0_APU_Pulse2_Message),
         .resetn(rst_clk_wiz_0_100M_peripheral_aresetn));
   design_1_util_vector_logic_0_1 util_vector_logic_0
        (.Op1(fifo_transmitter_0_Midi),

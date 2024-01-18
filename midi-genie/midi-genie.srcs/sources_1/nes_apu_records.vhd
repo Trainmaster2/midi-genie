@@ -18,21 +18,23 @@ package nes_apu_records is
         timer               : std_logic_vector(10 downto 0);
     end record t_APU_PULSE;
 
-    constant c_APU_PULSE_VECTOR : integer := 43;
-    constant c_APU_PULSE_INIT   : t_APU_PULSE := (duty => (others => '0'),
-                                                  length_counter_halt => '0',
-                                                  constant_volume => '0',
-                                                  volume => (others => '0'),
-                                                  sweep_enable => '0',
-                                                  sweep_period => (others => '0'),
-                                                  sweep_negate => '0',
-                                                  sweep_shift => (others => '0'),
-                                                  timer_load => (others => '0'),
-                                                  length_counter => (others => '0'),
-                                                  timer => (others => '0'));
+    constant c_APU_PULSE_VECTOR  : integer := 43;
+    constant c_APU_PULSE_MESSAGE : integer := 19;
+    constant c_APU_PULSE_INIT    : t_APU_PULSE := (duty => (others => '0'),
+                                                   length_counter_halt => '0',
+                                                   constant_volume => '0',
+                                                   volume => (others => '0'),
+                                                   sweep_enable => '0',
+                                                   sweep_period => (others => '0'),
+                                                   sweep_negate => '0',
+                                                   sweep_shift => (others => '0'),
+                                                   timer_load => (others => '0'),
+                                                   length_counter => (others => '0'),
+                                                   timer => (others => '0'));
 
     function f_APU_PULSE_2_VECTOR (rec: t_APU_PULSE) return std_logic_vector;
     function f_VECTOR_2_APU_PULSE (vec: std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0)) return t_APU_PULSE;
+    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; PulseOn: std_logic; rec: t_APU_PULSE) return std_logic_vector;
     function f_APU_PULSE_REG1 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
     function f_APU_PULSE_REG2 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
     function f_APU_PULSE_REG3 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
@@ -175,6 +177,18 @@ package body nes_apu_records is
         rec_out.length_counter      := vec(15 downto 11);
         rec_out.timer               := vec(10 downto 0);
         return rec_out;
+    end;
+
+    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; PulseOn: std_logic; rec: t_APU_PULSE) return std_logic_vector is
+        variable vec : std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
+    begin
+        vec(0) := Channel;
+        vec(3) := PulseOn;
+        if (PulseOn = '1') then
+            vec(14 downto 4)  := rec.timer_load;
+            vec(18 downto 15) := rec.volume;
+        end if;
+        return vec;
     end;
 
     function f_APU_PULSE_REG1 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE is

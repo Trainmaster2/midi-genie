@@ -71,11 +71,8 @@ module design_1_nes_apu_0_0 (
   APU_DMC_Out,
   APU_Status_Out,
   APU_Counter_Out,
-  APU_Pulse1_Timer,
-  APU_Pulse1_Volume,
-  APU_Pulse2_Timer,
-  APU_Pulse2_Volume,
-  APU_Triangle_Timer
+  APU_Pulse1_Message,
+  APU_Pulse2_Message
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
@@ -102,11 +99,8 @@ output wire [15 : 0] APU_Noise_Out;
 output wire [28 : 0] APU_DMC_Out;
 output wire [6 : 0] APU_Status_Out;
 output wire [1 : 0] APU_Counter_Out;
-output wire [11 : 0] APU_Pulse1_Timer;
-output wire [3 : 0] APU_Pulse1_Volume;
-output wire [11 : 0] APU_Pulse2_Timer;
-output wire [3 : 0] APU_Pulse2_Volume;
-output wire [11 : 0] APU_Triangle_Timer;
+output wire [18 : 0] APU_Pulse1_Message;
+output wire [18 : 0] APU_Pulse2_Message;
 
   nes_apu inst (
     .Clk(Clk),
@@ -125,10 +119,7 @@ output wire [11 : 0] APU_Triangle_Timer;
     .APU_DMC_Out(APU_DMC_Out),
     .APU_Status_Out(APU_Status_Out),
     .APU_Counter_Out(APU_Counter_Out),
-    .APU_Pulse1_Timer(APU_Pulse1_Timer),
-    .APU_Pulse1_Volume(APU_Pulse1_Volume),
-    .APU_Pulse2_Timer(APU_Pulse2_Timer),
-    .APU_Pulse2_Volume(APU_Pulse2_Volume),
-    .APU_Triangle_Timer(APU_Triangle_Timer)
+    .APU_Pulse1_Message(APU_Pulse1_Message),
+    .APU_Pulse2_Message(APU_Pulse2_Message)
   );
 endmodule

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jan 17 17:15:41 2024" VIVADOVERSION="2022.2.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jan 17 19:46:44 2024" VIVADOVERSION="2022.2.2">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:cmod_a7-35t:part0:1.1" DEVICE="7a35t" NAME="design_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -103,9 +103,9 @@
         <PARAMETER NAME="C_COUNT_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_DATA_COUNT_WIDTH" VALUE="10"/>
         <PARAMETER NAME="C_DEFAULT_VALUE" VALUE="BlankString"/>
-        <PARAMETER NAME="C_DIN_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="C_DIN_WIDTH" VALUE="19"/>
         <PARAMETER NAME="C_DOUT_RST_VAL" VALUE="0"/>
-        <PARAMETER NAME="C_DOUT_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="C_DOUT_WIDTH" VALUE="19"/>
         <PARAMETER NAME="C_ENABLE_RLOCS" VALUE="0"/>
         <PARAMETER NAME="C_FAMILY" VALUE="artix7"/>
         <PARAMETER NAME="C_FULL_FLAGS_RST_VAL" VALUE="1"/>
@@ -133,7 +133,7 @@
         <PARAMETER NAME="C_OVERFLOW_LOW" VALUE="0"/>
         <PARAMETER NAME="C_PRELOAD_LATENCY" VALUE="1"/>
         <PARAMETER NAME="C_PRELOAD_REGS" VALUE="0"/>
-        <PARAMETER NAME="C_PRIM_FIFO_TYPE" VALUE="1kx18"/>
+        <PARAMETER NAME="C_PRIM_FIFO_TYPE" VALUE="1kx36"/>
         <PARAMETER NAME="C_PROG_EMPTY_THRESH_ASSERT_VAL" VALUE="2"/>
         <PARAMETER NAME="C_PROG_EMPTY_THRESH_NEGATE_VAL" VALUE="3"/>
         <PARAMETER NAME="C_PROG_EMPTY_TYPE" VALUE="0"/>
@@ -161,7 +161,7 @@
         <PARAMETER NAME="C_WR_RESPONSE_LATENCY" VALUE="1"/>
         <PARAMETER NAME="C_MSGON_VAL" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_RST_SYNC" VALUE="1"/>
-        <PARAMETER NAME="C_EN_SAFETY_CKT" VALUE="0"/>
+        <PARAMETER NAME="C_EN_SAFETY_CKT" VALUE="1"/>
         <PARAMETER NAME="C_ERROR_INJECTION_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_SYNCHRONIZER_STAGE" VALUE="2"/>
         <PARAMETER NAME="C_INTERFACE_TYPE" VALUE="0"/>
@@ -307,9 +307,9 @@
         <PARAMETER NAME="INTERFACE_TYPE" VALUE="Native"/>
         <PARAMETER NAME="Performance_Options" VALUE="Standard_FIFO"/>
         <PARAMETER NAME="asymmetric_port_width" VALUE="false"/>
-        <PARAMETER NAME="Input_Data_Width" VALUE="16"/>
+        <PARAMETER NAME="Input_Data_Width" VALUE="19"/>
         <PARAMETER NAME="Input_Depth" VALUE="1024"/>
-        <PARAMETER NAME="Output_Data_Width" VALUE="16"/>
+        <PARAMETER NAME="Output_Data_Width" VALUE="19"/>
         <PARAMETER NAME="Output_Depth" VALUE="1024"/>
         <PARAMETER NAME="Enable_ECC" VALUE="false"/>
         <PARAMETER NAME="Use_Embedded_Registers" VALUE="false"/>
@@ -465,7 +465,7 @@
         <PARAMETER NAME="Master_interface_Clock_enable_memory_mapped" VALUE="false"/>
         <PARAMETER NAME="Slave_interface_Clock_enable_memory_mapped" VALUE="false"/>
         <PARAMETER NAME="Output_Register_Type" VALUE="Embedded_Reg"/>
-        <PARAMETER NAME="Enable_Safety_Circuit" VALUE="false"/>
+        <PARAMETER NAME="Enable_Safety_Circuit" VALUE="true"/>
         <PARAMETER NAME="Enable_ECC_Type" VALUE="Hard_ECC"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -480,7 +480,7 @@
             <CONNECTION INSTANCE="peripheral_areset" PORT="Res"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="din" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_writer_0_FifoData">
+        <PORT DIR="I" LEFT="18" NAME="din" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_writer_0_FifoData">
           <CONNECTIONS>
             <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="FifoData"/>
           </CONNECTIONS>
@@ -495,7 +495,7 @@
             <CONNECTION INSTANCE="apu_fifo_reader" PORT="FifoRead"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="15" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_dout">
+        <PORT DIR="O" LEFT="18" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="system_ila_1" PORT="probe3"/>
             <CONNECTION INSTANCE="apu_fifo_reader" PORT="FifoData"/>
@@ -508,6 +508,8 @@
             <CONNECTION INSTANCE="apu_fifo_reader" PORT="FifoEmpty"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="wr_rst_busy" SIGIS="undef"/>
+        <PORT DIR="O" NAME="rd_rst_busy" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="__NOC__" NAME="FIFO_WRITE" TYPE="TARGET" VLNV="xilinx.com:interface:fifo_write:1.0">
@@ -533,7 +535,7 @@
       </ADDRESSBLOCKS>
       <PARAMETERS>
         <PARAMETER NAME="AXI_DATA_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="FIFO_DATA_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="FIFO_DATA_WIDTH" VALUE="19"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_axi_fifo_reader_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_BASEADDR" VALUE="0x00020000"/>
@@ -645,7 +647,7 @@
             <CONNECTION INSTANCE="microblaze_0_axi_periph" PORT="M03_AXI_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="FifoData" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_dout">
+        <PORT DIR="I" LEFT="18" NAME="FifoData" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="apu_fifo" PORT="dout"/>
           </CONNECTIONS>
@@ -728,7 +730,7 @@
     <MODULE COREREVISION="1" FULLNAME="/apu_fifo_writer_0" HWVERSION="1.0" INSTANCE="apu_fifo_writer_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="apu_fifo_writer" VLNV="xilinx.com:module_ref:apu_fifo_writer:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="FIFO_DATA_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="FIFO_DATA_WIDTH" VALUE="19"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_apu_fifo_writer_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -743,27 +745,17 @@
             <CONNECTION INSTANCE="rst_clk_wiz_0_100M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="11" NAME="Pulse1_Timer" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Timer">
+        <PORT DIR="I" LEFT="18" NAME="Pulse1_Message" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Message">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Timer"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Message"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="Pulse1_Volume" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Volume">
+        <PORT DIR="I" LEFT="18" NAME="Pulse2_Message" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Message">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Volume"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Message"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="11" NAME="Pulse2_Timer" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Timer">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Timer"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="Pulse2_Volume" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Volume">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Volume"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="15" NAME="FifoData" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_writer_0_FifoData">
+        <PORT DIR="O" LEFT="18" NAME="FifoData" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_writer_0_FifoData">
           <CONNECTIONS>
             <CONNECTION INSTANCE="system_ila_1" PORT="probe0"/>
             <CONNECTION INSTANCE="apu_fifo" PORT="din"/>
@@ -1759,8 +1751,8 @@
             <CONNECTION INSTANCE="apu_fifo" PORT="clk"/>
             <CONNECTION INSTANCE="microblaze_0_axi_periph" PORT="M03_ACLK"/>
             <CONNECTION INSTANCE="system_ila_1" PORT="clk"/>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="Clk"/>
             <CONNECTION INSTANCE="apu_fifo_reader" PORT="S_AXI_ACLK"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="Clk"/>
             <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Clk"/>
           </CONNECTIONS>
         </PORT>
@@ -7224,38 +7216,18 @@
             <CONNECTION INSTANCE="system_ila_0" PORT="probe12"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="11" NAME="APU_Pulse1_Timer" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Timer">
+        <PORT DIR="O" LEFT="18" NAME="APU_Pulse1_Message" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Message">
           <CONNECTIONS>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe13"/>
             <CONNECTION INSTANCE="system_ila_1" PORT="probe6"/>
-            <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Pulse1_Timer"/>
+            <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Pulse1_Message"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="APU_Pulse1_Volume" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Volume">
+        <PORT DIR="O" LEFT="18" NAME="APU_Pulse2_Message" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Message">
           <CONNECTIONS>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe14"/>
             <CONNECTION INSTANCE="system_ila_1" PORT="probe7"/>
-            <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Pulse1_Volume"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="11" NAME="APU_Pulse2_Timer" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Timer">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe15"/>
-            <CONNECTION INSTANCE="system_ila_1" PORT="probe8"/>
-            <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Pulse2_Timer"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="APU_Pulse2_Volume" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Volume">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe16"/>
-            <CONNECTION INSTANCE="system_ila_1" PORT="probe9"/>
-            <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Pulse2_Volume"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="11" NAME="APU_Triangle_Timer" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Triangle_Timer">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="system_ila_0" PORT="probe17"/>
-            <CONNECTION INSTANCE="system_ila_1" PORT="probe10"/>
+            <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Pulse2_Message"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -7397,8 +7369,8 @@
             <CONNECTION INSTANCE="fifo_transmitter_0" PORT="Reset"/>
             <CONNECTION INSTANCE="microblaze_0_axi_periph" PORT="M03_ARESETN"/>
             <CONNECTION INSTANCE="system_ila_1" PORT="resetn"/>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="Reset"/>
             <CONNECTION INSTANCE="apu_fifo_reader" PORT="S_AXI_ARESETN"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="Reset"/>
             <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Reset"/>
           </CONNECTIONS>
         </PORT>
@@ -9974,7 +9946,7 @@
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="18"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="15"/>
         <PARAMETER NAME="C_XLNX_HW_PROBE_INFO" VALUE="DEFAULT"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_system_ila_0_0"/>
         <PARAMETER NAME="C_PROBE70_WIDTH" VALUE="1"/>
@@ -11312,29 +11284,14 @@
             <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Counter_Out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="11" NAME="probe13" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Timer">
+        <PORT DIR="I" LEFT="18" NAME="probe13" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Message">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Timer"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Message"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Volume">
+        <PORT DIR="I" LEFT="18" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Message">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Volume"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="11" NAME="probe15" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Timer">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Timer"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="probe16" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Volume">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Volume"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="11" NAME="probe17" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Triangle_Timer">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Triangle_Timer"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Message"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -13909,7 +13866,7 @@
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="11"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="8"/>
         <PARAMETER NAME="C_XLNX_HW_PROBE_INFO" VALUE="DEFAULT"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_system_ila_1_1"/>
         <PARAMETER NAME="C_PROBE70_WIDTH" VALUE="1"/>
@@ -15183,7 +15140,7 @@
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_writer_0_FifoData">
+        <PORT DIR="I" LEFT="18" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_writer_0_FifoData">
           <CONNECTIONS>
             <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="FifoData"/>
           </CONNECTIONS>
@@ -15198,7 +15155,7 @@
             <CONNECTION INSTANCE="apu_fifo" PORT="empty"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_dout">
+        <PORT DIR="I" LEFT="18" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="apu_fifo_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="apu_fifo" PORT="dout"/>
           </CONNECTIONS>
@@ -15237,29 +15194,14 @@
             <CONNECTION INSTANCE="rst_clk_wiz_0_100M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="11" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Timer">
+        <PORT DIR="I" LEFT="18" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Message">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Timer"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Message"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Volume">
+        <PORT DIR="I" LEFT="18" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Message">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Volume"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="11" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Timer">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Timer"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Volume">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Volume"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="11" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Triangle_Timer">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Triangle_Timer"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Message"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

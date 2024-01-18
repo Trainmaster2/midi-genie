@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xD3AC40D6E5C1ABCA",
+      "boundary_crc": "0x28C7489182BB0FB0",
       "design_src": "SBD",
       "device": "xc7a35tcpg236-1",
       "name": "bd_f60c",
@@ -108,27 +108,12 @@
       },
       "probe13": {
         "direction": "I",
-        "left": "11",
+        "left": "18",
         "right": "0"
       },
       "probe14": {
         "direction": "I",
-        "left": "3",
-        "right": "0"
-      },
-      "probe15": {
-        "direction": "I",
-        "left": "11",
-        "right": "0"
-      },
-      "probe16": {
-        "direction": "I",
-        "left": "3",
-        "right": "0"
-      },
-      "probe17": {
-        "direction": "I",
-        "left": "11",
+        "left": "18",
         "right": "0"
       }
     },
@@ -167,7 +152,7 @@
             "value": "Native"
           },
           "C_NUM_OF_PROBES": {
-            "value": "18"
+            "value": "15"
           },
           "C_PROBE0_MU_CNT": {
             "value": "1"
@@ -212,7 +197,7 @@
             "value": "0"
           },
           "C_PROBE13_WIDTH": {
-            "value": "12"
+            "value": "19"
           },
           "C_PROBE14_MU_CNT": {
             "value": "1"
@@ -221,34 +206,7 @@
             "value": "0"
           },
           "C_PROBE14_WIDTH": {
-            "value": "4"
-          },
-          "C_PROBE15_MU_CNT": {
-            "value": "1"
-          },
-          "C_PROBE15_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE15_WIDTH": {
-            "value": "12"
-          },
-          "C_PROBE16_MU_CNT": {
-            "value": "1"
-          },
-          "C_PROBE16_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE16_WIDTH": {
-            "value": "4"
-          },
-          "C_PROBE17_MU_CNT": {
-            "value": "1"
-          },
-          "C_PROBE17_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE17_WIDTH": {
-            "value": "12"
+            "value": "19"
           },
           "C_PROBE1_MU_CNT": {
             "value": "1"
@@ -387,24 +345,6 @@
         "ports": [
           "probe14",
           "ila_lib/probe14"
-        ]
-      },
-      "probe15_1": {
-        "ports": [
-          "probe15",
-          "ila_lib/probe15"
-        ]
-      },
-      "probe16_1": {
-        "ports": [
-          "probe16",
-          "ila_lib/probe16"
-        ]
-      },
-      "probe17_1": {
-        "ports": [
-          "probe17",
-          "ila_lib/probe17"
         ]
       },
       "probe1_1": {

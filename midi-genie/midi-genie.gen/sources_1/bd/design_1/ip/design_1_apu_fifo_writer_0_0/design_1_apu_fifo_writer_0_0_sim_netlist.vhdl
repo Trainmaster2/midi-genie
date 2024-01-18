@@ -1,7 +1,7 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Wed Jan 17 17:16:49 2024
+-- Date        : Wed Jan 17 19:47:52 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_apu_fifo_writer_0_0/design_1_apu_fifo_writer_0_0_sim_netlist.vhdl
@@ -16,13 +16,11 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1_apu_fifo_writer_0_0_apu_fifo_writer is
   port (
-    \FifoData_reg[15]_0\ : out STD_LOGIC_VECTOR ( 13 downto 0 );
+    FifoData : out STD_LOGIC_VECTOR ( 18 downto 0 );
     FifoWrite : out STD_LOGIC;
-    Pulse2_Timer : in STD_LOGIC_VECTOR ( 11 downto 0 );
-    Pulse1_Timer : in STD_LOGIC_VECTOR ( 11 downto 0 );
+    Pulse1_Message : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    Pulse2_Message : in STD_LOGIC_VECTOR ( 18 downto 0 );
     Clk : in STD_LOGIC;
-    Pulse1_Volume : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    Pulse2_Volume : in STD_LOGIC_VECTOR ( 3 downto 0 );
     Reset : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -30,444 +28,506 @@ entity design_1_apu_fifo_writer_0_0_apu_fifo_writer is
 end design_1_apu_fifo_writer_0_0_apu_fifo_writer;
 
 architecture STRUCTURE of design_1_apu_fifo_writer_0_0_apu_fifo_writer is
-  signal FifoData : STD_LOGIC_VECTOR ( 7 downto 5 );
-  signal FifoData0_out : STD_LOGIC_VECTOR ( 15 downto 0 );
-  signal FifoData13_out : STD_LOGIC;
-  signal \FifoData1__1\ : STD_LOGIC;
-  signal FifoData2 : STD_LOGIC;
-  signal FifoData21_out : STD_LOGIC;
-  signal FifoData2_carry_i_1_n_0 : STD_LOGIC;
-  signal FifoData2_carry_i_2_n_0 : STD_LOGIC;
-  signal FifoData2_carry_i_3_n_0 : STD_LOGIC;
-  signal FifoData2_carry_i_4_n_0 : STD_LOGIC;
-  signal FifoData2_carry_n_1 : STD_LOGIC;
-  signal FifoData2_carry_n_2 : STD_LOGIC;
-  signal FifoData2_carry_n_3 : STD_LOGIC;
-  signal \FifoData2_inferred__0/i__carry_n_1\ : STD_LOGIC;
-  signal \FifoData2_inferred__0/i__carry_n_2\ : STD_LOGIC;
-  signal \FifoData2_inferred__0/i__carry_n_3\ : STD_LOGIC;
-  signal \FifoData[15]_i_3_n_0\ : STD_LOGIC;
-  signal \FifoData[4]_i_2_n_0\ : STD_LOGIC;
-  signal \FifoData[7]_i_3_n_0\ : STD_LOGIC;
-  signal \FifoData[7]_i_7_n_0\ : STD_LOGIC;
-  signal \FifoData[7]_i_8_n_0\ : STD_LOGIC;
-  signal \i__carry_i_1_n_0\ : STD_LOGIC;
-  signal \i__carry_i_2_n_0\ : STD_LOGIC;
-  signal \i__carry_i_3_n_0\ : STD_LOGIC;
-  signal \i__carry_i_4_n_0\ : STD_LOGIC;
-  signal p_0_in : STD_LOGIC_VECTOR ( 15 downto 7 );
-  signal p_1_in : STD_LOGIC;
-  signal pulse1_timer_last : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal \pulse1_timer_last_reg_n_0_[10]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[11]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[1]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[2]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[3]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[4]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[5]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[6]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[7]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[8]\ : STD_LOGIC;
-  signal \pulse1_timer_last_reg_n_0_[9]\ : STD_LOGIC;
-  signal pulse1_volume_last : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \pulse1_volume_last[3]_i_1_n_0\ : STD_LOGIC;
-  signal pulse2_timer_last : STD_LOGIC_VECTOR ( 11 downto 1 );
-  signal \pulse2_timer_last[11]_i_1_n_0\ : STD_LOGIC;
-  signal \pulse2_timer_last_reg_n_0_[0]\ : STD_LOGIC;
-  signal pulse2_volume_last : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal pulse2_volume_last_0 : STD_LOGIC;
-  signal NLW_FifoData2_carry_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \NLW_FifoData2_inferred__0/i__carry_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal FifoData0 : STD_LOGIC;
+  signal \FifoData0_carry__0_i_1_n_0\ : STD_LOGIC;
+  signal \FifoData0_carry__0_i_2_n_0\ : STD_LOGIC;
+  signal \FifoData0_carry__0_i_3_n_0\ : STD_LOGIC;
+  signal \FifoData0_carry__0_n_2\ : STD_LOGIC;
+  signal \FifoData0_carry__0_n_3\ : STD_LOGIC;
+  signal FifoData0_carry_i_1_n_0 : STD_LOGIC;
+  signal FifoData0_carry_i_2_n_0 : STD_LOGIC;
+  signal FifoData0_carry_i_3_n_0 : STD_LOGIC;
+  signal FifoData0_carry_i_4_n_0 : STD_LOGIC;
+  signal FifoData0_carry_n_0 : STD_LOGIC;
+  signal FifoData0_carry_n_1 : STD_LOGIC;
+  signal FifoData0_carry_n_2 : STD_LOGIC;
+  signal FifoData0_carry_n_3 : STD_LOGIC;
+  signal FifoData1 : STD_LOGIC;
+  signal \FifoData1_carry__0_i_1_n_0\ : STD_LOGIC;
+  signal \FifoData1_carry__0_i_2_n_0\ : STD_LOGIC;
+  signal \FifoData1_carry__0_i_3_n_0\ : STD_LOGIC;
+  signal \FifoData1_carry__0_n_2\ : STD_LOGIC;
+  signal \FifoData1_carry__0_n_3\ : STD_LOGIC;
+  signal FifoData1_carry_i_1_n_0 : STD_LOGIC;
+  signal FifoData1_carry_i_2_n_0 : STD_LOGIC;
+  signal FifoData1_carry_i_3_n_0 : STD_LOGIC;
+  signal FifoData1_carry_i_4_n_0 : STD_LOGIC;
+  signal FifoData1_carry_n_0 : STD_LOGIC;
+  signal FifoData1_carry_n_1 : STD_LOGIC;
+  signal FifoData1_carry_n_2 : STD_LOGIC;
+  signal FifoData1_carry_n_3 : STD_LOGIC;
+  signal \FifoData[18]_i_1_n_0\ : STD_LOGIC;
+  signal \FifoData[18]_i_3_n_0\ : STD_LOGIC;
+  signal p_1_in : STD_LOGIC_VECTOR ( 18 downto 0 );
+  signal pulse1_message_last : STD_LOGIC_VECTOR ( 18 downto 0 );
+  signal pulse2_message_last : STD_LOGIC_VECTOR ( 18 downto 0 );
+  signal pulse2_message_last_0 : STD_LOGIC;
+  signal NLW_FifoData0_carry_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \NLW_FifoData0_carry__0_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
+  signal \NLW_FifoData0_carry__0_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal NLW_FifoData1_carry_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \NLW_FifoData1_carry__0_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
+  signal \NLW_FifoData1_carry__0_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \FifoData[0]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \FifoData[10]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \FifoData[11]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \FifoData[12]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \FifoData[13]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \FifoData[14]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \FifoData[15]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \FifoData[16]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \FifoData[17]_i_1\ : label is "soft_lutpair8";
   attribute SOFT_HLUTNM of \FifoData[1]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \FifoData[5]_i_2\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \FifoData[6]_i_2\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \FifoData[7]_i_3\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \FifoData[7]_i_5\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \FifoData[7]_i_6\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \FifoData[2]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \FifoData[3]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \FifoData[4]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FifoData[5]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FifoData[6]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \FifoData[7]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \FifoData[8]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \FifoData[9]_i_1\ : label is "soft_lutpair4";
 begin
-FifoData2_carry: unisim.vcomponents.CARRY4
+FifoData0_carry: unisim.vcomponents.CARRY4
      port map (
       CI => '0',
-      CO(3) => FifoData21_out,
-      CO(2) => FifoData2_carry_n_1,
-      CO(1) => FifoData2_carry_n_2,
-      CO(0) => FifoData2_carry_n_3,
+      CO(3) => FifoData0_carry_n_0,
+      CO(2) => FifoData0_carry_n_1,
+      CO(1) => FifoData0_carry_n_2,
+      CO(0) => FifoData0_carry_n_3,
       CYINIT => '0',
       DI(3 downto 0) => B"1111",
-      O(3 downto 0) => NLW_FifoData2_carry_O_UNCONNECTED(3 downto 0),
-      S(3) => FifoData2_carry_i_1_n_0,
-      S(2) => FifoData2_carry_i_2_n_0,
-      S(1) => FifoData2_carry_i_3_n_0,
-      S(0) => FifoData2_carry_i_4_n_0
+      O(3 downto 0) => NLW_FifoData0_carry_O_UNCONNECTED(3 downto 0),
+      S(3) => FifoData0_carry_i_1_n_0,
+      S(2) => FifoData0_carry_i_2_n_0,
+      S(1) => FifoData0_carry_i_3_n_0,
+      S(0) => FifoData0_carry_i_4_n_0
     );
-FifoData2_carry_i_1: unisim.vcomponents.LUT6
+\FifoData0_carry__0\: unisim.vcomponents.CARRY4
+     port map (
+      CI => FifoData0_carry_n_0,
+      CO(3) => \NLW_FifoData0_carry__0_CO_UNCONNECTED\(3),
+      CO(2) => FifoData0,
+      CO(1) => \FifoData0_carry__0_n_2\,
+      CO(0) => \FifoData0_carry__0_n_3\,
+      CYINIT => '0',
+      DI(3 downto 0) => B"0111",
+      O(3 downto 0) => \NLW_FifoData0_carry__0_O_UNCONNECTED\(3 downto 0),
+      S(3) => '0',
+      S(2) => \FifoData0_carry__0_i_1_n_0\,
+      S(1) => \FifoData0_carry__0_i_2_n_0\,
+      S(0) => \FifoData0_carry__0_i_3_n_0\
+    );
+\FifoData0_carry__0_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"9"
+    )
+        port map (
+      I0 => pulse2_message_last(18),
+      I1 => Pulse2_Message(18),
+      O => \FifoData0_carry__0_i_1_n_0\
+    );
+\FifoData0_carry__0_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(9),
-      I1 => \pulse1_timer_last_reg_n_0_[9]\,
-      I2 => \pulse1_timer_last_reg_n_0_[11]\,
-      I3 => Pulse1_Timer(11),
-      I4 => \pulse1_timer_last_reg_n_0_[10]\,
-      I5 => Pulse1_Timer(10),
-      O => FifoData2_carry_i_1_n_0
+      I0 => Pulse2_Message(15),
+      I1 => pulse2_message_last(15),
+      I2 => pulse2_message_last(17),
+      I3 => Pulse2_Message(17),
+      I4 => pulse2_message_last(16),
+      I5 => Pulse2_Message(16),
+      O => \FifoData0_carry__0_i_2_n_0\
     );
-FifoData2_carry_i_2: unisim.vcomponents.LUT6
+\FifoData0_carry__0_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(6),
-      I1 => \pulse1_timer_last_reg_n_0_[6]\,
-      I2 => \pulse1_timer_last_reg_n_0_[8]\,
-      I3 => Pulse1_Timer(8),
-      I4 => \pulse1_timer_last_reg_n_0_[7]\,
-      I5 => Pulse1_Timer(7),
-      O => FifoData2_carry_i_2_n_0
+      I0 => Pulse2_Message(12),
+      I1 => pulse2_message_last(12),
+      I2 => pulse2_message_last(14),
+      I3 => Pulse2_Message(14),
+      I4 => pulse2_message_last(13),
+      I5 => Pulse2_Message(13),
+      O => \FifoData0_carry__0_i_3_n_0\
     );
-FifoData2_carry_i_3: unisim.vcomponents.LUT6
+FifoData0_carry_i_1: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(3),
-      I1 => \pulse1_timer_last_reg_n_0_[3]\,
-      I2 => \pulse1_timer_last_reg_n_0_[5]\,
-      I3 => Pulse1_Timer(5),
-      I4 => \pulse1_timer_last_reg_n_0_[4]\,
-      I5 => Pulse1_Timer(4),
-      O => FifoData2_carry_i_3_n_0
+      I0 => Pulse2_Message(9),
+      I1 => pulse2_message_last(9),
+      I2 => pulse2_message_last(11),
+      I3 => Pulse2_Message(11),
+      I4 => pulse2_message_last(10),
+      I5 => Pulse2_Message(10),
+      O => FifoData0_carry_i_1_n_0
     );
-FifoData2_carry_i_4: unisim.vcomponents.LUT6
+FifoData0_carry_i_2: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(0),
-      I1 => pulse1_timer_last(0),
-      I2 => \pulse1_timer_last_reg_n_0_[2]\,
-      I3 => Pulse1_Timer(2),
-      I4 => \pulse1_timer_last_reg_n_0_[1]\,
-      I5 => Pulse1_Timer(1),
-      O => FifoData2_carry_i_4_n_0
+      I0 => Pulse2_Message(6),
+      I1 => pulse2_message_last(6),
+      I2 => pulse2_message_last(8),
+      I3 => Pulse2_Message(8),
+      I4 => pulse2_message_last(7),
+      I5 => Pulse2_Message(7),
+      O => FifoData0_carry_i_2_n_0
     );
-\FifoData2_inferred__0/i__carry\: unisim.vcomponents.CARRY4
+FifoData0_carry_i_3: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"9009000000009009"
+    )
+        port map (
+      I0 => Pulse2_Message(3),
+      I1 => pulse2_message_last(3),
+      I2 => pulse2_message_last(5),
+      I3 => Pulse2_Message(5),
+      I4 => pulse2_message_last(4),
+      I5 => Pulse2_Message(4),
+      O => FifoData0_carry_i_3_n_0
+    );
+FifoData0_carry_i_4: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"9009000000009009"
+    )
+        port map (
+      I0 => Pulse2_Message(0),
+      I1 => pulse2_message_last(0),
+      I2 => pulse2_message_last(2),
+      I3 => Pulse2_Message(2),
+      I4 => pulse2_message_last(1),
+      I5 => Pulse2_Message(1),
+      O => FifoData0_carry_i_4_n_0
+    );
+FifoData1_carry: unisim.vcomponents.CARRY4
      port map (
       CI => '0',
-      CO(3) => FifoData2,
-      CO(2) => \FifoData2_inferred__0/i__carry_n_1\,
-      CO(1) => \FifoData2_inferred__0/i__carry_n_2\,
-      CO(0) => \FifoData2_inferred__0/i__carry_n_3\,
+      CO(3) => FifoData1_carry_n_0,
+      CO(2) => FifoData1_carry_n_1,
+      CO(1) => FifoData1_carry_n_2,
+      CO(0) => FifoData1_carry_n_3,
       CYINIT => '0',
       DI(3 downto 0) => B"1111",
-      O(3 downto 0) => \NLW_FifoData2_inferred__0/i__carry_O_UNCONNECTED\(3 downto 0),
-      S(3) => \i__carry_i_1_n_0\,
-      S(2) => \i__carry_i_2_n_0\,
-      S(1) => \i__carry_i_3_n_0\,
-      S(0) => \i__carry_i_4_n_0\
+      O(3 downto 0) => NLW_FifoData1_carry_O_UNCONNECTED(3 downto 0),
+      S(3) => FifoData1_carry_i_1_n_0,
+      S(2) => FifoData1_carry_i_2_n_0,
+      S(1) => FifoData1_carry_i_3_n_0,
+      S(0) => FifoData1_carry_i_4_n_0
     );
-\FifoData[0]_i_1\: unisim.vcomponents.LUT6
+\FifoData1_carry__0\: unisim.vcomponents.CARRY4
+     port map (
+      CI => FifoData1_carry_n_0,
+      CO(3) => \NLW_FifoData1_carry__0_CO_UNCONNECTED\(3),
+      CO(2) => FifoData1,
+      CO(1) => \FifoData1_carry__0_n_2\,
+      CO(0) => \FifoData1_carry__0_n_3\,
+      CYINIT => '0',
+      DI(3 downto 0) => B"0111",
+      O(3 downto 0) => \NLW_FifoData1_carry__0_O_UNCONNECTED\(3 downto 0),
+      S(3) => '0',
+      S(2) => \FifoData1_carry__0_i_1_n_0\,
+      S(1) => \FifoData1_carry__0_i_2_n_0\,
+      S(0) => \FifoData1_carry__0_i_3_n_0\
+    );
+\FifoData1_carry__0_i_1\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"0000001F1F1F1F1F"
+      INIT => X"9"
     )
         port map (
-      I0 => \pulse2_timer_last_reg_n_0_[0]\,
-      I1 => Pulse2_Timer(0),
-      I2 => FifoData2,
-      I3 => pulse1_timer_last(0),
-      I4 => Pulse1_Timer(0),
-      I5 => FifoData21_out,
-      O => FifoData0_out(0)
+      I0 => pulse1_message_last(18),
+      I1 => Pulse1_Message(18),
+      O => \FifoData1_carry__0_i_1_n_0\
     );
-\FifoData[10]_i_1\: unisim.vcomponents.LUT5
+\FifoData1_carry__0_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"ABFFA800"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(6),
-      I1 => pulse1_timer_last(0),
-      I2 => Pulse1_Timer(0),
-      I3 => FifoData21_out,
-      I4 => Pulse2_Timer(6),
-      O => FifoData0_out(10)
+      I0 => Pulse1_Message(15),
+      I1 => pulse1_message_last(15),
+      I2 => pulse1_message_last(17),
+      I3 => Pulse1_Message(17),
+      I4 => pulse1_message_last(16),
+      I5 => Pulse1_Message(16),
+      O => \FifoData1_carry__0_i_2_n_0\
     );
-\FifoData[11]_i_1\: unisim.vcomponents.LUT5
+\FifoData1_carry__0_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"ABFFA800"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(7),
-      I1 => pulse1_timer_last(0),
-      I2 => Pulse1_Timer(0),
-      I3 => FifoData21_out,
-      I4 => Pulse2_Timer(7),
-      O => FifoData0_out(11)
+      I0 => Pulse1_Message(12),
+      I1 => pulse1_message_last(12),
+      I2 => pulse1_message_last(14),
+      I3 => Pulse1_Message(14),
+      I4 => pulse1_message_last(13),
+      I5 => Pulse1_Message(13),
+      O => \FifoData1_carry__0_i_3_n_0\
     );
-\FifoData[12]_i_1\: unisim.vcomponents.LUT5
+FifoData1_carry_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"ABFFA800"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(8),
-      I1 => pulse1_timer_last(0),
-      I2 => Pulse1_Timer(0),
-      I3 => FifoData21_out,
-      I4 => Pulse2_Timer(8),
-      O => FifoData0_out(12)
+      I0 => Pulse1_Message(9),
+      I1 => pulse1_message_last(9),
+      I2 => pulse1_message_last(11),
+      I3 => Pulse1_Message(11),
+      I4 => pulse1_message_last(10),
+      I5 => Pulse1_Message(10),
+      O => FifoData1_carry_i_1_n_0
     );
-\FifoData[13]_i_1\: unisim.vcomponents.LUT5
+FifoData1_carry_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"ABFFA800"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(9),
-      I1 => pulse1_timer_last(0),
-      I2 => Pulse1_Timer(0),
-      I3 => FifoData21_out,
-      I4 => Pulse2_Timer(9),
-      O => FifoData0_out(13)
+      I0 => Pulse1_Message(6),
+      I1 => pulse1_message_last(6),
+      I2 => pulse1_message_last(8),
+      I3 => Pulse1_Message(8),
+      I4 => pulse1_message_last(7),
+      I5 => Pulse1_Message(7),
+      O => FifoData1_carry_i_2_n_0
     );
-\FifoData[14]_i_1\: unisim.vcomponents.LUT5
+FifoData1_carry_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"ABFFA800"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => Pulse1_Timer(10),
-      I1 => pulse1_timer_last(0),
-      I2 => Pulse1_Timer(0),
-      I3 => FifoData21_out,
-      I4 => Pulse2_Timer(10),
-      O => FifoData0_out(14)
+      I0 => Pulse1_Message(3),
+      I1 => pulse1_message_last(3),
+      I2 => pulse1_message_last(5),
+      I3 => Pulse1_Message(5),
+      I4 => pulse1_message_last(4),
+      I5 => Pulse1_Message(4),
+      O => FifoData1_carry_i_3_n_0
     );
-\FifoData[15]_i_1\: unisim.vcomponents.LUT6
+FifoData1_carry_i_4: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFA8FFA8FFA8A8A8"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => FifoData21_out,
-      I1 => Pulse1_Timer(0),
-      I2 => pulse1_timer_last(0),
-      I3 => FifoData2,
-      I4 => Pulse2_Timer(0),
-      I5 => \pulse2_timer_last_reg_n_0_[0]\,
-      O => p_0_in(15)
+      I0 => Pulse1_Message(0),
+      I1 => pulse1_message_last(0),
+      I2 => pulse1_message_last(2),
+      I3 => Pulse1_Message(2),
+      I4 => pulse1_message_last(1),
+      I5 => Pulse1_Message(1),
+      O => FifoData1_carry_i_4_n_0
     );
-\FifoData[15]_i_2\: unisim.vcomponents.LUT5
+\FifoData[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"ABFFA800"
+      INIT => X"AC"
     )
         port map (
-      I0 => Pulse1_Timer(11),
-      I1 => pulse1_timer_last(0),
-      I2 => Pulse1_Timer(0),
-      I3 => FifoData21_out,
-      I4 => Pulse2_Timer(11),
-      O => FifoData0_out(15)
+      I0 => Pulse1_Message(0),
+      I1 => Pulse2_Message(0),
+      I2 => FifoData1,
+      O => p_1_in(0)
     );
-\FifoData[15]_i_3\: unisim.vcomponents.LUT1
+\FifoData[10]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(10),
+      I1 => Pulse2_Message(10),
+      I2 => FifoData1,
+      O => p_1_in(10)
+    );
+\FifoData[11]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(11),
+      I1 => Pulse2_Message(11),
+      I2 => FifoData1,
+      O => p_1_in(11)
+    );
+\FifoData[12]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(12),
+      I1 => Pulse2_Message(12),
+      I2 => FifoData1,
+      O => p_1_in(12)
+    );
+\FifoData[13]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(13),
+      I1 => Pulse2_Message(13),
+      I2 => FifoData1,
+      O => p_1_in(13)
+    );
+\FifoData[14]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(14),
+      I1 => Pulse2_Message(14),
+      I2 => FifoData1,
+      O => p_1_in(14)
+    );
+\FifoData[15]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(15),
+      I1 => Pulse2_Message(15),
+      I2 => FifoData1,
+      O => p_1_in(15)
+    );
+\FifoData[16]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(16),
+      I1 => Pulse2_Message(16),
+      I2 => FifoData1,
+      O => p_1_in(16)
+    );
+\FifoData[17]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(17),
+      I1 => Pulse2_Message(17),
+      I2 => FifoData1,
+      O => p_1_in(17)
+    );
+\FifoData[18]_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => FifoData1,
+      I1 => FifoData0,
+      O => \FifoData[18]_i_1_n_0\
+    );
+\FifoData[18]_i_2\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"AC"
+    )
+        port map (
+      I0 => Pulse1_Message(18),
+      I1 => Pulse2_Message(18),
+      I2 => FifoData1,
+      O => p_1_in(18)
+    );
+\FifoData[18]_i_3\: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
     )
         port map (
       I0 => Reset,
-      O => \FifoData[15]_i_3_n_0\
+      O => \FifoData[18]_i_3_n_0\
     );
-\FifoData[1]_i_1\: unisim.vcomponents.LUT5
+\FifoData[1]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"0000FD55"
+      INIT => X"AC"
     )
         port map (
-      I0 => \FifoData[7]_i_3_n_0\,
-      I1 => \pulse2_timer_last_reg_n_0_[0]\,
-      I2 => Pulse2_Timer(0),
-      I3 => FifoData2,
-      I4 => FifoData13_out,
-      O => FifoData0_out(1)
+      I0 => Pulse1_Message(1),
+      I1 => Pulse2_Message(1),
+      I2 => FifoData1,
+      O => p_1_in(1)
     );
-\FifoData[4]_i_1\: unisim.vcomponents.LUT4
+\FifoData[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"DFC0"
+      INIT => X"AC"
     )
         port map (
-      I0 => pulse1_timer_last(0),
-      I1 => Pulse1_Timer(0),
-      I2 => FifoData21_out,
-      I3 => \FifoData[4]_i_2_n_0\,
-      O => FifoData0_out(4)
+      I0 => Pulse1_Message(2),
+      I1 => Pulse2_Message(2),
+      I2 => FifoData1,
+      O => p_1_in(2)
     );
-\FifoData[4]_i_2\: unisim.vcomponents.LUT6
+\FifoData[3]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"DFC0DFDFDFC0C0C0"
+      INIT => X"AC"
     )
         port map (
-      I0 => \pulse2_timer_last_reg_n_0_[0]\,
-      I1 => Pulse2_Timer(0),
-      I2 => FifoData2,
-      I3 => Pulse1_Volume(0),
-      I4 => \FifoData[7]_i_3_n_0\,
-      I5 => Pulse2_Volume(0),
-      O => \FifoData[4]_i_2_n_0\
+      I0 => Pulse1_Message(3),
+      I1 => Pulse2_Message(3),
+      I2 => FifoData1,
+      O => p_1_in(3)
     );
-\FifoData[5]_i_1\: unisim.vcomponents.LUT5
+\FifoData[4]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8BBB888"
+      INIT => X"AC"
     )
         port map (
-      I0 => Pulse1_Timer(1),
-      I1 => FifoData13_out,
-      I2 => Pulse2_Timer(1),
-      I3 => \FifoData1__1\,
-      I4 => FifoData(5),
-      O => FifoData0_out(5)
+      I0 => Pulse1_Message(4),
+      I1 => Pulse2_Message(4),
+      I2 => FifoData1,
+      O => p_1_in(4)
     );
-\FifoData[5]_i_2\: unisim.vcomponents.LUT3
+\FifoData[5]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"AC"
     )
         port map (
-      I0 => Pulse1_Volume(1),
-      I1 => \FifoData[7]_i_3_n_0\,
-      I2 => Pulse2_Volume(1),
-      O => FifoData(5)
+      I0 => Pulse1_Message(5),
+      I1 => Pulse2_Message(5),
+      I2 => FifoData1,
+      O => p_1_in(5)
     );
-\FifoData[6]_i_1\: unisim.vcomponents.LUT5
+\FifoData[6]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8BBB888"
+      INIT => X"AC"
     )
         port map (
-      I0 => Pulse1_Timer(2),
-      I1 => FifoData13_out,
-      I2 => Pulse2_Timer(2),
-      I3 => \FifoData1__1\,
-      I4 => FifoData(6),
-      O => FifoData0_out(6)
+      I0 => Pulse1_Message(6),
+      I1 => Pulse2_Message(6),
+      I2 => FifoData1,
+      O => p_1_in(6)
     );
-\FifoData[6]_i_2\: unisim.vcomponents.LUT3
+\FifoData[7]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"AC"
     )
         port map (
-      I0 => Pulse1_Volume(2),
-      I1 => \FifoData[7]_i_3_n_0\,
-      I2 => Pulse2_Volume(2),
-      O => FifoData(6)
+      I0 => Pulse1_Message(7),
+      I1 => Pulse2_Message(7),
+      I2 => FifoData1,
+      O => p_1_in(7)
     );
-\FifoData[7]_i_1\: unisim.vcomponents.LUT6
+\FifoData[8]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"FFFFFFFEFEFEFEFE"
+      INIT => X"AC"
     )
         port map (
-      I0 => FifoData13_out,
-      I1 => \FifoData[7]_i_3_n_0\,
-      I2 => p_1_in,
-      I3 => \pulse2_timer_last_reg_n_0_[0]\,
-      I4 => Pulse2_Timer(0),
-      I5 => FifoData2,
-      O => p_0_in(7)
+      I0 => Pulse1_Message(8),
+      I1 => Pulse2_Message(8),
+      I2 => FifoData1,
+      O => p_1_in(8)
     );
-\FifoData[7]_i_2\: unisim.vcomponents.LUT5
+\FifoData[9]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8BBB888"
+      INIT => X"AC"
     )
         port map (
-      I0 => Pulse1_Timer(3),
-      I1 => FifoData13_out,
-      I2 => Pulse2_Timer(3),
-      I3 => \FifoData1__1\,
-      I4 => FifoData(7),
-      O => FifoData0_out(7)
-    );
-\FifoData[7]_i_3\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"F6"
-    )
-        port map (
-      I0 => Pulse1_Volume(3),
-      I1 => pulse1_volume_last(3),
-      I2 => \FifoData[7]_i_7_n_0\,
-      O => \FifoData[7]_i_3_n_0\
-    );
-\FifoData[7]_i_4\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"F6"
-    )
-        port map (
-      I0 => Pulse2_Volume(3),
-      I1 => pulse2_volume_last(3),
-      I2 => \FifoData[7]_i_8_n_0\,
-      O => p_1_in
-    );
-\FifoData[7]_i_5\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"E0"
-    )
-        port map (
-      I0 => \pulse2_timer_last_reg_n_0_[0]\,
-      I1 => Pulse2_Timer(0),
-      I2 => FifoData2,
-      O => \FifoData1__1\
-    );
-\FifoData[7]_i_6\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"B8"
-    )
-        port map (
-      I0 => Pulse1_Volume(3),
-      I1 => \FifoData[7]_i_3_n_0\,
-      I2 => Pulse2_Volume(3),
-      O => FifoData(7)
-    );
-\FifoData[7]_i_7\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"6FF6FFFFFFFF6FF6"
-    )
-        port map (
-      I0 => Pulse1_Volume(0),
-      I1 => pulse1_volume_last(0),
-      I2 => pulse1_volume_last(2),
-      I3 => Pulse1_Volume(2),
-      I4 => pulse1_volume_last(1),
-      I5 => Pulse1_Volume(1),
-      O => \FifoData[7]_i_7_n_0\
-    );
-\FifoData[7]_i_8\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"6FF6FFFFFFFF6FF6"
-    )
-        port map (
-      I0 => Pulse2_Volume(0),
-      I1 => pulse2_volume_last(0),
-      I2 => pulse2_volume_last(2),
-      I3 => Pulse2_Volume(2),
-      I4 => pulse2_volume_last(1),
-      I5 => Pulse2_Volume(1),
-      O => \FifoData[7]_i_8_n_0\
-    );
-\FifoData[8]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"ABFFA800"
-    )
-        port map (
-      I0 => Pulse1_Timer(4),
-      I1 => pulse1_timer_last(0),
-      I2 => Pulse1_Timer(0),
-      I3 => FifoData21_out,
-      I4 => Pulse2_Timer(4),
-      O => FifoData0_out(8)
-    );
-\FifoData[9]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"ABFFA800"
-    )
-        port map (
-      I0 => Pulse1_Timer(5),
-      I1 => pulse1_timer_last(0),
-      I2 => Pulse1_Timer(0),
-      I3 => FifoData21_out,
-      I4 => Pulse2_Timer(5),
-      O => FifoData0_out(9)
+      I0 => Pulse1_Message(9),
+      I1 => Pulse2_Message(9),
+      I2 => FifoData1,
+      O => p_1_in(9)
     );
 \FifoData_reg[0]\: unisim.vcomponents.FDCE
     generic map(
@@ -475,10 +535,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(7),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(0),
-      Q => \FifoData_reg[15]_0\(0)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(0),
+      Q => FifoData(0)
     );
 \FifoData_reg[10]\: unisim.vcomponents.FDCE
     generic map(
@@ -486,10 +546,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(15),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(10),
-      Q => \FifoData_reg[15]_0\(8)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(10),
+      Q => FifoData(10)
     );
 \FifoData_reg[11]\: unisim.vcomponents.FDCE
     generic map(
@@ -497,10 +557,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(15),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(11),
-      Q => \FifoData_reg[15]_0\(9)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(11),
+      Q => FifoData(11)
     );
 \FifoData_reg[12]\: unisim.vcomponents.FDCE
     generic map(
@@ -508,10 +568,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(15),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(12),
-      Q => \FifoData_reg[15]_0\(10)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(12),
+      Q => FifoData(12)
     );
 \FifoData_reg[13]\: unisim.vcomponents.FDCE
     generic map(
@@ -519,10 +579,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(15),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(13),
-      Q => \FifoData_reg[15]_0\(11)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(13),
+      Q => FifoData(13)
     );
 \FifoData_reg[14]\: unisim.vcomponents.FDCE
     generic map(
@@ -530,10 +590,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(15),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(14),
-      Q => \FifoData_reg[15]_0\(12)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(14),
+      Q => FifoData(14)
     );
 \FifoData_reg[15]\: unisim.vcomponents.FDCE
     generic map(
@@ -541,10 +601,43 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(15),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(15),
-      Q => \FifoData_reg[15]_0\(13)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(15),
+      Q => FifoData(15)
+    );
+\FifoData_reg[16]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(16),
+      Q => FifoData(16)
+    );
+\FifoData_reg[17]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(17),
+      Q => FifoData(17)
+    );
+\FifoData_reg[18]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(18),
+      Q => FifoData(18)
     );
 \FifoData_reg[1]\: unisim.vcomponents.FDCE
     generic map(
@@ -552,10 +645,32 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(7),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(1),
-      Q => \FifoData_reg[15]_0\(1)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(1),
+      Q => FifoData(1)
+    );
+\FifoData_reg[2]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(2),
+      Q => FifoData(2)
+    );
+\FifoData_reg[3]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(3),
+      Q => FifoData(3)
     );
 \FifoData_reg[4]\: unisim.vcomponents.FDCE
     generic map(
@@ -563,10 +678,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(7),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(4),
-      Q => \FifoData_reg[15]_0\(2)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(4),
+      Q => FifoData(4)
     );
 \FifoData_reg[5]\: unisim.vcomponents.FDCE
     generic map(
@@ -574,10 +689,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(7),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(5),
-      Q => \FifoData_reg[15]_0\(3)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(5),
+      Q => FifoData(5)
     );
 \FifoData_reg[6]\: unisim.vcomponents.FDCE
     generic map(
@@ -585,10 +700,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(7),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(6),
-      Q => \FifoData_reg[15]_0\(4)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(6),
+      Q => FifoData(6)
     );
 \FifoData_reg[7]\: unisim.vcomponents.FDCE
     generic map(
@@ -596,10 +711,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(7),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(7),
-      Q => \FifoData_reg[15]_0\(5)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(7),
+      Q => FifoData(7)
     );
 \FifoData_reg[8]\: unisim.vcomponents.FDCE
     generic map(
@@ -607,10 +722,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(15),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(8),
-      Q => \FifoData_reg[15]_0\(6)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(8),
+      Q => FifoData(8)
     );
 \FifoData_reg[9]\: unisim.vcomponents.FDCE
     generic map(
@@ -618,10 +733,10 @@ FifoData2_carry_i_4: unisim.vcomponents.LUT6
     )
         port map (
       C => Clk,
-      CE => p_0_in(15),
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => FifoData0_out(9),
-      Q => \FifoData_reg[15]_0\(7)
+      CE => \FifoData[18]_i_1_n_0\,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => p_1_in(9),
+      Q => FifoData(9)
     );
 FifoWrite_reg: unisim.vcomponents.FDCE
     generic map(
@@ -630,461 +745,436 @@ FifoWrite_reg: unisim.vcomponents.FDCE
         port map (
       C => Clk,
       CE => '1',
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => p_0_in(7),
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => \FifoData[18]_i_1_n_0\,
       Q => FifoWrite
     );
-\i__carry_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"9009000000009009"
-    )
-        port map (
-      I0 => Pulse2_Timer(9),
-      I1 => pulse2_timer_last(9),
-      I2 => pulse2_timer_last(11),
-      I3 => Pulse2_Timer(11),
-      I4 => pulse2_timer_last(10),
-      I5 => Pulse2_Timer(10),
-      O => \i__carry_i_1_n_0\
-    );
-\i__carry_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"9009000000009009"
-    )
-        port map (
-      I0 => Pulse2_Timer(6),
-      I1 => pulse2_timer_last(6),
-      I2 => pulse2_timer_last(8),
-      I3 => Pulse2_Timer(8),
-      I4 => pulse2_timer_last(7),
-      I5 => Pulse2_Timer(7),
-      O => \i__carry_i_2_n_0\
-    );
-\i__carry_i_3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"9009000000009009"
-    )
-        port map (
-      I0 => Pulse2_Timer(3),
-      I1 => pulse2_timer_last(3),
-      I2 => pulse2_timer_last(5),
-      I3 => Pulse2_Timer(5),
-      I4 => pulse2_timer_last(4),
-      I5 => Pulse2_Timer(4),
-      O => \i__carry_i_3_n_0\
-    );
-\i__carry_i_4\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"9009000000009009"
-    )
-        port map (
-      I0 => Pulse2_Timer(0),
-      I1 => \pulse2_timer_last_reg_n_0_[0]\,
-      I2 => pulse2_timer_last(2),
-      I3 => Pulse2_Timer(2),
-      I4 => pulse2_timer_last(1),
-      I5 => Pulse2_Timer(1),
-      O => \i__carry_i_4_n_0\
-    );
-\pulse1_timer_last[11]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"E0"
-    )
-        port map (
-      I0 => pulse1_timer_last(0),
-      I1 => Pulse1_Timer(0),
-      I2 => FifoData21_out,
-      O => FifoData13_out
-    );
-\pulse1_timer_last_reg[0]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[0]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(0),
-      Q => pulse1_timer_last(0)
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(0),
+      Q => pulse1_message_last(0)
     );
-\pulse1_timer_last_reg[10]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[10]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(10),
-      Q => \pulse1_timer_last_reg_n_0_[10]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(10),
+      Q => pulse1_message_last(10)
     );
-\pulse1_timer_last_reg[11]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[11]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(11),
-      Q => \pulse1_timer_last_reg_n_0_[11]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(11),
+      Q => pulse1_message_last(11)
     );
-\pulse1_timer_last_reg[1]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[12]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(1),
-      Q => \pulse1_timer_last_reg_n_0_[1]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(12),
+      Q => pulse1_message_last(12)
     );
-\pulse1_timer_last_reg[2]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[13]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(2),
-      Q => \pulse1_timer_last_reg_n_0_[2]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(13),
+      Q => pulse1_message_last(13)
     );
-\pulse1_timer_last_reg[3]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[14]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(3),
-      Q => \pulse1_timer_last_reg_n_0_[3]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(14),
+      Q => pulse1_message_last(14)
     );
-\pulse1_timer_last_reg[4]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[15]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(4),
-      Q => \pulse1_timer_last_reg_n_0_[4]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(15),
+      Q => pulse1_message_last(15)
     );
-\pulse1_timer_last_reg[5]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[16]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(5),
-      Q => \pulse1_timer_last_reg_n_0_[5]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(16),
+      Q => pulse1_message_last(16)
     );
-\pulse1_timer_last_reg[6]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[17]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(6),
-      Q => \pulse1_timer_last_reg_n_0_[6]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(17),
+      Q => pulse1_message_last(17)
     );
-\pulse1_timer_last_reg[7]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[18]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(7),
-      Q => \pulse1_timer_last_reg_n_0_[7]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(18),
+      Q => pulse1_message_last(18)
     );
-\pulse1_timer_last_reg[8]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[1]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(8),
-      Q => \pulse1_timer_last_reg_n_0_[8]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(1),
+      Q => pulse1_message_last(1)
     );
-\pulse1_timer_last_reg[9]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[2]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => FifoData13_out,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Timer(9),
-      Q => \pulse1_timer_last_reg_n_0_[9]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(2),
+      Q => pulse1_message_last(2)
     );
-\pulse1_volume_last[3]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00005700"
-    )
-        port map (
-      I0 => FifoData2,
-      I1 => Pulse2_Timer(0),
-      I2 => \pulse2_timer_last_reg_n_0_[0]\,
-      I3 => \FifoData[7]_i_3_n_0\,
-      I4 => FifoData13_out,
-      O => \pulse1_volume_last[3]_i_1_n_0\
-    );
-\pulse1_volume_last_reg[0]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[3]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse1_volume_last[3]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Volume(0),
-      Q => pulse1_volume_last(0)
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(3),
+      Q => pulse1_message_last(3)
     );
-\pulse1_volume_last_reg[1]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[4]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse1_volume_last[3]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Volume(1),
-      Q => pulse1_volume_last(1)
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(4),
+      Q => pulse1_message_last(4)
     );
-\pulse1_volume_last_reg[2]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[5]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse1_volume_last[3]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Volume(2),
-      Q => pulse1_volume_last(2)
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(5),
+      Q => pulse1_message_last(5)
     );
-\pulse1_volume_last_reg[3]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[6]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse1_volume_last[3]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse1_Volume(3),
-      Q => pulse1_volume_last(3)
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(6),
+      Q => pulse1_message_last(6)
     );
-\pulse2_timer_last[11]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00A800A800A8A8A8"
-    )
-        port map (
-      I0 => FifoData2,
-      I1 => Pulse2_Timer(0),
-      I2 => \pulse2_timer_last_reg_n_0_[0]\,
-      I3 => FifoData21_out,
-      I4 => Pulse1_Timer(0),
-      I5 => pulse1_timer_last(0),
-      O => \pulse2_timer_last[11]_i_1_n_0\
-    );
-\pulse2_timer_last_reg[0]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[7]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(0),
-      Q => \pulse2_timer_last_reg_n_0_[0]\
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(7),
+      Q => pulse1_message_last(7)
     );
-\pulse2_timer_last_reg[10]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[8]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(10),
-      Q => pulse2_timer_last(10)
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(8),
+      Q => pulse1_message_last(8)
     );
-\pulse2_timer_last_reg[11]\: unisim.vcomponents.FDCE
+\pulse1_message_last_reg[9]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(11),
-      Q => pulse2_timer_last(11)
+      CE => FifoData1,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse1_Message(9),
+      Q => pulse1_message_last(9)
     );
-\pulse2_timer_last_reg[1]\: unisim.vcomponents.FDCE
+\pulse2_message_last[18]_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"2"
+    )
+        port map (
+      I0 => FifoData0,
+      I1 => FifoData1,
+      O => pulse2_message_last_0
+    );
+\pulse2_message_last_reg[0]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(1),
-      Q => pulse2_timer_last(1)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(0),
+      Q => pulse2_message_last(0)
     );
-\pulse2_timer_last_reg[2]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[10]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(2),
-      Q => pulse2_timer_last(2)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(10),
+      Q => pulse2_message_last(10)
     );
-\pulse2_timer_last_reg[3]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[11]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(3),
-      Q => pulse2_timer_last(3)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(11),
+      Q => pulse2_message_last(11)
     );
-\pulse2_timer_last_reg[4]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[12]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(4),
-      Q => pulse2_timer_last(4)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(12),
+      Q => pulse2_message_last(12)
     );
-\pulse2_timer_last_reg[5]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[13]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(5),
-      Q => pulse2_timer_last(5)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(13),
+      Q => pulse2_message_last(13)
     );
-\pulse2_timer_last_reg[6]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[14]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(6),
-      Q => pulse2_timer_last(6)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(14),
+      Q => pulse2_message_last(14)
     );
-\pulse2_timer_last_reg[7]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[15]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(7),
-      Q => pulse2_timer_last(7)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(15),
+      Q => pulse2_message_last(15)
     );
-\pulse2_timer_last_reg[8]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[16]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(8),
-      Q => pulse2_timer_last(8)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(16),
+      Q => pulse2_message_last(16)
     );
-\pulse2_timer_last_reg[9]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[17]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => \pulse2_timer_last[11]_i_1_n_0\,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Timer(9),
-      Q => pulse2_timer_last(9)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(17),
+      Q => pulse2_message_last(17)
     );
-\pulse2_volume_last[3]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00000000001F0000"
-    )
-        port map (
-      I0 => \pulse2_timer_last_reg_n_0_[0]\,
-      I1 => Pulse2_Timer(0),
-      I2 => FifoData2,
-      I3 => FifoData13_out,
-      I4 => p_1_in,
-      I5 => \FifoData[7]_i_3_n_0\,
-      O => pulse2_volume_last_0
-    );
-\pulse2_volume_last_reg[0]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[18]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => pulse2_volume_last_0,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Volume(0),
-      Q => pulse2_volume_last(0)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(18),
+      Q => pulse2_message_last(18)
     );
-\pulse2_volume_last_reg[1]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[1]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => pulse2_volume_last_0,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Volume(1),
-      Q => pulse2_volume_last(1)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(1),
+      Q => pulse2_message_last(1)
     );
-\pulse2_volume_last_reg[2]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[2]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => pulse2_volume_last_0,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Volume(2),
-      Q => pulse2_volume_last(2)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(2),
+      Q => pulse2_message_last(2)
     );
-\pulse2_volume_last_reg[3]\: unisim.vcomponents.FDCE
+\pulse2_message_last_reg[3]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => Clk,
-      CE => pulse2_volume_last_0,
-      CLR => \FifoData[15]_i_3_n_0\,
-      D => Pulse2_Volume(3),
-      Q => pulse2_volume_last(3)
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(3),
+      Q => pulse2_message_last(3)
+    );
+\pulse2_message_last_reg[4]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(4),
+      Q => pulse2_message_last(4)
+    );
+\pulse2_message_last_reg[5]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(5),
+      Q => pulse2_message_last(5)
+    );
+\pulse2_message_last_reg[6]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(6),
+      Q => pulse2_message_last(6)
+    );
+\pulse2_message_last_reg[7]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(7),
+      Q => pulse2_message_last(7)
+    );
+\pulse2_message_last_reg[8]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(8),
+      Q => pulse2_message_last(8)
+    );
+\pulse2_message_last_reg[9]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => Clk,
+      CE => pulse2_message_last_0,
+      CLR => \FifoData[18]_i_3_n_0\,
+      D => Pulse2_Message(9),
+      Q => pulse2_message_last(9)
     );
 end STRUCTURE;
 library IEEE;
@@ -1095,11 +1185,9 @@ entity design_1_apu_fifo_writer_0_0 is
   port (
     Clk : in STD_LOGIC;
     Reset : in STD_LOGIC;
-    Pulse1_Timer : in STD_LOGIC_VECTOR ( 11 downto 0 );
-    Pulse1_Volume : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    Pulse2_Timer : in STD_LOGIC_VECTOR ( 11 downto 0 );
-    Pulse2_Volume : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    FifoData : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    Pulse1_Message : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    Pulse2_Message : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    FifoData : out STD_LOGIC_VECTOR ( 18 downto 0 );
     FifoWrite : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
@@ -1115,8 +1203,6 @@ entity design_1_apu_fifo_writer_0_0 is
 end design_1_apu_fifo_writer_0_0;
 
 architecture STRUCTURE of design_1_apu_fifo_writer_0_0 is
-  signal \<const0>\ : STD_LOGIC;
-  signal \^fifodata\ : STD_LOGIC_VECTOR ( 15 downto 0 );
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of Clk : signal is "xilinx.com:signal:clock:1.0 Clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
@@ -1124,24 +1210,13 @@ architecture STRUCTURE of design_1_apu_fifo_writer_0_0 is
   attribute X_INTERFACE_INFO of Reset : signal is "xilinx.com:signal:reset:1.0 Reset RST";
   attribute X_INTERFACE_PARAMETER of Reset : signal is "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 begin
-  FifoData(15 downto 4) <= \^fifodata\(15 downto 4);
-  FifoData(3) <= \<const0>\;
-  FifoData(2) <= \<const0>\;
-  FifoData(1 downto 0) <= \^fifodata\(1 downto 0);
-GND: unisim.vcomponents.GND
-     port map (
-      G => \<const0>\
-    );
 inst: entity work.design_1_apu_fifo_writer_0_0_apu_fifo_writer
      port map (
       Clk => Clk,
-      \FifoData_reg[15]_0\(13 downto 2) => \^fifodata\(15 downto 4),
-      \FifoData_reg[15]_0\(1 downto 0) => \^fifodata\(1 downto 0),
+      FifoData(18 downto 0) => FifoData(18 downto 0),
       FifoWrite => FifoWrite,
-      Pulse1_Timer(11 downto 0) => Pulse1_Timer(11 downto 0),
-      Pulse1_Volume(3 downto 0) => Pulse1_Volume(3 downto 0),
-      Pulse2_Timer(11 downto 0) => Pulse2_Timer(11 downto 0),
-      Pulse2_Volume(3 downto 0) => Pulse2_Volume(3 downto 0),
+      Pulse1_Message(18 downto 0) => Pulse1_Message(18 downto 0),
+      Pulse2_Message(18 downto 0) => Pulse2_Message(18 downto 0),
       Reset => Reset
     );
 end STRUCTURE;
