@@ -1,7 +1,7 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Tue Jan  9 23:57:22 2024
+-- Date        : Wed Jan 17 13:47:24 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_nes_apu_0_0/design_1_nes_apu_0_0_sim_netlist.vhdl
@@ -22,6 +22,8 @@ entity design_1_nes_apu_0_0_nes_apu is
     APU_Noise_Out : out STD_LOGIC_VECTOR ( 15 downto 0 );
     APU_DMC_Out : out STD_LOGIC_VECTOR ( 28 downto 0 );
     APU_Status_Out : out STD_LOGIC_VECTOR ( 4 downto 0 );
+    APU_Pulse1_Timer : out STD_LOGIC_VECTOR ( 0 to 0 );
+    APU_Pulse2_Timer : out STD_LOGIC_VECTOR ( 0 to 0 );
     APU_Counter_Out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     CPU_Data : in STD_LOGIC_VECTOR ( 7 downto 0 );
     CPU_M2 : in STD_LOGIC;
@@ -36,7 +38,9 @@ entity design_1_nes_apu_0_0_nes_apu is
 end design_1_nes_apu_0_0_nes_apu;
 
 architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
-  signal \APU_Counter[mode]\ : STD_LOGIC;
+  signal \APU_Counter[irq_inhibit]_i_1_n_0\ : STD_LOGIC;
+  signal \APU_Counter[mode]_i_1_n_0\ : STD_LOGIC;
+  signal \^apu_counter_out\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \APU_DMC[irq_enable]\ : STD_LOGIC;
   signal \APU_DMC[load_counter]\ : STD_LOGIC;
   signal \APU_DMC[sample_address]\ : STD_LOGIC;
@@ -50,33 +54,57 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \APU_Pulse1[duty][1]_i_4_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[duty][1]_i_5_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[sweep_enable]\ : STD_LOGIC;
+  signal \APU_Pulse1[sweep_enable]_i_2_n_0\ : STD_LOGIC;
+  signal \APU_Pulse1[sweep_enable]_i_3_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[timer_load][10]_i_1_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1[timer_load][10]_i_2_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1[timer_load][10]_i_3_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[timer_load][7]_i_1_n_0\ : STD_LOGIC;
+  signal \^apu_pulse1_timer\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \APU_Pulse2[duty]\ : STD_LOGIC;
   signal \APU_Pulse2[sweep_enable]\ : STD_LOGIC;
   signal \APU_Pulse2[timer_load][10]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[timer_load][7]_i_1_n_0\ : STD_LOGIC;
+  signal \^apu_pulse2_timer\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \APU_Status[dmc_active]\ : STD_LOGIC;
+  signal \^apu_status_out\ : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal \APU_Triangle[length_counter_halt]\ : STD_LOGIC;
   signal \APU_Triangle[timer_load][10]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Triangle[timer_load][7]_i_1_n_0\ : STD_LOGIC;
   signal \^apu_triangle_out\ : STD_LOGIC_VECTOR ( 30 downto 0 );
+  signal Pulse1_On : STD_LOGIC;
+  signal Pulse1_On_i_1_n_0 : STD_LOGIC;
+  signal Pulse2_On_i_1_n_0 : STD_LOGIC;
+  signal Pulse2_On_i_2_n_0 : STD_LOGIC;
 begin
+  APU_Counter_Out(1 downto 0) <= \^apu_counter_out\(1 downto 0);
+  APU_Pulse1_Timer(0) <= \^apu_pulse1_timer\(0);
+  APU_Pulse2_Timer(0) <= \^apu_pulse2_timer\(0);
+  APU_Status_Out(4 downto 0) <= \^apu_status_out\(4 downto 0);
   APU_Triangle_Out(30 downto 0) <= \^apu_triangle_out\(30 downto 0);
-\APU_Counter[mode]_i_1\: unisim.vcomponents.LUT6
+\APU_Counter[irq_inhibit]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"2000000000000000"
+      INIT => X"BFFFFFFF80000000"
     )
         port map (
-      I0 => CPU_Addr(1),
-      I1 => CPU_Addr(3),
-      I2 => CPU_Addr(0),
+      I0 => CPU_Data(6),
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(1),
       I3 => CPU_Addr(2),
-      I4 => CPU_Addr(4),
-      I5 => \APU_Pulse1[duty][1]_i_3_n_0\,
-      O => \APU_Counter[mode]\
+      I4 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I5 => \^apu_counter_out\(0),
+      O => \APU_Counter[irq_inhibit]_i_1_n_0\
+    );
+\APU_Counter[mode]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"BFFFFFFF80000000"
+    )
+        port map (
+      I0 => CPU_Data(7),
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(1),
+      I3 => CPU_Addr(2),
+      I4 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I5 => \^apu_counter_out\(1),
+      O => \APU_Counter[mode]_i_1_n_0\
     );
 \APU_Counter_reg[irq_inhibit]\: unisim.vcomponents.FDCE
     generic map(
@@ -85,10 +113,10 @@ begin
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Counter[mode]\,
+      CE => '1',
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
-      D => CPU_Data(6),
-      Q => APU_Counter_Out(0)
+      D => \APU_Counter[irq_inhibit]_i_1_n_0\,
+      Q => \^apu_counter_out\(0)
     );
 \APU_Counter_reg[mode]\: unisim.vcomponents.FDCE
     generic map(
@@ -97,61 +125,57 @@ begin
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Counter[mode]\,
+      CE => '1',
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
-      D => CPU_Data(7),
-      Q => APU_Counter_Out(1)
+      D => \APU_Counter[mode]_i_1_n_0\,
+      Q => \^apu_counter_out\(1)
     );
 \APU_DMC[irq_enable]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0001000000000000"
+      INIT => X"0000000000040000"
     )
         port map (
-      I0 => CPU_Addr(1),
-      I1 => CPU_Addr(2),
-      I2 => CPU_Addr(0),
-      I3 => CPU_Addr(3),
-      I4 => CPU_Addr(4),
-      I5 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(1),
+      I3 => CPU_Addr(0),
+      I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I5 => CPU_Addr(3),
       O => \APU_DMC[irq_enable]\
     );
-\APU_DMC[load_counter][6]_i_1\: unisim.vcomponents.LUT6
+\APU_DMC[load_counter][6]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0010000000000000"
+      INIT => X"0400"
     )
         port map (
-      I0 => CPU_Addr(1),
-      I1 => CPU_Addr(3),
-      I2 => CPU_Addr(0),
-      I3 => CPU_Addr(2),
-      I4 => CPU_Addr(4),
-      I5 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(1),
+      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
       O => \APU_DMC[load_counter]\
     );
 \APU_DMC[sample_address][7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0002000000000000"
+      INIT => X"0000000000080000"
     )
         port map (
       I0 => CPU_Addr(1),
-      I1 => CPU_Addr(2),
-      I2 => CPU_Addr(0),
-      I3 => CPU_Addr(3),
-      I4 => CPU_Addr(4),
-      I5 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(2),
+      I3 => CPU_Addr(0),
+      I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I5 => CPU_Addr(3),
       O => \APU_DMC[sample_address]\
     );
-\APU_DMC[sample_length][7]_i_1\: unisim.vcomponents.LUT6
+\APU_DMC[sample_length][7]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0020000000000000"
+      INIT => X"0800"
     )
         port map (
       I0 => CPU_Addr(1),
-      I1 => CPU_Addr(3),
-      I2 => CPU_Addr(0),
-      I3 => CPU_Addr(2),
-      I4 => CPU_Addr(4),
-      I5 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(2),
+      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
       O => \APU_DMC[sample_length]\
     );
 \APU_DMC_reg[dmc_loop]\: unisim.vcomponents.FDCE
@@ -502,39 +526,43 @@ begin
       D => CPU_Data(7),
       Q => APU_DMC_Out(7)
     );
-\APU_Noise[length_counter][4]_i_1\: unisim.vcomponents.LUT4
+\APU_Noise[length_counter][4]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8000"
+      INIT => X"2000000000000000"
     )
         port map (
-      I0 => CPU_Addr(2),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(3),
-      I3 => \APU_Pulse1[timer_load][10]_i_2_n_0\,
+      I0 => CPU_Addr(1),
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(0),
+      I3 => CPU_Addr(2),
+      I4 => CPU_Addr(3),
+      I5 => \APU_Pulse1[duty][1]_i_3_n_0\,
       O => \APU_Noise[length_counter]\
     );
 \APU_Noise[length_counter_halt]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000080000"
+      INIT => X"0002000000000000"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => CPU_Addr(2),
-      I2 => CPU_Addr(0),
-      I3 => CPU_Addr(1),
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(0),
       I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
-      I5 => CPU_Addr(4),
+      I5 => CPU_Addr(3),
       O => \APU_Noise[length_counter_halt]\
     );
-\APU_Noise[loop_noise]_i_1\: unisim.vcomponents.LUT4
+\APU_Noise[loop_noise]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"4000"
+      INIT => X"0008000000000000"
     )
         port map (
-      I0 => CPU_Addr(0),
-      I1 => CPU_Addr(2),
-      I2 => CPU_Addr(3),
-      I3 => \APU_Pulse1[timer_load][10]_i_2_n_0\,
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(0),
+      I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I5 => CPU_Addr(3),
       O => \APU_Noise[loop_noise]\
     );
 \APU_Noise_reg[constant_volume]\: unisim.vcomponents.FDCE
@@ -734,12 +762,12 @@ begin
       INIT => X"0000000000010000"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(2),
-      I3 => CPU_Addr(1),
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(0),
       I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
-      I5 => CPU_Addr(4),
+      I5 => CPU_Addr(3),
       O => \APU_Pulse1[duty]\
     );
 \APU_Pulse1[duty][1]_i_2\: unisim.vcomponents.LUT2
@@ -786,43 +814,30 @@ begin
       I3 => CPU_Addr(14),
       O => \APU_Pulse1[duty][1]_i_5_n_0\
     );
-\APU_Pulse1[sweep_enable]_i_1\: unisim.vcomponents.LUT6
+\APU_Pulse1[sweep_enable]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000000000040000"
+      INIT => X"0100"
     )
         port map (
       I0 => CPU_Addr(2),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(3),
-      I3 => CPU_Addr(1),
-      I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
-      I5 => CPU_Addr(4),
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(4),
+      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
       O => \APU_Pulse1[sweep_enable]\
     );
-\APU_Pulse1[timer_load][10]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0400"
-    )
-        port map (
-      I0 => CPU_Addr(2),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(3),
-      I3 => \APU_Pulse1[timer_load][10]_i_2_n_0\,
-      O => \APU_Pulse1[timer_load][10]_i_1_n_0\
-    );
-\APU_Pulse1[timer_load][10]_i_2\: unisim.vcomponents.LUT5
+\APU_Pulse1[sweep_enable]_i_2\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"40000000"
     )
         port map (
-      I0 => CPU_Addr(4),
+      I0 => CPU_Addr(3),
       I1 => \APU_Pulse1[duty][1]_i_4_n_0\,
-      I2 => \APU_Pulse1[timer_load][10]_i_3_n_0\,
+      I2 => \APU_Pulse1[sweep_enable]_i_3_n_0\,
       I3 => \APU_Pulse1[duty][1]_i_5_n_0\,
-      I4 => CPU_Addr(1),
-      O => \APU_Pulse1[timer_load][10]_i_2_n_0\
+      I4 => CPU_Addr(0),
+      O => \APU_Pulse1[sweep_enable]_i_2_n_0\
     );
-\APU_Pulse1[timer_load][10]_i_3\: unisim.vcomponents.LUT4
+\APU_Pulse1[sweep_enable]_i_3\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"0001"
     )
@@ -831,17 +846,30 @@ begin
       I1 => CPU_Addr(7),
       I2 => CPU_Addr(6),
       I3 => CPU_Addr(5),
-      O => \APU_Pulse1[timer_load][10]_i_3_n_0\
+      O => \APU_Pulse1[sweep_enable]_i_3_n_0\
     );
-\APU_Pulse1[timer_load][7]_i_1\: unisim.vcomponents.LUT4
+\APU_Pulse1[timer_load][10]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0100"
+      INIT => X"0400"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(2),
-      I3 => \APU_Pulse1[timer_load][10]_i_2_n_0\,
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(4),
+      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      O => \APU_Pulse1[timer_load][10]_i_1_n_0\
+    );
+\APU_Pulse1[timer_load][7]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000000040000"
+    )
+        port map (
+      I0 => CPU_Addr(0),
+      I1 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I2 => CPU_Addr(3),
+      I3 => CPU_Addr(2),
+      I4 => CPU_Addr(1),
+      I5 => CPU_Addr(4),
       O => \APU_Pulse1[timer_load][7]_i_1_n_0\
     );
 \APU_Pulse1_reg[constant_volume]\: unisim.vcomponents.FDCE
@@ -1230,28 +1258,26 @@ begin
     );
 \APU_Pulse2[duty][1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000040000"
-    )
-        port map (
-      I0 => CPU_Addr(3),
-      I1 => CPU_Addr(2),
-      I2 => CPU_Addr(0),
-      I3 => CPU_Addr(1),
-      I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
-      I5 => CPU_Addr(4),
-      O => \APU_Pulse2[duty]\
-    );
-\APU_Pulse2[sweep_enable]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000080000"
+      INIT => X"0000000000020000"
     )
         port map (
       I0 => CPU_Addr(2),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(3),
-      I3 => CPU_Addr(1),
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(0),
       I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
-      I5 => CPU_Addr(4),
+      I5 => CPU_Addr(3),
+      O => \APU_Pulse2[duty]\
+    );
+\APU_Pulse2[sweep_enable]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"1000"
+    )
+        port map (
+      I0 => CPU_Addr(4),
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(2),
+      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
       O => \APU_Pulse2[sweep_enable]\
     );
 \APU_Pulse2[timer_load][10]_i_1\: unisim.vcomponents.LUT4
@@ -1260,20 +1286,22 @@ begin
     )
         port map (
       I0 => CPU_Addr(2),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(3),
-      I3 => \APU_Pulse1[timer_load][10]_i_2_n_0\,
+      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(1),
       O => \APU_Pulse2[timer_load][10]_i_1_n_0\
     );
-\APU_Pulse2[timer_load][7]_i_1\: unisim.vcomponents.LUT4
+\APU_Pulse2[timer_load][7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0400"
+      INIT => X"0000000000080000"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => CPU_Addr(2),
-      I2 => CPU_Addr(0),
-      I3 => \APU_Pulse1[timer_load][10]_i_2_n_0\,
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(0),
+      I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I5 => CPU_Addr(3),
       O => \APU_Pulse2[timer_load][7]_i_1_n_0\
     );
 \APU_Pulse2_reg[constant_volume]\: unisim.vcomponents.FDCE
@@ -1660,17 +1688,15 @@ begin
       D => CPU_Data(3),
       Q => APU_Pulse2_Out(27)
     );
-\APU_Status[dmc_active]_i_1\: unisim.vcomponents.LUT6
+\APU_Status[dmc_active]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"1000000000000000"
+      INIT => X"4000"
     )
         port map (
       I0 => CPU_Addr(1),
-      I1 => CPU_Addr(3),
-      I2 => CPU_Addr(0),
-      I3 => CPU_Addr(2),
-      I4 => CPU_Addr(4),
-      I5 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(2),
+      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
       O => \APU_Status[dmc_active]\
     );
 \APU_Status_reg[dmc_active]\: unisim.vcomponents.FDCE
@@ -1683,7 +1709,7 @@ begin
       CE => \APU_Status[dmc_active]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => APU_Status_Out(4)
+      Q => \^apu_status_out\(4)
     );
 \APU_Status_reg[noise_active]\: unisim.vcomponents.FDCE
     generic map(
@@ -1695,7 +1721,7 @@ begin
       CE => \APU_Status[dmc_active]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => APU_Status_Out(3)
+      Q => \^apu_status_out\(3)
     );
 \APU_Status_reg[pulse1_active]\: unisim.vcomponents.FDCE
     generic map(
@@ -1707,7 +1733,7 @@ begin
       CE => \APU_Status[dmc_active]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(0),
-      Q => APU_Status_Out(0)
+      Q => \^apu_status_out\(0)
     );
 \APU_Status_reg[pulse2_active]\: unisim.vcomponents.FDCE
     generic map(
@@ -1719,7 +1745,7 @@ begin
       CE => \APU_Status[dmc_active]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(1),
-      Q => APU_Status_Out(1)
+      Q => \^apu_status_out\(1)
     );
 \APU_Status_reg[triangle_active]\: unisim.vcomponents.FDCE
     generic map(
@@ -1731,41 +1757,45 @@ begin
       CE => \APU_Status[dmc_active]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(2),
-      Q => APU_Status_Out(2)
+      Q => \^apu_status_out\(2)
     );
 \APU_Triangle[length_counter_halt]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000020000"
-    )
-        port map (
-      I0 => CPU_Addr(3),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(2),
-      I3 => CPU_Addr(1),
-      I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
-      I5 => CPU_Addr(4),
-      O => \APU_Triangle[length_counter_halt]\
-    );
-\APU_Triangle[timer_load][10]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"4000"
+      INIT => X"0001000000000000"
     )
         port map (
       I0 => CPU_Addr(2),
-      I1 => CPU_Addr(0),
-      I2 => CPU_Addr(3),
-      I3 => \APU_Pulse1[timer_load][10]_i_2_n_0\,
-      O => \APU_Triangle[timer_load][10]_i_1_n_0\
+      I1 => CPU_Addr(1),
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(0),
+      I4 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I5 => CPU_Addr(3),
+      O => \APU_Triangle[length_counter_halt]\
     );
-\APU_Triangle[timer_load][7]_i_1\: unisim.vcomponents.LUT4
+\APU_Triangle[timer_load][10]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0008"
+      INIT => X"0020000000000000"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => \APU_Pulse1[timer_load][10]_i_2_n_0\,
-      I2 => CPU_Addr(2),
-      I3 => CPU_Addr(0),
+      I0 => CPU_Addr(0),
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(1),
+      I3 => CPU_Addr(2),
+      I4 => CPU_Addr(3),
+      I5 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      O => \APU_Triangle[timer_load][10]_i_1_n_0\
+    );
+\APU_Triangle[timer_load][7]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000000400000"
+    )
+        port map (
+      I0 => CPU_Addr(0),
+      I1 => \APU_Pulse1[duty][1]_i_3_n_0\,
+      I2 => CPU_Addr(3),
+      I3 => CPU_Addr(2),
+      I4 => CPU_Addr(1),
+      I5 => CPU_Addr(4),
       O => \APU_Triangle[timer_load][7]_i_1_n_0\
     );
 \APU_Triangle_reg[length_counter][0]\: unisim.vcomponents.FDCE
@@ -2140,6 +2170,80 @@ begin
       D => CPU_Data(1),
       Q => \^apu_triangle_out\(21)
     );
+Pulse1_On_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFBFFBFF00800800"
+    )
+        port map (
+      I0 => Pulse1_On,
+      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(1),
+      I4 => CPU_Addr(2),
+      I5 => \^apu_pulse1_timer\(0),
+      O => Pulse1_On_i_1_n_0
+    );
+Pulse1_On_i_2: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"8F80"
+    )
+        port map (
+      I0 => CPU_Data(0),
+      I1 => \^apu_pulse1_timer\(0),
+      I2 => CPU_Addr(4),
+      I3 => \^apu_status_out\(0),
+      O => Pulse1_On
+    );
+Pulse1_On_reg: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0',
+      IS_C_INVERTED => '1'
+    )
+        port map (
+      C => CPU_M2,
+      CE => '1',
+      CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
+      D => Pulse1_On_i_1_n_0,
+      Q => \^apu_pulse1_timer\(0)
+    );
+Pulse2_On_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FACFFFFF00C00000"
+    )
+        port map (
+      I0 => CPU_Data(1),
+      I1 => \^apu_status_out\(1),
+      I2 => CPU_Addr(1),
+      I3 => CPU_Addr(4),
+      I4 => Pulse2_On_i_2_n_0,
+      I5 => \^apu_pulse2_timer\(0),
+      O => Pulse2_On_i_1_n_0
+    );
+Pulse2_On_i_2: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000800000000000"
+    )
+        port map (
+      I0 => CPU_Addr(0),
+      I1 => \APU_Pulse1[duty][1]_i_5_n_0\,
+      I2 => \APU_Pulse1[sweep_enable]_i_3_n_0\,
+      I3 => \APU_Pulse1[duty][1]_i_4_n_0\,
+      I4 => CPU_Addr(3),
+      I5 => CPU_Addr(2),
+      O => Pulse2_On_i_2_n_0
+    );
+Pulse2_On_reg: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0',
+      IS_C_INVERTED => '1'
+    )
+        port map (
+      C => CPU_M2,
+      CE => '1',
+      CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
+      D => Pulse2_On_i_1_n_0,
+      Q => \^apu_pulse2_timer\(0)
+    );
 end STRUCTURE;
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -2162,7 +2266,12 @@ entity design_1_nes_apu_0_0 is
     APU_Noise_Out : out STD_LOGIC_VECTOR ( 15 downto 0 );
     APU_DMC_Out : out STD_LOGIC_VECTOR ( 28 downto 0 );
     APU_Status_Out : out STD_LOGIC_VECTOR ( 6 downto 0 );
-    APU_Counter_Out : out STD_LOGIC_VECTOR ( 1 downto 0 )
+    APU_Counter_Out : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    APU_Pulse1_Timer : out STD_LOGIC_VECTOR ( 11 downto 0 );
+    APU_Pulse1_Volume : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    APU_Pulse2_Timer : out STD_LOGIC_VECTOR ( 11 downto 0 );
+    APU_Pulse2_Volume : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    APU_Triangle_Timer : out STD_LOGIC_VECTOR ( 11 downto 0 )
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of design_1_nes_apu_0_0 : entity is true;
@@ -2173,15 +2282,20 @@ entity design_1_nes_apu_0_0 is
   attribute IP_DEFINITION_SOURCE : string;
   attribute IP_DEFINITION_SOURCE of design_1_nes_apu_0_0 : entity is "module_ref";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_nes_apu_0_0 : entity is "nes_apu,Vivado 2022.2";
+  attribute X_CORE_INFO of design_1_nes_apu_0_0 : entity is "nes_apu,Vivado 2022.2.2";
 end design_1_nes_apu_0_0;
 
 architecture STRUCTURE of design_1_nes_apu_0_0 is
   signal \<const0>\ : STD_LOGIC;
   signal \^apu_pulse1_out\ : STD_LOGIC_VECTOR ( 42 downto 11 );
+  signal \^apu_pulse1_timer\ : STD_LOGIC_VECTOR ( 11 downto 0 );
+  signal \^apu_pulse1_volume\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \^apu_pulse2_out\ : STD_LOGIC_VECTOR ( 42 downto 11 );
+  signal \^apu_pulse2_timer\ : STD_LOGIC_VECTOR ( 11 downto 0 );
+  signal \^apu_pulse2_volume\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \^apu_status_out\ : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal \^apu_triangle_out\ : STD_LOGIC_VECTOR ( 41 downto 11 );
+  signal \^apu_triangle_timer\ : STD_LOGIC_VECTOR ( 11 downto 1 );
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of CPU_Clk : signal is "xilinx.com:signal:clock:1.0 CPU_Clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
@@ -2193,7 +2307,11 @@ architecture STRUCTURE of design_1_nes_apu_0_0 is
   attribute X_INTERFACE_INFO of Reset : signal is "xilinx.com:signal:reset:1.0 Reset RST";
   attribute X_INTERFACE_PARAMETER of Reset : signal is "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 begin
-  APU_Pulse1_Out(42 downto 11) <= \^apu_pulse1_out\(42 downto 11);
+  APU_Pulse1_Out(42 downto 39) <= \^apu_pulse1_out\(42 downto 39);
+  APU_Pulse1_Out(38 downto 35) <= \^apu_pulse1_volume\(3 downto 0);
+  APU_Pulse1_Out(34 downto 27) <= \^apu_pulse1_out\(34 downto 27);
+  APU_Pulse1_Out(26 downto 16) <= \^apu_pulse1_timer\(11 downto 1);
+  APU_Pulse1_Out(15 downto 11) <= \^apu_pulse1_out\(15 downto 11);
   APU_Pulse1_Out(10) <= \<const0>\;
   APU_Pulse1_Out(9) <= \<const0>\;
   APU_Pulse1_Out(8) <= \<const0>\;
@@ -2205,7 +2323,13 @@ begin
   APU_Pulse1_Out(2) <= \<const0>\;
   APU_Pulse1_Out(1) <= \<const0>\;
   APU_Pulse1_Out(0) <= \<const0>\;
-  APU_Pulse2_Out(42 downto 11) <= \^apu_pulse2_out\(42 downto 11);
+  APU_Pulse1_Timer(11 downto 0) <= \^apu_pulse1_timer\(11 downto 0);
+  APU_Pulse1_Volume(3 downto 0) <= \^apu_pulse1_volume\(3 downto 0);
+  APU_Pulse2_Out(42 downto 39) <= \^apu_pulse2_out\(42 downto 39);
+  APU_Pulse2_Out(38 downto 35) <= \^apu_pulse2_volume\(3 downto 0);
+  APU_Pulse2_Out(34 downto 27) <= \^apu_pulse2_out\(34 downto 27);
+  APU_Pulse2_Out(26 downto 16) <= \^apu_pulse2_timer\(11 downto 1);
+  APU_Pulse2_Out(15 downto 11) <= \^apu_pulse2_out\(15 downto 11);
   APU_Pulse2_Out(10) <= \<const0>\;
   APU_Pulse2_Out(9) <= \<const0>\;
   APU_Pulse2_Out(8) <= \<const0>\;
@@ -2217,10 +2341,14 @@ begin
   APU_Pulse2_Out(2) <= \<const0>\;
   APU_Pulse2_Out(1) <= \<const0>\;
   APU_Pulse2_Out(0) <= \<const0>\;
+  APU_Pulse2_Timer(11 downto 0) <= \^apu_pulse2_timer\(11 downto 0);
+  APU_Pulse2_Volume(3 downto 0) <= \^apu_pulse2_volume\(3 downto 0);
   APU_Status_Out(6) <= \<const0>\;
   APU_Status_Out(5) <= \<const0>\;
   APU_Status_Out(4 downto 0) <= \^apu_status_out\(4 downto 0);
-  APU_Triangle_Out(41 downto 11) <= \^apu_triangle_out\(41 downto 11);
+  APU_Triangle_Out(41 downto 34) <= \^apu_triangle_out\(41 downto 34);
+  APU_Triangle_Out(33 downto 23) <= \^apu_triangle_timer\(11 downto 1);
+  APU_Triangle_Out(22 downto 11) <= \^apu_triangle_out\(22 downto 11);
   APU_Triangle_Out(10) <= \<const0>\;
   APU_Triangle_Out(9) <= \<const0>\;
   APU_Triangle_Out(8) <= \<const0>\;
@@ -2232,6 +2360,8 @@ begin
   APU_Triangle_Out(2) <= \<const0>\;
   APU_Triangle_Out(1) <= \<const0>\;
   APU_Triangle_Out(0) <= \<const0>\;
+  APU_Triangle_Timer(11 downto 1) <= \^apu_triangle_timer\(11 downto 1);
+  APU_Triangle_Timer(0) <= \<const0>\;
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
@@ -2241,10 +2371,22 @@ inst: entity work.design_1_nes_apu_0_0_nes_apu
       APU_Counter_Out(1 downto 0) => APU_Counter_Out(1 downto 0),
       APU_DMC_Out(28 downto 0) => APU_DMC_Out(28 downto 0),
       APU_Noise_Out(15 downto 0) => APU_Noise_Out(15 downto 0),
-      APU_Pulse1_Out(31 downto 0) => \^apu_pulse1_out\(42 downto 11),
-      APU_Pulse2_Out(31 downto 0) => \^apu_pulse2_out\(42 downto 11),
+      APU_Pulse1_Out(31 downto 28) => \^apu_pulse1_out\(42 downto 39),
+      APU_Pulse1_Out(27 downto 24) => \^apu_pulse1_volume\(3 downto 0),
+      APU_Pulse1_Out(23 downto 16) => \^apu_pulse1_out\(34 downto 27),
+      APU_Pulse1_Out(15 downto 5) => \^apu_pulse1_timer\(11 downto 1),
+      APU_Pulse1_Out(4 downto 0) => \^apu_pulse1_out\(15 downto 11),
+      APU_Pulse1_Timer(0) => \^apu_pulse1_timer\(0),
+      APU_Pulse2_Out(31 downto 28) => \^apu_pulse2_out\(42 downto 39),
+      APU_Pulse2_Out(27 downto 24) => \^apu_pulse2_volume\(3 downto 0),
+      APU_Pulse2_Out(23 downto 16) => \^apu_pulse2_out\(34 downto 27),
+      APU_Pulse2_Out(15 downto 5) => \^apu_pulse2_timer\(11 downto 1),
+      APU_Pulse2_Out(4 downto 0) => \^apu_pulse2_out\(15 downto 11),
+      APU_Pulse2_Timer(0) => \^apu_pulse2_timer\(0),
       APU_Status_Out(4 downto 0) => \^apu_status_out\(4 downto 0),
-      APU_Triangle_Out(30 downto 0) => \^apu_triangle_out\(41 downto 11),
+      APU_Triangle_Out(30 downto 23) => \^apu_triangle_out\(41 downto 34),
+      APU_Triangle_Out(22 downto 12) => \^apu_triangle_timer\(11 downto 1),
+      APU_Triangle_Out(11 downto 0) => \^apu_triangle_out\(22 downto 11),
       CPU_Addr(14 downto 0) => CPU_Addr(14 downto 0),
       CPU_Data(7 downto 0) => CPU_Data(7 downto 0),
       CPU_M2 => CPU_M2,

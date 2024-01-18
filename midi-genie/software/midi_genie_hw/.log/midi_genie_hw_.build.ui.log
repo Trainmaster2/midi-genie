@@ -1,6 +1,6 @@
-2024-01-11T22:36:36.78189900255-22:36:36 **** Incremental Build of project midi_genie_hw ****
-000-buildplatform.sh 36767 midi_genie_hw no_domain_build 
-000-XSDB Server Channel: tcfchan#19
+2024-01-17T17:22:49.25504900255-17:22:49 **** Incremental Build of project midi_genie_hw ****
+000-buildplatform.sh 41917 midi_genie_hw no_domain_build 
+000-XSDB Server Channel: tcfchan#16
 000-/media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin
 000-Building the BSP Library for domain  - standalone_microblaze_0 on processor microblaze_0
 000-make --no-print-directory seq_libs
@@ -11,17 +11,17 @@
 000-
 000-Running Make include in microblaze_0/libsrc/bram_v4_8/src
 000-
-000-Running Make include in microblaze_0/libsrc/cpu_v2_16/src
-000-
 000-make -C microblaze_0/libsrc/bram_v4_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
 000-PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
 000-ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 000-
+000-Running Make include in microblaze_0/libsrc/cpu_v2_16/src
+000-
+000-Running Make include in microblaze_0/libsrc/intc_v3_15/src
+000-
 000-make -C microblaze_0/libsrc/cpu_v2_16/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
 000-PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
 000-ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
-000-
-000-Running Make include in microblaze_0/libsrc/intc_v3_15/src
 000-
 000-Running Make include in microblaze_0/libsrc/standalone_v8_0/src
 000-
@@ -47,11 +47,11 @@
 000-
 000-Running Make libs in microblaze_0/libsrc/cpu_v2_16/src
 000-
-000-Running Make libs in microblaze_0/libsrc/intc_v3_15/src
-000-
 000-make -C microblaze_0/libsrc/cpu_v2_16/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
 000-ER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffuncti
 000-on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+000-
+000-Running Make libs in microblaze_0/libsrc/intc_v3_15/src
 000-
 000-make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
 000-LER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunct
@@ -104,5 +104,5 @@
 000-Finished building libraries
 000-
 00255-
-22:36:56 Build Finished (took 19s.315ms)
+17:22:55 Build Finished (took 6s.256ms)
 

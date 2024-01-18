@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2024 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:module_ref:nes_apu:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "nes_apu,Vivado 2022.2" *)
+(* X_CORE_INFO = "nes_apu,Vivado 2022.2.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_nes_apu_0_0,nes_apu,{}" *)
-(* CORE_GENERATION_INFO = "design_1_nes_apu_0_0,nes_apu,{x_ipProduct=Vivado 2022.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=nes_apu,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "design_1_nes_apu_0_0,nes_apu,{x_ipProduct=Vivado 2022.2.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=nes_apu,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_nes_apu_0_0 (
@@ -71,7 +71,12 @@ module design_1_nes_apu_0_0 (
   APU_Noise_Out,
   APU_DMC_Out,
   APU_Status_Out,
-  APU_Counter_Out
+  APU_Counter_Out,
+  APU_Pulse1_Timer,
+  APU_Pulse1_Volume,
+  APU_Pulse2_Timer,
+  APU_Pulse2_Volume,
+  APU_Triangle_Timer
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
@@ -98,6 +103,11 @@ output wire [15 : 0] APU_Noise_Out;
 output wire [28 : 0] APU_DMC_Out;
 output wire [6 : 0] APU_Status_Out;
 output wire [1 : 0] APU_Counter_Out;
+output wire [11 : 0] APU_Pulse1_Timer;
+output wire [3 : 0] APU_Pulse1_Volume;
+output wire [11 : 0] APU_Pulse2_Timer;
+output wire [3 : 0] APU_Pulse2_Volume;
+output wire [11 : 0] APU_Triangle_Timer;
 
   nes_apu inst (
     .Clk(Clk),
@@ -115,6 +125,11 @@ output wire [1 : 0] APU_Counter_Out;
     .APU_Noise_Out(APU_Noise_Out),
     .APU_DMC_Out(APU_DMC_Out),
     .APU_Status_Out(APU_Status_Out),
-    .APU_Counter_Out(APU_Counter_Out)
+    .APU_Counter_Out(APU_Counter_Out),
+    .APU_Pulse1_Timer(APU_Pulse1_Timer),
+    .APU_Pulse1_Volume(APU_Pulse1_Volume),
+    .APU_Pulse2_Timer(APU_Pulse2_Timer),
+    .APU_Pulse2_Volume(APU_Pulse2_Volume),
+    .APU_Triangle_Timer(APU_Triangle_Timer)
   );
 endmodule

@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Tue Jan  9 23:57:22 2024
+// Date        : Wed Jan 17 13:47:24 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_nes_apu_0_0/design_1_nes_apu_0_0_sim_netlist.v
@@ -13,7 +13,7 @@
 `timescale 1 ps / 1 ps
 
 (* CHECK_LICENSE_TYPE = "design_1_nes_apu_0_0,nes_apu,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "nes_apu,Vivado 2022.2" *) 
+(* X_CORE_INFO = "nes_apu,Vivado 2022.2.2" *) 
 (* NotValidForBitStream *)
 module design_1_nes_apu_0_0
    (Clk,
@@ -31,7 +31,12 @@ module design_1_nes_apu_0_0
     APU_Noise_Out,
     APU_DMC_Out,
     APU_Status_Out,
-    APU_Counter_Out);
+    APU_Counter_Out,
+    APU_Pulse1_Timer,
+    APU_Pulse1_Volume,
+    APU_Pulse2_Timer,
+    APU_Pulse2_Volume,
+    APU_Triangle_Timer);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input Clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 Reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input Reset;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CPU_Clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CPU_Clk, ASSOCIATED_RESET CPU_Rst, FREQ_HZ 21477272, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_1_nes_system_clk, INSERT_VIP 0" *) input CPU_Clk;
@@ -48,15 +53,25 @@ module design_1_nes_apu_0_0
   output [28:0]APU_DMC_Out;
   output [6:0]APU_Status_Out;
   output [1:0]APU_Counter_Out;
+  output [11:0]APU_Pulse1_Timer;
+  output [3:0]APU_Pulse1_Volume;
+  output [11:0]APU_Pulse2_Timer;
+  output [3:0]APU_Pulse2_Volume;
+  output [11:0]APU_Triangle_Timer;
 
   wire \<const0> ;
   wire [1:0]APU_Counter_Out;
   wire [28:0]APU_DMC_Out;
   wire [15:0]APU_Noise_Out;
   wire [42:11]\^APU_Pulse1_Out ;
+  wire [11:0]APU_Pulse1_Timer;
+  wire [3:0]APU_Pulse1_Volume;
   wire [42:11]\^APU_Pulse2_Out ;
+  wire [11:0]APU_Pulse2_Timer;
+  wire [3:0]APU_Pulse2_Volume;
   wire [4:0]\^APU_Status_Out ;
   wire [41:11]\^APU_Triangle_Out ;
+  wire [11:1]\^APU_Triangle_Timer ;
   wire [14:0]CPU_Addr;
   wire [7:0]CPU_Data;
   wire CPU_M2;
@@ -65,7 +80,11 @@ module design_1_nes_apu_0_0
   wire CPU_Rst;
   wire Reset;
 
-  assign APU_Pulse1_Out[42:11] = \^APU_Pulse1_Out [42:11];
+  assign APU_Pulse1_Out[42:39] = \^APU_Pulse1_Out [42:39];
+  assign APU_Pulse1_Out[38:35] = APU_Pulse1_Volume;
+  assign APU_Pulse1_Out[34:27] = \^APU_Pulse1_Out [34:27];
+  assign APU_Pulse1_Out[26:16] = APU_Pulse1_Timer[11:1];
+  assign APU_Pulse1_Out[15:11] = \^APU_Pulse1_Out [15:11];
   assign APU_Pulse1_Out[10] = \<const0> ;
   assign APU_Pulse1_Out[9] = \<const0> ;
   assign APU_Pulse1_Out[8] = \<const0> ;
@@ -77,7 +96,11 @@ module design_1_nes_apu_0_0
   assign APU_Pulse1_Out[2] = \<const0> ;
   assign APU_Pulse1_Out[1] = \<const0> ;
   assign APU_Pulse1_Out[0] = \<const0> ;
-  assign APU_Pulse2_Out[42:11] = \^APU_Pulse2_Out [42:11];
+  assign APU_Pulse2_Out[42:39] = \^APU_Pulse2_Out [42:39];
+  assign APU_Pulse2_Out[38:35] = APU_Pulse2_Volume;
+  assign APU_Pulse2_Out[34:27] = \^APU_Pulse2_Out [34:27];
+  assign APU_Pulse2_Out[26:16] = APU_Pulse2_Timer[11:1];
+  assign APU_Pulse2_Out[15:11] = \^APU_Pulse2_Out [15:11];
   assign APU_Pulse2_Out[10] = \<const0> ;
   assign APU_Pulse2_Out[9] = \<const0> ;
   assign APU_Pulse2_Out[8] = \<const0> ;
@@ -92,7 +115,9 @@ module design_1_nes_apu_0_0
   assign APU_Status_Out[6] = \<const0> ;
   assign APU_Status_Out[5] = \<const0> ;
   assign APU_Status_Out[4:0] = \^APU_Status_Out [4:0];
-  assign APU_Triangle_Out[41:11] = \^APU_Triangle_Out [41:11];
+  assign APU_Triangle_Out[41:34] = \^APU_Triangle_Out [41:34];
+  assign APU_Triangle_Out[33:23] = \^APU_Triangle_Timer [11:1];
+  assign APU_Triangle_Out[22:11] = \^APU_Triangle_Out [22:11];
   assign APU_Triangle_Out[10] = \<const0> ;
   assign APU_Triangle_Out[9] = \<const0> ;
   assign APU_Triangle_Out[8] = \<const0> ;
@@ -104,16 +129,20 @@ module design_1_nes_apu_0_0
   assign APU_Triangle_Out[2] = \<const0> ;
   assign APU_Triangle_Out[1] = \<const0> ;
   assign APU_Triangle_Out[0] = \<const0> ;
+  assign APU_Triangle_Timer[11:1] = \^APU_Triangle_Timer [11:1];
+  assign APU_Triangle_Timer[0] = \<const0> ;
   GND GND
        (.G(\<const0> ));
   design_1_nes_apu_0_0_nes_apu inst
        (.APU_Counter_Out(APU_Counter_Out),
         .APU_DMC_Out(APU_DMC_Out),
         .APU_Noise_Out(APU_Noise_Out),
-        .APU_Pulse1_Out(\^APU_Pulse1_Out ),
-        .APU_Pulse2_Out(\^APU_Pulse2_Out ),
+        .APU_Pulse1_Out({\^APU_Pulse1_Out [42:39],APU_Pulse1_Volume,\^APU_Pulse1_Out [34:27],APU_Pulse1_Timer[11:1],\^APU_Pulse1_Out [15:11]}),
+        .APU_Pulse1_Timer(APU_Pulse1_Timer[0]),
+        .APU_Pulse2_Out({\^APU_Pulse2_Out [42:39],APU_Pulse2_Volume,\^APU_Pulse2_Out [34:27],APU_Pulse2_Timer[11:1],\^APU_Pulse2_Out [15:11]}),
+        .APU_Pulse2_Timer(APU_Pulse2_Timer[0]),
         .APU_Status_Out(\^APU_Status_Out ),
-        .APU_Triangle_Out(\^APU_Triangle_Out ),
+        .APU_Triangle_Out({\^APU_Triangle_Out [41:34],\^APU_Triangle_Timer ,\^APU_Triangle_Out [22:11]}),
         .CPU_Addr(CPU_Addr),
         .CPU_Data(CPU_Data),
         .CPU_M2(CPU_M2),
@@ -131,6 +160,8 @@ module design_1_nes_apu_0_0_nes_apu
     APU_Noise_Out,
     APU_DMC_Out,
     APU_Status_Out,
+    APU_Pulse1_Timer,
+    APU_Pulse2_Timer,
     APU_Counter_Out,
     CPU_Data,
     CPU_M2,
@@ -145,6 +176,8 @@ module design_1_nes_apu_0_0_nes_apu
   output [15:0]APU_Noise_Out;
   output [28:0]APU_DMC_Out;
   output [4:0]APU_Status_Out;
+  output [0:0]APU_Pulse1_Timer;
+  output [0:0]APU_Pulse2_Timer;
   output [1:0]APU_Counter_Out;
   input [7:0]CPU_Data;
   input CPU_M2;
@@ -154,7 +187,8 @@ module design_1_nes_apu_0_0_nes_apu
   input Reset;
   input CPU_Rst;
 
-  wire \APU_Counter[mode] ;
+  wire \APU_Counter[irq_inhibit]_i_1_n_0 ;
+  wire \APU_Counter[mode]_i_1_n_0 ;
   wire [1:0]APU_Counter_Out;
   wire \APU_DMC[irq_enable] ;
   wire \APU_DMC[load_counter] ;
@@ -171,16 +205,18 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Pulse1[duty][1]_i_4_n_0 ;
   wire \APU_Pulse1[duty][1]_i_5_n_0 ;
   wire \APU_Pulse1[sweep_enable] ;
+  wire \APU_Pulse1[sweep_enable]_i_2_n_0 ;
+  wire \APU_Pulse1[sweep_enable]_i_3_n_0 ;
   wire \APU_Pulse1[timer_load][10]_i_1_n_0 ;
-  wire \APU_Pulse1[timer_load][10]_i_2_n_0 ;
-  wire \APU_Pulse1[timer_load][10]_i_3_n_0 ;
   wire \APU_Pulse1[timer_load][7]_i_1_n_0 ;
   wire [31:0]APU_Pulse1_Out;
+  wire [0:0]APU_Pulse1_Timer;
   wire \APU_Pulse2[duty] ;
   wire \APU_Pulse2[sweep_enable] ;
   wire \APU_Pulse2[timer_load][10]_i_1_n_0 ;
   wire \APU_Pulse2[timer_load][7]_i_1_n_0 ;
   wire [31:0]APU_Pulse2_Out;
+  wire [0:0]APU_Pulse2_Timer;
   wire \APU_Status[dmc_active] ;
   wire [4:0]APU_Status_Out;
   wire \APU_Triangle[length_counter_halt] ;
@@ -193,75 +229,85 @@ module design_1_nes_apu_0_0_nes_apu
   wire CPU_RW;
   wire CPU_RomSel;
   wire CPU_Rst;
+  wire Pulse1_On;
+  wire Pulse1_On_i_1_n_0;
+  wire Pulse2_On_i_1_n_0;
+  wire Pulse2_On_i_2_n_0;
   wire Reset;
 
   LUT6 #(
-    .INIT(64'h2000000000000000)) 
-    \APU_Counter[mode]_i_1 
-       (.I0(CPU_Addr[1]),
-        .I1(CPU_Addr[3]),
-        .I2(CPU_Addr[0]),
+    .INIT(64'hBFFFFFFF80000000)) 
+    \APU_Counter[irq_inhibit]_i_1 
+       (.I0(CPU_Data[6]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[1]),
         .I3(CPU_Addr[2]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Pulse1[duty][1]_i_3_n_0 ),
-        .O(\APU_Counter[mode] ));
+        .I4(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
+        .I5(APU_Counter_Out[0]),
+        .O(\APU_Counter[irq_inhibit]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hBFFFFFFF80000000)) 
+    \APU_Counter[mode]_i_1 
+       (.I0(CPU_Data[7]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[1]),
+        .I3(CPU_Addr[2]),
+        .I4(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
+        .I5(APU_Counter_Out[1]),
+        .O(\APU_Counter[mode]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \APU_Counter_reg[irq_inhibit] 
        (.C(CPU_M2),
-        .CE(\APU_Counter[mode] ),
+        .CE(1'b1),
         .CLR(\APU_Pulse1[duty][1]_i_2_n_0 ),
-        .D(CPU_Data[6]),
+        .D(\APU_Counter[irq_inhibit]_i_1_n_0 ),
         .Q(APU_Counter_Out[0]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \APU_Counter_reg[mode] 
        (.C(CPU_M2),
-        .CE(\APU_Counter[mode] ),
+        .CE(1'b1),
         .CLR(\APU_Pulse1[duty][1]_i_2_n_0 ),
-        .D(CPU_Data[7]),
+        .D(\APU_Counter[mode]_i_1_n_0 ),
         .Q(APU_Counter_Out[1]));
   LUT6 #(
-    .INIT(64'h0001000000000000)) 
+    .INIT(64'h0000000000040000)) 
     \APU_DMC[irq_enable]_i_1 
-       (.I0(CPU_Addr[1]),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Addr[0]),
-        .I3(CPU_Addr[3]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Pulse1[duty][1]_i_3_n_0 ),
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[1]),
+        .I3(CPU_Addr[0]),
+        .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I5(CPU_Addr[3]),
         .O(\APU_DMC[irq_enable] ));
-  LUT6 #(
-    .INIT(64'h0010000000000000)) 
+  LUT4 #(
+    .INIT(16'h0400)) 
     \APU_DMC[load_counter][6]_i_1 
-       (.I0(CPU_Addr[1]),
-        .I1(CPU_Addr[3]),
-        .I2(CPU_Addr[0]),
-        .I3(CPU_Addr[2]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Pulse1[duty][1]_i_3_n_0 ),
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[1]),
+        .I3(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
         .O(\APU_DMC[load_counter] ));
   LUT6 #(
-    .INIT(64'h0002000000000000)) 
+    .INIT(64'h0000000000080000)) 
     \APU_DMC[sample_address][7]_i_1 
        (.I0(CPU_Addr[1]),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Addr[0]),
-        .I3(CPU_Addr[3]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[2]),
+        .I3(CPU_Addr[0]),
+        .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I5(CPU_Addr[3]),
         .O(\APU_DMC[sample_address] ));
-  LUT6 #(
-    .INIT(64'h0020000000000000)) 
+  LUT4 #(
+    .INIT(16'h0800)) 
     \APU_DMC[sample_length][7]_i_1 
        (.I0(CPU_Addr[1]),
-        .I1(CPU_Addr[3]),
-        .I2(CPU_Addr[0]),
-        .I3(CPU_Addr[2]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[2]),
+        .I3(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
         .O(\APU_DMC[sample_length] ));
   FDCE #(
     .INIT(1'b0),
@@ -524,31 +570,35 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[duty][1]_i_2_n_0 ),
         .D(CPU_Data[7]),
         .Q(APU_DMC_Out[7]));
-  LUT4 #(
-    .INIT(16'h8000)) 
+  LUT6 #(
+    .INIT(64'h2000000000000000)) 
     \APU_Noise[length_counter][4]_i_1 
-       (.I0(CPU_Addr[2]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[3]),
-        .I3(\APU_Pulse1[timer_load][10]_i_2_n_0 ),
+       (.I0(CPU_Addr[1]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[0]),
+        .I3(CPU_Addr[2]),
+        .I4(CPU_Addr[3]),
+        .I5(\APU_Pulse1[duty][1]_i_3_n_0 ),
         .O(\APU_Noise[length_counter] ));
   LUT6 #(
-    .INIT(64'h0000000000080000)) 
+    .INIT(64'h0002000000000000)) 
     \APU_Noise[length_counter_halt]_i_1 
-       (.I0(CPU_Addr[3]),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Addr[0]),
-        .I3(CPU_Addr[1]),
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[0]),
         .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
-        .I5(CPU_Addr[4]),
+        .I5(CPU_Addr[3]),
         .O(\APU_Noise[length_counter_halt] ));
-  LUT4 #(
-    .INIT(16'h4000)) 
+  LUT6 #(
+    .INIT(64'h0008000000000000)) 
     \APU_Noise[loop_noise]_i_1 
-       (.I0(CPU_Addr[0]),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Addr[3]),
-        .I3(\APU_Pulse1[timer_load][10]_i_2_n_0 ),
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[0]),
+        .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I5(CPU_Addr[3]),
         .O(\APU_Noise[loop_noise] ));
   FDCE #(
     .INIT(1'b0),
@@ -697,12 +747,12 @@ module design_1_nes_apu_0_0_nes_apu
   LUT6 #(
     .INIT(64'h0000000000010000)) 
     \APU_Pulse1[duty][1]_i_1 
-       (.I0(CPU_Addr[3]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[2]),
-        .I3(CPU_Addr[1]),
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[0]),
         .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
-        .I5(CPU_Addr[4]),
+        .I5(CPU_Addr[3]),
         .O(\APU_Pulse1[duty] ));
   LUT2 #(
     .INIT(4'h7)) 
@@ -736,48 +786,48 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(CPU_Addr[13]),
         .I3(CPU_Addr[14]),
         .O(\APU_Pulse1[duty][1]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000040000)) 
+  LUT4 #(
+    .INIT(16'h0100)) 
     \APU_Pulse1[sweep_enable]_i_1 
        (.I0(CPU_Addr[2]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[3]),
-        .I3(CPU_Addr[1]),
-        .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
-        .I5(CPU_Addr[4]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
+        .I3(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
         .O(\APU_Pulse1[sweep_enable] ));
-  LUT4 #(
-    .INIT(16'h0400)) 
-    \APU_Pulse1[timer_load][10]_i_1 
-       (.I0(CPU_Addr[2]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[3]),
-        .I3(\APU_Pulse1[timer_load][10]_i_2_n_0 ),
-        .O(\APU_Pulse1[timer_load][10]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h40000000)) 
-    \APU_Pulse1[timer_load][10]_i_2 
-       (.I0(CPU_Addr[4]),
+    \APU_Pulse1[sweep_enable]_i_2 
+       (.I0(CPU_Addr[3]),
         .I1(\APU_Pulse1[duty][1]_i_4_n_0 ),
-        .I2(\APU_Pulse1[timer_load][10]_i_3_n_0 ),
+        .I2(\APU_Pulse1[sweep_enable]_i_3_n_0 ),
         .I3(\APU_Pulse1[duty][1]_i_5_n_0 ),
-        .I4(CPU_Addr[1]),
-        .O(\APU_Pulse1[timer_load][10]_i_2_n_0 ));
+        .I4(CPU_Addr[0]),
+        .O(\APU_Pulse1[sweep_enable]_i_2_n_0 ));
   LUT4 #(
     .INIT(16'h0001)) 
-    \APU_Pulse1[timer_load][10]_i_3 
+    \APU_Pulse1[sweep_enable]_i_3 
        (.I0(CPU_Addr[8]),
         .I1(CPU_Addr[7]),
         .I2(CPU_Addr[6]),
         .I3(CPU_Addr[5]),
-        .O(\APU_Pulse1[timer_load][10]_i_3_n_0 ));
+        .O(\APU_Pulse1[sweep_enable]_i_3_n_0 ));
   LUT4 #(
-    .INIT(16'h0100)) 
+    .INIT(16'h0400)) 
+    \APU_Pulse1[timer_load][10]_i_1 
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
+        .I3(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
+        .O(\APU_Pulse1[timer_load][10]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000040000)) 
     \APU_Pulse1[timer_load][7]_i_1 
-       (.I0(CPU_Addr[3]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[2]),
-        .I3(\APU_Pulse1[timer_load][10]_i_2_n_0 ),
+       (.I0(CPU_Addr[0]),
+        .I1(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I2(CPU_Addr[3]),
+        .I3(CPU_Addr[2]),
+        .I4(CPU_Addr[1]),
+        .I5(CPU_Addr[4]),
         .O(\APU_Pulse1[timer_load][7]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0),
@@ -1068,40 +1118,40 @@ module design_1_nes_apu_0_0_nes_apu
         .D(CPU_Data[3]),
         .Q(APU_Pulse1_Out[27]));
   LUT6 #(
-    .INIT(64'h0000000000040000)) 
+    .INIT(64'h0000000000020000)) 
     \APU_Pulse2[duty][1]_i_1 
-       (.I0(CPU_Addr[3]),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Addr[0]),
-        .I3(CPU_Addr[1]),
-        .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
-        .I5(CPU_Addr[4]),
-        .O(\APU_Pulse2[duty] ));
-  LUT6 #(
-    .INIT(64'h0000000000080000)) 
-    \APU_Pulse2[sweep_enable]_i_1 
        (.I0(CPU_Addr[2]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[3]),
-        .I3(CPU_Addr[1]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[0]),
         .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
-        .I5(CPU_Addr[4]),
+        .I5(CPU_Addr[3]),
+        .O(\APU_Pulse2[duty] ));
+  LUT4 #(
+    .INIT(16'h1000)) 
+    \APU_Pulse2[sweep_enable]_i_1 
+       (.I0(CPU_Addr[4]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[2]),
+        .I3(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
         .O(\APU_Pulse2[sweep_enable] ));
   LUT4 #(
     .INIT(16'h0800)) 
     \APU_Pulse2[timer_load][10]_i_1 
        (.I0(CPU_Addr[2]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[3]),
-        .I3(\APU_Pulse1[timer_load][10]_i_2_n_0 ),
+        .I1(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[1]),
         .O(\APU_Pulse2[timer_load][10]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'h0400)) 
+  LUT6 #(
+    .INIT(64'h0000000000080000)) 
     \APU_Pulse2[timer_load][7]_i_1 
-       (.I0(CPU_Addr[3]),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Addr[0]),
-        .I3(\APU_Pulse1[timer_load][10]_i_2_n_0 ),
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[0]),
+        .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I5(CPU_Addr[3]),
         .O(\APU_Pulse2[timer_load][7]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0),
@@ -1391,15 +1441,13 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[duty][1]_i_2_n_0 ),
         .D(CPU_Data[3]),
         .Q(APU_Pulse2_Out[27]));
-  LUT6 #(
-    .INIT(64'h1000000000000000)) 
+  LUT4 #(
+    .INIT(16'h4000)) 
     \APU_Status[dmc_active]_i_1 
        (.I0(CPU_Addr[1]),
-        .I1(CPU_Addr[3]),
-        .I2(CPU_Addr[0]),
-        .I3(CPU_Addr[2]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[2]),
+        .I3(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
         .O(\APU_Status[dmc_active] ));
   FDCE #(
     .INIT(1'b0),
@@ -1447,30 +1495,34 @@ module design_1_nes_apu_0_0_nes_apu
         .D(CPU_Data[2]),
         .Q(APU_Status_Out[2]));
   LUT6 #(
-    .INIT(64'h0000000000020000)) 
+    .INIT(64'h0001000000000000)) 
     \APU_Triangle[length_counter_halt]_i_1 
-       (.I0(CPU_Addr[3]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[2]),
-        .I3(CPU_Addr[1]),
-        .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
-        .I5(CPU_Addr[4]),
-        .O(\APU_Triangle[length_counter_halt] ));
-  LUT4 #(
-    .INIT(16'h4000)) 
-    \APU_Triangle[timer_load][10]_i_1 
        (.I0(CPU_Addr[2]),
-        .I1(CPU_Addr[0]),
-        .I2(CPU_Addr[3]),
-        .I3(\APU_Pulse1[timer_load][10]_i_2_n_0 ),
-        .O(\APU_Triangle[timer_load][10]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'h0008)) 
-    \APU_Triangle[timer_load][7]_i_1 
-       (.I0(CPU_Addr[3]),
-        .I1(\APU_Pulse1[timer_load][10]_i_2_n_0 ),
-        .I2(CPU_Addr[2]),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
         .I3(CPU_Addr[0]),
+        .I4(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I5(CPU_Addr[3]),
+        .O(\APU_Triangle[length_counter_halt] ));
+  LUT6 #(
+    .INIT(64'h0020000000000000)) 
+    \APU_Triangle[timer_load][10]_i_1 
+       (.I0(CPU_Addr[0]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[1]),
+        .I3(CPU_Addr[2]),
+        .I4(CPU_Addr[3]),
+        .I5(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .O(\APU_Triangle[timer_load][10]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000400000)) 
+    \APU_Triangle[timer_load][7]_i_1 
+       (.I0(CPU_Addr[0]),
+        .I1(\APU_Pulse1[duty][1]_i_3_n_0 ),
+        .I2(CPU_Addr[3]),
+        .I3(CPU_Addr[2]),
+        .I4(CPU_Addr[1]),
+        .I5(CPU_Addr[4]),
         .O(\APU_Triangle[timer_load][7]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0),
@@ -1751,6 +1803,62 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[duty][1]_i_2_n_0 ),
         .D(CPU_Data[1]),
         .Q(APU_Triangle_Out[21]));
+  LUT6 #(
+    .INIT(64'hFFBFFBFF00800800)) 
+    Pulse1_On_i_1
+       (.I0(Pulse1_On),
+        .I1(\APU_Pulse1[sweep_enable]_i_2_n_0 ),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[1]),
+        .I4(CPU_Addr[2]),
+        .I5(APU_Pulse1_Timer),
+        .O(Pulse1_On_i_1_n_0));
+  LUT4 #(
+    .INIT(16'h8F80)) 
+    Pulse1_On_i_2
+       (.I0(CPU_Data[0]),
+        .I1(APU_Pulse1_Timer),
+        .I2(CPU_Addr[4]),
+        .I3(APU_Status_Out[0]),
+        .O(Pulse1_On));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    Pulse1_On_reg
+       (.C(CPU_M2),
+        .CE(1'b1),
+        .CLR(\APU_Pulse1[duty][1]_i_2_n_0 ),
+        .D(Pulse1_On_i_1_n_0),
+        .Q(APU_Pulse1_Timer));
+  LUT6 #(
+    .INIT(64'hFACFFFFF00C00000)) 
+    Pulse2_On_i_1
+       (.I0(CPU_Data[1]),
+        .I1(APU_Status_Out[1]),
+        .I2(CPU_Addr[1]),
+        .I3(CPU_Addr[4]),
+        .I4(Pulse2_On_i_2_n_0),
+        .I5(APU_Pulse2_Timer),
+        .O(Pulse2_On_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h0000800000000000)) 
+    Pulse2_On_i_2
+       (.I0(CPU_Addr[0]),
+        .I1(\APU_Pulse1[duty][1]_i_5_n_0 ),
+        .I2(\APU_Pulse1[sweep_enable]_i_3_n_0 ),
+        .I3(\APU_Pulse1[duty][1]_i_4_n_0 ),
+        .I4(CPU_Addr[3]),
+        .I5(CPU_Addr[2]),
+        .O(Pulse2_On_i_2_n_0));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    Pulse2_On_reg
+       (.C(CPU_M2),
+        .CE(1'b1),
+        .CLR(\APU_Pulse1[duty][1]_i_2_n_0 ),
+        .D(Pulse2_On_i_1_n_0),
+        .Q(APU_Pulse2_Timer));
 endmodule
 `ifndef GLBL
 `define GLBL

@@ -17,14 +17,10 @@
 
 #define calcualte_bend(frequency, note) clamp(round(8192 + 4096 * 12 * log2(frequency / note2frequency(note))), 0.0, 16383.0)
 
-#define frequency2midi(frequency, note, bend) \
-do {                                          \
-    note = frequency2note(frequency);         \
-    bend = calcualte_bend(frequency, note);   \
-} while (0)
-
 #define pulse2midi(timer, note, bend) frequency2midi((1789773 / (16 * (timer + 1.0))), note, bend)
 
 #define triangle2midi(timer, note, bend) frequency2midi((1789773 / (32 * (timer + 1.0))), note, bend)
+
+void frequency2midi(double frequency, int& note, int& bend);
 
 #endif

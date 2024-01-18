@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Thu Jan 11 22:27:23 2024
+//Date        : Wed Jan 17 17:15:35 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=36,numReposBlks=29,numNonXlnxBlks=0,numHierBlks=7,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=5,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_board_cnt=6,da_clkrst_cnt=21,da_mb_cnt=2,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=34,numReposBlks=27,numNonXlnxBlks=0,numHierBlks=7,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=5,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_board_cnt=6,da_clkrst_cnt=22,da_mb_cnt=2,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (btn1,
     led,
@@ -40,9 +40,9 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:interface:uart:1.0 usb_uart RxD" *) input usb_uart_rxd;
   (* X_INTERFACE_INFO = "xilinx.com:interface:uart:1.0 usb_uart TxD" *) output usb_uart_txd;
 
-  wire [14:0]Net;
+  wire [15:0]Net;
   wire Net1;
-  wire [14:0]apu_fifo_dout;
+  wire [15:0]apu_fifo_dout;
   wire apu_fifo_empty;
   wire apu_fifo_reader_DataAvailable;
   wire apu_fifo_reader_FifoRead;
@@ -185,9 +185,14 @@ module design_1
   wire [28:0]nes_apu_0_APU_DMC_Out;
   wire [15:0]nes_apu_0_APU_Noise_Out;
   wire [42:0]nes_apu_0_APU_Pulse1_Out;
+  wire [11:0]nes_apu_0_APU_Pulse1_Timer;
+  wire [3:0]nes_apu_0_APU_Pulse1_Volume;
   wire [42:0]nes_apu_0_APU_Pulse2_Out;
+  wire [11:0]nes_apu_0_APU_Pulse2_Timer;
+  wire [3:0]nes_apu_0_APU_Pulse2_Volume;
   wire [6:0]nes_apu_0_APU_Status_Out;
   wire [41:0]nes_apu_0_APU_Triangle_Out;
+  wire [11:0]nes_apu_0_APU_Triangle_Timer;
   wire [14:0]nes_cpu_addr_1;
   wire [7:0]nes_cpu_data_1;
   wire nes_cpu_rw_1;
@@ -203,12 +208,7 @@ module design_1
   wire sys_clock_1;
   wire [0:0]util_vector_logic_0_Res;
   wire [0:0]util_vector_logic_0_Res1;
-  wire [0:0]vio_0_probe_out0;
-  wire [2:0]vio_0_probe_out1;
-  wire [0:0]vio_0_probe_out2;
-  wire [10:0]vio_0_probe_out3;
   wire [1:0]xlconcat_0_dout;
-  wire [14:0]xlconcat_0_dout1;
 
   assign axi_uartlite_0_UART_RxD = usb_uart_rxd;
   assign btn1_1 = btn1;
@@ -258,6 +258,15 @@ module design_1
         .S_AXI_WREADY(microblaze_0_axi_periph_M03_AXI_WREADY),
         .S_AXI_WSTRB(microblaze_0_axi_periph_M03_AXI_WSTRB),
         .S_AXI_WVALID(microblaze_0_axi_periph_M03_AXI_WVALID));
+  design_1_apu_fifo_writer_0_0 apu_fifo_writer_0
+       (.Clk(microblaze_0_Clk),
+        .FifoData(Net),
+        .FifoWrite(Net1),
+        .Pulse1_Timer(nes_apu_0_APU_Pulse1_Timer),
+        .Pulse1_Volume(nes_apu_0_APU_Pulse1_Volume),
+        .Pulse2_Timer(nes_apu_0_APU_Pulse2_Timer),
+        .Pulse2_Volume(nes_apu_0_APU_Pulse2_Volume),
+        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn));
   design_1_axi_uartlite_0_1 axi_uartlite_0
        (.rx(axi_uartlite_0_UART_RxD),
         .s_axi_aclk(microblaze_0_Clk),
@@ -294,7 +303,7 @@ module design_1
         .Reset(rst_clk_wiz_0_100M_peripheral_aresetn));
   design_1_xlconcat_0_1 led_concat
        (.In0(util_vector_logic_0_Res1),
-        .In1(1'b0),
+        .In1(Net1),
         .dout(xlconcat_0_dout));
   design_1_mdm_1_1 mdm_1
        (.Dbg_Capture_0(microblaze_0_debug_CAPTURE),
@@ -516,7 +525,7 @@ module design_1
         .SYS_Rst(rst_clk_wiz_0_100M_bus_struct_reset));
   design_1_microblaze_0_xlconcat_1 microblaze_0_xlconcat
        (.In0(util_vector_logic_0_Res),
-        .In1(apu_fifo_reader_DataAvailable),
+        .In1(apu_fifo_reader_FifoRead),
         .dout(microblaze_0_intr));
   design_1_fifo_generator_0_0 midi_fifo
        (.clk(microblaze_0_Clk),
@@ -555,9 +564,14 @@ module design_1
         .APU_DMC_Out(nes_apu_0_APU_DMC_Out),
         .APU_Noise_Out(nes_apu_0_APU_Noise_Out),
         .APU_Pulse1_Out(nes_apu_0_APU_Pulse1_Out),
+        .APU_Pulse1_Timer(nes_apu_0_APU_Pulse1_Timer),
+        .APU_Pulse1_Volume(nes_apu_0_APU_Pulse1_Volume),
         .APU_Pulse2_Out(nes_apu_0_APU_Pulse2_Out),
+        .APU_Pulse2_Timer(nes_apu_0_APU_Pulse2_Timer),
+        .APU_Pulse2_Volume(nes_apu_0_APU_Pulse2_Volume),
         .APU_Status_Out(nes_apu_0_APU_Status_Out),
         .APU_Triangle_Out(nes_apu_0_APU_Triangle_Out),
+        .APU_Triangle_Timer(nes_apu_0_APU_Triangle_Timer),
         .CPU_Addr(nes_cpu_addr_1),
         .CPU_Clk(nes_system_clk_1),
         .CPU_Data(nes_cpu_data_1),
@@ -591,6 +605,11 @@ module design_1
         .probe10(nes_apu_0_APU_DMC_Out),
         .probe11(nes_apu_0_APU_Status_Out),
         .probe12(nes_apu_0_APU_Counter_Out),
+        .probe13(nes_apu_0_APU_Pulse1_Timer),
+        .probe14(nes_apu_0_APU_Pulse1_Volume),
+        .probe15(nes_apu_0_APU_Pulse2_Timer),
+        .probe16(nes_apu_0_APU_Pulse2_Volume),
+        .probe17(nes_apu_0_APU_Triangle_Timer),
         .probe2(nes_cpu_addr_1),
         .probe3(nes_cpu_data_1),
         .probe4(nes_romsel_1),
@@ -622,31 +641,19 @@ module design_1
         .clk(microblaze_0_Clk),
         .probe0(Net),
         .probe1(Net1),
+        .probe10(nes_apu_0_APU_Triangle_Timer),
         .probe2(apu_fifo_empty),
         .probe3(apu_fifo_dout),
         .probe4(apu_fifo_reader_FifoRead),
         .probe5(apu_fifo_reader_DataAvailable),
-        .resetn(1'b1));
+        .probe6(nes_apu_0_APU_Pulse1_Timer),
+        .probe7(nes_apu_0_APU_Pulse1_Volume),
+        .probe8(nes_apu_0_APU_Pulse2_Timer),
+        .probe9(nes_apu_0_APU_Pulse2_Volume),
+        .resetn(rst_clk_wiz_0_100M_peripheral_aresetn));
   design_1_util_vector_logic_0_1 util_vector_logic_0
        (.Op1(fifo_transmitter_0_Midi),
         .Res(util_vector_logic_0_Res1));
-  design_1_vio_0_0 vio_0
-       (.clk(microblaze_0_Clk),
-        .probe_out0(vio_0_probe_out0),
-        .probe_out1(vio_0_probe_out1),
-        .probe_out2(vio_0_probe_out2),
-        .probe_out3(vio_0_probe_out3));
-  design_1_vio_fifo_writer_0_0 vio_fifo_writer_0
-       (.Clk(microblaze_0_Clk),
-        .FifoData(Net),
-        .FifoWrite(Net1),
-        .VioData(xlconcat_0_dout1),
-        .VioWrite(vio_0_probe_out0));
-  design_1_xlconcat_0_2 xlconcat_0
-       (.In0(vio_0_probe_out3),
-        .In1(vio_0_probe_out2),
-        .In2(vio_0_probe_out1),
-        .dout(xlconcat_0_dout1));
 endmodule
 
 module design_1_microblaze_0_axi_periph_1

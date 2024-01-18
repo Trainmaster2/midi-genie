@@ -5,6 +5,6 @@ void reset_channels()
     for (int i=0; i<3; i++)
     {
         reset_notes_hard(i);
-	    pitch_bend(i, 8192);
+	    // pitch_bend(i, 8192);
     }
 }

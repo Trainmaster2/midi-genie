@@ -1,6 +1,6 @@
-22:36:36 **** Incremental Build of project midi_genie_hw ****
-buildplatform.sh 36767 midi_genie_hw no_domain_build 
-XSDB Server Channel: tcfchan#19
+17:22:49 **** Incremental Build of project midi_genie_hw ****
+buildplatform.sh 41917 midi_genie_hw no_domain_build 
+XSDB Server Channel: tcfchan#16
 /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin
 Building the BSP Library for domain  - standalone_microblaze_0 on processor microblaze_0
 make --no-print-directory seq_libs
@@ -11,17 +11,17 @@ make -j 10 --no-print-directory par_libs
 
 Running Make include in microblaze_0/libsrc/bram_v4_8/src
 
-Running Make include in microblaze_0/libsrc/cpu_v2_16/src
-
 make -C microblaze_0/libsrc/bram_v4_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
 PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
 ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
+Running Make include in microblaze_0/libsrc/cpu_v2_16/src
+
+Running Make include in microblaze_0/libsrc/intc_v3_15/src
+
 make -C microblaze_0/libsrc/cpu_v2_16/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
 PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
 ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
-
-Running Make include in microblaze_0/libsrc/intc_v3_15/src
 
 Running Make include in microblaze_0/libsrc/standalone_v8_0/src
 
@@ -47,11 +47,11 @@ on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make libs in microblaze_0/libsrc/cpu_v2_16/src
 
-Running Make libs in microblaze_0/libsrc/intc_v3_15/src
-
 make -C microblaze_0/libsrc/cpu_v2_16/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
 ER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffuncti
 on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+Running Make libs in microblaze_0/libsrc/intc_v3_15/src
 
 make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
 LER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunct
@@ -103,11 +103,18 @@ te_sinit.o microblaze_0/lib/xuartlite_stats.o
 /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/bin/../x86_64-oesdk-linux/usr/bin/microblaze-xilinx-elf/microblaze-xilinx-elf-ar.real: creating microblaze_0/lib/libxil.a
 Finished building libraries
 
-22:37:11 **** Incremental Build of configuration Debug for project midi_genie ****
+17:23:06 **** Incremental Build of configuration Debug for project midi_genie ****
 make all 
 Building file: ../src/apu.cpp
 Invoking: MicroBlaze g++ compiler
 mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/apu.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/apu.d" -MT"src/apu.o" -o "src/apu.o" "../src/apu.cpp"
+In file included from ../src/apu.cpp:3:
+../src/apu.cpp: In function 'void play_volume_message(VolumeBitField)':
+../src/midi.h:14:129: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
+   14 | #define set_volume(channel, volume) Xil_Out32(MIDI_OUT_ID, 0b11'10110000'00000111'00000000 | ((channel & 0x0F) << 16) | (volume & 0x7F))
+../src/apu.cpp:85:13: note: in expansion of macro 'set_volume'
+   85 |             set_volume(volumeMessage.channel, (volumeMessage.volume << 3) | (volumeMessage.volume >> 1));
+      |             ^~~~~~~~~~
 Finished building: ../src/apu.cpp
  
 Building file: ../src/main.cpp
@@ -122,15 +129,15 @@ Finished building: ../src/midi.cpp
  
 Building target: midi_genie.elf
 Invoking: MicroBlaze g++ linker
-mb-g++ -Wl,-T -Wl,../src/lscript.ld -L/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bsplib/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "midi_genie.elf" ./src/apu.o ./src/main.o ./src/midi.o   -Wl,--start-group,-lxil,-lgcc,-lc,-lstdc++,--end-group
+mb-g++ -Wl,-T -Wl,../src/lscript.ld -L/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bsplib/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "midi_genie.elf" ./src/apu.o ./src/calc.o ./src/main.o ./src/midi.o   -Wl,--start-group,-lxil,-lgcc,-lc,-lstdc++,--end-group
 Finished building target: midi_genie.elf
  
 Invoking: MicroBlaze Print Size
 mb-size midi_genie.elf  |tee "midi_genie.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  36040	    328	   6336	  42704	   a6d0	midi_genie.elf
+  34876	    328	   6340	  41544	   a248	midi_genie.elf
 Finished building: midi_genie.elf.size
  
-22:37:17 **** Incremental Build of configuration Debug for project midi_genie_system ****
+17:23:09 **** Incremental Build of configuration Debug for project midi_genie_system ****
 make all 
 Skipping SD card image generation. Reason: The system project only has applications for microblaze processors.

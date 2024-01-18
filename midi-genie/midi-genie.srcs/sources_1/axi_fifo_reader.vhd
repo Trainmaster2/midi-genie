@@ -121,7 +121,10 @@ begin
     
     procRead: process(S_AXI_ACLK) is
     begin
-        if rising_edge(S_AXI_ACLK) then
+        if (S_AXI_ARESETN = '0') then
+            axi_read_data <= (others => '0');
+            dataAvailableBuf <= '0';
+        elsif rising_edge(S_AXI_ACLK) then
             if dataAvailableBuf = '1' then
                 FifoRead <= '0';
             elsif FifoEmpty = '0' then

@@ -128,14 +128,14 @@ output wire [31 : 0] S_AXI_RDATA;
  RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RRESP" *)
 output wire [1 : 0] S_AXI_RRESP;
-input wire [14 : 0] FifoData;
+input wire [15 : 0] FifoData;
 input wire FifoEmpty;
 output wire FifoRead;
 output wire DataAvailable;
 
   axi_fifo_reader #(
     .AXI_DATA_WIDTH(32),
-    .FIFO_DATA_WIDTH(15)
+    .FIFO_DATA_WIDTH(16)
   ) inst (
     .S_AXI_ACLK(S_AXI_ACLK),
     .S_AXI_ARESETN(S_AXI_ARESETN),
