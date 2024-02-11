@@ -33,6 +33,16 @@ union APUBitField {
 
 #define read_apu_message(apuMessage) apuMessage.raw = Xil_In32(APU_IN_ID)
 
+#if USE_HARD_RESET
+
+#define stop_notes(channel) reset_notes_hard(channel)
+
+#else
+
+#define stop_notes(channel) reset_notes_soft(channel)
+
+#endif
+
 #if APU_DEBUG
 
 #define print_pulse_message(pulseMessage) xil_printf("Channel: %d, On/Off: %d, Timer: 0x%03x, Volume: 0x%01x\r\n", pulseMessage.channel, pulseMessage.onoff, pulseMessage.timer, pulseMessage.volume)

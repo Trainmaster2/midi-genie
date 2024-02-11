@@ -35,8 +35,8 @@ module bd_f60c_wrapper
   input [7:0]probe3;
   input [0:0]probe4;
   input [0:0]probe5;
-  input [42:0]probe6;
-  input [42:0]probe7;
+  input [48:0]probe6;
+  input [48:0]probe7;
   input [41:0]probe8;
   input [15:0]probe9;
 
@@ -52,8 +52,8 @@ module bd_f60c_wrapper
   wire [7:0]probe3;
   wire [0:0]probe4;
   wire [0:0]probe5;
-  wire [42:0]probe6;
-  wire [42:0]probe7;
+  wire [48:0]probe6;
+  wire [48:0]probe7;
   wire [41:0]probe8;
   wire [15:0]probe9;
 

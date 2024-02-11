@@ -25,23 +25,6 @@ int main() {
 	
 	xil_printf("Hello, world!\r\n");
 
-	// int note, bend;
-	// for (int i = 0; i<=2048; i++)
-	// {
-	// 	pulse2midi(i, note, bend);
-	// 	xil_printf("%d %d %d\r\n", i, note, bend);
-	// 	reset_notes_soft(0);
-	// 	note_on(0, note, 0xff);
-	// 	pitch_bend(0, bend);
-	// }
-
-	// APUBitField apuMessage;
-	// for (int i = 0; i<2; i++)
-	// {
-	// 	read_apu_message(apuMessage);
-	// 	print_note_message(apuMessage);
-	// }
-
 	while (true) {}
 }
 

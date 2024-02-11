@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Thu Jan 18 13:43:28 2024
+//Date        : Sat Feb 10 23:30:06 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -185,9 +185,9 @@ module design_1
   wire [28:0]nes_apu_0_APU_DMC_Out;
   wire [15:0]nes_apu_0_APU_Noise_Out;
   wire [18:0]nes_apu_0_APU_Pulse1_Message;
-  wire [42:0]nes_apu_0_APU_Pulse1_Out;
+  wire [48:0]nes_apu_0_APU_Pulse1_Out;
   wire [18:0]nes_apu_0_APU_Pulse2_Message;
-  wire [42:0]nes_apu_0_APU_Pulse2_Out;
+  wire [48:0]nes_apu_0_APU_Pulse2_Out;
   wire [6:0]nes_apu_0_APU_Status_Out;
   wire [41:0]nes_apu_0_APU_Triangle_Out;
   wire [14:0]nes_cpu_addr_1;

@@ -18,10 +18,8 @@
       "midi_led_invert": "",
       "reset_manager_0": "",
       "apu_fifo_reader": "",
-      "nes_apu_0": "",
       "system_ila_0": "",
       "system_ila_1": "",
-      "apu_fifo_writer_0": "",
       "apu_fifo": "",
       "microblaze_0_axi_intc": "",
       "mdm_1": "",
@@ -45,7 +43,9 @@
       },
       "midi_fifo_writer": "",
       "midi_fifo": "",
-      "fifo_transmitter_0": ""
+      "fifo_transmitter_0": "",
+      "apu_fifo_writer_0": "",
+      "nes_apu_0": ""
     },
     "interface_ports": {
       "usb_uart": {
@@ -589,129 +589,6 @@
           }
         }
       },
-      "nes_apu_0": {
-        "vlnv": "xilinx.com:module_ref:nes_apu:1.0",
-        "xci_name": "design_1_nes_apu_0_0",
-        "xci_path": "ip/design_1_nes_apu_0_0/design_1_nes_apu_0_0.xci",
-        "inst_hier_path": "nes_apu_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "nes_apu",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "Clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "Reset",
-                "value_src": "constant"
-              }
-            }
-          },
-          "Reset": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "CPU_Clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "CPU_Rst",
-                "value_src": "constant"
-              },
-              "CLK_DOMAIN": {
-                "value": "design_1_nes_system_clk",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "CPU_M2": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "1789773",
-                "value_src": "user_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "design_1_nes_m2",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "CPU_Rst": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "CPU_Addr": {
-            "direction": "I",
-            "left": "14",
-            "right": "0"
-          },
-          "CPU_Data": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "CPU_RomSel": {
-            "direction": "I"
-          },
-          "CPU_RW": {
-            "direction": "I"
-          },
-          "APU_Pulse1_Out": {
-            "direction": "O",
-            "left": "42",
-            "right": "0"
-          },
-          "APU_Pulse2_Out": {
-            "direction": "O",
-            "left": "42",
-            "right": "0"
-          },
-          "APU_Triangle_Out": {
-            "direction": "O",
-            "left": "41",
-            "right": "0"
-          },
-          "APU_Noise_Out": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          },
-          "APU_DMC_Out": {
-            "direction": "O",
-            "left": "28",
-            "right": "0"
-          },
-          "APU_Status_Out": {
-            "direction": "O",
-            "left": "6",
-            "right": "0"
-          },
-          "APU_Counter_Out": {
-            "direction": "O",
-            "left": "1",
-            "right": "0"
-          },
-          "APU_Pulse1_Message": {
-            "direction": "O",
-            "left": "18",
-            "right": "0"
-          },
-          "APU_Pulse2_Message": {
-            "direction": "O",
-            "left": "18",
-            "right": "0"
-          }
-        }
-      },
       "system_ila_0": {
         "vlnv": "xilinx.com:ip:system_ila:1.1",
         "xci_name": "design_1_system_ila_0_0",
@@ -744,60 +621,6 @@
             "mode": "Monitor",
             "vlnv_bus_definition": "xilinx.com:interface:aximm:1.0",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
-          }
-        }
-      },
-      "apu_fifo_writer_0": {
-        "vlnv": "xilinx.com:module_ref:apu_fifo_writer:1.0",
-        "xci_name": "design_1_apu_fifo_writer_0_0",
-        "xci_path": "ip/design_1_apu_fifo_writer_0_0/design_1_apu_fifo_writer_0_0.xci",
-        "inst_hier_path": "apu_fifo_writer_0",
-        "parameters": {
-          "FIFO_DATA_WIDTH": {
-            "value": "19"
-          }
-        },
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "apu_fifo_writer",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "Clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "Reset",
-                "value_src": "constant"
-              }
-            }
-          },
-          "Reset": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "CPU_Rst": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "Pulse1_Message": {
-            "direction": "I",
-            "left": "18",
-            "right": "0"
-          },
-          "Pulse2_Message": {
-            "direction": "I",
-            "left": "18",
-            "right": "0"
-          },
-          "FifoData": {
-            "direction": "O",
-            "left": "18",
-            "right": "0"
-          },
-          "FifoWrite": {
-            "direction": "O"
           }
         }
       },
@@ -1962,6 +1785,183 @@
             }
           }
         }
+      },
+      "apu_fifo_writer_0": {
+        "vlnv": "xilinx.com:module_ref:apu_fifo_writer:1.0",
+        "xci_name": "design_1_apu_fifo_writer_0_0",
+        "xci_path": "ip/design_1_apu_fifo_writer_0_0/design_1_apu_fifo_writer_0_0.xci",
+        "inst_hier_path": "apu_fifo_writer_0",
+        "parameters": {
+          "FIFO_DATA_WIDTH": {
+            "value": "19"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "apu_fifo_writer",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "Clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "Reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "Reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "CPU_Rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "Pulse1_Message": {
+            "direction": "I",
+            "left": "18",
+            "right": "0"
+          },
+          "Pulse2_Message": {
+            "direction": "I",
+            "left": "18",
+            "right": "0"
+          },
+          "FifoData": {
+            "direction": "O",
+            "left": "18",
+            "right": "0"
+          },
+          "FifoWrite": {
+            "direction": "O"
+          }
+        }
+      },
+      "nes_apu_0": {
+        "vlnv": "xilinx.com:module_ref:nes_apu:1.0",
+        "xci_name": "design_1_nes_apu_0_0",
+        "xci_path": "ip/design_1_nes_apu_0_0/design_1_nes_apu_0_0.xci",
+        "inst_hier_path": "nes_apu_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "nes_apu",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "Clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "Reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "Reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "CPU_Clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "CPU_Rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_nes_system_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "CPU_M2": {
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "1789773",
+                "value_src": "user_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_nes_m2",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "CPU_Rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "CPU_Addr": {
+            "direction": "I",
+            "left": "14",
+            "right": "0"
+          },
+          "CPU_Data": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "CPU_RomSel": {
+            "direction": "I"
+          },
+          "CPU_RW": {
+            "direction": "I"
+          },
+          "APU_Pulse1_Out": {
+            "direction": "O",
+            "left": "48",
+            "right": "0"
+          },
+          "APU_Pulse2_Out": {
+            "direction": "O",
+            "left": "48",
+            "right": "0"
+          },
+          "APU_Triangle_Out": {
+            "direction": "O",
+            "left": "41",
+            "right": "0"
+          },
+          "APU_Noise_Out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "APU_DMC_Out": {
+            "direction": "O",
+            "left": "28",
+            "right": "0"
+          },
+          "APU_Status_Out": {
+            "direction": "O",
+            "left": "6",
+            "right": "0"
+          },
+          "APU_Counter_Out": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "APU_Pulse1_Message": {
+            "direction": "O",
+            "left": "18",
+            "right": "0"
+          },
+          "APU_Pulse2_Message": {
+            "direction": "O",
+            "left": "18",
+            "right": "0"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2133,8 +2133,6 @@
           "system_ila_0/clk",
           "apu_fifo/clk",
           "system_ila_1/clk",
-          "nes_apu_0/Clk",
-          "apu_fifo_writer_0/Clk",
           "apu_fifo_reader/S_AXI_ACLK",
           "axi_uartlite_0/s_axi_aclk",
           "microblaze_0_axi_periph/M03_ACLK",
@@ -2149,7 +2147,9 @@
           "microblaze_0_axi_intc/s_axi_aclk",
           "midi_fifo/clk",
           "fifo_transmitter_0/Clk",
-          "midi_fifo_writer/S_AXI_ACLK"
+          "midi_fifo_writer/S_AXI_ACLK",
+          "apu_fifo_writer_0/Clk",
+          "nes_apu_0/Clk"
         ]
       },
       "microblaze_0_intr": {
@@ -2179,9 +2179,9 @@
       "nes_apu_0_APU_Pulse1_Message": {
         "ports": [
           "nes_apu_0/APU_Pulse1_Message",
-          "apu_fifo_writer_0/Pulse1_Message",
           "system_ila_1/probe6",
-          "system_ila_0/probe13"
+          "system_ila_0/probe13",
+          "apu_fifo_writer_0/Pulse1_Message"
         ]
       },
       "nes_apu_0_APU_Pulse1_Out": {
@@ -2193,9 +2193,9 @@
       "nes_apu_0_APU_Pulse2_Message": {
         "ports": [
           "nes_apu_0/APU_Pulse2_Message",
-          "apu_fifo_writer_0/Pulse2_Message",
           "system_ila_1/probe7",
-          "system_ila_0/probe14"
+          "system_ila_0/probe14",
+          "apu_fifo_writer_0/Pulse2_Message"
         ]
       },
       "nes_apu_0_APU_Pulse2_Out": {
@@ -2308,8 +2308,6 @@
           "rst_clk_wiz_0_100M/peripheral_aresetn",
           "reset_manager_0/peripheral_aresetn",
           "system_ila_1/resetn",
-          "nes_apu_0/Reset",
-          "apu_fifo_writer_0/Reset",
           "apu_fifo_reader/S_AXI_ARESETN",
           "axi_uartlite_0/s_axi_aresetn",
           "microblaze_0_axi_periph/M03_ARESETN",
@@ -2320,7 +2318,9 @@
           "microblaze_0_axi_periph/ARESETN",
           "microblaze_0_axi_intc/s_axi_aresetn",
           "fifo_transmitter_0/Reset",
-          "midi_fifo_writer/S_AXI_ARESETN"
+          "midi_fifo_writer/S_AXI_ARESETN",
+          "apu_fifo_writer_0/Reset",
+          "nes_apu_0/Reset"
         ]
       },
       "sys_clock_1": {

@@ -14,11 +14,12 @@ package nes_apu_records is
         sweep_negate        : std_logic;
         sweep_shift         : std_logic_vector(2 downto 0);
         timer_load          : std_logic_vector(10 downto 0);
-        length_counter      : std_logic_vector(4 downto 0);
-        timer               : std_logic_vector(10 downto 0);
+        length_counter_load : std_logic_vector(4 downto 0);
+        timer               : unsigned(10 downto 0);
+        length_counter      : unsigned(5 downto 0);
     end record t_APU_PULSE;
 
-    constant c_APU_PULSE_VECTOR  : integer := 43;
+    constant c_APU_PULSE_VECTOR  : integer := 49;
     constant c_APU_PULSE_MESSAGE : integer := 19;
     constant c_APU_PULSE_INIT    : t_APU_PULSE := (duty => (others => '0'),
                                                    length_counter_halt => '0',
@@ -29,16 +30,17 @@ package nes_apu_records is
                                                    sweep_negate => '0',
                                                    sweep_shift => (others => '0'),
                                                    timer_load => (others => '0'),
-                                                   length_counter => (others => '0'),
-                                                   timer => (others => '0'));
+                                                   length_counter_load => (others => '0'),
+                                                   timer => (others => '0'),
+                                                   length_counter => (others => '0'));
 
     function f_APU_PULSE_2_VECTOR (rec: t_APU_PULSE) return std_logic_vector;
     function f_VECTOR_2_APU_PULSE (vec: std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0)) return t_APU_PULSE;
-    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; PulseOn: std_logic; rec: t_APU_PULSE) return std_logic_vector;
+    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; rec: t_APU_PULSE) return std_logic_vector;
     function f_APU_PULSE_REG1 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
     function f_APU_PULSE_REG2 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
     function f_APU_PULSE_REG3 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
-    function f_APU_PULSE_REG4 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
+    function f_APU_PULSE_REG4 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0); enabled: std_logic) return t_APU_PULSE;
 
 
     type t_APU_TRIANGLE is record
@@ -158,36 +160,37 @@ package body nes_apu_records is
     function f_APU_PULSE_2_VECTOR (rec: t_APU_PULSE) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0);
     begin
-        vec := rec.duty & rec.length_counter_halt & rec.constant_volume & rec.volume & rec.sweep_enable & rec.sweep_period & rec.sweep_negate & rec.sweep_shift & rec.timer_load & rec.length_counter & rec.timer;
+        vec := rec.duty & rec.length_counter_halt & rec.constant_volume & rec.volume & rec.sweep_enable & rec.sweep_period & rec.sweep_negate & rec.sweep_shift & rec.timer_load & rec.length_counter_load & std_logic_vector(rec.timer) & std_logic_vector(rec.length_counter) ;
         return vec;
     end;
 
     function f_VECTOR_2_APU_PULSE (vec: std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0)) return t_APU_PULSE is
         variable rec_out : t_APU_PULSE;
     begin
-        rec_out.duty                := vec(42 downto 41);
-        rec_out.length_counter_halt := vec(40);
-        rec_out.constant_volume     := vec(39);
-        rec_out.volume              := vec(38 downto 35);
-        rec_out.sweep_enable        := vec(34);
-        rec_out.sweep_period        := vec(33 downto 31);
-        rec_out.sweep_negate        := vec(30);
-        rec_out.sweep_shift         := vec(29 downto 27);
-        rec_out.timer_load          := vec(26 downto 16);
-        rec_out.length_counter      := vec(15 downto 11);
-        rec_out.timer               := vec(10 downto 0);
+        rec_out.duty                := vec(48 downto 47);
+        rec_out.length_counter_halt := vec(46);
+        rec_out.constant_volume     := vec(45);
+        rec_out.volume              := vec(44 downto 41);
+        rec_out.sweep_enable        := vec(40);
+        rec_out.sweep_period        := vec(39 downto 37);
+        rec_out.sweep_negate        := vec(36);
+        rec_out.sweep_shift         := vec(35 downto 33);
+        rec_out.timer_load          := vec(32 downto 22);
+        rec_out.length_counter_load := vec(21 downto 17);
+        rec_out.timer               := unsigned(vec(16 downto 6));
+        rec_out.length_counter      := unsigned(vec(5 downto 0));
         return rec_out;
     end;
 
-    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; PulseOn: std_logic; rec: t_APU_PULSE) return std_logic_vector is
+    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; rec: t_APU_PULSE) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
     begin
         vec(0) := Channel;
-        vec(3) := PulseOn;
-        if (PulseOn = '1') then
-            vec(14 downto 4)  := rec.timer_load;
-            vec(18 downto 15) := rec.volume;
+        if (rec.length_counter > 0) then
+            vec(3) := '1';
         end if;
+        vec(14 downto 4)  := rec.timer_load;
+        vec(18 downto 15) := rec.volume;
         return vec;
     end;
 
@@ -221,11 +224,18 @@ package body nes_apu_records is
         return rec_out;
     end;
 
-    function f_APU_PULSE_REG4 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE is
+    function f_APU_PULSE_REG4 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0); enabled: std_logic) return t_APU_PULSE is
         variable rec_out : t_APU_PULSE;
     begin
         rec_out := rec;
-        rec_out.length_counter          := vec(7 downto 3);
+        rec_out.length_counter_load     := vec(7 downto 3);
+        if (enabled = '0') then
+            rec_out.length_counter      := (others => '0');
+        elsif (rec.length_counter_halt = '1') then
+            rec_out.length_counter      := (0 => '1', others => '0');
+        else
+            rec_out.length_counter      := unsigned('0' & vec(7 downto 3)) + 1;
+        end if;
         rec_out.timer_load(10 downto 8) := vec(2 downto 0);
         return rec_out;
     end;

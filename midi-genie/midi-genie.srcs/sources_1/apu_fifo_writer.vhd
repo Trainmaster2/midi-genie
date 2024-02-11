@@ -35,11 +35,11 @@ begin
             pulse1_message_last <= (others => '0');
             pulse2_message_last <= (others => '0');
         elsif rising_edge(Clk) then
-            if (Pulse1_Message /= pulse1_message_last) then
+            if ((Pulse1_Message /= pulse1_message_last) and ((Pulse1_Message(3) = '1') or (pulse1_message_last(3) = '1'))) then
                 FifoData(c_APU_PULSE_MESSAGE - 1 downto 0) <= Pulse1_Message;
                 FifoWrite <= '1';
                 pulse1_message_last <= Pulse1_Message;
-            elsif (Pulse2_Message /= pulse2_message_last) then
+            elsif ((Pulse2_Message /= pulse2_message_last) and ((Pulse2_Message(3) = '1') or (pulse2_message_last(3) = '1'))) then
                 FifoData(c_APU_PULSE_MESSAGE - 1 downto 0) <= Pulse2_Message;
                 FifoWrite <= '1';
                 pulse2_message_last <= Pulse2_Message;
