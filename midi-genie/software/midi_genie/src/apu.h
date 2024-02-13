@@ -33,6 +33,12 @@ union APUBitField {
 
 #define read_apu_message(apuMessage) apuMessage.raw = Xil_In32(APU_IN_ID)
 
+struct LastPulse{
+    PulseBitField message;
+    int note;
+    int bend;
+};
+
 #if USE_HARD_RESET
 
 #define stop_notes(channel) reset_notes_hard(channel)

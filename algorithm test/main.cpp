@@ -34,6 +34,11 @@ union BitFieldUnion {
     uint32_t raw;
 };
 
+struct LastPulse{
+    int note;
+    int bend;
+};
+
 int main()
 {
     // debug_pulse(1, 153, 7700);
@@ -56,6 +61,14 @@ int main()
     #else
     cout << "B" << endl;
     #endif
+
+    LastPulse lastPulse1 = {};
+    int a = 5;
+    cout << (a == lastPulse1.note) << endl;
+    lastPulse1.note = a;
+    cout << (a == lastPulse1.note) << endl;
+    lastPulse1 = {};
+    cout << (a == lastPulse1.note) << endl;
 }
 
 double note2frequency(double note)

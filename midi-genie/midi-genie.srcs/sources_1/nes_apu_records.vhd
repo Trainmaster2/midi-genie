@@ -231,8 +231,6 @@ package body nes_apu_records is
         rec_out.length_counter_load     := vec(7 downto 3);
         if (enabled = '0') then
             rec_out.length_counter      := (others => '0');
-        elsif (rec.length_counter_halt = '1') then
-            rec_out.length_counter      := (0 => '1', others => '0');
         else
             rec_out.length_counter      := unsigned('0' & vec(7 downto 3)) + 1;
         end if;
