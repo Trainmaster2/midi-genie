@@ -595,11 +595,14 @@
         "xci_path": "ip/design_1_system_ila_0_0/design_1_system_ila_0_0.xci",
         "inst_hier_path": "system_ila_0",
         "parameters": {
+          "ALL_PROBE_SAME_MU_CNT": {
+            "value": "1"
+          },
           "C_MON_TYPE": {
             "value": "NATIVE"
           },
           "C_NUM_OF_PROBES": {
-            "value": "15"
+            "value": "20"
           }
         }
       },
@@ -1792,6 +1795,18 @@
         "xci_path": "ip/design_1_apu_fifo_writer_0_0/design_1_apu_fifo_writer_0_0.xci",
         "inst_hier_path": "apu_fifo_writer_0",
         "parameters": {
+          "ENABLE_DMC": {
+            "value": "false"
+          },
+          "ENABLE_NOISE": {
+            "value": "false"
+          },
+          "ENABLE_PULSE_2": {
+            "value": "true"
+          },
+          "ENABLE_TRIANGLE": {
+            "value": "false"
+          },
           "FIFO_DATA_WIDTH": {
             "value": "19"
           }
@@ -1960,6 +1975,21 @@
             "direction": "O",
             "left": "18",
             "right": "0"
+          },
+          "dbg_apu_tick": {
+            "direction": "O"
+          },
+          "dbg_apu_half": {
+            "direction": "O"
+          },
+          "dbg_apu_qtr": {
+            "direction": "O"
+          },
+          "dbg_overflow_1": {
+            "direction": "O"
+          },
+          "dbg_overflow_2": {
+            "direction": "O"
           }
         }
       }
@@ -2214,6 +2244,36 @@
         "ports": [
           "nes_apu_0/APU_Triangle_Out",
           "system_ila_0/probe8"
+        ]
+      },
+      "nes_apu_0_dbg_apu_half": {
+        "ports": [
+          "nes_apu_0/dbg_apu_half",
+          "system_ila_0/probe16"
+        ]
+      },
+      "nes_apu_0_dbg_apu_qtr": {
+        "ports": [
+          "nes_apu_0/dbg_apu_qtr",
+          "system_ila_0/probe17"
+        ]
+      },
+      "nes_apu_0_dbg_apu_tick": {
+        "ports": [
+          "nes_apu_0/dbg_apu_tick",
+          "system_ila_0/probe15"
+        ]
+      },
+      "nes_apu_0_dbg_overflow_1": {
+        "ports": [
+          "nes_apu_0/dbg_overflow_1",
+          "system_ila_0/probe18"
+        ]
+      },
+      "nes_apu_0_dbg_overflow_2": {
+        "ports": [
+          "nes_apu_0/dbg_overflow_2",
+          "system_ila_0/probe19"
         ]
       },
       "nes_cpu_addr_1": {

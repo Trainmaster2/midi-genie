@@ -6,7 +6,12 @@ use work.nes_apu_records.all;
 
 entity apu_fifo_writer is
     generic (
-        FIFO_DATA_WIDTH : natural := 32
+        FIFO_DATA_WIDTH : natural := 32;
+        ENABLE_PULSE_1  : boolean := true;
+        ENABLE_PULSE_2  : boolean := true;
+        ENABLE_TRIANGLE : boolean := true;
+        ENABLE_NOISE    : boolean := true;
+        ENABLE_DMC      : boolean := true
     );
     port (
         Clk            : in  std_logic;
@@ -35,11 +40,11 @@ begin
             pulse1_message_last <= (others => '0');
             pulse2_message_last <= (others => '0');
         elsif rising_edge(Clk) then
-            if ((Pulse1_Message /= pulse1_message_last) and ((Pulse1_Message(3) = '1') or (pulse1_message_last(3) = '1'))) then
+            if ENABLE_PULSE_1 and ((Pulse1_Message /= pulse1_message_last) and ((Pulse1_Message(3) = '1') or (pulse1_message_last(3) = '1'))) then
                 FifoData(c_APU_PULSE_MESSAGE - 1 downto 0) <= Pulse1_Message;
                 FifoWrite <= '1';
                 pulse1_message_last <= Pulse1_Message;
-            elsif ((Pulse2_Message /= pulse2_message_last) and ((Pulse2_Message(3) = '1') or (pulse2_message_last(3) = '1'))) then
+            elsif ENABLE_PULSE_2 and ((Pulse2_Message /= pulse2_message_last) and ((Pulse2_Message(3) = '1') or (pulse2_message_last(3) = '1'))) then
                 FifoData(c_APU_PULSE_MESSAGE - 1 downto 0) <= Pulse2_Message;
                 FifoWrite <= '1';
                 pulse2_message_last <= Pulse2_Message;

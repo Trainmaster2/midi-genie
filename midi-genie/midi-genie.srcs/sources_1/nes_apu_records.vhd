@@ -11,9 +11,9 @@ package nes_apu_records is
         envelope            : unsigned(3 downto 0);
         volume              : unsigned(3 downto 0);
         sweep_enable        : std_logic;
-        sweep_period        : std_logic_vector(2 downto 0);
+        sweep_period        : unsigned(2 downto 0);
         sweep_negate        : std_logic;
-        sweep_shift         : std_logic_vector(2 downto 0);
+        sweep_shift         : unsigned(2 downto 0);
         timer_load          : std_logic_vector(10 downto 0);
         length_counter_load : std_logic_vector(4 downto 0);
         timer               : unsigned(10 downto 0);
@@ -38,7 +38,7 @@ package nes_apu_records is
 
     function f_APU_PULSE_2_VECTOR (rec: t_APU_PULSE) return std_logic_vector;
     function f_VECTOR_2_APU_PULSE (vec: std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0)) return t_APU_PULSE;
-    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; rec: t_APU_PULSE) return std_logic_vector;
+    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; rec: t_APU_PULSE; overflow_mute: std_logic) return std_logic_vector;
     function f_APU_PULSE_REG1 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
     function f_APU_PULSE_REG2 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
     function f_APU_PULSE_REG3 (rec: t_APU_PULSE; vec: std_logic_vector(7 downto 0)) return t_APU_PULSE;
@@ -162,7 +162,7 @@ package body nes_apu_records is
     function f_APU_PULSE_2_VECTOR (rec: t_APU_PULSE) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0);
     begin
-        vec := rec.duty & rec.length_counter_halt & rec.constant_volume & std_logic_vector(rec.envelope) & std_logic_vector(rec.volume) & rec.sweep_enable & rec.sweep_period & rec.sweep_negate & rec.sweep_shift & rec.timer_load & rec.length_counter_load & std_logic_vector(rec.timer) & std_logic_vector(rec.length_counter) ;
+        vec := rec.duty & rec.length_counter_halt & rec.constant_volume & std_logic_vector(rec.envelope) & std_logic_vector(rec.volume) & rec.sweep_enable & std_logic_vector(rec.sweep_period) & rec.sweep_negate & std_logic_vector(rec.sweep_shift) & rec.timer_load & rec.length_counter_load & std_logic_vector(rec.timer) & std_logic_vector(rec.length_counter) ;
         return vec;
     end;
 
@@ -175,9 +175,9 @@ package body nes_apu_records is
         rec_out.envelope            := unsigned(vec(48 downto 45));
         rec_out.volume              := unsigned(vec(44 downto 41));
         rec_out.sweep_enable        := vec(40);
-        rec_out.sweep_period        := vec(39 downto 37);
+        rec_out.sweep_period        := unsigned(vec(39 downto 37));
         rec_out.sweep_negate        := vec(36);
-        rec_out.sweep_shift         := vec(35 downto 33);
+        rec_out.sweep_shift         := unsigned(vec(35 downto 33));
         rec_out.timer_load          := vec(32 downto 22);
         rec_out.length_counter_load := vec(21 downto 17);
         rec_out.timer               := unsigned(vec(16 downto 6));
@@ -185,14 +185,14 @@ package body nes_apu_records is
         return rec_out;
     end;
 
-    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; rec: t_APU_PULSE) return std_logic_vector is
+    function f_APU_PULSE_2_MESSAGE (Channel: std_logic; rec: t_APU_PULSE; overflow_mute: std_logic) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
     begin
         vec(0) := Channel;
-        if (rec.length_counter > 0) then
+        if (rec.length_counter > 0) and (rec.timer >= 8) and (overflow_mute = '0') then
             vec(3) := '1';
         end if;
-        vec(14 downto 4)  := rec.timer_load;
+        vec(14 downto 4)  := std_logic_vector(rec.timer);
         if (rec.constant_volume = '1') then
             vec(18 downto 15) := std_logic_vector(rec.envelope);
         else
@@ -217,9 +217,9 @@ package body nes_apu_records is
     begin
         rec_out := rec;
         rec_out.sweep_enable := vec(7);
-        rec_out.sweep_period := vec(6 downto 4);
+        rec_out.sweep_period := unsigned(vec(6 downto 4));
         rec_out.sweep_negate := vec(3);
-        rec_out.sweep_shift  := vec(2 downto 0);
+        rec_out.sweep_shift  := unsigned(vec(2 downto 0));
         return rec_out;
     end;
 
@@ -228,6 +228,7 @@ package body nes_apu_records is
     begin
         rec_out := rec;
         rec_out.timer_load(7 downto 0) := vec;
+        rec_out.timer(7 downto 0)      := unsigned(vec);
         return rec_out;
     end;
 
@@ -239,9 +240,44 @@ package body nes_apu_records is
         if (enabled = '0') then
             rec_out.length_counter      := (others => '0');
         else
-            rec_out.length_counter      := unsigned('0' & vec(7 downto 3)) + 1;
+            case (vec(7 downto 3)) is
+                when x"00" => rec_out.length_counter := to_unsigned(10, 6);
+                when x"01" => rec_out.length_counter := to_unsigned(254, 6);
+                when x"02" => rec_out.length_counter := to_unsigned(20, 6);
+                when x"03" => rec_out.length_counter := to_unsigned(2, 6);
+                when x"04" => rec_out.length_counter := to_unsigned(40, 6);
+                when x"05" => rec_out.length_counter := to_unsigned(4, 6);
+                when x"06" => rec_out.length_counter := to_unsigned(80, 6);
+                when x"07" => rec_out.length_counter := to_unsigned(6, 6);
+                when x"08" => rec_out.length_counter := to_unsigned(160, 6);
+                when x"09" => rec_out.length_counter := to_unsigned(8, 6);
+                when x"0A" => rec_out.length_counter := to_unsigned(60, 6);
+                when x"0B" => rec_out.length_counter := to_unsigned(10, 6);
+                when x"0C" => rec_out.length_counter := to_unsigned(14, 6);
+                when x"0D" => rec_out.length_counter := to_unsigned(12, 6);
+                when x"0E" => rec_out.length_counter := to_unsigned(26, 6);
+                when x"0F" => rec_out.length_counter := to_unsigned(14, 6);
+                when x"10" => rec_out.length_counter := to_unsigned(12, 6);
+                when x"11" => rec_out.length_counter := to_unsigned(16, 6);
+                when x"12" => rec_out.length_counter := to_unsigned(24, 6);
+                when x"13" => rec_out.length_counter := to_unsigned(18, 6);
+                when x"14" => rec_out.length_counter := to_unsigned(48, 6);
+                when x"15" => rec_out.length_counter := to_unsigned(20, 6);
+                when x"16" => rec_out.length_counter := to_unsigned(96, 6);
+                when x"17" => rec_out.length_counter := to_unsigned(22, 6);
+                when x"18" => rec_out.length_counter := to_unsigned(192, 6);
+                when x"19" => rec_out.length_counter := to_unsigned(24, 6);
+                when x"1A" => rec_out.length_counter := to_unsigned(72, 6);
+                when x"1B" => rec_out.length_counter := to_unsigned(26, 6);
+                when x"1C" => rec_out.length_counter := to_unsigned(16, 6);
+                when x"1D" => rec_out.length_counter := to_unsigned(28, 6);
+                when x"1E" => rec_out.length_counter := to_unsigned(32, 6);
+                when x"1F" => rec_out.length_counter := to_unsigned(30, 6);
+                when others => null;
+            end case;
         end if;
         rec_out.timer_load(10 downto 8) := vec(2 downto 0);
+        rec_out.timer(10 downto 8)      := unsigned(vec(2 downto 0));
         return rec_out;
     end;
     

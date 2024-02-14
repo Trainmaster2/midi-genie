@@ -59,9 +59,11 @@ void play_pulse_message(PulseBitField pulseMessage)
     if (pulseMessage.channel) { lastMessage = &pulse2; }
     else { lastMessage = &pulse1; }
 
-    if (!pulseMessage.onoff || pulseMessage.timer < 8)
+    if (!pulseMessage.onoff)
     {
-        reset_notes_soft(pulseMessage.channel);
+        stop_notes(pulseMessage.channel);
+        lastMessage->note = -1;
+        lastMessage->bend = -1;
     }
     else
     {
@@ -70,7 +72,7 @@ void play_pulse_message(PulseBitField pulseMessage)
         if ((pulseMessage.timer != lastMessage->message.timer) || (pulseMessage.volume != lastMessage->message.volume))
         {
             pulse2midi(pulseMessage.timer, note, bend);
-            stop_notes(pulseMessage.channel);
+            if (note != lastMessage->note) {stop_notes(pulseMessage.channel)};
 #if USE_FINE_ADJUST            
             if (bend != lastMessage->bend) {pitch_bend(pulseMessage.channel, bend);}
 #endif
@@ -85,7 +87,8 @@ void play_pulse_message(PulseBitField pulseMessage)
         if (pulseMessage.timer != lastMessage->message.timer)
         {
             pulse2midi(pulseMessage.timer, note, bend);
-            stop_notes(pulseMessage.channel);
+            if (note != lastMessage->note) {stop_notes(pulseMessage.channel);}
+
 #if USE_VOLUME
             if (pulseMessage.volume != lastMessage->message.volume) { set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1)); }
 #endif

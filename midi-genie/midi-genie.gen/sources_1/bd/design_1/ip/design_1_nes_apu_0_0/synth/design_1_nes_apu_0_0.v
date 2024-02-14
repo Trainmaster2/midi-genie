@@ -73,7 +73,12 @@ module design_1_nes_apu_0_0 (
   APU_Status_Out,
   APU_Counter_Out,
   APU_Pulse1_Message,
-  APU_Pulse2_Message
+  APU_Pulse2_Message,
+  dbg_apu_tick,
+  dbg_apu_half,
+  dbg_apu_qtr,
+  dbg_overflow_1,
+  dbg_overflow_2
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
@@ -102,6 +107,11 @@ output wire [6 : 0] APU_Status_Out;
 output wire [1 : 0] APU_Counter_Out;
 output wire [18 : 0] APU_Pulse1_Message;
 output wire [18 : 0] APU_Pulse2_Message;
+output wire dbg_apu_tick;
+output wire dbg_apu_half;
+output wire dbg_apu_qtr;
+output wire dbg_overflow_1;
+output wire dbg_overflow_2;
 
   nes_apu inst (
     .Clk(Clk),
@@ -121,6 +131,11 @@ output wire [18 : 0] APU_Pulse2_Message;
     .APU_Status_Out(APU_Status_Out),
     .APU_Counter_Out(APU_Counter_Out),
     .APU_Pulse1_Message(APU_Pulse1_Message),
-    .APU_Pulse2_Message(APU_Pulse2_Message)
+    .APU_Pulse2_Message(APU_Pulse2_Message),
+    .dbg_apu_tick(dbg_apu_tick),
+    .dbg_apu_half(dbg_apu_half),
+    .dbg_apu_qtr(dbg_apu_qtr),
+    .dbg_overflow_1(dbg_overflow_1),
+    .dbg_overflow_2(dbg_overflow_2)
   );
 endmodule

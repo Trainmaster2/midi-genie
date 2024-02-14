@@ -79,7 +79,12 @@ output wire [18 : 0] FifoData;
 output wire FifoWrite;
 
   apu_fifo_writer #(
-    .FIFO_DATA_WIDTH(19)
+    .FIFO_DATA_WIDTH(19),
+    .ENABLE_PULSE_1(1'B1),
+    .ENABLE_PULSE_2(1'B1),
+    .ENABLE_TRIANGLE(1'B0),
+    .ENABLE_NOISE(1'B0),
+    .ENABLE_DMC(1'B0)
   ) inst (
     .Clk(Clk),
     .Reset(Reset),

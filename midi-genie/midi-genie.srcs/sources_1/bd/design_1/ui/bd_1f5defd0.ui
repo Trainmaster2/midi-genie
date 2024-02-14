@@ -6,8 +6,8 @@
    "Color Coded_ScaleFactor":"0.389091",
    "Color Coded_TopLeft":"-1627,0",
    "Default View_Layers":"/sys_clock_1:true|/microblaze_0_Clk:true|/microblaze/mdm_1_debug_sys_rst:true|/reset_manager_0_nes_resetn:true|/reset_1:true|/rst_clk_wiz_0_100M_mb_reset:true|/reset_manager_0_dual_reset:true|/rst_clk_wiz_0_100M_peripheral_aresetn:true|/nes_system_clk_1:true|/nes_m2_1:true|/rst_clk_wiz_0_100M_bus_struct_reset:true|",
-   "Default View_ScaleFactor":"0.257576",
-   "Default View_TopLeft":"-2170,8",
+   "Default View_ScaleFactor":"0.258286",
+   "Default View_TopLeft":"-2176,0",
    "Display-PortTypeClock":"true",
    "Display-PortTypeOthers":"true",
    "Display-PortTypeReset":"true",
@@ -24,101 +24,106 @@
    "Reduced Jogs_TopLeft":"-1307,0",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port usb_uart -pg 1 -lvl 8 -x 2770 -y 1070 -defaultsOSRD
+preplace port usb_uart -pg 1 -lvl 8 -x 2800 -y 1170 -defaultsOSRD
 preplace port port-id_nes_cpu_rw -pg 1 -lvl 0 -x 0 -y 180 -defaultsOSRD
 preplace port port-id_nes_romsel -pg 1 -lvl 0 -x 0 -y 160 -defaultsOSRD
 preplace port port-id_nes_system_clk -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
-preplace port port-id_midi_out -pg 1 -lvl 8 -x 2770 -y 1510 -defaultsOSRD
+preplace port port-id_midi_out -pg 1 -lvl 8 -x 2800 -y 1610 -defaultsOSRD
 preplace port port-id_nes_m2 -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
-preplace port port-id_btn1 -pg 1 -lvl 0 -x 0 -y 800 -defaultsOSRD
-preplace port port-id_sys_clock -pg 1 -lvl 0 -x 0 -y 1210 -defaultsOSRD
-preplace port port-id_reset -pg 1 -lvl 0 -x 0 -y 1130 -defaultsOSRD
-preplace portBus rgb_led -pg 1 -lvl 8 -x 2770 -y 1450 -defaultsOSRD
-preplace portBus led -pg 1 -lvl 8 -x 2770 -y 1580 -defaultsOSRD
+preplace port port-id_btn1 -pg 1 -lvl 0 -x 0 -y 890 -defaultsOSRD
+preplace port port-id_sys_clock -pg 1 -lvl 0 -x 0 -y 1320 -defaultsOSRD
+preplace port port-id_reset -pg 1 -lvl 0 -x 0 -y 1240 -defaultsOSRD
+preplace portBus rgb_led -pg 1 -lvl 8 -x 2800 -y 1550 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 8 -x 2800 -y 1680 -defaultsOSRD
 preplace portBus nes_cpu_addr -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
 preplace portBus nes_cpu_data -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
-preplace inst rgb_off -pg 1 -lvl 7 -x 2600 -y 1450 -defaultsOSRD
-preplace inst led_concat -pg 1 -lvl 7 -x 2600 -y 1580 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 1200 -defaultsOSRD
-preplace inst rst_clk_wiz_0_100M -pg 1 -lvl 2 -x 430 -y 1150 -defaultsOSRD
-preplace inst midi_led_invert -pg 1 -lvl 6 -x 2250 -y 1570 -defaultsOSRD
-preplace inst reset_manager_0 -pg 1 -lvl 3 -x 820 -y 790 -defaultsOSRD
-preplace inst apu_fifo_reader -pg 1 -lvl 6 -x 2250 -y 870 -defaultsOSRD
-preplace inst system_ila_0 -pg 1 -lvl 6 -x 2250 -y 210 -defaultsOSRD
-preplace inst system_ila_1 -pg 1 -lvl 6 -x 2250 -y 610 -defaultsOSRD
-preplace inst apu_fifo -pg 1 -lvl 7 -x 2600 -y 440 -defaultsOSRD
-preplace inst microblaze_0_axi_intc -pg 1 -lvl 3 -x 820 -y 1000 -defaultsOSRD
-preplace inst mdm_1 -pg 1 -lvl 3 -x 820 -y 1180 -defaultsOSRD
-preplace inst microblaze_0 -pg 1 -lvl 4 -x 1320 -y 1180 -defaultsOSRD
-preplace inst axi_uartlite_0 -pg 1 -lvl 6 -x 2250 -y 1080 -defaultsOSRD
-preplace inst microblaze_0_xlconcat -pg 1 -lvl 2 -x 430 -y 870 -defaultsOSRD
-preplace inst microblaze_0_axi_periph -pg 1 -lvl 5 -x 1800 -y 1070 -defaultsOSRD
-preplace inst microblaze_0_local_memory -pg 1 -lvl 5 -x 1800 -y 1320 -defaultsOSRD
-preplace inst midi_fifo_writer -pg 1 -lvl 6 -x 2250 -y 1220 -defaultsOSRD
-preplace inst midi_fifo -pg 1 -lvl 7 -x 2600 -y 1270 -defaultsOSRD
-preplace inst fifo_transmitter_0 -pg 1 -lvl 6 -x 2250 -y 1400 -defaultsOSRD
-preplace inst apu_fifo_writer_0 -pg 1 -lvl 5 -x 1800 -y 460 -defaultsOSRD
-preplace inst nes_apu_0 -pg 1 -lvl 4 -x 1320 -y 300 -defaultsOSRD
-preplace netloc Net 1 5 2 2050 420 2420
-preplace netloc Net1 1 5 2 2060 430 2450
-preplace netloc apu_fifo_dout 1 5 2 2090 450 2420J
-preplace netloc apu_fifo_empty 1 5 2 2070 440 NJ
-preplace netloc apu_fifo_reader_DataAvailable 1 5 2 2080 970 2410
-preplace netloc apu_fifo_reader_FifoRead 1 1 6 240 1250 NJ 1250 1080J 880 NJ 880 2060 980 2420
-preplace netloc axi_fifo_writer_0_FifoData 1 6 1 N 1210
-preplace netloc axi_fifo_writer_0_FifoWrite 1 6 1 N 1230
-preplace netloc btn1_1 1 0 3 NJ 800 220 800 NJ
-preplace netloc clk_wiz_0_locked 1 1 1 230 1190n
-preplace netloc fifo_generator_0_dout 1 5 2 2080 1490 2430
-preplace netloc fifo_generator_0_empty 1 5 2 2090 1500 2420
-preplace netloc fifo_transmitter_0_FifoRead 1 6 1 2440 1310n
-preplace netloc fifo_transmitter_0_Midi 1 5 3 2090 1510 2410 1510 NJ
-preplace netloc mdm_1_debug_sys_rst 1 1 3 250 1260 NJ 1260 1000
-preplace netloc microblaze_0_Clk 1 1 6 220 1030 620 880 1040 450 1600 560 2020 1300 2450
-preplace netloc microblaze_0_intr 1 2 1 630 870n
-preplace netloc nes_apu_0_APU_Counter_Out 1 4 2 1620 320 NJ
-preplace netloc nes_apu_0_APU_DMC_Out 1 4 2 1600 280 NJ
-preplace netloc nes_apu_0_APU_Noise_Out 1 4 2 1590 260 NJ
-preplace netloc nes_apu_0_APU_Pulse1_Message 1 4 2 1610 350 2040
-preplace netloc nes_apu_0_APU_Pulse1_Out 1 4 2 1560 200 NJ
-preplace netloc nes_apu_0_APU_Pulse2_Message 1 4 2 1620 360 2030
-preplace netloc nes_apu_0_APU_Pulse2_Out 1 4 2 1570 220 NJ
-preplace netloc nes_apu_0_APU_Status_Out 1 4 2 1610 300 NJ
-preplace netloc nes_apu_0_APU_Triangle_Out 1 4 2 1580 240 NJ
-preplace netloc nes_cpu_addr_1 1 0 6 NJ 120 NJ 120 NJ 120 1030 120 NJ 120 NJ
-preplace netloc nes_cpu_data_1 1 0 6 NJ 140 NJ 140 NJ 140 1010 150 NJ 150 2010J
-preplace netloc nes_cpu_rw_1 1 0 6 NJ 180 NJ 180 NJ 180 1060 160 NJ 160 1980J
+preplace inst rgb_off -pg 1 -lvl 7 -x 2630 -y 1550 -defaultsOSRD
+preplace inst led_concat -pg 1 -lvl 7 -x 2630 -y 1680 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 1310 -defaultsOSRD
+preplace inst rst_clk_wiz_0_100M -pg 1 -lvl 2 -x 420 -y 1260 -defaultsOSRD
+preplace inst midi_led_invert -pg 1 -lvl 6 -x 2280 -y 1670 -defaultsOSRD
+preplace inst reset_manager_0 -pg 1 -lvl 3 -x 830 -y 880 -defaultsOSRD
+preplace inst apu_fifo_reader -pg 1 -lvl 6 -x 2280 -y 1000 -defaultsOSRD
+preplace inst system_ila_0 -pg 1 -lvl 6 -x 2280 -y 260 -defaultsOSRD
+preplace inst system_ila_1 -pg 1 -lvl 6 -x 2280 -y 710 -defaultsOSRD
+preplace inst apu_fifo -pg 1 -lvl 7 -x 2630 -y 570 -defaultsOSRD
+preplace inst microblaze_0_axi_intc -pg 1 -lvl 3 -x 830 -y 1110 -defaultsOSRD
+preplace inst mdm_1 -pg 1 -lvl 3 -x 830 -y 1290 -defaultsOSRD
+preplace inst microblaze_0 -pg 1 -lvl 4 -x 1330 -y 1290 -defaultsOSRD
+preplace inst axi_uartlite_0 -pg 1 -lvl 6 -x 2280 -y 1180 -defaultsOSRD
+preplace inst microblaze_0_xlconcat -pg 1 -lvl 2 -x 420 -y 960 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 5 -x 1820 -y 1170 -defaultsOSRD
+preplace inst microblaze_0_local_memory -pg 1 -lvl 5 -x 1820 -y 1420 -defaultsOSRD
+preplace inst midi_fifo_writer -pg 1 -lvl 6 -x 2280 -y 1320 -defaultsOSRD
+preplace inst midi_fifo -pg 1 -lvl 7 -x 2630 -y 1370 -defaultsOSRD
+preplace inst fifo_transmitter_0 -pg 1 -lvl 6 -x 2280 -y 1500 -defaultsOSRD
+preplace inst apu_fifo_writer_0 -pg 1 -lvl 5 -x 1820 -y 580 -defaultsOSRD
+preplace inst nes_apu_0 -pg 1 -lvl 4 -x 1330 -y 340 -defaultsOSRD
+preplace netloc Net 1 5 2 2080 520 2480J
+preplace netloc Net1 1 5 2 2090 530 NJ
+preplace netloc apu_fifo_dout 1 5 2 2100 540 2480J
+preplace netloc apu_fifo_empty 1 5 2 2110 550 2440J
+preplace netloc apu_fifo_reader_DataAvailable 1 5 2 2120 880 2440
+preplace netloc apu_fifo_reader_FifoRead 1 1 6 230 790 NJ 790 NJ 790 NJ 790 2050 870 2450
+preplace netloc axi_fifo_writer_0_FifoData 1 6 1 N 1310
+preplace netloc axi_fifo_writer_0_FifoWrite 1 6 1 N 1330
+preplace netloc btn1_1 1 0 3 NJ 890 220 890 NJ
+preplace netloc clk_wiz_0_locked 1 1 1 230 1300n
+preplace netloc fifo_generator_0_dout 1 5 2 2110 1590 2460
+preplace netloc fifo_generator_0_empty 1 5 2 2120 1600 2450
+preplace netloc fifo_transmitter_0_FifoRead 1 6 1 2470 1410n
+preplace netloc fifo_transmitter_0_Midi 1 5 3 2120 1610 2440 1610 NJ
+preplace netloc mdm_1_debug_sys_rst 1 1 3 230 1030 620J 1000 1010
+preplace netloc microblaze_0_Clk 1 1 6 220 1140 640 970 1060 530 1640 480 2040 1400 2480
+preplace netloc microblaze_0_intr 1 2 1 630 960n
+preplace netloc nes_apu_0_APU_Counter_Out 1 4 2 1630 320 NJ
+preplace netloc nes_apu_0_APU_DMC_Out 1 4 2 1630 280 NJ
+preplace netloc nes_apu_0_APU_Noise_Out 1 4 2 1630 260 NJ
+preplace netloc nes_apu_0_APU_Pulse1_Message 1 4 2 1630 350 2060
+preplace netloc nes_apu_0_APU_Pulse1_Out 1 4 2 1630 200 NJ
+preplace netloc nes_apu_0_APU_Pulse2_Message 1 4 2 1610 370 2070
+preplace netloc nes_apu_0_APU_Pulse2_Out 1 4 2 1630 220 NJ
+preplace netloc nes_apu_0_APU_Status_Out 1 4 2 1630 300 NJ
+preplace netloc nes_apu_0_APU_Triangle_Out 1 4 2 1630 240 NJ
+preplace netloc nes_cpu_addr_1 1 0 6 NJ 120 NJ 120 NJ 120 1010 120 NJ 120 NJ
+preplace netloc nes_cpu_data_1 1 0 6 NJ 140 NJ 140 NJ 140 1020 130 NJ 130 2110J
+preplace netloc nes_cpu_rw_1 1 0 6 NJ 180 NJ 180 NJ 180 1050 140 NJ 140 2100J
 preplace netloc nes_m2_1 1 0 6 NJ 100 NJ 100 NJ 100 1070 100 NJ 100 NJ
-preplace netloc nes_romsel_1 1 0 6 NJ 160 NJ 160 NJ 160 1050 140 NJ 140 1990J
-preplace netloc nes_system_clk_1 1 0 6 NJ 80 NJ 80 NJ 80 1080 80 NJ 80 NJ
-preplace netloc reset_1 1 0 2 20 1130 NJ
-preplace netloc reset_manager_0_dual_reset 1 3 4 1010J 770 NJ 770 NJ 770 2430
-preplace netloc reset_manager_0_nes_resetn 1 3 2 1000 460 NJ
-preplace netloc reset_manager_0_peripheral_areset 1 3 4 NJ 760 NJ 760 2000J 1310 2410
-preplace netloc rgb_off_dout 1 7 1 NJ 1450
-preplace netloc rst_clk_wiz_0_100M_bus_struct_reset 1 2 3 630 1350 NJ 1350 NJ
-preplace netloc rst_clk_wiz_0_100M_mb_reset 1 2 2 630 1110 1010J
-preplace netloc rst_clk_wiz_0_100M_peripheral_aresetn 1 2 4 610 440 1020 440 1590 710 2010
-preplace netloc sys_clock_1 1 0 1 NJ 1210
-preplace netloc util_vector_logic_0_Res1 1 6 1 NJ 1570
-preplace netloc xlconcat_0_dout 1 7 1 NJ 1580
-preplace netloc axi_uartlite_0_UART 1 6 2 NJ 1070 NJ
-preplace netloc microblaze_0_axi_dp 1 4 1 1620 950n
-preplace netloc microblaze_0_axi_periph_M01_AXI 1 5 1 N 1060
-preplace netloc microblaze_0_axi_periph_M02_AXI 1 5 1 1990 1080n
-preplace netloc microblaze_0_axi_periph_M03_AXI 1 5 1 1980 510n
-preplace netloc microblaze_0_debug 1 3 1 N 1170
-preplace netloc microblaze_0_dlmb_1 1 4 1 1570 1160n
-preplace netloc microblaze_0_ilmb_1 1 4 1 1560 1180n
-preplace netloc microblaze_0_intc_axi 1 2 4 640 890 NJ 890 NJ 890 1990
-preplace netloc microblaze_0_interrupt 1 3 1 1020 1000n
-levelinfo -pg 1 0 120 430 820 1320 1800 2250 2600 2770
-pagesize -pg 1 -db -bbox -sgen -200 0 2910 1650
+preplace netloc nes_romsel_1 1 0 6 NJ 160 NJ 160 NJ 160 1080 150 NJ 150 2090J
+preplace netloc nes_system_clk_1 1 0 6 NJ 80 NJ 80 NJ 80 1090 80 NJ 80 NJ
+preplace netloc reset_1 1 0 2 20 1240 NJ
+preplace netloc reset_manager_0_dual_reset 1 3 4 NJ 890 NJ 890 NJ 890 2460
+preplace netloc reset_manager_0_nes_resetn 1 3 2 1040 580 NJ
+preplace netloc reset_manager_0_peripheral_areset 1 3 4 NJ 850 NJ 850 2020J 1410 2440
+preplace netloc rgb_off_dout 1 7 1 NJ 1550
+preplace netloc rst_clk_wiz_0_100M_bus_struct_reset 1 2 3 610 990 NJ 990 1580J
+preplace netloc rst_clk_wiz_0_100M_mb_reset 1 2 2 630 1220 1030J
+preplace netloc rst_clk_wiz_0_100M_peripheral_aresetn 1 2 4 600 560 1030 560 1600 810 2030
+preplace netloc sys_clock_1 1 0 1 NJ 1320
+preplace netloc util_vector_logic_0_Res1 1 6 1 NJ 1670
+preplace netloc xlconcat_0_dout 1 7 1 NJ 1680
+preplace netloc nes_apu_0_dbg_apu_tick 1 4 2 1600 380 NJ
+preplace netloc nes_apu_0_dbg_apu_half 1 4 2 1620 400 NJ
+preplace netloc nes_apu_0_dbg_apu_qtr 1 4 2 1640 420 NJ
+preplace netloc nes_apu_0_dbg_overflow_1 1 4 2 1640 440 NJ
+preplace netloc nes_apu_0_dbg_overflow_2 1 4 2 1640 460 NJ
+preplace netloc axi_uartlite_0_UART 1 6 2 NJ 1170 NJ
+preplace netloc microblaze_0_axi_dp 1 4 1 1620 1050n
+preplace netloc microblaze_0_axi_periph_M01_AXI 1 5 1 N 1160
+preplace netloc microblaze_0_axi_periph_M02_AXI 1 5 1 2000 1180n
+preplace netloc microblaze_0_axi_periph_M03_AXI 1 5 1 2010 610n
+preplace netloc microblaze_0_debug 1 3 1 N 1280
+preplace netloc microblaze_0_dlmb_1 1 4 1 1590 1270n
+preplace netloc microblaze_0_ilmb_1 1 4 1 1570 1290n
+preplace netloc microblaze_0_intc_axi 1 2 4 650 980 NJ 980 NJ 980 2000
+preplace netloc microblaze_0_interrupt 1 3 1 1040 1110n
+levelinfo -pg 1 0 120 420 830 1330 1820 2280 2630 2800
+pagesize -pg 1 -db -bbox -sgen -200 0 2940 1750
 "
 }
 {
    "da_axi4_cnt":"3",
    "da_board_cnt":"6",
-   "da_clkrst_cnt":"23",
+   "da_clkrst_cnt":"24",
    "da_mb_cnt":"2"
 }

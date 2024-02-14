@@ -1,4 +1,4 @@
-16:06:53 **** Incremental Build of configuration Debug for project midi_genie ****
+00:36:43 **** Incremental Build of configuration Debug for project midi_genie ****
 make all 
 Building file: ../src/apu.cpp
 Invoking: MicroBlaze g++ compiler
@@ -7,30 +7,15 @@ In file included from ../src/apu.cpp:3:
 ../src/apu.cpp: In function 'void play_pulse_message(PulseBitField)':
 ../src/midi.h:14:129: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
    14 | #define set_volume(channel, volume) Xil_Out32(MIDI_OUT_ID, 0b11'10110000'00000111'00000000 | ((channel & 0x0F) << 16) | (volume & 0x7F))
-../src/apu.cpp:90:71: note: in expansion of macro 'set_volume'
-   90 |             if (pulseMessage.volume != lastMessage->message.volume) { set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1)); }
+../src/apu.cpp:93:71: note: in expansion of macro 'set_volume'
+   93 |             if (pulseMessage.volume != lastMessage->message.volume) { set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1)); }
       |                                                                       ^~~~~~~~~~
 ../src/midi.h:14:129: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
    14 | #define set_volume(channel, volume) Xil_Out32(MIDI_OUT_ID, 0b11'10110000'00000111'00000000 | ((channel & 0x0F) << 16) | (volume & 0x7F))
-../src/apu.cpp:103:13: note: in expansion of macro 'set_volume'
-  103 |             set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1));
+../src/apu.cpp:106:13: note: in expansion of macro 'set_volume'
+  106 |             set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1));
       |             ^~~~~~~~~~
 Finished building: ../src/apu.cpp
- 
-Building file: ../src/calc.cpp
-Invoking: MicroBlaze g++ compiler
-mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/calc.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mno-xl-soft-div -mcpu=v11.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/calc.d" -MT"src/calc.o" -o "src/calc.o" "../src/calc.cpp"
-Finished building: ../src/calc.cpp
- 
-Building file: ../src/main.cpp
-Invoking: MicroBlaze g++ compiler
-mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mno-xl-soft-div -mcpu=v11.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cpp"
-Finished building: ../src/main.cpp
- 
-Building file: ../src/midi.cpp
-Invoking: MicroBlaze g++ compiler
-mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/midi.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mno-xl-soft-div -mcpu=v11.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/midi.d" -MT"src/midi.o" -o "src/midi.o" "../src/midi.cpp"
-Finished building: ../src/midi.cpp
  
 Building target: midi_genie.elf
 Invoking: MicroBlaze g++ linker
@@ -40,9 +25,9 @@ Finished building target: midi_genie.elf
 Invoking: MicroBlaze Print Size
 mb-size midi_genie.elf  |tee "midi_genie.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  34420	    328	   6364	  41112	   a098	midi_genie.elf
+  34412	    328	   6364	  41104	   a090	midi_genie.elf
 Finished building: midi_genie.elf.size
  
 
-16:06:57 Build Finished (took 4s.477ms)
+00:36:44 Build Finished (took 1s.44ms)
 

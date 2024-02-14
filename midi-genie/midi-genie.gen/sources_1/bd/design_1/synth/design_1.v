@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Tue Feb 13 15:59:33 2024
+//Date        : Wed Feb 14 00:10:52 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=33,numReposBlks=26,numNonXlnxBlks=0,numHierBlks=7,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=6,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_board_cnt=6,da_clkrst_cnt=23,da_mb_cnt=2,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=33,numReposBlks=26,numNonXlnxBlks=0,numHierBlks=7,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=6,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_board_cnt=6,da_clkrst_cnt=24,da_mb_cnt=2,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (btn1,
     led,
@@ -190,6 +190,11 @@ module design_1
   wire [52:0]nes_apu_0_APU_Pulse2_Out;
   wire [6:0]nes_apu_0_APU_Status_Out;
   wire [41:0]nes_apu_0_APU_Triangle_Out;
+  wire nes_apu_0_dbg_apu_half;
+  wire nes_apu_0_dbg_apu_qtr;
+  wire nes_apu_0_dbg_apu_tick;
+  wire nes_apu_0_dbg_overflow_1;
+  wire nes_apu_0_dbg_overflow_2;
   wire [14:0]nes_cpu_addr_1;
   wire [7:0]nes_cpu_data_1;
   wire nes_cpu_rw_1;
@@ -577,7 +582,12 @@ module design_1
         .CPU_RomSel(nes_romsel_1),
         .CPU_Rst(reset_manager_0_nes_resetn),
         .Clk(microblaze_0_Clk),
-        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn));
+        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn),
+        .dbg_apu_half(nes_apu_0_dbg_apu_half),
+        .dbg_apu_qtr(nes_apu_0_dbg_apu_qtr),
+        .dbg_apu_tick(nes_apu_0_dbg_apu_tick),
+        .dbg_overflow_1(nes_apu_0_dbg_overflow_1),
+        .dbg_overflow_2(nes_apu_0_dbg_overflow_2));
   design_1_reset_manager_0_0 reset_manager_0
        (.dual_reset(reset_manager_0_dual_reset),
         .nes_reset(btn1_1),
@@ -604,6 +614,11 @@ module design_1
         .probe12(nes_apu_0_APU_Counter_Out),
         .probe13(nes_apu_0_APU_Pulse1_Message),
         .probe14(nes_apu_0_APU_Pulse2_Message),
+        .probe15(nes_apu_0_dbg_apu_tick),
+        .probe16(nes_apu_0_dbg_apu_half),
+        .probe17(nes_apu_0_dbg_apu_qtr),
+        .probe18(nes_apu_0_dbg_overflow_1),
+        .probe19(nes_apu_0_dbg_overflow_2),
         .probe2(nes_cpu_addr_1),
         .probe3(nes_cpu_data_1),
         .probe4(nes_romsel_1),

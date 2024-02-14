@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Feb 13 15:59:37 2024" VIVADOVERSION="2022.2.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Feb 14 00:10:58 2024" VIVADOVERSION="2022.2.2">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:cmod_a7-35t:part0:1.1" DEVICE="7a35t" NAME="design_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -730,6 +730,11 @@
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="FIFO_DATA_WIDTH" VALUE="19"/>
+        <PARAMETER NAME="ENABLE_PULSE_1" VALUE="true"/>
+        <PARAMETER NAME="ENABLE_PULSE_2" VALUE="true"/>
+        <PARAMETER NAME="ENABLE_TRIANGLE" VALUE="false"/>
+        <PARAMETER NAME="ENABLE_NOISE" VALUE="false"/>
+        <PARAMETER NAME="ENABLE_DMC" VALUE="false"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_apu_fifo_writer_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -7252,6 +7257,31 @@
             <CONNECTION INSTANCE="apu_fifo_writer_0" PORT="Pulse2_Message"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="dbg_apu_tick" SIGIS="undef" SIGNAME="nes_apu_0_dbg_apu_tick">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe15"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="dbg_apu_half" SIGIS="undef" SIGNAME="nes_apu_0_dbg_apu_half">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe16"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="dbg_apu_qtr" SIGIS="undef" SIGNAME="nes_apu_0_dbg_apu_qtr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe17"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="dbg_overflow_1" SIGIS="undef" SIGNAME="nes_apu_0_dbg_overflow_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe18"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="dbg_overflow_2" SIGIS="undef" SIGNAME="nes_apu_0_dbg_overflow_2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="system_ila_0" PORT="probe19"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -9957,7 +9987,7 @@
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="15"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="20"/>
         <PARAMETER NAME="C_XLNX_HW_PROBE_INFO" VALUE="DEFAULT"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_system_ila_0_0"/>
         <PARAMETER NAME="C_PROBE70_WIDTH" VALUE="1"/>
@@ -11303,6 +11333,31 @@
         <PORT DIR="I" LEFT="18" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Message">
           <CONNECTIONS>
             <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Message"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe15" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_dbg_apu_tick">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="dbg_apu_tick"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe16" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_dbg_apu_half">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="dbg_apu_half"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe17" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_dbg_apu_qtr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="dbg_apu_qtr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe18" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_dbg_overflow_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="dbg_overflow_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe19" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_dbg_overflow_2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="dbg_overflow_2"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

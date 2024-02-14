@@ -64,11 +64,11 @@ int main()
 
     LastPulse lastPulse1 = {};
     int a = 5;
-    cout << (a == lastPulse1.note) << endl;
+    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
     lastPulse1.note = a;
-    cout << (a == lastPulse1.note) << endl;
+    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
     lastPulse1 = {};
-    cout << (a == lastPulse1.note) << endl;
+    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
 }
 
 double note2frequency(double note)
