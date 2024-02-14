@@ -85,6 +85,11 @@ preplace netloc nes_apu_0_APU_Pulse2_Message 1 4 2 1610 370 2070
 preplace netloc nes_apu_0_APU_Pulse2_Out 1 4 2 1630 220 NJ
 preplace netloc nes_apu_0_APU_Status_Out 1 4 2 1630 300 NJ
 preplace netloc nes_apu_0_APU_Triangle_Out 1 4 2 1630 240 NJ
+preplace netloc nes_apu_0_dbg_apu_half 1 4 2 1620 400 NJ
+preplace netloc nes_apu_0_dbg_apu_qtr 1 4 2 1640 420 NJ
+preplace netloc nes_apu_0_dbg_apu_tick 1 4 2 1600 380 NJ
+preplace netloc nes_apu_0_dbg_overflow_1 1 4 2 1640 440 NJ
+preplace netloc nes_apu_0_dbg_overflow_2 1 4 2 1640 460 NJ
 preplace netloc nes_cpu_addr_1 1 0 6 NJ 120 NJ 120 NJ 120 1010 120 NJ 120 NJ
 preplace netloc nes_cpu_data_1 1 0 6 NJ 140 NJ 140 NJ 140 1020 130 NJ 130 2110J
 preplace netloc nes_cpu_rw_1 1 0 6 NJ 180 NJ 180 NJ 180 1050 140 NJ 140 2100J
@@ -102,11 +107,6 @@ preplace netloc rst_clk_wiz_0_100M_peripheral_aresetn 1 2 4 600 560 1030 560 160
 preplace netloc sys_clock_1 1 0 1 NJ 1320
 preplace netloc util_vector_logic_0_Res1 1 6 1 NJ 1670
 preplace netloc xlconcat_0_dout 1 7 1 NJ 1680
-preplace netloc nes_apu_0_dbg_apu_tick 1 4 2 1600 380 NJ
-preplace netloc nes_apu_0_dbg_apu_half 1 4 2 1620 400 NJ
-preplace netloc nes_apu_0_dbg_apu_qtr 1 4 2 1640 420 NJ
-preplace netloc nes_apu_0_dbg_overflow_1 1 4 2 1640 440 NJ
-preplace netloc nes_apu_0_dbg_overflow_2 1 4 2 1640 460 NJ
 preplace netloc axi_uartlite_0_UART 1 6 2 NJ 1170 NJ
 preplace netloc microblaze_0_axi_dp 1 4 1 1620 1050n
 preplace netloc microblaze_0_axi_periph_M01_AXI 1 5 1 N 1160

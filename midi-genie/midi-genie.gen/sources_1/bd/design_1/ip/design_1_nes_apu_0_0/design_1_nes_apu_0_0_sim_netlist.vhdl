@@ -1,7 +1,7 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Wed Feb 14 00:12:03 2024
+-- Date        : Wed Feb 14 12:04:21 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_nes_apu_0_0/design_1_nes_apu_0_0_sim_netlist.vhdl
@@ -16,21 +16,14 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1_nes_apu_0_0_nes_apu is
   port (
-    \APU_Pulse1_reg[timer][8]_0\ : out STD_LOGIC;
-    \APU_Pulse1_reg[timer][10]_0\ : out STD_LOGIC;
+    \APU_Pulse2_reg[timer][9]_0\ : out STD_LOGIC;
     Q : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    \APU_Pulse1_reg[timer][7]_0\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \APU_Pulse2_reg[timer][7]_0\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    \APU_Pulse2_reg[sweep_shift][2]_0\ : out STD_LOGIC_VECTOR ( 2 downto 0 );
     \APU_Pulse2_reg[timer][10]_0\ : out STD_LOGIC;
     \APU_Pulse2_reg[timer][8]_0\ : out STD_LOGIC;
-    \APU_Pulse2_reg[timer][9]_0\ : out STD_LOGIC;
-    APU_Pulse2_Message : out STD_LOGIC_VECTOR ( 4 downto 0 );
-    APU_Pulse2_Out : out STD_LOGIC_VECTOR ( 38 downto 0 );
-    APU_Pulse1_Message : out STD_LOGIC_VECTOR ( 5 downto 0 );
-    APU_Pulse1_Out : out STD_LOGIC_VECTOR ( 35 downto 0 );
+    APU_Pulse2_Out : out STD_LOGIC_VECTOR ( 46 downto 0 );
+    APU_Pulse1_Out : out STD_LOGIC_VECTOR ( 52 downto 0 );
     dbg_apu_half : out STD_LOGIC;
-    \APU_Pulse1_reg[timer_load][10]_0\ : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    APU_Pulse2_Message : out STD_LOGIC_VECTOR ( 4 downto 0 );
     dbg_apu_tick : out STD_LOGIC;
     APU_Status_Out : out STD_LOGIC_VECTOR ( 4 downto 0 );
     dbg_apu_qtr : out STD_LOGIC;
@@ -38,14 +31,15 @@ entity design_1_nes_apu_0_0_nes_apu is
     APU_Noise_Out : out STD_LOGIC_VECTOR ( 15 downto 0 );
     APU_DMC_Out : out STD_LOGIC_VECTOR ( 28 downto 0 );
     dbg_overflow_2 : out STD_LOGIC;
+    APU_Pulse1_Message : out STD_LOGIC_VECTOR ( 4 downto 0 );
     dbg_overflow_1 : out STD_LOGIC;
     \APU_Counter_reg[mode]_0\ : out STD_LOGIC;
     APU_Counter_Out : out STD_LOGIC_VECTOR ( 0 to 0 );
-    CPU_Addr : in STD_LOGIC_VECTOR ( 14 downto 0 );
-    CPU_RW : in STD_LOGIC;
-    CPU_RomSel : in STD_LOGIC;
-    CPU_Rst : in STD_LOGIC;
     Reset : in STD_LOGIC;
+    CPU_Rst : in STD_LOGIC;
+    CPU_RomSel : in STD_LOGIC;
+    CPU_RW : in STD_LOGIC;
+    CPU_Addr : in STD_LOGIC_VECTOR ( 14 downto 0 );
     CPU_M2 : in STD_LOGIC;
     CPU_Data : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
@@ -60,10 +54,10 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \^apu_counter_out\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \^apu_counter_reg[mode]_0\ : STD_LOGIC;
   signal \APU_DMC[irq_enable]\ : STD_LOGIC;
+  signal \APU_DMC[irq_enable]_i_2_n_0\ : STD_LOGIC;
   signal \APU_DMC[load_counter]\ : STD_LOGIC;
   signal \APU_DMC[sample_address]\ : STD_LOGIC;
   signal \APU_DMC[sample_length]\ : STD_LOGIC;
-  signal \APU_DMC[sample_length][7]_i_2_n_0\ : STD_LOGIC;
   signal APU_Half_CE18_out : STD_LOGIC;
   signal APU_Half_CE_i_10_n_0 : STD_LOGIC;
   signal APU_Half_CE_i_11_n_0 : STD_LOGIC;
@@ -78,9 +72,11 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal APU_Half_CE_i_8_n_0 : STD_LOGIC;
   signal APU_Half_CE_i_9_n_0 : STD_LOGIC;
   signal \APU_Noise[length_counter]\ : STD_LOGIC;
+  signal \APU_Noise[length_counter][4]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Noise[length_counter_halt]\ : STD_LOGIC;
   signal \APU_Noise[length_counter_halt]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Noise[loop_noise]\ : STD_LOGIC;
+  signal \APU_Noise[loop_noise]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[duty]\ : STD_LOGIC;
   signal \APU_Pulse1[duty][1]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[duty][1]_i_3_n_0\ : STD_LOGIC;
@@ -97,19 +93,19 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \APU_Pulse1[length_counter][4]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter][4]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter][4]_i_3_n_0\ : STD_LOGIC;
+  signal \APU_Pulse1[length_counter][4]_i_4_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter][5]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter][5]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter][5]_i_3_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter][5]_i_4_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter][5]_i_5_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter][5]_i_6_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1[length_counter][5]_i_7_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[length_counter_load]\ : STD_LOGIC;
+  signal \APU_Pulse1[length_counter_load][4]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[sweep_enable]\ : STD_LOGIC;
   signal \APU_Pulse1[sweep_enable]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[sweep_enable]_i_3_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[sweep_enable]_i_4_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1[sweep_enable]_i_5_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[timer][0]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[timer][10]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[timer][10]_i_2_n_0\ : STD_LOGIC;
@@ -146,33 +142,17 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \APU_Pulse1[volume][3]_i_3_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[volume][3]_i_4_n_0\ : STD_LOGIC;
   signal \APU_Pulse1[volume][3]_i_5_n_0\ : STD_LOGIC;
-  signal \^apu_pulse1_message\ : STD_LOGIC_VECTOR ( 5 downto 0 );
-  signal \APU_Pulse1_Message[3]_INST_0_i_10_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_11_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_12_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_1_n_2\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_1_n_3\ : STD_LOGIC;
+  signal \APU_Pulse1[volume][3]_i_6_n_0\ : STD_LOGIC;
+  signal \APU_Pulse1_Message[3]_INST_0_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse1_Message[3]_INST_0_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse1_Message[3]_INST_0_i_3_n_0\ : STD_LOGIC;
   signal \APU_Pulse1_Message[3]_INST_0_i_4_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_4_n_1\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_4_n_2\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_4_n_3\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_5_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_6_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_7_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_8_n_0\ : STD_LOGIC;
-  signal \APU_Pulse1_Message[3]_INST_0_i_9_n_0\ : STD_LOGIC;
-  signal \^apu_pulse1_out\ : STD_LOGIC_VECTOR ( 35 downto 0 );
-  signal \^apu_pulse1_reg[timer][10]_0\ : STD_LOGIC;
+  signal \^apu_pulse1_out\ : STD_LOGIC_VECTOR ( 52 downto 0 );
   signal \APU_Pulse1_reg[timer][3]_i_3_n_0\ : STD_LOGIC;
   signal \APU_Pulse1_reg[timer][3]_i_3_n_1\ : STD_LOGIC;
   signal \APU_Pulse1_reg[timer][3]_i_3_n_2\ : STD_LOGIC;
   signal \APU_Pulse1_reg[timer][3]_i_3_n_3\ : STD_LOGIC;
-  signal \^apu_pulse1_reg[timer][7]_0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal \^apu_pulse1_reg[timer][8]_0\ : STD_LOGIC;
-  signal \^apu_pulse1_reg[timer_load][10]_0\ : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal \APU_Pulse2[duty][1]_i_1_n_0\ : STD_LOGIC;
+  signal \APU_Pulse2[duty]\ : STD_LOGIC;
   signal \APU_Pulse2[duty][1]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[length_counter][0]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[length_counter][1]_i_1_n_0\ : STD_LOGIC;
@@ -191,7 +171,8 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \APU_Pulse2[length_counter][5]_i_6_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[length_counter][5]_i_7_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[length_counter][5]_i_8_n_0\ : STD_LOGIC;
-  signal \APU_Pulse2[sweep_enable]_i_1_n_0\ : STD_LOGIC;
+  signal \APU_Pulse2[sweep_enable]\ : STD_LOGIC;
+  signal \APU_Pulse2[sweep_enable]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[timer][0]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[timer][0]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[timer][10]_i_1_n_0\ : STD_LOGIC;
@@ -223,8 +204,6 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \APU_Pulse2[timer][9]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[timer][9]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[timer_load]\ : STD_LOGIC_VECTOR ( 10 downto 7 );
-  signal \APU_Pulse2[timer_load][10]_i_2_n_0\ : STD_LOGIC;
-  signal \APU_Pulse2[timer_load][7]_i_2_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[volume]\ : STD_LOGIC;
   signal \APU_Pulse2[volume][0]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Pulse2[volume][1]_i_1_n_0\ : STD_LOGIC;
@@ -251,14 +230,12 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \APU_Pulse2_Message[3]_INST_0_i_7_n_0\ : STD_LOGIC;
   signal \APU_Pulse2_Message[3]_INST_0_i_8_n_0\ : STD_LOGIC;
   signal \APU_Pulse2_Message[3]_INST_0_i_9_n_0\ : STD_LOGIC;
-  signal \^apu_pulse2_out\ : STD_LOGIC_VECTOR ( 38 downto 0 );
-  signal \^apu_pulse2_reg[sweep_shift][2]_0\ : STD_LOGIC_VECTOR ( 2 downto 0 );
+  signal \^apu_pulse2_out\ : STD_LOGIC_VECTOR ( 46 downto 0 );
   signal \^apu_pulse2_reg[timer][10]_0\ : STD_LOGIC;
   signal \APU_Pulse2_reg[timer][3]_i_3_n_0\ : STD_LOGIC;
   signal \APU_Pulse2_reg[timer][3]_i_3_n_1\ : STD_LOGIC;
   signal \APU_Pulse2_reg[timer][3]_i_3_n_2\ : STD_LOGIC;
   signal \APU_Pulse2_reg[timer][3]_i_3_n_3\ : STD_LOGIC;
-  signal \^apu_pulse2_reg[timer][7]_0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \^apu_pulse2_reg[timer][8]_0\ : STD_LOGIC;
   signal \^apu_pulse2_reg[timer][9]_0\ : STD_LOGIC;
   signal APU_Quarter_CE12_out : STD_LOGIC;
@@ -291,6 +268,8 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \APU_Triangle[timer_load][10]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Triangle[timer_load][7]_i_1_n_0\ : STD_LOGIC;
   signal \APU_Triangle[timer_load][7]_i_2_n_0\ : STD_LOGIC;
+  signal \APU_Triangle[timer_load][7]_i_3_n_0\ : STD_LOGIC;
+  signal \APU_Triangle[timer_load][7]_i_4_n_0\ : STD_LOGIC;
   signal \^apu_triangle_out\ : STD_LOGIC_VECTOR ( 30 downto 0 );
   signal Pulse1_Target01_out : STD_LOGIC_VECTOR ( 10 downto 0 );
   signal Pulse1_Target05_out : STD_LOGIC_VECTOR ( 11 downto 0 );
@@ -318,20 +297,15 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal Pulse1_Target0_carry_n_2 : STD_LOGIC;
   signal Pulse1_Target0_carry_n_3 : STD_LOGIC;
   signal Pulse1_Target1 : STD_LOGIC;
-  signal \Pulse1_Target1_carry__0_i_10_n_0\ : STD_LOGIC;
   signal \Pulse1_Target1_carry__0_i_1_n_0\ : STD_LOGIC;
   signal \Pulse1_Target1_carry__0_i_2_n_0\ : STD_LOGIC;
   signal \Pulse1_Target1_carry__0_i_3_n_0\ : STD_LOGIC;
   signal \Pulse1_Target1_carry__0_i_4_n_0\ : STD_LOGIC;
   signal \Pulse1_Target1_carry__0_i_5_n_0\ : STD_LOGIC;
   signal \Pulse1_Target1_carry__0_i_6_n_0\ : STD_LOGIC;
-  signal \Pulse1_Target1_carry__0_i_7_n_0\ : STD_LOGIC;
-  signal \Pulse1_Target1_carry__0_i_8_n_0\ : STD_LOGIC;
   signal \Pulse1_Target1_carry__0_n_3\ : STD_LOGIC;
   signal Pulse1_Target1_carry_i_10_n_0 : STD_LOGIC;
-  signal Pulse1_Target1_carry_i_11_n_0 : STD_LOGIC;
   signal Pulse1_Target1_carry_i_13_n_0 : STD_LOGIC;
-  signal Pulse1_Target1_carry_i_14_n_0 : STD_LOGIC;
   signal Pulse1_Target1_carry_i_19_n_0 : STD_LOGIC;
   signal Pulse1_Target1_carry_i_1_n_0 : STD_LOGIC;
   signal Pulse1_Target1_carry_i_20_n_0 : STD_LOGIC;
@@ -348,7 +322,6 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal Pulse1_Target1_carry_i_6_n_0 : STD_LOGIC;
   signal Pulse1_Target1_carry_i_7_n_0 : STD_LOGIC;
   signal Pulse1_Target1_carry_i_8_n_0 : STD_LOGIC;
-  signal Pulse1_Target1_carry_i_9_n_0 : STD_LOGIC;
   signal Pulse1_Target1_carry_n_0 : STD_LOGIC;
   signal Pulse1_Target1_carry_n_1 : STD_LOGIC;
   signal Pulse1_Target1_carry_n_2 : STD_LOGIC;
@@ -380,9 +353,6 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \Pulse2_Target1_carry__0_i_1_n_0\ : STD_LOGIC;
   signal \Pulse2_Target1_carry__0_i_2_n_0\ : STD_LOGIC;
   signal \Pulse2_Target1_carry__0_i_3_n_0\ : STD_LOGIC;
-  signal \Pulse2_Target1_carry__0_i_4_n_0\ : STD_LOGIC;
-  signal \Pulse2_Target1_carry__0_i_5_n_0\ : STD_LOGIC;
-  signal \Pulse2_Target1_carry__0_i_6_n_0\ : STD_LOGIC;
   signal \Pulse2_Target1_carry__0_n_3\ : STD_LOGIC;
   signal Pulse2_Target1_carry_i_10_n_0 : STD_LOGIC;
   signal Pulse2_Target1_carry_i_11_n_0 : STD_LOGIC;
@@ -392,6 +362,8 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal Pulse2_Target1_carry_i_15_n_0 : STD_LOGIC;
   signal Pulse2_Target1_carry_i_16_n_0 : STD_LOGIC;
   signal Pulse2_Target1_carry_i_17_n_0 : STD_LOGIC;
+  signal Pulse2_Target1_carry_i_18_n_0 : STD_LOGIC;
+  signal Pulse2_Target1_carry_i_19_n_0 : STD_LOGIC;
   signal Pulse2_Target1_carry_i_1_n_0 : STD_LOGIC;
   signal Pulse2_Target1_carry_i_2_n_0 : STD_LOGIC;
   signal Pulse2_Target1_carry_i_3_n_0 : STD_LOGIC;
@@ -409,6 +381,20 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal \^dbg_apu_half\ : STD_LOGIC;
   signal \^dbg_apu_qtr\ : STD_LOGIC;
   signal \^dbg_apu_tick\ : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_10_n_0 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_1_n_2 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_1_n_3 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_2_n_0 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_2_n_1 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_2_n_2 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_2_n_3 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_3_n_0 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_4_n_0 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_5_n_0 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_6_n_0 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_7_n_0 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_8_n_0 : STD_LOGIC;
+  signal dbg_overflow_1_INST_0_i_9_n_0 : STD_LOGIC;
   signal p_0_in3_in : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal p_1_in : STD_LOGIC;
   signal p_2_in : STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -485,8 +471,6 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal pulse1_sweep_divider : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal pulse2_envelope_divider : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal pulse2_sweep_divider : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal \NLW_APU_Pulse1_Message[3]_INST_0_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 2 to 2 );
-  signal \NLW_APU_Pulse1_Message[3]_INST_0_i_1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
   signal \NLW_APU_Pulse2_Message[3]_INST_0_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 2 to 2 );
   signal \NLW_APU_Pulse2_Message[3]_INST_0_i_1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
   signal \NLW_APU_Quarter_CE2_carry__2_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 1 );
@@ -501,112 +485,123 @@ architecture STRUCTURE of design_1_nes_apu_0_0_nes_apu is
   signal NLW_Pulse2_Target1_carry_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_Pulse2_Target1_carry__0_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
   signal \NLW_Pulse2_Target1_carry__0_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal NLW_dbg_overflow_1_INST_0_i_1_CO_UNCONNECTED : STD_LOGIC_VECTOR ( 2 to 2 );
+  signal NLW_dbg_overflow_1_INST_0_i_1_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 to 3 );
   signal \NLW_procFrameCounter.counter_reg[12]_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
   signal \NLW_procFrameCounter.counter_reg[12]_i_1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \APU_Counter[mode]_i_2\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \APU_DMC[sample_length][7]_i_2\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of APU_Half_CE_i_11 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of APU_Half_CE_i_12 : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of APU_Half_CE_i_13 : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of APU_Half_CE_i_5 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of APU_Half_CE_i_8 : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of APU_Half_CE_i_9 : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \APU_Noise[length_counter_halt]_i_2\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][0]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][1]_i_2\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][2]_i_2\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][2]_i_3\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][3]_i_2\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][3]_i_3\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][4]_i_3\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_3\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_4\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_5\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_6\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_7\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \APU_Pulse1[sweep_enable]_i_2\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \APU_Pulse1[sweep_enable]_i_3\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \APU_Pulse1[timer][10]_i_2\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \APU_Pulse1[timer_load][10]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \APU_Counter[mode]_i_2\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \APU_DMC[irq_enable]_i_2\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of APU_Half_CE_i_11 : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of APU_Half_CE_i_12 : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of APU_Half_CE_i_13 : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of APU_Half_CE_i_5 : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of APU_Half_CE_i_7 : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \APU_Noise[length_counter_halt]_i_2\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \APU_Noise[loop_noise]_i_2\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \APU_Pulse1[duty][1]_i_3\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \APU_Pulse1[duty][1]_i_4\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][0]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][1]_i_2\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][2]_i_2\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][2]_i_3\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][3]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][3]_i_3\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][4]_i_4\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_3\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_4\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_5\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter][5]_i_6\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \APU_Pulse1[length_counter_load][4]_i_2\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \APU_Pulse1[sweep_enable]_i_2\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \APU_Pulse1[sweep_enable]_i_3\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \APU_Pulse1[timer][10]_i_2\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \APU_Pulse1[timer_load][10]_i_1\ : label is "soft_lutpair27";
   attribute SOFT_HLUTNM of \APU_Pulse1[timer_load][7]_i_2\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \APU_Pulse1[timer_load][9]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \APU_Pulse1_Message[15]_INST_0\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \APU_Pulse1_Message[16]_INST_0\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \APU_Pulse1_Message[17]_INST_0\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \APU_Pulse1_Message[18]_INST_0\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \APU_Pulse2[duty][1]_i_2\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][0]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][2]_i_2\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][4]_i_2\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][4]_i_3\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][5]_i_6\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][5]_i_7\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][5]_i_8\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \APU_Pulse2[timer][7]_i_2\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \APU_Pulse2[timer_load][10]_i_2\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \APU_Pulse2[timer_load][7]_i_2\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \APU_Pulse2[volume][1]_i_2\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \APU_Pulse2[volume][2]_i_2\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \APU_Pulse2[volume][3]_i_3\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \APU_Pulse2[volume][3]_i_4\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \APU_Pulse2[volume][3]_i_5\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \APU_Pulse2_Message[15]_INST_0\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \APU_Pulse2_Message[16]_INST_0\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \APU_Pulse2_Message[17]_INST_0\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \APU_Pulse2_Message[18]_INST_0\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \APU_Pulse1[timer_load][9]_i_1\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \APU_Pulse1[volume][3]_i_6\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \APU_Pulse1_Message[15]_INST_0\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \APU_Pulse1_Message[16]_INST_0\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \APU_Pulse1_Message[17]_INST_0\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \APU_Pulse1_Message[18]_INST_0\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \APU_Pulse1_Message[3]_INST_0\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \APU_Pulse1_Message[3]_INST_0_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \APU_Pulse1_Message[3]_INST_0_i_2\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \APU_Pulse2[duty][1]_i_2\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][0]_i_1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][2]_i_2\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][4]_i_2\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][4]_i_3\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][5]_i_3\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][5]_i_6\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][5]_i_7\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \APU_Pulse2[length_counter][5]_i_8\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \APU_Pulse2[sweep_enable]_i_2\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \APU_Pulse2[timer][0]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \APU_Pulse2[timer][5]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \APU_Pulse2[timer][6]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \APU_Pulse2[volume][1]_i_2\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \APU_Pulse2[volume][2]_i_2\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \APU_Pulse2[volume][3]_i_3\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \APU_Pulse2[volume][3]_i_4\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \APU_Pulse2[volume][3]_i_5\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \APU_Pulse2_Message[15]_INST_0\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \APU_Pulse2_Message[16]_INST_0\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \APU_Pulse2_Message[17]_INST_0\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \APU_Pulse2_Message[18]_INST_0\ : label is "soft_lutpair36";
   attribute ADDER_THRESHOLD : integer;
   attribute ADDER_THRESHOLD of APU_Quarter_CE2_carry : label is 35;
   attribute ADDER_THRESHOLD of \APU_Quarter_CE2_carry__0\ : label is 35;
   attribute ADDER_THRESHOLD of \APU_Quarter_CE2_carry__1\ : label is 35;
   attribute ADDER_THRESHOLD of \APU_Quarter_CE2_carry__2\ : label is 35;
-  attribute SOFT_HLUTNM of \APU_Triangle[length_counter_halt]_i_2\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \APU_Triangle[timer_load][7]_i_2\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of APU_Quarter_CE_i_4 : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of APU_Quarter_CE_i_8 : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of APU_Quarter_CE_i_9 : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \APU_Triangle[timer_load][7]_i_2\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \APU_Triangle[timer_load][7]_i_3\ : label is "soft_lutpair7";
   attribute ADDER_THRESHOLD of Pulse1_Target0_carry : label is 35;
   attribute ADDER_THRESHOLD of \Pulse1_Target0_carry__0\ : label is 35;
   attribute ADDER_THRESHOLD of \Pulse1_Target0_carry__1\ : label is 35;
-  attribute SOFT_HLUTNM of Pulse1_Target0_carry_i_5 : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of Pulse1_Target0_carry_i_5 : label is "soft_lutpair12";
   attribute COMPARATOR_THRESHOLD : integer;
   attribute COMPARATOR_THRESHOLD of Pulse1_Target1_carry : label is 11;
   attribute COMPARATOR_THRESHOLD of \Pulse1_Target1_carry__0\ : label is 11;
-  attribute SOFT_HLUTNM of \Pulse1_Target1_carry__0_i_10\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \Pulse1_Target1_carry__0_i_11\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \Pulse1_Target1_carry__0_i_9\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_10 : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_11 : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_12 : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_14 : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_15 : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_16 : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_17 : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_18 : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \Pulse1_Target1_carry__0_i_6\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_10 : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_12 : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_14 : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_15 : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_16 : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_18 : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_19 : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_20 : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of Pulse1_Target1_carry_i_21 : label is "soft_lutpair14";
   attribute ADDER_THRESHOLD of Pulse2_Target0_carry : label is 35;
   attribute ADDER_THRESHOLD of \Pulse2_Target0_carry__0\ : label is 35;
   attribute ADDER_THRESHOLD of \Pulse2_Target0_carry__1\ : label is 35;
   attribute COMPARATOR_THRESHOLD of Pulse2_Target1_carry : label is 11;
   attribute COMPARATOR_THRESHOLD of \Pulse2_Target1_carry__0\ : label is 11;
+  attribute SOFT_HLUTNM of Pulse2_Target1_carry_i_10 : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of Pulse2_Target1_carry_i_11 : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of Pulse2_Target1_carry_i_12 : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of Pulse2_Target1_carry_i_9 : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of dbg_overflow_1_INST_0 : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of dbg_overflow_1_INST_0_i_10 : label is "soft_lutpair13";
   attribute ADDER_THRESHOLD of \procFrameCounter.counter_reg[0]_i_1\ : label is 11;
   attribute ADDER_THRESHOLD of \procFrameCounter.counter_reg[12]_i_1\ : label is 11;
   attribute ADDER_THRESHOLD of \procFrameCounter.counter_reg[4]_i_1\ : label is 11;
   attribute ADDER_THRESHOLD of \procFrameCounter.counter_reg[8]_i_1\ : label is 11;
-  attribute SOFT_HLUTNM of \procMainLogic.pulse1_envelope_start_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \procMainLogic.pulse1_sweep_reload_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \procMainLogic.pulse2_envelope_divider[3]_i_2\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \procMainLogic.pulse2_envelope_start_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \procMainLogic.pulse2_sweep_reload_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \procMainLogic.pulse1_envelope_start_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \procMainLogic.pulse1_sweep_reload_i_1\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \procMainLogic.pulse2_envelope_divider[3]_i_2\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \procMainLogic.pulse2_envelope_start_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \procMainLogic.pulse2_sweep_reload_i_1\ : label is "soft_lutpair29";
 begin
   APU_Counter_Out(0) <= \^apu_counter_out\(0);
   \APU_Counter_reg[mode]_0\ <= \^apu_counter_reg[mode]_0\;
-  APU_Pulse1_Message(5 downto 0) <= \^apu_pulse1_message\(5 downto 0);
-  APU_Pulse1_Out(35 downto 0) <= \^apu_pulse1_out\(35 downto 0);
-  \APU_Pulse1_reg[timer][10]_0\ <= \^apu_pulse1_reg[timer][10]_0\;
-  \APU_Pulse1_reg[timer][7]_0\(7 downto 0) <= \^apu_pulse1_reg[timer][7]_0\(7 downto 0);
-  \APU_Pulse1_reg[timer][8]_0\ <= \^apu_pulse1_reg[timer][8]_0\;
-  \APU_Pulse1_reg[timer_load][10]_0\(2 downto 0) <= \^apu_pulse1_reg[timer_load][10]_0\(2 downto 0);
-  APU_Pulse2_Out(38 downto 0) <= \^apu_pulse2_out\(38 downto 0);
-  \APU_Pulse2_reg[sweep_shift][2]_0\(2 downto 0) <= \^apu_pulse2_reg[sweep_shift][2]_0\(2 downto 0);
+  APU_Pulse1_Out(52 downto 0) <= \^apu_pulse1_out\(52 downto 0);
+  APU_Pulse2_Out(46 downto 0) <= \^apu_pulse2_out\(46 downto 0);
   \APU_Pulse2_reg[timer][10]_0\ <= \^apu_pulse2_reg[timer][10]_0\;
-  \APU_Pulse2_reg[timer][7]_0\(7 downto 0) <= \^apu_pulse2_reg[timer][7]_0\(7 downto 0);
   \APU_Pulse2_reg[timer][8]_0\ <= \^apu_pulse2_reg[timer][8]_0\;
   \APU_Pulse2_reg[timer][9]_0\ <= \^apu_pulse2_reg[timer][9]_0\;
   APU_Status_Out(4 downto 0) <= \^apu_status_out\(4 downto 0);
@@ -646,9 +641,9 @@ begin
       INIT => X"DFFF"
     )
         port map (
-      I0 => CPU_RomSel,
+      I0 => CPU_Addr(1),
       I1 => CPU_RW,
-      I2 => CPU_Addr(1),
+      I2 => CPU_RomSel,
       I3 => CPU_Addr(0),
       O => \APU_Counter[mode]_i_2_n_0\
     );
@@ -678,41 +673,51 @@ begin
     );
 \APU_DMC[irq_enable]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000010000"
+      INIT => X"0000010000000000"
     )
         port map (
-      I0 => CPU_Addr(1),
-      I1 => \APU_Pulse2[duty][1]_i_2_n_0\,
-      I2 => CPU_Addr(0),
-      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I4 => CPU_Addr(4),
-      I5 => CPU_Addr(2),
+      I0 => CPU_Addr(3),
+      I1 => CPU_Addr(0),
+      I2 => CPU_Addr(1),
+      I3 => CPU_RomSel,
+      I4 => CPU_RW,
+      I5 => \APU_DMC[irq_enable]_i_2_n_0\,
       O => \APU_DMC[irq_enable]\
+    );
+\APU_DMC[irq_enable]_i_2\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"08"
+    )
+        port map (
+      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(2),
+      O => \APU_DMC[irq_enable]_i_2_n_0\
     );
 \APU_DMC[load_counter][6]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000100000"
+      INIT => X"0004000000000000"
     )
         port map (
-      I0 => \APU_Pulse2[duty][1]_i_2_n_0\,
-      I1 => CPU_Addr(1),
-      I2 => CPU_Addr(0),
-      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I4 => CPU_Addr(4),
-      I5 => CPU_Addr(2),
+      I0 => CPU_Addr(1),
+      I1 => CPU_RomSel,
+      I2 => CPU_RW,
+      I3 => CPU_Addr(3),
+      I4 => CPU_Addr(0),
+      I5 => \APU_DMC[irq_enable]_i_2_n_0\,
       O => \APU_DMC[load_counter]\
     );
 \APU_DMC[sample_address][7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000040000"
+      INIT => X"0000000400000000"
     )
         port map (
-      I0 => CPU_Addr(2),
-      I1 => CPU_Addr(4),
-      I2 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I3 => CPU_Addr(0),
-      I4 => CPU_Addr(1),
-      I5 => \APU_Pulse2[duty][1]_i_2_n_0\,
+      I0 => CPU_Addr(0),
+      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I2 => CPU_Addr(3),
+      I3 => \APU_Pulse1[timer_load][7]_i_2_n_0\,
+      I4 => CPU_Addr(2),
+      I5 => CPU_Addr(4),
       O => \APU_DMC[sample_address]\
     );
 \APU_DMC[sample_length][7]_i_1\: unisim.vcomponents.LUT6
@@ -720,23 +725,13 @@ begin
       INIT => X"0000000008000000"
     )
         port map (
-      I0 => \APU_DMC[sample_length][7]_i_2_n_0\,
-      I1 => CPU_RomSel,
+      I0 => \APU_DMC[irq_enable]_i_2_n_0\,
+      I1 => CPU_Addr(1),
       I2 => CPU_RW,
-      I3 => CPU_Addr(1),
+      I3 => CPU_RomSel,
       I4 => CPU_Addr(0),
       I5 => CPU_Addr(3),
       O => \APU_DMC[sample_length]\
-    );
-\APU_DMC[sample_length][7]_i_2\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"04"
-    )
-        port map (
-      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I1 => CPU_Addr(4),
-      I2 => CPU_Addr(2),
-      O => \APU_DMC[sample_length][7]_i_2_n_0\
     );
 \APU_DMC_reg[dmc_loop]\: unisim.vcomponents.FDCE
     generic map(
@@ -1099,38 +1094,36 @@ APU_Half_CE_i_1: unisim.vcomponents.LUT6
       I5 => APU_Half_CE_i_6_n_0,
       O => APU_Half_CE18_out
     );
-APU_Half_CE_i_10: unisim.vcomponents.LUT6
+APU_Half_CE_i_10: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000400000000000"
+      INIT => X"FFDF"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(5),
-      I1 => \procFrameCounter.counter_reg\(0),
-      I2 => \procFrameCounter.counter_reg\(1),
-      I3 => APU_Half_CE_i_13_n_0,
-      I4 => \procFrameCounter.counter_reg\(13),
-      I5 => \procFrameCounter.counter_reg\(11),
+      I0 => \procFrameCounter.counter_reg\(7),
+      I1 => \procFrameCounter.counter_reg\(9),
+      I2 => \procFrameCounter.counter_reg\(14),
+      I3 => \procFrameCounter.counter_reg\(12),
       O => APU_Half_CE_i_10_n_0
     );
-APU_Half_CE_i_11: unisim.vcomponents.LUT5
+APU_Half_CE_i_11: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => \procFrameCounter.counter_reg\(4),
+      I1 => \procFrameCounter.counter_reg\(8),
+      O => APU_Half_CE_i_11_n_0
+    );
+APU_Half_CE_i_12: unisim.vcomponents.LUT5
     generic map(
       INIT => X"FEFFFFFF"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(8),
-      I1 => \procFrameCounter.counter_reg\(4),
+      I0 => \procFrameCounter.counter_reg\(4),
+      I1 => \procFrameCounter.counter_reg\(8),
       I2 => \procFrameCounter.counter_reg\(12),
-      I3 => \procFrameCounter.counter_reg\(7),
-      I4 => \procFrameCounter.counter_reg\(9),
-      O => APU_Half_CE_i_11_n_0
-    );
-APU_Half_CE_i_12: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"8"
-    )
-        port map (
-      I0 => \procFrameCounter.counter_reg\(9),
-      I1 => \procFrameCounter.counter_reg\(12),
+      I3 => \procFrameCounter.counter_reg\(9),
+      I4 => \procFrameCounter.counter_reg\(7),
       O => APU_Half_CE_i_12_n_0
     );
 APU_Half_CE_i_13: unisim.vcomponents.LUT2
@@ -1142,26 +1135,30 @@ APU_Half_CE_i_13: unisim.vcomponents.LUT2
       I1 => \procFrameCounter.counter_reg\(3),
       O => APU_Half_CE_i_13_n_0
     );
-APU_Half_CE_i_2: unisim.vcomponents.LUT4
+APU_Half_CE_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"E0EE"
+      INIT => X"00000000FFFFFFFE"
     )
         port map (
-      I0 => APU_Half_CE_i_7_n_0,
-      I1 => APU_Half_CE_i_8_n_0,
-      I2 => APU_Half_CE_i_9_n_0,
-      I3 => APU_Half_CE_i_10_n_0,
+      I0 => \procFrameCounter.counter_reg\(3),
+      I1 => \procFrameCounter.counter_reg\(2),
+      I2 => APU_Half_CE_i_7_n_0,
+      I3 => \procFrameCounter.counter_reg\(0),
+      I4 => APU_Half_CE_i_8_n_0,
+      I5 => \^apu_counter_reg[mode]_0\,
       O => APU_Half_CE_i_2_n_0
     );
-APU_Half_CE_i_3: unisim.vcomponents.LUT4
+APU_Half_CE_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FEFF"
+      INIT => X"FFFFD0FFFFFFFFFF"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(8),
-      I1 => \procFrameCounter.counter_reg\(4),
-      I2 => \procFrameCounter.counter_reg\(10),
+      I0 => APU_Half_CE_i_9_n_0,
+      I1 => APU_Half_CE_i_10_n_0,
+      I2 => \^apu_counter_reg[mode]_0\,
       I3 => \procFrameCounter.counter_reg\(6),
+      I4 => \procFrameCounter.counter_reg\(10),
+      I5 => APU_Half_CE_i_11_n_0,
       O => APU_Half_CE_i_3_n_0
     );
 APU_Half_CE_i_4: unisim.vcomponents.LUT4
@@ -1169,7 +1166,7 @@ APU_Half_CE_i_4: unisim.vcomponents.LUT4
       INIT => X"0008"
     )
         port map (
-      I0 => APU_Half_CE_i_10_n_0,
+      I0 => APU_Half_CE_i_9_n_0,
       I1 => \procFrameCounter.counter_reg\(10),
       I2 => \procFrameCounter.counter_reg\(6),
       I3 => \procFrameCounter.counter_reg\(14),
@@ -1195,45 +1192,43 @@ APU_Half_CE_i_6: unisim.vcomponents.LUT5
       I0 => \procFrameCounter.counter_reg\(14),
       I1 => \procFrameCounter.counter_reg\(6),
       I2 => \procFrameCounter.counter_reg\(10),
-      I3 => APU_Half_CE_i_10_n_0,
-      I4 => APU_Half_CE_i_11_n_0,
+      I3 => APU_Half_CE_i_9_n_0,
+      I4 => APU_Half_CE_i_12_n_0,
       O => APU_Half_CE_i_6_n_0
     );
-APU_Half_CE_i_7: unisim.vcomponents.LUT6
+APU_Half_CE_i_7: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"FFFFFFFBFFFFFFFF"
+      INIT => X"7"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(7),
-      I1 => \procFrameCounter.counter_reg\(1),
-      I2 => \^apu_counter_reg[mode]_0\,
-      I3 => \procFrameCounter.counter_reg\(5),
-      I4 => \procFrameCounter.counter_reg\(14),
-      I5 => APU_Half_CE_i_12_n_0,
+      I0 => \procFrameCounter.counter_reg\(11),
+      I1 => \procFrameCounter.counter_reg\(13),
       O => APU_Half_CE_i_7_n_0
     );
-APU_Half_CE_i_8: unisim.vcomponents.LUT5
+APU_Half_CE_i_8: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFEFFF"
+      INIT => X"FFFDFFFFFFFFFFFF"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(3),
-      I1 => \procFrameCounter.counter_reg\(2),
-      I2 => \procFrameCounter.counter_reg\(11),
-      I3 => \procFrameCounter.counter_reg\(13),
-      I4 => \procFrameCounter.counter_reg\(0),
+      I0 => \procFrameCounter.counter_reg\(1),
+      I1 => \procFrameCounter.counter_reg\(5),
+      I2 => \procFrameCounter.counter_reg\(7),
+      I3 => \procFrameCounter.counter_reg\(14),
+      I4 => \procFrameCounter.counter_reg\(9),
+      I5 => \procFrameCounter.counter_reg\(12),
       O => APU_Half_CE_i_8_n_0
     );
-APU_Half_CE_i_9: unisim.vcomponents.LUT5
+APU_Half_CE_i_9: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFDFFFFF"
+      INIT => X"0000400000000000"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(7),
-      I1 => \procFrameCounter.counter_reg\(12),
-      I2 => \^apu_counter_reg[mode]_0\,
-      I3 => \procFrameCounter.counter_reg\(9),
-      I4 => \procFrameCounter.counter_reg\(14),
+      I0 => \procFrameCounter.counter_reg\(5),
+      I1 => \procFrameCounter.counter_reg\(0),
+      I2 => \procFrameCounter.counter_reg\(1),
+      I3 => APU_Half_CE_i_13_n_0,
+      I4 => \procFrameCounter.counter_reg\(13),
+      I5 => \procFrameCounter.counter_reg\(11),
       O => APU_Half_CE_i_9_n_0
     );
 APU_Half_CE_reg: unisim.vcomponents.FDCE
@@ -1247,53 +1242,73 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       D => APU_Half_CE18_out,
       Q => \^dbg_apu_half\
     );
-\APU_Noise[length_counter][4]_i_1\: unisim.vcomponents.LUT6
+\APU_Noise[length_counter][4]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"4000000000000000"
+      INIT => X"80"
     )
         port map (
       I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I1 => CPU_Addr(0),
-      I2 => \APU_Noise[length_counter_halt]_i_2_n_0\,
-      I3 => \APU_Pulse1[duty][1]_i_4_n_0\,
-      I4 => CPU_Addr(3),
-      I5 => CPU_Addr(1),
+      I1 => \APU_Noise[length_counter][4]_i_2_n_0\,
+      I2 => CPU_Addr(0),
       O => \APU_Noise[length_counter]\
+    );
+\APU_Noise[length_counter][4]_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000200000000000"
+    )
+        port map (
+      I0 => CPU_RomSel,
+      I1 => CPU_RW,
+      I2 => CPU_Addr(3),
+      I3 => CPU_Addr(1),
+      I4 => CPU_Addr(4),
+      I5 => CPU_Addr(2),
+      O => \APU_Noise[length_counter][4]_i_2_n_0\
     );
 \APU_Noise[length_counter_halt]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0100000000000000"
+      INIT => X"0000000000020000"
     )
         port map (
       I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
       I1 => CPU_Addr(0),
       I2 => CPU_Addr(1),
-      I3 => \APU_Noise[length_counter_halt]_i_2_n_0\,
-      I4 => CPU_Addr(3),
-      I5 => \APU_Pulse1[duty][1]_i_4_n_0\,
+      I3 => CPU_Addr(4),
+      I4 => CPU_Addr(2),
+      I5 => \APU_Noise[length_counter_halt]_i_2_n_0\,
       O => \APU_Noise[length_counter_halt]\
     );
-\APU_Noise[length_counter_halt]_i_2\: unisim.vcomponents.LUT2
+\APU_Noise[length_counter_halt]_i_2\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"2"
+      INIT => X"DF"
     )
         port map (
-      I0 => CPU_Addr(2),
-      I1 => CPU_Addr(4),
+      I0 => CPU_RomSel,
+      I1 => CPU_RW,
+      I2 => CPU_Addr(3),
       O => \APU_Noise[length_counter_halt]_i_2_n_0\
     );
 \APU_Noise[loop_noise]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"1000000000000000"
+      INIT => X"0000200000000000"
+    )
+        port map (
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(1),
+      I3 => CPU_Addr(3),
+      I4 => \APU_Pulse1[duty][1]_i_4_n_0\,
+      I5 => \APU_Noise[loop_noise]_i_2_n_0\,
+      O => \APU_Noise[loop_noise]\
+    );
+\APU_Noise[loop_noise]_i_2\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"2"
     )
         port map (
       I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
       I1 => CPU_Addr(0),
-      I2 => \APU_Noise[length_counter_halt]_i_2_n_0\,
-      I3 => \APU_Pulse1[duty][1]_i_4_n_0\,
-      I4 => CPU_Addr(3),
-      I5 => CPU_Addr(1),
-      O => \APU_Noise[loop_noise]\
+      O => \APU_Noise[loop_noise]_i_2_n_0\
     );
 \APU_Noise_reg[constant_volume]\: unisim.vcomponents.FDCE
     generic map(
@@ -1489,7 +1504,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse1[duty][1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000000008"
+      INIT => X"0000000000000002"
     )
         port map (
       I0 => \APU_Pulse1[duty][1]_i_3_n_0\,
@@ -1511,20 +1526,20 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse1[duty][1]_i_3\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"1"
+      INIT => X"2"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I1 => CPU_Addr(3),
       O => \APU_Pulse1[duty][1]_i_3_n_0\
     );
 \APU_Pulse1[duty][1]_i_4\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"2"
+      INIT => X"B"
     )
         port map (
-      I0 => CPU_RomSel,
-      I1 => CPU_RW,
+      I0 => CPU_RW,
+      I1 => CPU_RomSel,
       O => \APU_Pulse1[duty][1]_i_4_n_0\
     );
 \APU_Pulse1[length_counter][0]_i_1\: unisim.vcomponents.LUT4
@@ -1544,8 +1559,8 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \APU_Pulse1[length_counter][1]_i_2_n_0\,
-      I1 => \APU_Pulse1[length_counter][5]_i_6_n_0\,
-      I2 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
+      I1 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
+      I2 => \APU_Pulse1[length_counter][5]_i_4_n_0\,
       I3 => \APU_Pulse1[length_counter][5]_i_3_n_0\,
       I4 => \^apu_pulse1_out\(1),
       I5 => \^apu_pulse1_out\(0),
@@ -1569,8 +1584,8 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \APU_Pulse1[length_counter][2]_i_2_n_0\,
-      I1 => \APU_Pulse1[length_counter][5]_i_6_n_0\,
-      I2 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
+      I1 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
+      I2 => \APU_Pulse1[length_counter][5]_i_4_n_0\,
       I3 => \APU_Pulse1[length_counter][5]_i_3_n_0\,
       I4 => \APU_Pulse1[length_counter][2]_i_3_n_0\,
       I5 => \^apu_pulse1_out\(2),
@@ -1603,8 +1618,8 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \APU_Pulse1[length_counter][3]_i_2_n_0\,
-      I1 => \APU_Pulse1[length_counter][5]_i_6_n_0\,
-      I2 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
+      I1 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
+      I2 => \APU_Pulse1[length_counter][5]_i_4_n_0\,
       I3 => \APU_Pulse1[length_counter][5]_i_3_n_0\,
       I4 => \APU_Pulse1[length_counter][3]_i_3_n_0\,
       I5 => \^apu_pulse1_out\(3),
@@ -1634,15 +1649,15 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse1[length_counter][4]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00FFFF00F2F2F2F2"
+      INIT => X"00000000FFF8FF08"
     )
         port map (
       I0 => \APU_Pulse1[length_counter][4]_i_2_n_0\,
-      I1 => \APU_Pulse1[length_counter][5]_i_6_n_0\,
-      I2 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
-      I3 => \^apu_pulse1_out\(4),
-      I4 => \APU_Pulse1[length_counter][4]_i_3_n_0\,
-      I5 => \APU_Pulse1[length_counter][5]_i_3_n_0\,
+      I1 => \^apu_status_out\(0),
+      I2 => CPU_Addr(4),
+      I3 => \APU_Pulse1[length_counter][5]_i_3_n_0\,
+      I4 => CPU_Data(0),
+      I5 => \APU_Pulse1[length_counter][4]_i_3_n_0\,
       O => \APU_Pulse1[length_counter][4]_i_1_n_0\
     );
 \APU_Pulse1[length_counter][4]_i_2\: unisim.vcomponents.LUT5
@@ -1659,14 +1674,25 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse1[length_counter][4]_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0001"
+      INIT => X"0440"
     )
         port map (
-      I0 => \^apu_pulse1_out\(2),
-      I1 => \^apu_pulse1_out\(0),
-      I2 => \^apu_pulse1_out\(1),
-      I3 => \^apu_pulse1_out\(3),
+      I0 => \^apu_pulse1_out\(50),
+      I1 => \^dbg_apu_half\,
+      I2 => \APU_Pulse1[length_counter][4]_i_4_n_0\,
+      I3 => \^apu_pulse1_out\(4),
       O => \APU_Pulse1[length_counter][4]_i_3_n_0\
+    );
+\APU_Pulse1[length_counter][4]_i_4\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(3),
+      I1 => \^apu_pulse1_out\(2),
+      I2 => \^apu_pulse1_out\(0),
+      I3 => \^apu_pulse1_out\(1),
+      O => \APU_Pulse1[length_counter][4]_i_4_n_0\
     );
 \APU_Pulse1[length_counter][5]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -1686,54 +1712,43 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \^apu_pulse1_out\(5),
-      I1 => \APU_Pulse1[length_counter][5]_i_4_n_0\,
+      I1 => \APU_Pulse1_Message[3]_INST_0_i_1_n_0\,
       I2 => \APU_Pulse1[length_counter][5]_i_3_n_0\,
-      I3 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
-      I4 => \APU_Pulse1[length_counter][5]_i_6_n_0\,
-      I5 => \APU_Pulse1[length_counter][5]_i_7_n_0\,
+      I3 => \APU_Pulse1[length_counter][5]_i_4_n_0\,
+      I4 => \APU_Pulse1[length_counter][5]_i_5_n_0\,
+      I5 => \APU_Pulse1[length_counter][5]_i_6_n_0\,
       O => \APU_Pulse1[length_counter][5]_i_2_n_0\
     );
-\APU_Pulse1[length_counter][5]_i_3\: unisim.vcomponents.LUT3
+\APU_Pulse1[length_counter][5]_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"04"
+      INIT => X"00B0"
     )
         port map (
-      I0 => \^apu_pulse1_out\(33),
-      I1 => \^dbg_apu_half\,
-      I2 => \APU_Pulse1_Message[3]_INST_0_i_3_n_0\,
+      I0 => \^apu_pulse1_out\(5),
+      I1 => \APU_Pulse1_Message[3]_INST_0_i_1_n_0\,
+      I2 => \^dbg_apu_half\,
+      I3 => \^apu_pulse1_out\(50),
       O => \APU_Pulse1[length_counter][5]_i_3_n_0\
     );
-\APU_Pulse1[length_counter][5]_i_4\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00000001"
-    )
-        port map (
-      I0 => \^apu_pulse1_out\(3),
-      I1 => \^apu_pulse1_out\(1),
-      I2 => \^apu_pulse1_out\(0),
-      I3 => \^apu_pulse1_out\(2),
-      I4 => \^apu_pulse1_out\(4),
-      O => \APU_Pulse1[length_counter][5]_i_4_n_0\
-    );
-\APU_Pulse1[length_counter][5]_i_5\: unisim.vcomponents.LUT2
+\APU_Pulse1[length_counter][5]_i_4\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"8"
     )
         port map (
       I0 => CPU_Data(0),
       I1 => CPU_Addr(4),
-      O => \APU_Pulse1[length_counter][5]_i_5_n_0\
+      O => \APU_Pulse1[length_counter][5]_i_4_n_0\
     );
-\APU_Pulse1[length_counter][5]_i_6\: unisim.vcomponents.LUT2
+\APU_Pulse1[length_counter][5]_i_5\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"B"
     )
         port map (
       I0 => CPU_Addr(4),
       I1 => \^apu_status_out\(0),
-      O => \APU_Pulse1[length_counter][5]_i_6_n_0\
+      O => \APU_Pulse1[length_counter][5]_i_5_n_0\
     );
-\APU_Pulse1[length_counter][5]_i_7\: unisim.vcomponents.LUT5
+\APU_Pulse1[length_counter][5]_i_6\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"080A0512"
     )
@@ -1743,24 +1758,34 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I2 => CPU_Data(3),
       I3 => CPU_Data(6),
       I4 => CPU_Data(7),
-      O => \APU_Pulse1[length_counter][5]_i_7_n_0\
+      O => \APU_Pulse1[length_counter][5]_i_6_n_0\
     );
 \APU_Pulse1[length_counter_load][4]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000001000"
+      INIT => X"0000000000000800"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => CPU_RW,
-      I2 => CPU_RomSel,
-      I3 => CPU_Addr(0),
-      I4 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I5 => \APU_Pulse1[timer_load][7]_i_2_n_0\,
+      I0 => \APU_Pulse1[length_counter_load][4]_i_2_n_0\,
+      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I2 => CPU_Addr(3),
+      I3 => CPU_Addr(1),
+      I4 => CPU_Addr(2),
+      I5 => CPU_Addr(4),
       O => \APU_Pulse1[length_counter_load]\
+    );
+\APU_Pulse1[length_counter_load][4]_i_2\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"08"
+    )
+        port map (
+      I0 => CPU_Addr(0),
+      I1 => CPU_RomSel,
+      I2 => CPU_RW,
+      O => \APU_Pulse1[length_counter_load][4]_i_2_n_0\
     );
 \APU_Pulse1[sweep_enable]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"00100000"
+      INIT => X"00000020"
     )
         port map (
       I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
@@ -1770,60 +1795,52 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I4 => \APU_Pulse1[sweep_enable]_i_3_n_0\,
       O => \APU_Pulse1[sweep_enable]\
     );
-\APU_Pulse1[sweep_enable]_i_2\: unisim.vcomponents.LUT4
+\APU_Pulse1[sweep_enable]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFEF"
+      INIT => X"00000001"
     )
         port map (
-      I0 => \APU_Pulse1[sweep_enable]_i_4_n_0\,
-      I1 => CPU_Addr(13),
-      I2 => CPU_Addr(14),
-      I3 => \APU_Pulse1[sweep_enable]_i_5_n_0\,
+      I0 => CPU_Addr(9),
+      I1 => CPU_Addr(12),
+      I2 => CPU_Addr(5),
+      I3 => CPU_Addr(8),
+      I4 => \APU_Pulse1[sweep_enable]_i_4_n_0\,
       O => \APU_Pulse1[sweep_enable]_i_2_n_0\
     );
 \APU_Pulse1[sweep_enable]_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0004"
+      INIT => X"FFFD"
     )
         port map (
-      I0 => CPU_RW,
-      I1 => CPU_RomSel,
+      I0 => CPU_RomSel,
+      I1 => CPU_RW,
       I2 => CPU_Addr(4),
       I3 => CPU_Addr(2),
       O => \APU_Pulse1[sweep_enable]_i_3_n_0\
     );
-\APU_Pulse1[sweep_enable]_i_4\: unisim.vcomponents.LUT4
+\APU_Pulse1[sweep_enable]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFE"
+      INIT => X"FFFFFFFFFFFFFEFF"
     )
         port map (
-      I0 => CPU_Addr(6),
-      I1 => CPU_Addr(5),
-      I2 => CPU_Addr(12),
-      I3 => CPU_Addr(7),
+      I0 => CPU_Addr(11),
+      I1 => CPU_Addr(10),
+      I2 => CPU_Addr(13),
+      I3 => CPU_Addr(14),
+      I4 => CPU_Addr(6),
+      I5 => CPU_Addr(7),
       O => \APU_Pulse1[sweep_enable]_i_4_n_0\
-    );
-\APU_Pulse1[sweep_enable]_i_5\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => CPU_Addr(9),
-      I1 => CPU_Addr(8),
-      I2 => CPU_Addr(11),
-      I3 => CPU_Addr(10),
-      O => \APU_Pulse1[sweep_enable]_i_5_n_0\
     );
 \APU_Pulse1[timer][0]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"3000AAAA"
     )
         port map (
       I0 => CPU_Data(0),
       I1 => \APU_Pulse1[timer][0]_i_2_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I2 => Reset,
+      I3 => CPU_Rst,
+      I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
       O => p_2_in(0)
     );
 \APU_Pulse1[timer][0]_i_2\: unisim.vcomponents.LUT4
@@ -1834,7 +1851,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(0),
       I2 => Pulse1_Target05_out(0),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][0]_i_2_n_0\
     );
 \APU_Pulse1[timer][10]_i_1\: unisim.vcomponents.LUT6
@@ -1847,7 +1864,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I2 => \APU_Pulse1[timer][10]_i_3_n_0\,
       I3 => \APU_Pulse1[timer_load]\(10),
       I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I5 => \^apu_pulse1_reg[timer][10]_0\,
+      I5 => \^apu_pulse1_out\(16),
       O => \APU_Pulse1[timer][10]_i_1_n_0\
     );
 \APU_Pulse1[timer][10]_i_2\: unisim.vcomponents.LUT2
@@ -1866,34 +1883,34 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
         port map (
       I0 => Pulse1_Target01_out(10),
       I1 => Pulse1_Target1,
-      I2 => \^apu_pulse1_out\(19),
+      I2 => \^apu_pulse1_out\(36),
       I3 => Pulse1_Target05_out(10),
       O => \APU_Pulse1[timer][10]_i_3_n_0\
     );
 \APU_Pulse1[timer][10]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"2222222202222222"
+      INIT => X"0000000055551555"
     )
         port map (
-      I0 => \APU_Pulse1[timer][10]_i_5_n_0\,
-      I1 => \APU_Pulse1_Message[3]_INST_0_i_2_n_0\,
-      I2 => Reset,
-      I3 => CPU_Rst,
-      I4 => Pulse1_Target05_out(11),
-      I5 => \^apu_pulse1_out\(19),
+      I0 => \APU_Pulse1_Message[3]_INST_0_i_3_n_0\,
+      I1 => Reset,
+      I2 => CPU_Rst,
+      I3 => Pulse1_Target05_out(11),
+      I4 => \^apu_pulse1_out\(36),
+      I5 => \APU_Pulse1[timer][10]_i_5_n_0\,
       O => \APU_Pulse1[timer][10]_i_4_n_0\
     );
 \APU_Pulse1[timer][10]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8080808080808000"
+      INIT => X"01FFFFFFFFFFFFFF"
     )
         port map (
-      I0 => \^dbg_apu_half\,
-      I1 => \^apu_pulse1_out\(23),
-      I2 => \APU_Pulse1[timer][10]_i_6_n_0\,
-      I3 => \^q\(2),
-      I4 => \^q\(1),
-      I5 => \^q\(0),
+      I0 => \^apu_pulse1_out\(33),
+      I1 => \^apu_pulse1_out\(34),
+      I2 => \^apu_pulse1_out\(35),
+      I3 => \^dbg_apu_half\,
+      I4 => \^apu_pulse1_out\(40),
+      I5 => \APU_Pulse1[timer][10]_i_6_n_0\,
       O => \APU_Pulse1[timer][10]_i_5_n_0\
     );
 \APU_Pulse1[timer][10]_i_6\: unisim.vcomponents.LUT3
@@ -1908,14 +1925,14 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse1[timer][1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"3000AAAA"
     )
         port map (
       I0 => CPU_Data(1),
       I1 => \APU_Pulse1[timer][1]_i_2_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I2 => Reset,
+      I3 => CPU_Rst,
+      I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
       O => p_2_in(1)
     );
 \APU_Pulse1[timer][1]_i_2\: unisim.vcomponents.LUT4
@@ -1926,19 +1943,19 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(1),
       I2 => Pulse1_Target05_out(1),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][1]_i_2_n_0\
     );
 \APU_Pulse1[timer][2]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"3000AAAA"
     )
         port map (
       I0 => CPU_Data(2),
       I1 => \APU_Pulse1[timer][2]_i_2_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I2 => Reset,
+      I3 => CPU_Rst,
+      I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
       O => p_2_in(2)
     );
 \APU_Pulse1[timer][2]_i_2\: unisim.vcomponents.LUT4
@@ -1949,19 +1966,19 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(2),
       I2 => Pulse1_Target05_out(2),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][2]_i_2_n_0\
     );
 \APU_Pulse1[timer][3]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"3000AAAA"
     )
         port map (
       I0 => CPU_Data(3),
       I1 => \APU_Pulse1[timer][3]_i_2_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I2 => Reset,
+      I3 => CPU_Rst,
+      I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
       O => p_2_in(3)
     );
 \APU_Pulse1[timer][3]_i_2\: unisim.vcomponents.LUT4
@@ -1972,7 +1989,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(3),
       I2 => Pulse1_Target05_out(3),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][3]_i_2_n_0\
     );
 \APU_Pulse1[timer][3]_i_4\: unisim.vcomponents.LUT2
@@ -1980,7 +1997,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"6"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(3),
+      I0 => \^apu_pulse1_out\(9),
       I1 => p_0_in3_in(3),
       O => \APU_Pulse1[timer][3]_i_4_n_0\
     );
@@ -1989,7 +2006,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"6"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(2),
+      I0 => \^apu_pulse1_out\(8),
       I1 => p_0_in3_in(2),
       O => \APU_Pulse1[timer][3]_i_5_n_0\
     );
@@ -1998,7 +2015,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"6"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(1),
+      I0 => \^apu_pulse1_out\(7),
       I1 => p_0_in3_in(1),
       O => \APU_Pulse1[timer][3]_i_6_n_0\
     );
@@ -2007,20 +2024,20 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"6"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(0),
+      I0 => \^apu_pulse1_out\(6),
       I1 => p_0_in3_in(0),
       O => \APU_Pulse1[timer][3]_i_7_n_0\
     );
 \APU_Pulse1[timer][4]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"3000AAAA"
     )
         port map (
       I0 => CPU_Data(4),
       I1 => \APU_Pulse1[timer][4]_i_2_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I2 => Reset,
+      I3 => CPU_Rst,
+      I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
       O => p_2_in(4)
     );
 \APU_Pulse1[timer][4]_i_2\: unisim.vcomponents.LUT4
@@ -2031,19 +2048,19 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(4),
       I2 => Pulse1_Target05_out(4),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][4]_i_2_n_0\
     );
 \APU_Pulse1[timer][5]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"3000AAAA"
     )
         port map (
       I0 => CPU_Data(5),
       I1 => \APU_Pulse1[timer][5]_i_2_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I2 => Reset,
+      I3 => CPU_Rst,
+      I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
       O => p_2_in(5)
     );
 \APU_Pulse1[timer][5]_i_2\: unisim.vcomponents.LUT4
@@ -2054,30 +2071,30 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(5),
       I2 => Pulse1_Target05_out(5),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][5]_i_2_n_0\
     );
 \APU_Pulse1[timer][6]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"C000AAAA"
     )
         port map (
       I0 => CPU_Data(6),
       I1 => \APU_Pulse1[timer][6]_i_2_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I2 => Reset,
+      I3 => CPU_Rst,
+      I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
       O => p_2_in(6)
     );
 \APU_Pulse1[timer][6]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2F20"
     )
         port map (
-      I0 => Pulse1_Target1,
-      I1 => Pulse1_Target01_out(6),
-      I2 => Pulse1_Target05_out(6),
-      I3 => \^apu_pulse1_out\(19),
+      I0 => Pulse1_Target01_out(6),
+      I1 => Pulse1_Target1,
+      I2 => \^apu_pulse1_out\(36),
+      I3 => Pulse1_Target05_out(6),
       O => \APU_Pulse1[timer][6]_i_2_n_0\
     );
 \APU_Pulse1[timer][7]_i_1\: unisim.vcomponents.LUT2
@@ -2091,14 +2108,14 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse1[timer][7]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"3000AAAA"
     )
         port map (
       I0 => CPU_Data(7),
       I1 => \APU_Pulse1[timer][7]_i_3_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I2 => Reset,
+      I3 => CPU_Rst,
+      I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
       O => p_2_in(7)
     );
 \APU_Pulse1[timer][7]_i_3\: unisim.vcomponents.LUT4
@@ -2109,7 +2126,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(7),
       I2 => Pulse1_Target05_out(7),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][7]_i_3_n_0\
     );
 \APU_Pulse1[timer][8]_i_1\: unisim.vcomponents.LUT6
@@ -2122,7 +2139,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I2 => \APU_Pulse1[timer][10]_i_2_n_0\,
       I3 => \APU_Pulse1[timer_load]\(10),
       I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I5 => \^apu_pulse1_reg[timer][8]_0\,
+      I5 => \^apu_pulse1_out\(14),
       O => \APU_Pulse1[timer][8]_i_1_n_0\
     );
 \APU_Pulse1[timer][8]_i_2\: unisim.vcomponents.LUT4
@@ -2133,7 +2150,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(8),
       I2 => Pulse1_Target05_out(8),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][8]_i_2_n_0\
     );
 \APU_Pulse1[timer][9]_i_1\: unisim.vcomponents.LUT6
@@ -2146,7 +2163,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I2 => \APU_Pulse1[timer][10]_i_2_n_0\,
       I3 => \APU_Pulse1[timer_load]\(10),
       I4 => \APU_Pulse1[timer][10]_i_4_n_0\,
-      I5 => \^apu_pulse1_message\(1),
+      I5 => \^apu_pulse1_out\(15),
       O => \APU_Pulse1[timer][9]_i_1_n_0\
     );
 \APU_Pulse1[timer][9]_i_2\: unisim.vcomponents.LUT4
@@ -2157,7 +2174,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => Pulse1_Target1,
       I1 => Pulse1_Target01_out(9),
       I2 => Pulse1_Target05_out(9),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => \APU_Pulse1[timer][9]_i_2_n_0\
     );
 \APU_Pulse1[timer_load][10]_i_1\: unisim.vcomponents.LUT3
@@ -2167,42 +2184,42 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
         port map (
       I0 => CPU_Data(2),
       I1 => \APU_Pulse1[timer_load]\(10),
-      I2 => \^apu_pulse1_reg[timer_load][10]_0\(2),
+      I2 => \^apu_pulse1_out\(32),
       O => \APU_Pulse1[timer_load][10]_i_1_n_0\
     );
 \APU_Pulse1[timer_load][10]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0001000000000000"
+      INIT => X"0004000000000000"
     )
         port map (
-      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I1 => CPU_Addr(3),
-      I2 => \APU_Pulse1[timer_load][7]_i_2_n_0\,
-      I3 => CPU_RW,
-      I4 => CPU_RomSel,
-      I5 => CPU_Addr(0),
+      I0 => CPU_Addr(3),
+      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(2),
+      I4 => CPU_Addr(1),
+      I5 => \APU_Pulse1[length_counter_load][4]_i_2_n_0\,
       O => \APU_Pulse1[timer_load]\(10)
     );
 \APU_Pulse1[timer_load][7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000010000"
+      INIT => X"0000000000000004"
     )
         port map (
-      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I1 => CPU_Addr(3),
-      I2 => CPU_Addr(0),
-      I3 => CPU_RW,
-      I4 => CPU_RomSel,
-      I5 => \APU_Pulse1[timer_load][7]_i_2_n_0\,
+      I0 => CPU_Addr(0),
+      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I2 => CPU_Addr(3),
+      I3 => \APU_Pulse1[timer_load][7]_i_2_n_0\,
+      I4 => CPU_Addr(2),
+      I5 => CPU_Addr(4),
       O => \APU_Pulse1[timer_load]\(7)
     );
 \APU_Pulse1[timer_load][7]_i_2\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"EF"
+      INIT => X"DF"
     )
         port map (
-      I0 => CPU_Addr(4),
-      I1 => CPU_Addr(2),
+      I0 => CPU_RomSel,
+      I1 => CPU_RW,
       I2 => CPU_Addr(1),
       O => \APU_Pulse1[timer_load][7]_i_2_n_0\
     );
@@ -2213,7 +2230,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
         port map (
       I0 => CPU_Data(0),
       I1 => \APU_Pulse1[timer_load]\(10),
-      I2 => \^apu_pulse1_reg[timer_load][10]_0\(0),
+      I2 => \^apu_pulse1_out\(30),
       O => \APU_Pulse1[timer_load][8]_i_1_n_0\
     );
 \APU_Pulse1[timer_load][9]_i_1\: unisim.vcomponents.LUT3
@@ -2223,7 +2240,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
         port map (
       I0 => CPU_Data(1),
       I1 => \APU_Pulse1[timer_load]\(10),
-      I2 => \^apu_pulse1_reg[timer_load][10]_0\(1),
+      I2 => \^apu_pulse1_out\(31),
       O => \APU_Pulse1[timer_load][9]_i_1_n_0\
     );
 \APU_Pulse1[volume][0]_i_1\: unisim.vcomponents.LUT6
@@ -2232,11 +2249,11 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \APU_Pulse1[volume][3]_i_5_n_0\,
-      I1 => \^apu_pulse1_out\(26),
-      I2 => \^apu_pulse1_out\(24),
-      I3 => \^apu_pulse1_out\(25),
-      I4 => \^apu_pulse1_out\(27),
-      I5 => \^apu_pulse1_out\(33),
+      I1 => \^apu_pulse1_out\(43),
+      I2 => \^apu_pulse1_out\(41),
+      I3 => \^apu_pulse1_out\(42),
+      I4 => \^apu_pulse1_out\(44),
+      I5 => \^apu_pulse1_out\(50),
       O => \APU_Pulse1[volume][0]_i_1_n_0\
     );
 \APU_Pulse1[volume][1]_i_1\: unisim.vcomponents.LUT6
@@ -2245,11 +2262,11 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \APU_Pulse1[volume][3]_i_5_n_0\,
-      I1 => \^apu_pulse1_out\(26),
-      I2 => \^apu_pulse1_out\(24),
-      I3 => \^apu_pulse1_out\(25),
-      I4 => \^apu_pulse1_out\(27),
-      I5 => \^apu_pulse1_out\(33),
+      I1 => \^apu_pulse1_out\(43),
+      I2 => \^apu_pulse1_out\(41),
+      I3 => \^apu_pulse1_out\(42),
+      I4 => \^apu_pulse1_out\(44),
+      I5 => \^apu_pulse1_out\(50),
       O => \APU_Pulse1[volume][1]_i_1_n_0\
     );
 \APU_Pulse1[volume][2]_i_1\: unisim.vcomponents.LUT6
@@ -2258,11 +2275,11 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \APU_Pulse1[volume][3]_i_5_n_0\,
-      I1 => \^apu_pulse1_out\(26),
-      I2 => \^apu_pulse1_out\(24),
-      I3 => \^apu_pulse1_out\(25),
-      I4 => \^apu_pulse1_out\(27),
-      I5 => \^apu_pulse1_out\(33),
+      I1 => \^apu_pulse1_out\(43),
+      I2 => \^apu_pulse1_out\(41),
+      I3 => \^apu_pulse1_out\(42),
+      I4 => \^apu_pulse1_out\(44),
+      I5 => \^apu_pulse1_out\(50),
       O => \APU_Pulse1[volume][2]_i_1_n_0\
     );
 \APU_Pulse1[volume][3]_i_1\: unisim.vcomponents.LUT4
@@ -2282,11 +2299,11 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \APU_Pulse1[volume][3]_i_5_n_0\,
-      I1 => \^apu_pulse1_out\(27),
-      I2 => \^apu_pulse1_out\(26),
-      I3 => \^apu_pulse1_out\(24),
-      I4 => \^apu_pulse1_out\(25),
-      I5 => \^apu_pulse1_out\(33),
+      I1 => \^apu_pulse1_out\(44),
+      I2 => \^apu_pulse1_out\(43),
+      I3 => \^apu_pulse1_out\(41),
+      I4 => \^apu_pulse1_out\(42),
+      I5 => \^apu_pulse1_out\(50),
       O => \APU_Pulse1[volume][3]_i_2_n_0\
     );
 \APU_Pulse1[volume][3]_i_3\: unisim.vcomponents.LUT4
@@ -2305,213 +2322,131 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"00000001"
     )
         port map (
-      I0 => \^apu_pulse1_out\(26),
-      I1 => \^apu_pulse1_out\(24),
-      I2 => \^apu_pulse1_out\(25),
-      I3 => \^apu_pulse1_out\(27),
-      I4 => \^apu_pulse1_out\(33),
+      I0 => \^apu_pulse1_out\(43),
+      I1 => \^apu_pulse1_out\(41),
+      I2 => \^apu_pulse1_out\(42),
+      I3 => \^apu_pulse1_out\(44),
+      I4 => \^apu_pulse1_out\(50),
       O => \APU_Pulse1[volume][3]_i_4_n_0\
     );
 \APU_Pulse1[volume][3]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AAAAAAAAABAAAAAA"
+      INIT => X"AABAAAAAAAAAAAAA"
     )
         port map (
       I0 => \procMainLogic.pulse1_envelope_start_reg_n_0\,
-      I1 => \APU_Pulse1[timer_load][7]_i_2_n_0\,
-      I2 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I3 => CPU_Addr(0),
-      I4 => \APU_Pulse1[duty][1]_i_4_n_0\,
-      I5 => CPU_Addr(3),
+      I1 => \APU_Pulse1[volume][3]_i_6_n_0\,
+      I2 => CPU_Addr(1),
+      I3 => CPU_Addr(3),
+      I4 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I5 => \APU_Pulse1[length_counter_load][4]_i_2_n_0\,
       O => \APU_Pulse1[volume][3]_i_5_n_0\
+    );
+\APU_Pulse1[volume][3]_i_6\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(4),
+      O => \APU_Pulse1[volume][3]_i_6_n_0\
     );
 \APU_Pulse1_Message[15]_INST_0\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
     )
         port map (
-      I0 => \^apu_pulse1_out\(28),
-      I1 => \^apu_pulse1_out\(32),
-      I2 => \^apu_pulse1_out\(24),
-      O => \^apu_pulse1_message\(2)
+      I0 => \^apu_pulse1_out\(45),
+      I1 => \^apu_pulse1_out\(49),
+      I2 => \^apu_pulse1_out\(41),
+      O => APU_Pulse1_Message(1)
     );
 \APU_Pulse1_Message[16]_INST_0\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
     )
         port map (
-      I0 => \^apu_pulse1_out\(29),
-      I1 => \^apu_pulse1_out\(32),
-      I2 => \^apu_pulse1_out\(25),
-      O => \^apu_pulse1_message\(3)
+      I0 => \^apu_pulse1_out\(46),
+      I1 => \^apu_pulse1_out\(49),
+      I2 => \^apu_pulse1_out\(42),
+      O => APU_Pulse1_Message(2)
     );
 \APU_Pulse1_Message[17]_INST_0\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
     )
         port map (
-      I0 => \^apu_pulse1_out\(30),
-      I1 => \^apu_pulse1_out\(32),
-      I2 => \^apu_pulse1_out\(26),
-      O => \^apu_pulse1_message\(4)
+      I0 => \^apu_pulse1_out\(47),
+      I1 => \^apu_pulse1_out\(49),
+      I2 => \^apu_pulse1_out\(43),
+      O => APU_Pulse1_Message(3)
     );
 \APU_Pulse1_Message[18]_INST_0\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
     )
         port map (
-      I0 => \^apu_pulse1_out\(31),
-      I1 => \^apu_pulse1_out\(32),
-      I2 => \^apu_pulse1_out\(27),
-      O => \^apu_pulse1_message\(5)
+      I0 => \^apu_pulse1_out\(48),
+      I1 => \^apu_pulse1_out\(49),
+      I2 => \^apu_pulse1_out\(44),
+      O => APU_Pulse1_Message(4)
     );
-\APU_Pulse1_Message[3]_INST_0\: unisim.vcomponents.LUT6
+\APU_Pulse1_Message[3]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"000000000000BFFF"
+      INIT => X"0B"
     )
         port map (
-      I0 => \^apu_pulse1_out\(19),
-      I1 => Pulse1_Target05_out(11),
-      I2 => CPU_Rst,
-      I3 => Reset,
-      I4 => \APU_Pulse1_Message[3]_INST_0_i_2_n_0\,
-      I5 => \APU_Pulse1_Message[3]_INST_0_i_3_n_0\,
-      O => \^apu_pulse1_message\(0)
+      I0 => \^apu_pulse1_out\(5),
+      I1 => \APU_Pulse1_Message[3]_INST_0_i_1_n_0\,
+      I2 => \APU_Pulse1_Message[3]_INST_0_i_2_n_0\,
+      O => APU_Pulse1_Message(0)
     );
-\APU_Pulse1_Message[3]_INST_0_i_1\: unisim.vcomponents.CARRY4
-     port map (
-      CI => \APU_Pulse1_Message[3]_INST_0_i_4_n_0\,
-      CO(3) => Pulse1_Target05_out(11),
-      CO(2) => \NLW_APU_Pulse1_Message[3]_INST_0_i_1_CO_UNCONNECTED\(2),
-      CO(1) => \APU_Pulse1_Message[3]_INST_0_i_1_n_2\,
-      CO(0) => \APU_Pulse1_Message[3]_INST_0_i_1_n_3\,
-      CYINIT => '0',
-      DI(3) => '0',
-      DI(2) => \^apu_pulse1_reg[timer][10]_0\,
-      DI(1) => \^apu_pulse1_message\(1),
-      DI(0) => \^apu_pulse1_reg[timer][8]_0\,
-      O(3) => \NLW_APU_Pulse1_Message[3]_INST_0_i_1_O_UNCONNECTED\(3),
-      O(2 downto 0) => Pulse1_Target05_out(10 downto 8),
-      S(3) => '1',
-      S(2) => \APU_Pulse1_Message[3]_INST_0_i_5_n_0\,
-      S(1) => \APU_Pulse1_Message[3]_INST_0_i_6_n_0\,
-      S(0) => \APU_Pulse1_Message[3]_INST_0_i_7_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_10\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"9"
-    )
-        port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(6),
-      I1 => Pulse1_Target1_carry_i_11_n_0,
-      O => \APU_Pulse1_Message[3]_INST_0_i_10_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_11\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-        port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(5),
-      I1 => p_0_in3_in(5),
-      O => \APU_Pulse1_Message[3]_INST_0_i_11_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_12\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"9"
-    )
-        port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(4),
-      I1 => Pulse1_Target1_carry_i_14_n_0,
-      O => \APU_Pulse1_Message[3]_INST_0_i_12_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_2\: unisim.vcomponents.LUT5
+\APU_Pulse1_Message[3]_INST_0_i_1\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"00000001"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(4),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(5),
-      I2 => \^apu_pulse1_reg[timer][7]_0\(6),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(7),
-      I4 => \APU_Pulse1_Message[3]_INST_0_i_8_n_0\,
+      I0 => \^apu_pulse1_out\(4),
+      I1 => \^apu_pulse1_out\(1),
+      I2 => \^apu_pulse1_out\(0),
+      I3 => \^apu_pulse1_out\(2),
+      I4 => \^apu_pulse1_out\(3),
+      O => \APU_Pulse1_Message[3]_INST_0_i_1_n_0\
+    );
+\APU_Pulse1_Message[3]_INST_0_i_2\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFF4000"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(36),
+      I1 => Pulse1_Target05_out(11),
+      I2 => CPU_Rst,
+      I3 => Reset,
+      I4 => \APU_Pulse1_Message[3]_INST_0_i_3_n_0\,
       O => \APU_Pulse1_Message[3]_INST_0_i_2_n_0\
     );
-\APU_Pulse1_Message[3]_INST_0_i_3\: unisim.vcomponents.LUT6
+\APU_Pulse1_Message[3]_INST_0_i_3\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0000000000000001"
+      INIT => X"00000001"
     )
         port map (
-      I0 => \^apu_pulse1_out\(4),
-      I1 => \^apu_pulse1_out\(2),
-      I2 => \^apu_pulse1_out\(0),
-      I3 => \^apu_pulse1_out\(1),
-      I4 => \^apu_pulse1_out\(3),
-      I5 => \^apu_pulse1_out\(5),
+      I0 => \^apu_pulse1_out\(15),
+      I1 => \^apu_pulse1_out\(16),
+      I2 => \^apu_pulse1_out\(9),
+      I3 => \^apu_pulse1_out\(14),
+      I4 => \APU_Pulse1_Message[3]_INST_0_i_4_n_0\,
       O => \APU_Pulse1_Message[3]_INST_0_i_3_n_0\
     );
-\APU_Pulse1_Message[3]_INST_0_i_4\: unisim.vcomponents.CARRY4
-     port map (
-      CI => \APU_Pulse1_reg[timer][3]_i_3_n_0\,
-      CO(3) => \APU_Pulse1_Message[3]_INST_0_i_4_n_0\,
-      CO(2) => \APU_Pulse1_Message[3]_INST_0_i_4_n_1\,
-      CO(1) => \APU_Pulse1_Message[3]_INST_0_i_4_n_2\,
-      CO(0) => \APU_Pulse1_Message[3]_INST_0_i_4_n_3\,
-      CYINIT => '0',
-      DI(3 downto 0) => \^apu_pulse1_reg[timer][7]_0\(7 downto 4),
-      O(3 downto 0) => Pulse1_Target05_out(7 downto 4),
-      S(3) => \APU_Pulse1_Message[3]_INST_0_i_9_n_0\,
-      S(2) => \APU_Pulse1_Message[3]_INST_0_i_10_n_0\,
-      S(1) => \APU_Pulse1_Message[3]_INST_0_i_11_n_0\,
-      S(0) => \APU_Pulse1_Message[3]_INST_0_i_12_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_5\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"56A6"
-    )
-        port map (
-      I0 => \^apu_pulse1_reg[timer][10]_0\,
-      I1 => \Pulse1_Target1_carry__0_i_6_n_0\,
-      I2 => \^q\(0),
-      I3 => \Pulse1_Target1_carry__0_i_5_n_0\,
-      O => \APU_Pulse1_Message[3]_INST_0_i_5_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_6\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-        port map (
-      I0 => \^apu_pulse1_message\(1),
-      I1 => p_0_in3_in(9),
-      O => \APU_Pulse1_Message[3]_INST_0_i_6_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_7\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-        port map (
-      I0 => \^apu_pulse1_reg[timer][8]_0\,
-      I1 => p_0_in3_in(8),
-      O => \APU_Pulse1_Message[3]_INST_0_i_7_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_8\: unisim.vcomponents.LUT4
+\APU_Pulse1_Message[3]_INST_0_i_4\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][8]_0\,
-      I1 => \^apu_pulse1_reg[timer][7]_0\(3),
-      I2 => \^apu_pulse1_reg[timer][10]_0\,
-      I3 => \^apu_pulse1_message\(1),
-      O => \APU_Pulse1_Message[3]_INST_0_i_8_n_0\
-    );
-\APU_Pulse1_Message[3]_INST_0_i_9\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"9"
-    )
-        port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(7),
-      I1 => Pulse1_Target1_carry_i_9_n_0,
-      O => \APU_Pulse1_Message[3]_INST_0_i_9_n_0\
+      I0 => \^apu_pulse1_out\(13),
+      I1 => \^apu_pulse1_out\(10),
+      I2 => \^apu_pulse1_out\(12),
+      I3 => \^apu_pulse1_out\(11),
+      O => \APU_Pulse1_Message[3]_INST_0_i_4_n_0\
     );
 \APU_Pulse1_reg[constant_volume]\: unisim.vcomponents.FDCE
     generic map(
@@ -2523,7 +2458,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => \^apu_pulse1_out\(32)
+      Q => \^apu_pulse1_out\(49)
     );
 \APU_Pulse1_reg[duty][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -2535,7 +2470,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(6),
-      Q => \^apu_pulse1_out\(34)
+      Q => \^apu_pulse1_out\(51)
     );
 \APU_Pulse1_reg[duty][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -2547,7 +2482,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(7),
-      Q => \^apu_pulse1_out\(35)
+      Q => \^apu_pulse1_out\(52)
     );
 \APU_Pulse1_reg[envelope][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -2559,7 +2494,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(0),
-      Q => \^apu_pulse1_out\(28)
+      Q => \^apu_pulse1_out\(45)
     );
 \APU_Pulse1_reg[envelope][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -2571,7 +2506,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(1),
-      Q => \^apu_pulse1_out\(29)
+      Q => \^apu_pulse1_out\(46)
     );
 \APU_Pulse1_reg[envelope][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -2583,7 +2518,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(2),
-      Q => \^apu_pulse1_out\(30)
+      Q => \^apu_pulse1_out\(47)
     );
 \APU_Pulse1_reg[envelope][3]\: unisim.vcomponents.FDCE
     generic map(
@@ -2595,7 +2530,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => \^apu_pulse1_out\(31)
+      Q => \^apu_pulse1_out\(48)
     );
 \APU_Pulse1_reg[length_counter][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -2679,7 +2614,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(5),
-      Q => \^apu_pulse1_out\(33)
+      Q => \^apu_pulse1_out\(50)
     );
 \APU_Pulse1_reg[length_counter_load][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -2691,7 +2626,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[length_counter_load]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => \^apu_pulse1_out\(6)
+      Q => \^apu_pulse1_out\(17)
     );
 \APU_Pulse1_reg[length_counter_load][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -2703,7 +2638,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[length_counter_load]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => \^apu_pulse1_out\(7)
+      Q => \^apu_pulse1_out\(18)
     );
 \APU_Pulse1_reg[length_counter_load][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -2715,7 +2650,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[length_counter_load]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(5),
-      Q => \^apu_pulse1_out\(8)
+      Q => \^apu_pulse1_out\(19)
     );
 \APU_Pulse1_reg[length_counter_load][3]\: unisim.vcomponents.FDCE
     generic map(
@@ -2727,7 +2662,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[length_counter_load]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(6),
-      Q => \^apu_pulse1_out\(9)
+      Q => \^apu_pulse1_out\(20)
     );
 \APU_Pulse1_reg[length_counter_load][4]\: unisim.vcomponents.FDCE
     generic map(
@@ -2739,7 +2674,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[length_counter_load]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(7),
-      Q => \^apu_pulse1_out\(10)
+      Q => \^apu_pulse1_out\(21)
     );
 \APU_Pulse1_reg[sweep_enable]\: unisim.vcomponents.FDCE
     generic map(
@@ -2751,7 +2686,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(7),
-      Q => \^apu_pulse1_out\(23)
+      Q => \^apu_pulse1_out\(40)
     );
 \APU_Pulse1_reg[sweep_negate]\: unisim.vcomponents.FDCE
     generic map(
@@ -2763,7 +2698,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => \^apu_pulse1_out\(19)
+      Q => \^apu_pulse1_out\(36)
     );
 \APU_Pulse1_reg[sweep_period][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -2775,7 +2710,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => \^apu_pulse1_out\(20)
+      Q => \^apu_pulse1_out\(37)
     );
 \APU_Pulse1_reg[sweep_period][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -2787,7 +2722,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(5),
-      Q => \^apu_pulse1_out\(21)
+      Q => \^apu_pulse1_out\(38)
     );
 \APU_Pulse1_reg[sweep_period][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -2799,7 +2734,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(6),
-      Q => \^apu_pulse1_out\(22)
+      Q => \^apu_pulse1_out\(39)
     );
 \APU_Pulse1_reg[sweep_shift][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -2811,7 +2746,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(0),
-      Q => \^q\(0)
+      Q => \^apu_pulse1_out\(33)
     );
 \APU_Pulse1_reg[sweep_shift][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -2823,7 +2758,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(1),
-      Q => \^q\(1)
+      Q => \^apu_pulse1_out\(34)
     );
 \APU_Pulse1_reg[sweep_shift][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -2835,7 +2770,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(2),
-      Q => \^q\(2)
+      Q => \^apu_pulse1_out\(35)
     );
 \APU_Pulse1_reg[timer][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -2847,7 +2782,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => p_2_in(0),
-      Q => \^apu_pulse1_reg[timer][7]_0\(0)
+      Q => \^apu_pulse1_out\(6)
     );
 \APU_Pulse1_reg[timer][10]\: unisim.vcomponents.FDCE
     generic map(
@@ -2859,7 +2794,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => '1',
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse1[timer][10]_i_1_n_0\,
-      Q => \^apu_pulse1_reg[timer][10]_0\
+      Q => \^apu_pulse1_out\(16)
     );
 \APU_Pulse1_reg[timer][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -2871,7 +2806,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => p_2_in(1),
-      Q => \^apu_pulse1_reg[timer][7]_0\(1)
+      Q => \^apu_pulse1_out\(7)
     );
 \APU_Pulse1_reg[timer][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -2883,7 +2818,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => p_2_in(2),
-      Q => \^apu_pulse1_reg[timer][7]_0\(2)
+      Q => \^apu_pulse1_out\(8)
     );
 \APU_Pulse1_reg[timer][3]\: unisim.vcomponents.FDCE
     generic map(
@@ -2895,7 +2830,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => p_2_in(3),
-      Q => \^apu_pulse1_reg[timer][7]_0\(3)
+      Q => \^apu_pulse1_out\(9)
     );
 \APU_Pulse1_reg[timer][3]_i_3\: unisim.vcomponents.CARRY4
      port map (
@@ -2905,7 +2840,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CO(1) => \APU_Pulse1_reg[timer][3]_i_3_n_2\,
       CO(0) => \APU_Pulse1_reg[timer][3]_i_3_n_3\,
       CYINIT => '0',
-      DI(3 downto 0) => \^apu_pulse1_reg[timer][7]_0\(3 downto 0),
+      DI(3 downto 0) => \^apu_pulse1_out\(9 downto 6),
       O(3 downto 0) => Pulse1_Target05_out(3 downto 0),
       S(3) => \APU_Pulse1[timer][3]_i_4_n_0\,
       S(2) => \APU_Pulse1[timer][3]_i_5_n_0\,
@@ -2922,7 +2857,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => p_2_in(4),
-      Q => \^apu_pulse1_reg[timer][7]_0\(4)
+      Q => \^apu_pulse1_out\(10)
     );
 \APU_Pulse1_reg[timer][5]\: unisim.vcomponents.FDCE
     generic map(
@@ -2934,7 +2869,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => p_2_in(5),
-      Q => \^apu_pulse1_reg[timer][7]_0\(5)
+      Q => \^apu_pulse1_out\(11)
     );
 \APU_Pulse1_reg[timer][6]\: unisim.vcomponents.FDCE
     generic map(
@@ -2946,7 +2881,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => p_2_in(6),
-      Q => \^apu_pulse1_reg[timer][7]_0\(6)
+      Q => \^apu_pulse1_out\(12)
     );
 \APU_Pulse1_reg[timer][7]\: unisim.vcomponents.FDCE
     generic map(
@@ -2958,7 +2893,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => p_2_in(7),
-      Q => \^apu_pulse1_reg[timer][7]_0\(7)
+      Q => \^apu_pulse1_out\(13)
     );
 \APU_Pulse1_reg[timer][8]\: unisim.vcomponents.FDCE
     generic map(
@@ -2970,7 +2905,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => '1',
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse1[timer][8]_i_1_n_0\,
-      Q => \^apu_pulse1_reg[timer][8]_0\
+      Q => \^apu_pulse1_out\(14)
     );
 \APU_Pulse1_reg[timer][9]\: unisim.vcomponents.FDCE
     generic map(
@@ -2982,7 +2917,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => '1',
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse1[timer][9]_i_1_n_0\,
-      Q => \^apu_pulse1_message\(1)
+      Q => \^apu_pulse1_out\(15)
     );
 \APU_Pulse1_reg[timer_load][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -2994,7 +2929,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(0),
-      Q => \^apu_pulse1_out\(11)
+      Q => \^apu_pulse1_out\(22)
     );
 \APU_Pulse1_reg[timer_load][10]\: unisim.vcomponents.FDCE
     generic map(
@@ -3006,7 +2941,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => '1',
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse1[timer_load][10]_i_1_n_0\,
-      Q => \^apu_pulse1_reg[timer_load][10]_0\(2)
+      Q => \^apu_pulse1_out\(32)
     );
 \APU_Pulse1_reg[timer_load][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -3018,7 +2953,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(1),
-      Q => \^apu_pulse1_out\(12)
+      Q => \^apu_pulse1_out\(23)
     );
 \APU_Pulse1_reg[timer_load][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -3030,7 +2965,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(2),
-      Q => \^apu_pulse1_out\(13)
+      Q => \^apu_pulse1_out\(24)
     );
 \APU_Pulse1_reg[timer_load][3]\: unisim.vcomponents.FDCE
     generic map(
@@ -3042,7 +2977,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => \^apu_pulse1_out\(14)
+      Q => \^apu_pulse1_out\(25)
     );
 \APU_Pulse1_reg[timer_load][4]\: unisim.vcomponents.FDCE
     generic map(
@@ -3054,7 +2989,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => \^apu_pulse1_out\(15)
+      Q => \^apu_pulse1_out\(26)
     );
 \APU_Pulse1_reg[timer_load][5]\: unisim.vcomponents.FDCE
     generic map(
@@ -3066,7 +3001,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(5),
-      Q => \^apu_pulse1_out\(16)
+      Q => \^apu_pulse1_out\(27)
     );
 \APU_Pulse1_reg[timer_load][6]\: unisim.vcomponents.FDCE
     generic map(
@@ -3078,7 +3013,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(6),
-      Q => \^apu_pulse1_out\(17)
+      Q => \^apu_pulse1_out\(28)
     );
 \APU_Pulse1_reg[timer_load][7]\: unisim.vcomponents.FDCE
     generic map(
@@ -3090,7 +3025,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(7),
-      Q => \^apu_pulse1_out\(18)
+      Q => \^apu_pulse1_out\(29)
     );
 \APU_Pulse1_reg[timer_load][8]\: unisim.vcomponents.FDCE
     generic map(
@@ -3102,7 +3037,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => '1',
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse1[timer_load][8]_i_1_n_0\,
-      Q => \^apu_pulse1_reg[timer_load][10]_0\(0)
+      Q => \^apu_pulse1_out\(30)
     );
 \APU_Pulse1_reg[timer_load][9]\: unisim.vcomponents.FDCE
     generic map(
@@ -3114,7 +3049,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => '1',
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse1[timer_load][9]_i_1_n_0\,
-      Q => \^apu_pulse1_reg[timer_load][10]_0\(1)
+      Q => \^apu_pulse1_out\(31)
     );
 \APU_Pulse1_reg[volume][0]\: unisim.vcomponents.FDPE
     generic map(
@@ -3126,7 +3061,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[volume]\,
       D => \APU_Pulse1[volume][0]_i_1_n_0\,
       PRE => \APU_Pulse1[duty][1]_i_2_n_0\,
-      Q => \^apu_pulse1_out\(24)
+      Q => \^apu_pulse1_out\(41)
     );
 \APU_Pulse1_reg[volume][1]\: unisim.vcomponents.FDPE
     generic map(
@@ -3138,7 +3073,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[volume]\,
       D => \APU_Pulse1[volume][1]_i_1_n_0\,
       PRE => \APU_Pulse1[duty][1]_i_2_n_0\,
-      Q => \^apu_pulse1_out\(25)
+      Q => \^apu_pulse1_out\(42)
     );
 \APU_Pulse1_reg[volume][2]\: unisim.vcomponents.FDPE
     generic map(
@@ -3150,7 +3085,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[volume]\,
       D => \APU_Pulse1[volume][2]_i_1_n_0\,
       PRE => \APU_Pulse1[duty][1]_i_2_n_0\,
-      Q => \^apu_pulse1_out\(26)
+      Q => \^apu_pulse1_out\(43)
     );
 \APU_Pulse1_reg[volume][3]\: unisim.vcomponents.FDPE
     generic map(
@@ -3162,29 +3097,29 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse1[volume]\,
       D => \APU_Pulse1[volume][3]_i_2_n_0\,
       PRE => \APU_Pulse1[duty][1]_i_2_n_0\,
-      Q => \^apu_pulse1_out\(27)
+      Q => \^apu_pulse1_out\(44)
     );
 \APU_Pulse2[duty][1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000100000000"
+      INIT => X"0000000000020000"
     )
         port map (
-      I0 => CPU_Addr(1),
-      I1 => \APU_Pulse2[duty][1]_i_2_n_0\,
+      I0 => \APU_Pulse2[duty][1]_i_2_n_0\,
+      I1 => CPU_Addr(3),
       I2 => CPU_Addr(0),
-      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I4 => CPU_Addr(4),
-      I5 => CPU_Addr(2),
-      O => \APU_Pulse2[duty][1]_i_1_n_0\
+      I3 => CPU_Addr(1),
+      I4 => CPU_RomSel,
+      I5 => CPU_RW,
+      O => \APU_Pulse2[duty]\
     );
 \APU_Pulse2[duty][1]_i_2\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"EF"
+      INIT => X"20"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => CPU_RW,
-      I2 => CPU_RomSel,
+      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I1 => CPU_Addr(4),
+      I2 => CPU_Addr(2),
       O => \APU_Pulse2[duty][1]_i_2_n_0\
     );
 \APU_Pulse2[length_counter][0]_i_1\: unisim.vcomponents.LUT4
@@ -3261,7 +3196,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"00444000BBFFFFBB"
     )
         port map (
-      I0 => \^apu_pulse2_out\(36),
+      I0 => \^apu_pulse2_out\(44),
       I1 => \^dbg_apu_half\,
       I2 => \^apu_pulse2_out\(5),
       I3 => \APU_Pulse2[length_counter][4]_i_2_n_0\,
@@ -3308,7 +3243,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"00F000F0FFFF22F2"
     )
         port map (
-      I0 => \APU_Pulse1[length_counter][5]_i_7_n_0\,
+      I0 => \APU_Pulse1[length_counter][5]_i_6_n_0\,
       I1 => \APU_Pulse2[length_counter][5]_i_5_n_0\,
       I2 => \^apu_pulse2_out\(5),
       I3 => \APU_Pulse2[length_counter][5]_i_6_n_0\,
@@ -3321,22 +3256,22 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"04"
     )
         port map (
-      I0 => \^apu_pulse2_out\(36),
+      I0 => \^apu_pulse2_out\(44),
       I1 => \^dbg_apu_half\,
       I2 => \APU_Pulse2_Message[3]_INST_0_i_3_n_0\,
       O => \APU_Pulse2[length_counter][5]_i_3_n_0\
     );
 \APU_Pulse2[length_counter][5]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000800000000"
+      INIT => X"0020000000000000"
     )
         port map (
-      I0 => CPU_Addr(0),
-      I1 => CPU_RomSel,
-      I2 => CPU_RW,
-      I3 => CPU_Addr(3),
-      I4 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I5 => CPU_Addr(2),
+      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I1 => CPU_Addr(3),
+      I2 => CPU_Addr(2),
+      I3 => CPU_RW,
+      I4 => CPU_RomSel,
+      I5 => CPU_Addr(0),
       O => \APU_Pulse2[length_counter][5]_i_4_n_0\
     );
 \APU_Pulse2[length_counter][5]_i_5\: unisim.vcomponents.LUT2
@@ -3354,7 +3289,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \APU_Pulse2[length_counter][5]_i_8_n_0\,
-      I1 => \^apu_pulse2_out\(36),
+      I1 => \^apu_pulse2_out\(44),
       I2 => \^dbg_apu_half\,
       O => \APU_Pulse2[length_counter][5]_i_6_n_0\
     );
@@ -3379,90 +3314,101 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I4 => \^apu_pulse2_out\(4),
       O => \APU_Pulse2[length_counter][5]_i_8_n_0\
     );
-\APU_Pulse2[sweep_enable]_i_1\: unisim.vcomponents.LUT6
+\APU_Pulse2[sweep_enable]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000001000000000"
+      INIT => X"2000"
     )
         port map (
-      I0 => \APU_Pulse2[duty][1]_i_2_n_0\,
-      I1 => CPU_Addr(1),
-      I2 => CPU_Addr(0),
-      I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I4 => CPU_Addr(4),
-      I5 => CPU_Addr(2),
-      O => \APU_Pulse2[sweep_enable]_i_1_n_0\
+      I0 => CPU_Addr(2),
+      I1 => CPU_Addr(4),
+      I2 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I3 => \APU_Pulse2[sweep_enable]_i_2_n_0\,
+      O => \APU_Pulse2[sweep_enable]\
     );
-\APU_Pulse2[timer][0]_i_1\: unisim.vcomponents.LUT5
+\APU_Pulse2[sweep_enable]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"00000200"
     )
         port map (
-      I0 => CPU_Data(0),
-      I1 => \APU_Pulse2[timer][0]_i_2_n_0\,
-      I2 => \APU_Pulse2[timer][10]_i_3_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I0 => CPU_Addr(0),
+      I1 => CPU_Addr(3),
+      I2 => CPU_RW,
+      I3 => CPU_RomSel,
+      I4 => CPU_Addr(1),
+      O => \APU_Pulse2[sweep_enable]_i_2_n_0\
+    );
+\APU_Pulse2[timer][0]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"B8"
+    )
+        port map (
+      I0 => \APU_Pulse2[timer][0]_i_2_n_0\,
+      I1 => \APU_Pulse2[timer][10]_i_3_n_0\,
+      I2 => CPU_Data(0),
       O => \APU_Pulse2[timer][0]_i_1_n_0\
     );
-\APU_Pulse2[timer][0]_i_2\: unisim.vcomponents.LUT4
+\APU_Pulse2[timer][0]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2E22000000000000"
     )
         port map (
-      I0 => Pulse2_Target1,
-      I1 => Pulse2_Target00_out(0),
-      I2 => Pulse2_Target02_out(0),
-      I3 => \^apu_pulse2_out\(22),
+      I0 => Pulse2_Target02_out(0),
+      I1 => \^apu_pulse2_out\(30),
+      I2 => Pulse2_Target1,
+      I3 => Pulse2_Target00_out(0),
+      I4 => Reset,
+      I5 => CPU_Rst,
       O => \APU_Pulse2[timer][0]_i_2_n_0\
     );
-\APU_Pulse2[timer][10]_i_1\: unisim.vcomponents.LUT6
+\APU_Pulse2[timer][10]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"C0C0AAFFC0C0AA00"
+      INIT => X"AACFAAC0"
     )
         port map (
-      I0 => CPU_Data(2),
-      I1 => \APU_Pulse1[timer][10]_i_2_n_0\,
-      I2 => \APU_Pulse2[timer][10]_i_2_n_0\,
-      I3 => \APU_Pulse2[timer_load]\(10),
-      I4 => \APU_Pulse2[timer][10]_i_3_n_0\,
-      I5 => \^apu_pulse2_reg[timer][10]_0\,
+      I0 => \APU_Pulse2[timer][10]_i_2_n_0\,
+      I1 => CPU_Data(2),
+      I2 => \APU_Pulse2[timer_load]\(10),
+      I3 => \APU_Pulse2[timer][10]_i_3_n_0\,
+      I4 => \^apu_pulse2_reg[timer][10]_0\,
       O => \APU_Pulse2[timer][10]_i_1_n_0\
     );
-\APU_Pulse2[timer][10]_i_2\: unisim.vcomponents.LUT4
+\APU_Pulse2[timer][10]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"2F20"
+      INIT => X"0800080088800800"
     )
         port map (
-      I0 => Pulse2_Target00_out(10),
-      I1 => Pulse2_Target1,
-      I2 => \^apu_pulse2_out\(22),
+      I0 => Reset,
+      I1 => CPU_Rst,
+      I2 => \^apu_pulse2_out\(30),
       I3 => Pulse2_Target02_out(10),
+      I4 => Pulse2_Target00_out(10),
+      I5 => Pulse2_Target1,
       O => \APU_Pulse2[timer][10]_i_2_n_0\
     );
 \APU_Pulse2[timer][10]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"2222222202222222"
+      INIT => X"0000000055551555"
     )
         port map (
-      I0 => \APU_Pulse2[timer][10]_i_4_n_0\,
-      I1 => \APU_Pulse2_Message[3]_INST_0_i_2_n_0\,
-      I2 => Reset,
-      I3 => CPU_Rst,
-      I4 => Pulse2_Target02_out(11),
-      I5 => \^apu_pulse2_out\(22),
+      I0 => \APU_Pulse2_Message[3]_INST_0_i_2_n_0\,
+      I1 => Reset,
+      I2 => CPU_Rst,
+      I3 => Pulse2_Target02_out(11),
+      I4 => \^apu_pulse2_out\(30),
+      I5 => \APU_Pulse2[timer][10]_i_4_n_0\,
       O => \APU_Pulse2[timer][10]_i_3_n_0\
     );
 \APU_Pulse2[timer][10]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8080808080808000"
+      INIT => X"FFFFFFFFFFFFFFF7"
     )
         port map (
       I0 => \^dbg_apu_half\,
-      I1 => \^apu_pulse2_out\(26),
+      I1 => \^apu_pulse2_out\(34),
       I2 => \APU_Pulse2[timer][10]_i_5_n_0\,
-      I3 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I5 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I3 => pulse2_sweep_divider(1),
+      I4 => pulse2_sweep_divider(0),
+      I5 => pulse2_sweep_divider(2),
       O => \APU_Pulse2[timer][10]_i_4_n_0\
     );
 \APU_Pulse2[timer][10]_i_5\: unisim.vcomponents.LUT3
@@ -3470,14 +3416,14 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"01"
     )
         port map (
-      I0 => pulse2_sweep_divider(2),
-      I1 => pulse2_sweep_divider(0),
-      I2 => pulse2_sweep_divider(1),
+      I0 => \^q\(2),
+      I1 => \^q\(0),
+      I2 => \^q\(1),
       O => \APU_Pulse2[timer][10]_i_5_n_0\
     );
 \APU_Pulse2[timer][1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"CA0A0A0A"
     )
         port map (
       I0 => CPU_Data(1),
@@ -3489,18 +3435,18 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse2[timer][1]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2F20"
     )
         port map (
-      I0 => Pulse2_Target1,
-      I1 => Pulse2_Target00_out(1),
-      I2 => Pulse2_Target02_out(1),
-      I3 => \^apu_pulse2_out\(22),
+      I0 => Pulse2_Target00_out(1),
+      I1 => Pulse2_Target1,
+      I2 => \^apu_pulse2_out\(30),
+      I3 => Pulse2_Target02_out(1),
       O => \APU_Pulse2[timer][1]_i_2_n_0\
     );
 \APU_Pulse2[timer][2]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"CA0A0A0A"
     )
         port map (
       I0 => CPU_Data(2),
@@ -3512,13 +3458,13 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse2[timer][2]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2F20"
     )
         port map (
-      I0 => Pulse2_Target1,
-      I1 => Pulse2_Target00_out(2),
-      I2 => Pulse2_Target02_out(2),
-      I3 => \^apu_pulse2_out\(22),
+      I0 => Pulse2_Target00_out(2),
+      I1 => Pulse2_Target1,
+      I2 => \^apu_pulse2_out\(30),
+      I3 => Pulse2_Target02_out(2),
       O => \APU_Pulse2[timer][2]_i_2_n_0\
     );
 \APU_Pulse2[timer][3]_i_1\: unisim.vcomponents.LUT5
@@ -3540,57 +3486,57 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
         port map (
       I0 => Pulse2_Target00_out(3),
       I1 => Pulse2_Target1,
-      I2 => \^apu_pulse2_out\(22),
+      I2 => \^apu_pulse2_out\(30),
       I3 => Pulse2_Target02_out(3),
       O => \APU_Pulse2[timer][3]_i_2_n_0\
     );
 \APU_Pulse2[timer][3]_i_4\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
+      INIT => X"A959"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(3),
+      I0 => \^apu_pulse2_out\(9),
       I1 => Pulse2_Target1_carry_i_14_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_12_n_0,
+      I2 => \^q\(0),
+      I3 => Pulse2_Target1_carry_i_13_n_0,
       O => \APU_Pulse2[timer][3]_i_4_n_0\
     );
 \APU_Pulse2[timer][3]_i_5\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
+      INIT => X"A959"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(2),
+      I0 => \^apu_pulse2_out\(8),
       I1 => Pulse2_Target1_carry_i_15_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I2 => \^q\(0),
       I3 => Pulse2_Target1_carry_i_14_n_0,
       O => \APU_Pulse2[timer][3]_i_5_n_0\
     );
 \APU_Pulse2[timer][3]_i_6\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
+      INIT => X"A656"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(1),
+      I0 => \^apu_pulse2_out\(7),
       I1 => Pulse2_Target1_carry_i_16_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I2 => \^q\(0),
       I3 => Pulse2_Target1_carry_i_15_n_0,
       O => \APU_Pulse2[timer][3]_i_6_n_0\
     );
 \APU_Pulse2[timer][3]_i_7\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
+      INIT => X"47B8"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(0),
-      I1 => Pulse2_Target1_carry_i_17_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_16_n_0,
+      I0 => Pulse2_Target1_carry_i_16_n_0,
+      I1 => \^q\(0),
+      I2 => Pulse2_Target1_carry_i_17_n_0,
+      I3 => \^apu_pulse2_out\(6),
       O => \APU_Pulse2[timer][3]_i_7_n_0\
     );
 \APU_Pulse2[timer][4]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"CA0A0A0A"
     )
         port map (
       I0 => CPU_Data(4),
@@ -3602,18 +3548,18 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse2[timer][4]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2F20"
     )
         port map (
-      I0 => Pulse2_Target1,
-      I1 => Pulse2_Target00_out(4),
-      I2 => Pulse2_Target02_out(4),
-      I3 => \^apu_pulse2_out\(22),
+      I0 => Pulse2_Target00_out(4),
+      I1 => Pulse2_Target1,
+      I2 => \^apu_pulse2_out\(30),
+      I3 => Pulse2_Target02_out(4),
       O => \APU_Pulse2[timer][4]_i_2_n_0\
     );
 \APU_Pulse2[timer][5]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"CA0A0A0A"
     )
         port map (
       I0 => CPU_Data(5),
@@ -3625,13 +3571,13 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse2[timer][5]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2F20"
     )
         port map (
-      I0 => Pulse2_Target1,
-      I1 => Pulse2_Target00_out(5),
-      I2 => Pulse2_Target02_out(5),
-      I3 => \^apu_pulse2_out\(22),
+      I0 => Pulse2_Target00_out(5),
+      I1 => Pulse2_Target1,
+      I2 => \^apu_pulse2_out\(30),
+      I3 => Pulse2_Target02_out(5),
       O => \APU_Pulse2[timer][5]_i_2_n_0\
     );
 \APU_Pulse2[timer][6]_i_1\: unisim.vcomponents.LUT3
@@ -3646,15 +3592,15 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse2[timer][6]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0800080088800800"
+      INIT => X"2E22000000000000"
     )
         port map (
-      I0 => Reset,
-      I1 => CPU_Rst,
-      I2 => \^apu_pulse2_out\(22),
-      I3 => Pulse2_Target02_out(6),
-      I4 => Pulse2_Target00_out(6),
-      I5 => Pulse2_Target1,
+      I0 => Pulse2_Target02_out(6),
+      I1 => \^apu_pulse2_out\(30),
+      I2 => Pulse2_Target1,
+      I3 => Pulse2_Target00_out(6),
+      I4 => Reset,
+      I5 => CPU_Rst,
       O => \APU_Pulse2[timer][6]_i_2_n_0\
     );
 \APU_Pulse2[timer][7]_i_1\: unisim.vcomponents.LUT2
@@ -3666,32 +3612,32 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I1 => \APU_Pulse2[timer][10]_i_3_n_0\,
       O => \APU_Pulse2[timer][7]_i_1_n_0\
     );
-\APU_Pulse2[timer][7]_i_2\: unisim.vcomponents.LUT5
+\APU_Pulse2[timer][7]_i_2\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"3A0A0A0A"
+      INIT => X"B8"
     )
         port map (
-      I0 => CPU_Data(7),
-      I1 => \APU_Pulse2[timer][7]_i_3_n_0\,
-      I2 => \APU_Pulse2[timer][10]_i_3_n_0\,
-      I3 => Reset,
-      I4 => CPU_Rst,
+      I0 => \APU_Pulse2[timer][7]_i_3_n_0\,
+      I1 => \APU_Pulse2[timer][10]_i_3_n_0\,
+      I2 => CPU_Data(7),
       O => \APU_Pulse2[timer][7]_i_2_n_0\
     );
-\APU_Pulse2[timer][7]_i_3\: unisim.vcomponents.LUT4
+\APU_Pulse2[timer][7]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2E22000000000000"
     )
         port map (
-      I0 => Pulse2_Target1,
-      I1 => Pulse2_Target00_out(7),
-      I2 => Pulse2_Target02_out(7),
-      I3 => \^apu_pulse2_out\(22),
+      I0 => Pulse2_Target02_out(7),
+      I1 => \^apu_pulse2_out\(30),
+      I2 => Pulse2_Target1,
+      I3 => Pulse2_Target00_out(7),
+      I4 => Reset,
+      I5 => CPU_Rst,
       O => \APU_Pulse2[timer][7]_i_3_n_0\
     );
 \APU_Pulse2[timer][8]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"3030AAFF3030AA00"
+      INIT => X"C0C0AAFFC0C0AA00"
     )
         port map (
       I0 => CPU_Data(0),
@@ -3704,84 +3650,65 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse2[timer][8]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2F20"
     )
         port map (
-      I0 => Pulse2_Target1,
-      I1 => Pulse2_Target00_out(8),
-      I2 => Pulse2_Target02_out(8),
-      I3 => \^apu_pulse2_out\(22),
+      I0 => Pulse2_Target00_out(8),
+      I1 => Pulse2_Target1,
+      I2 => \^apu_pulse2_out\(30),
+      I3 => Pulse2_Target02_out(8),
       O => \APU_Pulse2[timer][8]_i_2_n_0\
     );
-\APU_Pulse2[timer][9]_i_1\: unisim.vcomponents.LUT6
+\APU_Pulse2[timer][9]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"3030AAFF3030AA00"
+      INIT => X"AACFAAC0"
     )
         port map (
-      I0 => CPU_Data(1),
-      I1 => \APU_Pulse2[timer][9]_i_2_n_0\,
-      I2 => \APU_Pulse1[timer][10]_i_2_n_0\,
-      I3 => \APU_Pulse2[timer_load]\(10),
-      I4 => \APU_Pulse2[timer][10]_i_3_n_0\,
-      I5 => \^apu_pulse2_reg[timer][9]_0\,
+      I0 => \APU_Pulse2[timer][9]_i_2_n_0\,
+      I1 => CPU_Data(1),
+      I2 => \APU_Pulse2[timer_load]\(10),
+      I3 => \APU_Pulse2[timer][10]_i_3_n_0\,
+      I4 => \^apu_pulse2_reg[timer][9]_0\,
       O => \APU_Pulse2[timer][9]_i_1_n_0\
     );
-\APU_Pulse2[timer][9]_i_2\: unisim.vcomponents.LUT4
+\APU_Pulse2[timer][9]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"BB0F"
+      INIT => X"2E22000000000000"
     )
         port map (
-      I0 => Pulse2_Target1,
-      I1 => Pulse2_Target00_out(9),
-      I2 => Pulse2_Target02_out(9),
-      I3 => \^apu_pulse2_out\(22),
+      I0 => Pulse2_Target02_out(9),
+      I1 => \^apu_pulse2_out\(30),
+      I2 => Pulse2_Target1,
+      I3 => Pulse2_Target00_out(9),
+      I4 => Reset,
+      I5 => CPU_Rst,
       O => \APU_Pulse2[timer][9]_i_2_n_0\
     );
 \APU_Pulse2[timer_load][10]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000004000000000"
+      INIT => X"0000000008000000"
     )
         port map (
-      I0 => CPU_Addr(4),
-      I1 => CPU_Addr(1),
-      I2 => CPU_Addr(2),
+      I0 => \APU_Pulse1[length_counter_load][4]_i_2_n_0\,
+      I1 => CPU_Addr(2),
+      I2 => CPU_Addr(3),
       I3 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I4 => CPU_Addr(3),
-      I5 => \APU_Pulse2[timer_load][10]_i_2_n_0\,
+      I4 => CPU_Addr(1),
+      I5 => CPU_Addr(4),
       O => \APU_Pulse2[timer_load]\(10)
-    );
-\APU_Pulse2[timer_load][10]_i_2\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"40"
-    )
-        port map (
-      I0 => CPU_RW,
-      I1 => CPU_RomSel,
-      I2 => CPU_Addr(0),
-      O => \APU_Pulse2[timer_load][10]_i_2_n_0\
     );
 \APU_Pulse2[timer_load][7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000000010"
+      INIT => X"0000000000000020"
     )
         port map (
-      I0 => CPU_Addr(3),
-      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I1 => CPU_Addr(3),
       I2 => CPU_Addr(2),
-      I3 => \APU_Pulse2[timer_load][7]_i_2_n_0\,
+      I3 => \APU_Pulse1[timer_load][7]_i_2_n_0\,
       I4 => CPU_Addr(4),
       I5 => CPU_Addr(0),
       O => \APU_Pulse2[timer_load]\(7)
-    );
-\APU_Pulse2[timer_load][7]_i_2\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"DF"
-    )
-        port map (
-      I0 => CPU_Addr(1),
-      I1 => CPU_RW,
-      I2 => CPU_RomSel,
-      O => \APU_Pulse2[timer_load][7]_i_2_n_0\
     );
 \APU_Pulse2[volume][0]_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -3791,9 +3718,9 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       I0 => \APU_Pulse2[timer_load]\(10),
       I1 => \procMainLogic.pulse2_envelope_start_reg_n_0\,
       I2 => \APU_Pulse2[volume][3]_i_5_n_0\,
-      I3 => \^apu_pulse2_out\(30),
-      I4 => \^apu_pulse2_out\(36),
-      I5 => \^apu_pulse2_out\(27),
+      I3 => \^apu_pulse2_out\(38),
+      I4 => \^apu_pulse2_out\(44),
+      I5 => \^apu_pulse2_out\(35),
       O => \APU_Pulse2[volume][0]_i_1_n_0\
     );
 \APU_Pulse2[volume][1]_i_1\: unisim.vcomponents.LUT6
@@ -3801,12 +3728,12 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"FEFFFEFCFEFCFEFF"
     )
         port map (
-      I0 => \^apu_pulse2_out\(36),
+      I0 => \^apu_pulse2_out\(44),
       I1 => \procMainLogic.pulse2_envelope_start_reg_n_0\,
       I2 => \APU_Pulse2[timer_load]\(10),
       I3 => \APU_Pulse2[volume][1]_i_2_n_0\,
-      I4 => \^apu_pulse2_out\(27),
-      I5 => \^apu_pulse2_out\(28),
+      I4 => \^apu_pulse2_out\(35),
+      I5 => \^apu_pulse2_out\(36),
       O => \APU_Pulse2[volume][1]_i_1_n_0\
     );
 \APU_Pulse2[volume][1]_i_2\: unisim.vcomponents.LUT4
@@ -3814,10 +3741,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"0001"
     )
         port map (
-      I0 => \^apu_pulse2_out\(29),
-      I1 => \^apu_pulse2_out\(27),
-      I2 => \^apu_pulse2_out\(28),
-      I3 => \^apu_pulse2_out\(30),
+      I0 => \^apu_pulse2_out\(37),
+      I1 => \^apu_pulse2_out\(35),
+      I2 => \^apu_pulse2_out\(36),
+      I3 => \^apu_pulse2_out\(38),
       O => \APU_Pulse2[volume][1]_i_2_n_0\
     );
 \APU_Pulse2[volume][2]_i_1\: unisim.vcomponents.LUT6
@@ -3827,10 +3754,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
         port map (
       I0 => \APU_Pulse2[timer_load]\(10),
       I1 => \procMainLogic.pulse2_envelope_start_reg_n_0\,
-      I2 => \^apu_pulse2_out\(29),
+      I2 => \^apu_pulse2_out\(37),
       I3 => \APU_Pulse2[volume][2]_i_2_n_0\,
-      I4 => \^apu_pulse2_out\(30),
-      I5 => \^apu_pulse2_out\(36),
+      I4 => \^apu_pulse2_out\(38),
+      I5 => \^apu_pulse2_out\(44),
       O => \APU_Pulse2[volume][2]_i_1_n_0\
     );
 \APU_Pulse2[volume][2]_i_2\: unisim.vcomponents.LUT2
@@ -3838,8 +3765,8 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"1"
     )
         port map (
-      I0 => \^apu_pulse2_out\(27),
-      I1 => \^apu_pulse2_out\(28),
+      I0 => \^apu_pulse2_out\(35),
+      I1 => \^apu_pulse2_out\(36),
       O => \APU_Pulse2[volume][2]_i_2_n_0\
     );
 \APU_Pulse2[volume][3]_i_1\: unisim.vcomponents.LUT5
@@ -3859,8 +3786,8 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"FFFFFF2C"
     )
         port map (
-      I0 => \^apu_pulse2_out\(36),
-      I1 => \^apu_pulse2_out\(30),
+      I0 => \^apu_pulse2_out\(44),
+      I1 => \^apu_pulse2_out\(38),
       I2 => \APU_Pulse2[volume][3]_i_5_n_0\,
       I3 => \procMainLogic.pulse2_envelope_start_reg_n_0\,
       I4 => \APU_Pulse2[timer_load]\(10),
@@ -3882,11 +3809,11 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"00000001"
     )
         port map (
-      I0 => \^apu_pulse2_out\(29),
-      I1 => \^apu_pulse2_out\(27),
-      I2 => \^apu_pulse2_out\(28),
-      I3 => \^apu_pulse2_out\(30),
-      I4 => \^apu_pulse2_out\(36),
+      I0 => \^apu_pulse2_out\(37),
+      I1 => \^apu_pulse2_out\(35),
+      I2 => \^apu_pulse2_out\(36),
+      I3 => \^apu_pulse2_out\(38),
+      I4 => \^apu_pulse2_out\(44),
       O => \APU_Pulse2[volume][3]_i_4_n_0\
     );
 \APU_Pulse2[volume][3]_i_5\: unisim.vcomponents.LUT3
@@ -3894,9 +3821,9 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"01"
     )
         port map (
-      I0 => \^apu_pulse2_out\(28),
-      I1 => \^apu_pulse2_out\(27),
-      I2 => \^apu_pulse2_out\(29),
+      I0 => \^apu_pulse2_out\(36),
+      I1 => \^apu_pulse2_out\(35),
+      I2 => \^apu_pulse2_out\(37),
       O => \APU_Pulse2[volume][3]_i_5_n_0\
     );
 \APU_Pulse2_Message[15]_INST_0\: unisim.vcomponents.LUT3
@@ -3904,9 +3831,9 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"B8"
     )
         port map (
-      I0 => \^apu_pulse2_out\(31),
-      I1 => \^apu_pulse2_out\(35),
-      I2 => \^apu_pulse2_out\(27),
+      I0 => \^apu_pulse2_out\(39),
+      I1 => \^apu_pulse2_out\(43),
+      I2 => \^apu_pulse2_out\(35),
       O => APU_Pulse2_Message(1)
     );
 \APU_Pulse2_Message[16]_INST_0\: unisim.vcomponents.LUT3
@@ -3914,9 +3841,9 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"B8"
     )
         port map (
-      I0 => \^apu_pulse2_out\(32),
-      I1 => \^apu_pulse2_out\(35),
-      I2 => \^apu_pulse2_out\(28),
+      I0 => \^apu_pulse2_out\(40),
+      I1 => \^apu_pulse2_out\(43),
+      I2 => \^apu_pulse2_out\(36),
       O => APU_Pulse2_Message(2)
     );
 \APU_Pulse2_Message[17]_INST_0\: unisim.vcomponents.LUT3
@@ -3924,9 +3851,9 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"B8"
     )
         port map (
-      I0 => \^apu_pulse2_out\(33),
-      I1 => \^apu_pulse2_out\(35),
-      I2 => \^apu_pulse2_out\(29),
+      I0 => \^apu_pulse2_out\(41),
+      I1 => \^apu_pulse2_out\(43),
+      I2 => \^apu_pulse2_out\(37),
       O => APU_Pulse2_Message(3)
     );
 \APU_Pulse2_Message[18]_INST_0\: unisim.vcomponents.LUT3
@@ -3934,9 +3861,9 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"B8"
     )
         port map (
-      I0 => \^apu_pulse2_out\(34),
-      I1 => \^apu_pulse2_out\(35),
-      I2 => \^apu_pulse2_out\(30),
+      I0 => \^apu_pulse2_out\(42),
+      I1 => \^apu_pulse2_out\(43),
+      I2 => \^apu_pulse2_out\(38),
       O => APU_Pulse2_Message(4)
     );
 \APU_Pulse2_Message[3]_INST_0\: unisim.vcomponents.LUT6
@@ -3944,7 +3871,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"000000000000BFFF"
     )
         port map (
-      I0 => \^apu_pulse2_out\(22),
+      I0 => \^apu_pulse2_out\(30),
       I1 => Pulse2_Target02_out(11),
       I2 => CPU_Rst,
       I3 => Reset,
@@ -3971,36 +3898,34 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       S(1) => \APU_Pulse2_Message[3]_INST_0_i_6_n_0\,
       S(0) => \APU_Pulse2_Message[3]_INST_0_i_7_n_0\
     );
-\APU_Pulse2_Message[3]_INST_0_i_10\: unisim.vcomponents.LUT4
+\APU_Pulse2_Message[3]_INST_0_i_10\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"A656"
+      INIT => X"6"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(6),
-      I1 => Pulse2_Target1_carry_i_10_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_9_n_0,
+      I0 => \^apu_pulse2_out\(12),
+      I1 => Pulse2_Target1_carry_i_18_n_0,
       O => \APU_Pulse2_Message[3]_INST_0_i_10_n_0\
     );
 \APU_Pulse2_Message[3]_INST_0_i_11\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"569A"
+      INIT => X"56A6"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(5),
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => Pulse2_Target1_carry_i_13_n_0,
-      I3 => Pulse2_Target1_carry_i_10_n_0,
+      I0 => \^apu_pulse2_out\(11),
+      I1 => Pulse2_Target1_carry_i_12_n_0,
+      I2 => \^q\(0),
+      I3 => Pulse2_Target1_carry_i_11_n_0,
       O => \APU_Pulse2_Message[3]_INST_0_i_11_n_0\
     );
 \APU_Pulse2_Message[3]_INST_0_i_12\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"656A"
+      INIT => X"59A9"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(4),
+      I0 => \^apu_pulse2_out\(10),
       I1 => Pulse2_Target1_carry_i_13_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I2 => \^q\(0),
       I3 => Pulse2_Target1_carry_i_12_n_0,
       O => \APU_Pulse2_Message[3]_INST_0_i_12_n_0\
     );
@@ -4009,8 +3934,8 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"00000001"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][10]_0\,
-      I1 => \^apu_pulse2_reg[timer][7]_0\(3),
+      I0 => \^apu_pulse2_out\(9),
+      I1 => \^apu_pulse2_reg[timer][10]_0\,
       I2 => \^apu_pulse2_reg[timer][9]_0\,
       I3 => \^apu_pulse2_reg[timer][8]_0\,
       I4 => \APU_Pulse2_Message[3]_INST_0_i_8_n_0\,
@@ -4037,7 +3962,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CO(1) => \APU_Pulse2_Message[3]_INST_0_i_4_n_2\,
       CO(0) => \APU_Pulse2_Message[3]_INST_0_i_4_n_3\,
       CYINIT => '0',
-      DI(3 downto 0) => \^apu_pulse2_reg[timer][7]_0\(7 downto 4),
+      DI(3 downto 0) => \^apu_pulse2_out\(13 downto 10),
       O(3 downto 0) => Pulse2_Target02_out(7 downto 4),
       S(3) => \APU_Pulse2_Message[3]_INST_0_i_9_n_0\,
       S(2) => \APU_Pulse2_Message[3]_INST_0_i_10_n_0\,
@@ -4046,35 +3971,38 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Pulse2_Message[3]_INST_0_i_5\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"47B8"
+      INIT => X"AAA8"
     )
         port map (
-      I0 => Pulse2_Target1_carry_i_17_n_0,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => \Pulse2_Target1_carry__0_i_5_n_0\,
-      I3 => \^apu_pulse2_reg[timer][10]_0\,
+      I0 => \^apu_pulse2_reg[timer][10]_0\,
+      I1 => \^q\(2),
+      I2 => \^q\(0),
+      I3 => \^q\(1),
       O => \APU_Pulse2_Message[3]_INST_0_i_5_n_0\
     );
-\APU_Pulse2_Message[3]_INST_0_i_6\: unisim.vcomponents.LUT4
+\APU_Pulse2_Message[3]_INST_0_i_6\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"56A6"
+      INIT => X"FA04FE00"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][9]_0\,
-      I1 => \Pulse2_Target1_carry__0_i_6_n_0\,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => \Pulse2_Target1_carry__0_i_5_n_0\,
+      I0 => \^q\(1),
+      I1 => \^q\(0),
+      I2 => \^q\(2),
+      I3 => \^apu_pulse2_reg[timer][9]_0\,
+      I4 => \^apu_pulse2_reg[timer][10]_0\,
       O => \APU_Pulse2_Message[3]_INST_0_i_6_n_0\
     );
-\APU_Pulse2_Message[3]_INST_0_i_7\: unisim.vcomponents.LUT4
+\APU_Pulse2_Message[3]_INST_0_i_7\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"569A"
+      INIT => X"C9C998C8CCCC98C8"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][8]_0\,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => Pulse2_Target1_carry_i_11_n_0,
-      I3 => \Pulse2_Target1_carry__0_i_6_n_0\,
+      I0 => \^q\(2),
+      I1 => \^apu_pulse2_reg[timer][8]_0\,
+      I2 => \^q\(1),
+      I3 => \^apu_pulse2_reg[timer][10]_0\,
+      I4 => \^q\(0),
+      I5 => \^apu_pulse2_reg[timer][9]_0\,
       O => \APU_Pulse2_Message[3]_INST_0_i_7_n_0\
     );
 \APU_Pulse2_Message[3]_INST_0_i_8\: unisim.vcomponents.LUT4
@@ -4082,21 +4010,23 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       INIT => X"FFFE"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(7),
-      I1 => \^apu_pulse2_reg[timer][7]_0\(6),
-      I2 => \^apu_pulse2_reg[timer][7]_0\(5),
-      I3 => \^apu_pulse2_reg[timer][7]_0\(4),
+      I0 => \^apu_pulse2_out\(11),
+      I1 => \^apu_pulse2_out\(10),
+      I2 => \^apu_pulse2_out\(13),
+      I3 => \^apu_pulse2_out\(12),
       O => \APU_Pulse2_Message[3]_INST_0_i_8_n_0\
     );
-\APU_Pulse2_Message[3]_INST_0_i_9\: unisim.vcomponents.LUT4
+\APU_Pulse2_Message[3]_INST_0_i_9\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"59A9"
+      INIT => X"333398C8CCCC98C8"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(7),
-      I1 => Pulse2_Target1_carry_i_9_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_11_n_0,
+      I0 => \^q\(2),
+      I1 => \^apu_pulse2_out\(13),
+      I2 => \^q\(1),
+      I3 => \^apu_pulse2_reg[timer][9]_0\,
+      I4 => \^q\(0),
+      I5 => Pulse2_Target1_carry_i_9_n_0,
       O => \APU_Pulse2_Message[3]_INST_0_i_9_n_0\
     );
 \APU_Pulse2_reg[constant_volume]\: unisim.vcomponents.FDCE
@@ -4106,10 +4036,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[duty][1]_i_1_n_0\,
+      CE => \APU_Pulse2[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => \^apu_pulse2_out\(35)
+      Q => \^apu_pulse2_out\(43)
     );
 \APU_Pulse2_reg[duty][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -4118,10 +4048,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[duty][1]_i_1_n_0\,
+      CE => \APU_Pulse2[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(6),
-      Q => \^apu_pulse2_out\(37)
+      Q => \^apu_pulse2_out\(45)
     );
 \APU_Pulse2_reg[duty][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -4130,10 +4060,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[duty][1]_i_1_n_0\,
+      CE => \APU_Pulse2[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(7),
-      Q => \^apu_pulse2_out\(38)
+      Q => \^apu_pulse2_out\(46)
     );
 \APU_Pulse2_reg[envelope][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -4142,10 +4072,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[duty][1]_i_1_n_0\,
+      CE => \APU_Pulse2[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(0),
-      Q => \^apu_pulse2_out\(31)
+      Q => \^apu_pulse2_out\(39)
     );
 \APU_Pulse2_reg[envelope][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -4154,10 +4084,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[duty][1]_i_1_n_0\,
+      CE => \APU_Pulse2[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(1),
-      Q => \^apu_pulse2_out\(32)
+      Q => \^apu_pulse2_out\(40)
     );
 \APU_Pulse2_reg[envelope][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -4166,10 +4096,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[duty][1]_i_1_n_0\,
+      CE => \APU_Pulse2[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(2),
-      Q => \^apu_pulse2_out\(33)
+      Q => \^apu_pulse2_out\(41)
     );
 \APU_Pulse2_reg[envelope][3]\: unisim.vcomponents.FDCE
     generic map(
@@ -4178,10 +4108,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[duty][1]_i_1_n_0\,
+      CE => \APU_Pulse2[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => \^apu_pulse2_out\(34)
+      Q => \^apu_pulse2_out\(42)
     );
 \APU_Pulse2_reg[length_counter][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -4262,10 +4192,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[duty][1]_i_1_n_0\,
+      CE => \APU_Pulse2[duty]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(5),
-      Q => \^apu_pulse2_out\(36)
+      Q => \^apu_pulse2_out\(44)
     );
 \APU_Pulse2_reg[length_counter_load][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -4277,7 +4207,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(10),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => \^apu_pulse2_out\(6)
+      Q => \^apu_pulse2_out\(14)
     );
 \APU_Pulse2_reg[length_counter_load][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -4289,7 +4219,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(10),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => \^apu_pulse2_out\(7)
+      Q => \^apu_pulse2_out\(15)
     );
 \APU_Pulse2_reg[length_counter_load][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -4301,7 +4231,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(10),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(5),
-      Q => \^apu_pulse2_out\(8)
+      Q => \^apu_pulse2_out\(16)
     );
 \APU_Pulse2_reg[length_counter_load][3]\: unisim.vcomponents.FDCE
     generic map(
@@ -4313,7 +4243,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(10),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(6),
-      Q => \^apu_pulse2_out\(9)
+      Q => \^apu_pulse2_out\(17)
     );
 \APU_Pulse2_reg[length_counter_load][4]\: unisim.vcomponents.FDCE
     generic map(
@@ -4325,7 +4255,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(10),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(7),
-      Q => \^apu_pulse2_out\(10)
+      Q => \^apu_pulse2_out\(18)
     );
 \APU_Pulse2_reg[sweep_enable]\: unisim.vcomponents.FDCE
     generic map(
@@ -4334,10 +4264,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      CE => \APU_Pulse2[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(7),
-      Q => \^apu_pulse2_out\(26)
+      Q => \^apu_pulse2_out\(34)
     );
 \APU_Pulse2_reg[sweep_negate]\: unisim.vcomponents.FDCE
     generic map(
@@ -4346,10 +4276,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      CE => \APU_Pulse2[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => \^apu_pulse2_out\(22)
+      Q => \^apu_pulse2_out\(30)
     );
 \APU_Pulse2_reg[sweep_period][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -4358,10 +4288,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      CE => \APU_Pulse2[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => \^apu_pulse2_out\(23)
+      Q => \^apu_pulse2_out\(31)
     );
 \APU_Pulse2_reg[sweep_period][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -4370,10 +4300,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      CE => \APU_Pulse2[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(5),
-      Q => \^apu_pulse2_out\(24)
+      Q => \^apu_pulse2_out\(32)
     );
 \APU_Pulse2_reg[sweep_period][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -4382,10 +4312,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      CE => \APU_Pulse2[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(6),
-      Q => \^apu_pulse2_out\(25)
+      Q => \^apu_pulse2_out\(33)
     );
 \APU_Pulse2_reg[sweep_shift][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -4394,10 +4324,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      CE => \APU_Pulse2[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(0),
-      Q => \^apu_pulse2_reg[sweep_shift][2]_0\(0)
+      Q => \^q\(0)
     );
 \APU_Pulse2_reg[sweep_shift][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -4406,10 +4336,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      CE => \APU_Pulse2[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(1),
-      Q => \^apu_pulse2_reg[sweep_shift][2]_0\(1)
+      Q => \^q\(1)
     );
 \APU_Pulse2_reg[sweep_shift][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -4418,10 +4348,10 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
     )
         port map (
       C => CPU_M2,
-      CE => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      CE => \APU_Pulse2[sweep_enable]\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(2),
-      Q => \^apu_pulse2_reg[sweep_shift][2]_0\(2)
+      Q => \^q\(2)
     );
 \APU_Pulse2_reg[timer][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -4433,7 +4363,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse2[timer][0]_i_1_n_0\,
-      Q => \^apu_pulse2_reg[timer][7]_0\(0)
+      Q => \^apu_pulse2_out\(6)
     );
 \APU_Pulse2_reg[timer][10]\: unisim.vcomponents.FDCE
     generic map(
@@ -4457,7 +4387,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse2[timer][1]_i_1_n_0\,
-      Q => \^apu_pulse2_reg[timer][7]_0\(1)
+      Q => \^apu_pulse2_out\(7)
     );
 \APU_Pulse2_reg[timer][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -4469,7 +4399,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse2[timer][2]_i_1_n_0\,
-      Q => \^apu_pulse2_reg[timer][7]_0\(2)
+      Q => \^apu_pulse2_out\(8)
     );
 \APU_Pulse2_reg[timer][3]\: unisim.vcomponents.FDCE
     generic map(
@@ -4481,7 +4411,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse2[timer][3]_i_1_n_0\,
-      Q => \^apu_pulse2_reg[timer][7]_0\(3)
+      Q => \^apu_pulse2_out\(9)
     );
 \APU_Pulse2_reg[timer][3]_i_3\: unisim.vcomponents.CARRY4
      port map (
@@ -4491,7 +4421,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CO(1) => \APU_Pulse2_reg[timer][3]_i_3_n_2\,
       CO(0) => \APU_Pulse2_reg[timer][3]_i_3_n_3\,
       CYINIT => '0',
-      DI(3 downto 0) => \^apu_pulse2_reg[timer][7]_0\(3 downto 0),
+      DI(3 downto 0) => \^apu_pulse2_out\(9 downto 6),
       O(3 downto 0) => Pulse2_Target02_out(3 downto 0),
       S(3) => \APU_Pulse2[timer][3]_i_4_n_0\,
       S(2) => \APU_Pulse2[timer][3]_i_5_n_0\,
@@ -4508,7 +4438,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse2[timer][4]_i_1_n_0\,
-      Q => \^apu_pulse2_reg[timer][7]_0\(4)
+      Q => \^apu_pulse2_out\(10)
     );
 \APU_Pulse2_reg[timer][5]\: unisim.vcomponents.FDCE
     generic map(
@@ -4520,7 +4450,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse2[timer][5]_i_1_n_0\,
-      Q => \^apu_pulse2_reg[timer][7]_0\(5)
+      Q => \^apu_pulse2_out\(11)
     );
 \APU_Pulse2_reg[timer][6]\: unisim.vcomponents.FDCE
     generic map(
@@ -4532,7 +4462,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse2[timer][6]_i_1_n_0\,
-      Q => \^apu_pulse2_reg[timer][7]_0\(6)
+      Q => \^apu_pulse2_out\(12)
     );
 \APU_Pulse2_reg[timer][7]\: unisim.vcomponents.FDCE
     generic map(
@@ -4544,7 +4474,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer][7]_i_1_n_0\,
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => \APU_Pulse2[timer][7]_i_2_n_0\,
-      Q => \^apu_pulse2_reg[timer][7]_0\(7)
+      Q => \^apu_pulse2_out\(13)
     );
 \APU_Pulse2_reg[timer][8]\: unisim.vcomponents.FDCE
     generic map(
@@ -4580,7 +4510,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(0),
-      Q => \^apu_pulse2_out\(11)
+      Q => \^apu_pulse2_out\(19)
     );
 \APU_Pulse2_reg[timer_load][10]\: unisim.vcomponents.FDCE
     generic map(
@@ -4592,7 +4522,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(10),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(2),
-      Q => \^apu_pulse2_out\(21)
+      Q => \^apu_pulse2_out\(29)
     );
 \APU_Pulse2_reg[timer_load][1]\: unisim.vcomponents.FDCE
     generic map(
@@ -4604,7 +4534,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(1),
-      Q => \^apu_pulse2_out\(12)
+      Q => \^apu_pulse2_out\(20)
     );
 \APU_Pulse2_reg[timer_load][2]\: unisim.vcomponents.FDCE
     generic map(
@@ -4616,7 +4546,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(2),
-      Q => \^apu_pulse2_out\(13)
+      Q => \^apu_pulse2_out\(21)
     );
 \APU_Pulse2_reg[timer_load][3]\: unisim.vcomponents.FDCE
     generic map(
@@ -4628,7 +4558,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(3),
-      Q => \^apu_pulse2_out\(14)
+      Q => \^apu_pulse2_out\(22)
     );
 \APU_Pulse2_reg[timer_load][4]\: unisim.vcomponents.FDCE
     generic map(
@@ -4640,7 +4570,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(4),
-      Q => \^apu_pulse2_out\(15)
+      Q => \^apu_pulse2_out\(23)
     );
 \APU_Pulse2_reg[timer_load][5]\: unisim.vcomponents.FDCE
     generic map(
@@ -4652,7 +4582,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(5),
-      Q => \^apu_pulse2_out\(16)
+      Q => \^apu_pulse2_out\(24)
     );
 \APU_Pulse2_reg[timer_load][6]\: unisim.vcomponents.FDCE
     generic map(
@@ -4664,7 +4594,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(6),
-      Q => \^apu_pulse2_out\(17)
+      Q => \^apu_pulse2_out\(25)
     );
 \APU_Pulse2_reg[timer_load][7]\: unisim.vcomponents.FDCE
     generic map(
@@ -4676,7 +4606,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(7),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(7),
-      Q => \^apu_pulse2_out\(18)
+      Q => \^apu_pulse2_out\(26)
     );
 \APU_Pulse2_reg[timer_load][8]\: unisim.vcomponents.FDCE
     generic map(
@@ -4688,7 +4618,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(10),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(0),
-      Q => \^apu_pulse2_out\(19)
+      Q => \^apu_pulse2_out\(27)
     );
 \APU_Pulse2_reg[timer_load][9]\: unisim.vcomponents.FDCE
     generic map(
@@ -4700,7 +4630,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[timer_load]\(10),
       CLR => \APU_Pulse1[duty][1]_i_2_n_0\,
       D => CPU_Data(1),
-      Q => \^apu_pulse2_out\(20)
+      Q => \^apu_pulse2_out\(28)
     );
 \APU_Pulse2_reg[volume][0]\: unisim.vcomponents.FDPE
     generic map(
@@ -4712,7 +4642,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[volume]\,
       D => \APU_Pulse2[volume][0]_i_1_n_0\,
       PRE => \APU_Pulse1[duty][1]_i_2_n_0\,
-      Q => \^apu_pulse2_out\(27)
+      Q => \^apu_pulse2_out\(35)
     );
 \APU_Pulse2_reg[volume][1]\: unisim.vcomponents.FDPE
     generic map(
@@ -4724,7 +4654,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[volume]\,
       D => \APU_Pulse2[volume][1]_i_1_n_0\,
       PRE => \APU_Pulse1[duty][1]_i_2_n_0\,
-      Q => \^apu_pulse2_out\(28)
+      Q => \^apu_pulse2_out\(36)
     );
 \APU_Pulse2_reg[volume][2]\: unisim.vcomponents.FDPE
     generic map(
@@ -4736,7 +4666,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[volume]\,
       D => \APU_Pulse2[volume][2]_i_1_n_0\,
       PRE => \APU_Pulse1[duty][1]_i_2_n_0\,
-      Q => \^apu_pulse2_out\(29)
+      Q => \^apu_pulse2_out\(37)
     );
 \APU_Pulse2_reg[volume][3]\: unisim.vcomponents.FDPE
     generic map(
@@ -4748,7 +4678,7 @@ APU_Half_CE_reg: unisim.vcomponents.FDCE
       CE => \APU_Pulse2[volume]\,
       D => \APU_Pulse2[volume][3]_i_2_n_0\,
       PRE => \APU_Pulse1[duty][1]_i_2_n_0\,
-      Q => \^apu_pulse2_out\(30)
+      Q => \^apu_pulse2_out\(38)
     );
 APU_Quarter_CE2_carry: unisim.vcomponents.CARRY4
      port map (
@@ -4800,114 +4730,113 @@ APU_Quarter_CE2_carry: unisim.vcomponents.CARRY4
     );
 APU_Quarter_CE_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"08080808AA08AAAA"
+      INIT => X"888888888888A8AA"
     )
         port map (
       I0 => \^dbg_apu_tick\,
       I1 => APU_Quarter_CE_i_2_n_0,
-      I2 => APU_Quarter_CE_i_3_n_0,
-      I3 => APU_Quarter_CE_i_4_n_0,
-      I4 => APU_Quarter_CE_i_5_n_0,
-      I5 => APU_Half_CE_i_3_n_0,
+      I2 => \^apu_counter_reg[mode]_0\,
+      I3 => APU_Quarter_CE_i_3_n_0,
+      I4 => APU_Quarter_CE_i_4_n_0,
+      I5 => APU_Quarter_CE_i_5_n_0,
       O => APU_Quarter_CE12_out
     );
-APU_Quarter_CE_i_2: unisim.vcomponents.LUT5
+APU_Quarter_CE_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80100404"
+      INIT => X"0000000080000520"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(5),
-      I1 => \procFrameCounter.counter_reg\(7),
+      I0 => \procFrameCounter.counter_reg\(8),
+      I1 => \procFrameCounter.counter_reg\(9),
       I2 => \procFrameCounter.counter_reg\(4),
-      I3 => \procFrameCounter.counter_reg\(9),
-      I4 => \procFrameCounter.counter_reg\(8),
+      I3 => \procFrameCounter.counter_reg\(7),
+      I4 => \procFrameCounter.counter_reg\(5),
+      I5 => APU_Quarter_CE_i_6_n_0,
       O => APU_Quarter_CE_i_2_n_0
     );
 APU_Quarter_CE_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FEEEFFFFFFFFEEFF"
+      INIT => X"FFFFFFFFFFFFEFFF"
     )
         port map (
-      I0 => APU_Quarter_CE_i_6_n_0,
-      I1 => APU_Quarter_CE_i_7_n_0,
-      I2 => \procFrameCounter.counter_reg\(4),
-      I3 => \procFrameCounter.counter_reg\(5),
+      I0 => APU_Half_CE_i_8_n_0,
+      I1 => \procFrameCounter.counter_reg\(0),
+      I2 => \procFrameCounter.counter_reg\(13),
+      I3 => \procFrameCounter.counter_reg\(11),
       I4 => \procFrameCounter.counter_reg\(2),
       I5 => \procFrameCounter.counter_reg\(3),
       O => APU_Quarter_CE_i_3_n_0
     );
-APU_Quarter_CE_i_4: unisim.vcomponents.LUT6
+APU_Quarter_CE_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000080000000000"
+      INIT => X"FEFF"
     )
         port map (
-      I0 => APU_Half_CE_i_10_n_0,
-      I1 => \procFrameCounter.counter_reg\(14),
-      I2 => \procFrameCounter.counter_reg\(9),
-      I3 => \^apu_counter_reg[mode]_0\,
-      I4 => \procFrameCounter.counter_reg\(12),
-      I5 => \procFrameCounter.counter_reg\(7),
+      I0 => \procFrameCounter.counter_reg\(8),
+      I1 => \procFrameCounter.counter_reg\(4),
+      I2 => \procFrameCounter.counter_reg\(10),
+      I3 => \procFrameCounter.counter_reg\(6),
       O => APU_Quarter_CE_i_4_n_0
     );
 APU_Quarter_CE_i_5: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFFFFFFFBF"
+      INIT => X"AAAAA2AAAAAAAAAA"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(0),
-      I1 => \procFrameCounter.counter_reg\(13),
-      I2 => \procFrameCounter.counter_reg\(11),
-      I3 => \procFrameCounter.counter_reg\(2),
-      I4 => \procFrameCounter.counter_reg\(3),
-      I5 => APU_Half_CE_i_7_n_0,
+      I0 => \^apu_counter_reg[mode]_0\,
+      I1 => \procFrameCounter.counter_reg\(7),
+      I2 => \procFrameCounter.counter_reg\(9),
+      I3 => \procFrameCounter.counter_reg\(14),
+      I4 => \procFrameCounter.counter_reg\(12),
+      I5 => APU_Half_CE_i_9_n_0,
       O => APU_Quarter_CE_i_5_n_0
     );
-APU_Quarter_CE_i_6: unisim.vcomponents.LUT5
+APU_Quarter_CE_i_6: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"BFFFD5FF"
+      INIT => X"FFFFFFFFFEFEEFFF"
     )
         port map (
-      I0 => \procFrameCounter.counter_reg\(10),
-      I1 => \procFrameCounter.counter_reg\(9),
-      I2 => \procFrameCounter.counter_reg\(8),
-      I3 => \procFrameCounter.counter_reg\(11),
-      I4 => \procFrameCounter.counter_reg\(13),
+      I0 => APU_Quarter_CE_i_7_n_0,
+      I1 => APU_Quarter_CE_i_8_n_0,
+      I2 => \procFrameCounter.counter_reg\(12),
+      I3 => \procFrameCounter.counter_reg\(8),
+      I4 => \procFrameCounter.counter_reg\(9),
+      I5 => APU_Quarter_CE_i_9_n_0,
       O => APU_Quarter_CE_i_6_n_0
     );
 APU_Quarter_CE_i_7: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFFAAFE"
+      INIT => X"EFFFFFFE"
     )
         port map (
-      I0 => APU_Quarter_CE_i_8_n_0,
-      I1 => \procFrameCounter.counter_reg\(1),
-      I2 => \procFrameCounter.counter_reg\(0),
-      I3 => \procFrameCounter.counter_reg\(2),
-      I4 => APU_Quarter_CE_i_9_n_0,
+      I0 => \procFrameCounter.counter_reg\(6),
+      I1 => \procFrameCounter.counter_reg\(14),
+      I2 => \procFrameCounter.counter_reg\(2),
+      I3 => \procFrameCounter.counter_reg\(1),
+      I4 => \procFrameCounter.counter_reg\(0),
       O => APU_Quarter_CE_i_7_n_0
     );
 APU_Quarter_CE_i_8: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFF8"
+      INIT => X"8FF3"
+    )
+        port map (
+      I0 => \procFrameCounter.counter_reg\(4),
+      I1 => \procFrameCounter.counter_reg\(5),
+      I2 => \procFrameCounter.counter_reg\(2),
+      I3 => \procFrameCounter.counter_reg\(3),
+      O => APU_Quarter_CE_i_8_n_0
+    );
+APU_Quarter_CE_i_9: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FB4FFFFF"
     )
         port map (
       I0 => \procFrameCounter.counter_reg\(12),
-      I1 => \procFrameCounter.counter_reg\(9),
-      I2 => \procFrameCounter.counter_reg\(14),
-      I3 => \procFrameCounter.counter_reg\(6),
-      O => APU_Quarter_CE_i_8_n_0
-    );
-APU_Quarter_CE_i_9: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"707070FF70FF70FF"
-    )
-        port map (
-      I0 => \procFrameCounter.counter_reg\(0),
-      I1 => \procFrameCounter.counter_reg\(1),
-      I2 => \procFrameCounter.counter_reg\(2),
-      I3 => \procFrameCounter.counter_reg\(9),
-      I4 => \procFrameCounter.counter_reg\(8),
-      I5 => \procFrameCounter.counter_reg\(12),
+      I1 => \procFrameCounter.counter_reg\(8),
+      I2 => \procFrameCounter.counter_reg\(10),
+      I3 => \procFrameCounter.counter_reg\(13),
+      I4 => \procFrameCounter.counter_reg\(11),
       O => APU_Quarter_CE_i_9_n_0
     );
 APU_Quarter_CE_reg: unisim.vcomponents.FDCE
@@ -4923,12 +4852,12 @@ APU_Quarter_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Status[dmc_active]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000004000000"
+      INIT => X"0000000008000000"
     )
         port map (
-      I0 => \APU_Pulse2[duty][1]_i_2_n_0\,
-      I1 => CPU_Addr(0),
-      I2 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I0 => \APU_Pulse1[length_counter_load][4]_i_2_n_0\,
+      I1 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
+      I2 => CPU_Addr(3),
       I3 => CPU_Addr(2),
       I4 => CPU_Addr(4),
       I5 => CPU_Addr(1),
@@ -5015,7 +4944,7 @@ APU_Tick_CE_reg: unisim.vcomponents.FDCE
     );
 \APU_Triangle[length_counter_halt]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000000002"
+      INIT => X"0000000000000001"
     )
         port map (
       I0 => \APU_Pulse1[duty][1]_i_4_n_0\,
@@ -5026,53 +4955,79 @@ APU_Tick_CE_reg: unisim.vcomponents.FDCE
       I5 => \APU_Triangle[length_counter_halt]_i_2_n_0\,
       O => \APU_Triangle[length_counter_halt]\
     );
-\APU_Triangle[length_counter_halt]_i_2\: unisim.vcomponents.LUT5
+\APU_Triangle[length_counter_halt]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFBFF"
+      INIT => X"FFFFFFFFFFFFFFFB"
     )
         port map (
-      I0 => \APU_Pulse1[sweep_enable]_i_5_n_0\,
-      I1 => CPU_Addr(14),
-      I2 => CPU_Addr(13),
-      I3 => CPU_Addr(3),
-      I4 => \APU_Pulse1[sweep_enable]_i_4_n_0\,
+      I0 => \APU_Pulse1[sweep_enable]_i_4_n_0\,
+      I1 => CPU_Addr(3),
+      I2 => CPU_Addr(8),
+      I3 => CPU_Addr(5),
+      I4 => CPU_Addr(12),
+      I5 => CPU_Addr(9),
       O => \APU_Triangle[length_counter_halt]_i_2_n_0\
     );
 \APU_Triangle[timer_load][10]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000010000000"
+      INIT => X"0000000000001000"
     )
         port map (
       I0 => CPU_Addr(4),
       I1 => CPU_Addr(2),
       I2 => CPU_Addr(1),
-      I3 => \APU_Pulse1[duty][1]_i_4_n_0\,
-      I4 => CPU_Addr(0),
+      I3 => CPU_Addr(0),
+      I4 => \APU_Pulse1[duty][1]_i_4_n_0\,
       I5 => \APU_Triangle[length_counter_halt]_i_2_n_0\,
       O => \APU_Triangle[timer_load][10]_i_1_n_0\
     );
-\APU_Triangle[timer_load][7]_i_1\: unisim.vcomponents.LUT5
+\APU_Triangle[timer_load][7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00000001"
+      INIT => X"0000000000000200"
     )
         port map (
-      I0 => \APU_Pulse1[sweep_enable]_i_2_n_0\,
-      I1 => CPU_Addr(2),
-      I2 => CPU_Addr(0),
-      I3 => CPU_Addr(4),
-      I4 => \APU_Triangle[timer_load][7]_i_2_n_0\,
+      I0 => \APU_Triangle[timer_load][7]_i_2_n_0\,
+      I1 => \APU_Triangle[timer_load][7]_i_3_n_0\,
+      I2 => CPU_Addr(2),
+      I3 => CPU_Addr(14),
+      I4 => CPU_Addr(13),
+      I5 => \APU_Triangle[timer_load][7]_i_4_n_0\,
       O => \APU_Triangle[timer_load][7]_i_1_n_0\
     );
 \APU_Triangle[timer_load][7]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"DFFF"
+      INIT => X"0800"
     )
         port map (
-      I0 => CPU_RomSel,
-      I1 => CPU_RW,
-      I2 => CPU_Addr(3),
-      I3 => CPU_Addr(1),
+      I0 => CPU_Addr(1),
+      I1 => CPU_Addr(3),
+      I2 => CPU_RW,
+      I3 => CPU_RomSel,
       O => \APU_Triangle[timer_load][7]_i_2_n_0\
+    );
+\APU_Triangle[timer_load][7]_i_3\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => CPU_Addr(8),
+      I1 => CPU_Addr(5),
+      I2 => CPU_Addr(12),
+      I3 => CPU_Addr(9),
+      O => \APU_Triangle[timer_load][7]_i_3_n_0\
+    );
+\APU_Triangle[timer_load][7]_i_4\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFFFFFFFFFE"
+    )
+        port map (
+      I0 => CPU_Addr(7),
+      I1 => CPU_Addr(6),
+      I2 => CPU_Addr(4),
+      I3 => CPU_Addr(0),
+      I4 => CPU_Addr(10),
+      I5 => CPU_Addr(11),
+      O => \APU_Triangle[timer_load][7]_i_4_n_0\
     );
 \APU_Triangle_reg[length_counter][0]\: unisim.vcomponents.FDCE
     generic map(
@@ -5454,7 +5409,7 @@ Pulse1_Target0_carry: unisim.vcomponents.CARRY4
       CO(1) => Pulse1_Target0_carry_n_2,
       CO(0) => Pulse1_Target0_carry_n_3,
       CYINIT => '1',
-      DI(3 downto 0) => \^apu_pulse1_reg[timer][7]_0\(3 downto 0),
+      DI(3 downto 0) => \^apu_pulse1_out\(9 downto 6),
       O(3 downto 0) => Pulse1_Target01_out(3 downto 0),
       S(3) => Pulse1_Target0_carry_i_1_n_0,
       S(2) => Pulse1_Target0_carry_i_2_n_0,
@@ -5469,7 +5424,7 @@ Pulse1_Target0_carry: unisim.vcomponents.CARRY4
       CO(1) => \Pulse1_Target0_carry__0_n_2\,
       CO(0) => \Pulse1_Target0_carry__0_n_3\,
       CYINIT => '0',
-      DI(3 downto 0) => \^apu_pulse1_reg[timer][7]_0\(7 downto 4),
+      DI(3 downto 0) => \^apu_pulse1_out\(13 downto 10),
       O(3 downto 0) => Pulse1_Target01_out(7 downto 4),
       S(3) => \Pulse1_Target0_carry__0_i_1_n_0\,
       S(2) => \Pulse1_Target0_carry__0_i_2_n_0\,
@@ -5478,35 +5433,35 @@ Pulse1_Target0_carry: unisim.vcomponents.CARRY4
     );
 \Pulse1_Target0_carry__0_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0002FFFDFFFD0002"
+      INIT => X"7FFF800080007FFF"
     )
         port map (
-      I0 => p_0_in3_in(5),
-      I1 => Pulse1_Target1_carry_i_13_n_0,
-      I2 => Pulse1_Target1_carry_i_14_n_0,
-      I3 => Pulse1_Target1_carry_i_11_n_0,
-      I4 => \^apu_pulse1_reg[timer][7]_0\(7),
-      I5 => Pulse1_Target1_carry_i_9_n_0,
+      I0 => p_0_in3_in(6),
+      I1 => p_0_in3_in(5),
+      I2 => Pulse1_Target1_carry_i_13_n_0,
+      I3 => p_0_in3_in(4),
+      I4 => \^apu_pulse1_out\(13),
+      I5 => p_0_in3_in(7),
       O => \Pulse1_Target0_carry__0_i_1_n_0\
     );
 \Pulse1_Target0_carry__0_i_2\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"69"
+      INIT => X"96"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(6),
-      I1 => Pulse1_Target1_carry_i_11_n_0,
+      I0 => \^apu_pulse1_out\(12),
+      I1 => p_0_in3_in(6),
       I2 => Pulse1_Target1_carry_i_10_n_0,
       O => \Pulse1_Target0_carry__0_i_2_n_0\
     );
 \Pulse1_Target0_carry__0_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E11E"
+      INIT => X"7887"
     )
         port map (
       I0 => Pulse1_Target1_carry_i_13_n_0,
-      I1 => Pulse1_Target1_carry_i_14_n_0,
-      I2 => \^apu_pulse1_reg[timer][7]_0\(5),
+      I1 => p_0_in3_in(4),
+      I2 => \^apu_pulse1_out\(11),
       I3 => p_0_in3_in(5),
       O => \Pulse1_Target0_carry__0_i_3_n_0\
     );
@@ -5516,8 +5471,8 @@ Pulse1_Target0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => Pulse1_Target1_carry_i_13_n_0,
-      I1 => Pulse1_Target1_carry_i_14_n_0,
-      I2 => \^apu_pulse1_reg[timer][7]_0\(4),
+      I1 => p_0_in3_in(4),
+      I2 => \^apu_pulse1_out\(10),
       O => \Pulse1_Target0_carry__0_i_4_n_0\
     );
 \Pulse1_Target0_carry__1\: unisim.vcomponents.CARRY4
@@ -5528,8 +5483,7 @@ Pulse1_Target0_carry: unisim.vcomponents.CARRY4
       CO(0) => \Pulse1_Target0_carry__1_n_3\,
       CYINIT => '0',
       DI(3 downto 2) => B"00",
-      DI(1) => \^apu_pulse1_message\(1),
-      DI(0) => \^apu_pulse1_reg[timer][8]_0\,
+      DI(1 downto 0) => \^apu_pulse1_out\(15 downto 14),
       O(3) => \NLW_Pulse1_Target0_carry__1_O_UNCONNECTED\(3),
       O(2 downto 0) => Pulse1_Target01_out(10 downto 8),
       S(3) => '0',
@@ -5539,25 +5493,28 @@ Pulse1_Target0_carry: unisim.vcomponents.CARRY4
     );
 \Pulse1_Target0_carry__1_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"99AA9A6566559A65"
+      INIT => X"0000FFFF00C7FFF7"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][10]_0\,
-      I1 => \Pulse1_Target1_carry__0_i_8_n_0\,
-      I2 => \Pulse1_Target1_carry__0_i_7_n_0\,
-      I3 => \Pulse1_Target1_carry__0_i_6_n_0\,
-      I4 => \^q\(0),
-      I5 => \Pulse1_Target1_carry__0_i_5_n_0\,
+      I0 => \^apu_pulse1_out\(15),
+      I1 => \Pulse1_Target1_carry__0_i_5_n_0\,
+      I2 => \^apu_pulse1_out\(33),
+      I3 => \^apu_pulse1_out\(35),
+      I4 => \^apu_pulse1_out\(16),
+      I5 => \^apu_pulse1_out\(34),
       O => \Pulse1_Target0_carry__1_i_1_n_0\
     );
-\Pulse1_Target0_carry__1_i_2\: unisim.vcomponents.LUT3
+\Pulse1_Target0_carry__1_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"96"
+      INIT => X"AAAA5555AA655595"
     )
         port map (
-      I0 => \^apu_pulse1_message\(1),
-      I1 => p_0_in3_in(9),
-      I2 => \Pulse1_Target1_carry__0_i_8_n_0\,
+      I0 => \Pulse1_Target1_carry__0_i_5_n_0\,
+      I1 => \^apu_pulse1_out\(16),
+      I2 => \^apu_pulse1_out\(33),
+      I3 => \^apu_pulse1_out\(35),
+      I4 => \^apu_pulse1_out\(15),
+      I5 => \^apu_pulse1_out\(34),
       O => \Pulse1_Target0_carry__1_i_2_n_0\
     );
 \Pulse1_Target0_carry__1_i_3\: unisim.vcomponents.LUT2
@@ -5566,19 +5523,19 @@ Pulse1_Target0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => \Pulse1_Target0_carry__1_i_4_n_0\,
-      I1 => \^apu_pulse1_reg[timer][8]_0\,
+      I1 => \^apu_pulse1_out\(14),
       O => \Pulse1_Target0_carry__1_i_3_n_0\
     );
 \Pulse1_Target0_carry__1_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFB00000004"
+      INIT => X"7FFFFFFF80000000"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_9_n_0,
-      I1 => p_0_in3_in(5),
-      I2 => Pulse1_Target1_carry_i_13_n_0,
-      I3 => Pulse1_Target1_carry_i_14_n_0,
-      I4 => Pulse1_Target1_carry_i_11_n_0,
+      I0 => p_0_in3_in(7),
+      I1 => p_0_in3_in(6),
+      I2 => p_0_in3_in(5),
+      I3 => Pulse1_Target1_carry_i_13_n_0,
+      I4 => p_0_in3_in(4),
       I5 => p_0_in3_in(8),
       O => \Pulse1_Target0_carry__1_i_4_n_0\
     );
@@ -5589,7 +5546,7 @@ Pulse1_Target0_carry_i_1: unisim.vcomponents.LUT3
         port map (
       I0 => Pulse1_Target0_carry_i_5_n_0,
       I1 => p_0_in3_in(3),
-      I2 => \^apu_pulse1_reg[timer][7]_0\(3),
+      I2 => \^apu_pulse1_out\(9),
       O => Pulse1_Target0_carry_i_1_n_0
     );
 Pulse1_Target0_carry_i_2: unisim.vcomponents.LUT4
@@ -5597,10 +5554,10 @@ Pulse1_Target0_carry_i_2: unisim.vcomponents.LUT4
       INIT => X"7887"
     )
         port map (
-      I0 => p_0_in3_in(0),
-      I1 => p_0_in3_in(1),
+      I0 => p_0_in3_in(1),
+      I1 => p_0_in3_in(0),
       I2 => p_0_in3_in(2),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(2),
+      I3 => \^apu_pulse1_out\(8),
       O => Pulse1_Target0_carry_i_2_n_0
     );
 Pulse1_Target0_carry_i_3: unisim.vcomponents.LUT3
@@ -5608,9 +5565,9 @@ Pulse1_Target0_carry_i_3: unisim.vcomponents.LUT3
       INIT => X"69"
     )
         port map (
-      I0 => p_0_in3_in(1),
-      I1 => p_0_in3_in(0),
-      I2 => \^apu_pulse1_reg[timer][7]_0\(1),
+      I0 => p_0_in3_in(0),
+      I1 => p_0_in3_in(1),
+      I2 => \^apu_pulse1_out\(7),
       O => Pulse1_Target0_carry_i_3_n_0
     );
 Pulse1_Target0_carry_i_4: unisim.vcomponents.LUT2
@@ -5618,7 +5575,7 @@ Pulse1_Target0_carry_i_4: unisim.vcomponents.LUT2
       INIT => X"6"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(0),
+      I0 => \^apu_pulse1_out\(6),
       I1 => p_0_in3_in(0),
       O => Pulse1_Target0_carry_i_4_n_0
     );
@@ -5628,9 +5585,9 @@ Pulse1_Target0_carry_i_5: unisim.vcomponents.LUT5
     )
         port map (
       I0 => Pulse1_Target1_carry_i_24_n_0,
-      I1 => \Pulse1_Target1_carry__0_i_5_n_0\,
-      I2 => Pulse1_Target1_carry_i_23_n_0,
-      I3 => \^q\(0),
+      I1 => Pulse1_Target1_carry_i_23_n_0,
+      I2 => Pulse1_Target1_carry_i_22_n_0,
+      I3 => \^apu_pulse1_out\(33),
       I4 => Pulse1_Target1_carry_i_25_n_0,
       O => Pulse1_Target0_carry_i_5_n_0
     );
@@ -5669,202 +5626,171 @@ Pulse1_Target1_carry: unisim.vcomponents.CARRY4
     );
 \Pulse1_Target1_carry__0_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00000000B8B84B78"
+      INIT => X"0000000000100000"
     )
         port map (
-      I0 => \Pulse1_Target1_carry__0_i_5_n_0\,
-      I1 => \^q\(0),
-      I2 => \Pulse1_Target1_carry__0_i_6_n_0\,
-      I3 => \Pulse1_Target1_carry__0_i_7_n_0\,
-      I4 => \Pulse1_Target1_carry__0_i_8_n_0\,
-      I5 => \^apu_pulse1_reg[timer][10]_0\,
+      I0 => \^apu_pulse1_out\(33),
+      I1 => \^apu_pulse1_out\(35),
+      I2 => \^apu_pulse1_out\(15),
+      I3 => \^apu_pulse1_out\(34),
+      I4 => \Pulse1_Target1_carry__0_i_5_n_0\,
+      I5 => \^apu_pulse1_out\(16),
       O => \Pulse1_Target1_carry__0_i_1_n_0\
-    );
-\Pulse1_Target1_carry__0_i_10\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFEFF"
-    )
-        port map (
-      I0 => Pulse1_Target1_carry_i_11_n_0,
-      I1 => Pulse1_Target1_carry_i_14_n_0,
-      I2 => Pulse1_Target1_carry_i_13_n_0,
-      I3 => p_0_in3_in(5),
-      I4 => Pulse1_Target1_carry_i_9_n_0,
-      O => \Pulse1_Target1_carry__0_i_10_n_0\
-    );
-\Pulse1_Target1_carry__0_i_11\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"8B"
-    )
-        port map (
-      I0 => \Pulse1_Target1_carry__0_i_7_n_0\,
-      I1 => \^q\(0),
-      I2 => Pulse1_Target1_carry_i_19_n_0,
-      O => p_0_in3_in(8)
     );
 \Pulse1_Target1_carry__0_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"4144D14D"
+      INIT => X"15403D54"
     )
         port map (
-      I0 => \^apu_pulse1_message\(1),
-      I1 => p_0_in3_in(9),
-      I2 => \Pulse1_Target1_carry__0_i_10_n_0\,
-      I3 => p_0_in3_in(8),
-      I4 => \^apu_pulse1_reg[timer][8]_0\,
+      I0 => \^apu_pulse1_out\(15),
+      I1 => \Pulse1_Target1_carry__0_i_6_n_0\,
+      I2 => p_0_in3_in(8),
+      I3 => p_0_in3_in(9),
+      I4 => \^apu_pulse1_out\(14),
       O => \Pulse1_Target1_carry__0_i_2_n_0\
     );
 \Pulse1_Target1_carry__0_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9A959A95659A6A95"
+      INIT => X"3732333737373337"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][10]_0\,
-      I1 => \Pulse1_Target1_carry__0_i_5_n_0\,
-      I2 => \^q\(0),
-      I3 => \Pulse1_Target1_carry__0_i_6_n_0\,
-      I4 => \Pulse1_Target1_carry__0_i_7_n_0\,
-      I5 => \Pulse1_Target1_carry__0_i_8_n_0\,
+      I0 => \^apu_pulse1_out\(34),
+      I1 => \^apu_pulse1_out\(16),
+      I2 => \^apu_pulse1_out\(35),
+      I3 => \^apu_pulse1_out\(33),
+      I4 => \Pulse1_Target1_carry__0_i_5_n_0\,
+      I5 => \^apu_pulse1_out\(15),
       O => \Pulse1_Target1_carry__0_i_3_n_0\
     );
 \Pulse1_Target1_carry__0_i_4\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"90090690"
+      INIT => X"09906009"
     )
         port map (
       I0 => p_0_in3_in(9),
-      I1 => \^apu_pulse1_message\(1),
-      I2 => \Pulse1_Target1_carry__0_i_10_n_0\,
+      I1 => \^apu_pulse1_out\(15),
+      I2 => \Pulse1_Target1_carry__0_i_6_n_0\,
       I3 => p_0_in3_in(8),
-      I4 => \^apu_pulse1_reg[timer][8]_0\,
+      I4 => \^apu_pulse1_out\(14),
       O => \Pulse1_Target1_carry__0_i_4_n_0\
     );
 \Pulse1_Target1_carry__0_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"8000000000000000"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(6),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(2),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(4),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(0),
+      I0 => p_0_in3_in(7),
+      I1 => p_0_in3_in(6),
+      I2 => p_0_in3_in(5),
+      I3 => Pulse1_Target1_carry_i_13_n_0,
+      I4 => p_0_in3_in(4),
+      I5 => p_0_in3_in(8),
       O => \Pulse1_Target1_carry__0_i_5_n_0\
     );
-\Pulse1_Target1_carry__0_i_6\: unisim.vcomponents.LUT6
+\Pulse1_Target1_carry__0_i_6\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"80000000"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(5),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(1),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(3),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][10]_0\,
+      I0 => p_0_in3_in(4),
+      I1 => Pulse1_Target1_carry_i_13_n_0,
+      I2 => p_0_in3_in(5),
+      I3 => p_0_in3_in(6),
+      I4 => p_0_in3_in(7),
       O => \Pulse1_Target1_carry__0_i_6_n_0\
     );
 \Pulse1_Target1_carry__0_i_7\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"0000000030BB3088"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(4),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(0),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(2),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_message\(1),
-      O => \Pulse1_Target1_carry__0_i_7_n_0\
+      I0 => \^apu_pulse1_out\(15),
+      I1 => \^apu_pulse1_out\(33),
+      I2 => \^apu_pulse1_out\(16),
+      I3 => \^apu_pulse1_out\(34),
+      I4 => \^apu_pulse1_out\(14),
+      I5 => \^apu_pulse1_out\(35),
+      O => p_0_in3_in(8)
     );
-\Pulse1_Target1_carry__0_i_8\: unisim.vcomponents.LUT6
+\Pulse1_Target1_carry__0_i_8\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFFFFFBFFFFFFFF"
+      INIT => X"00000B08"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_9_n_0,
-      I1 => p_0_in3_in(5),
-      I2 => Pulse1_Target1_carry_i_13_n_0,
-      I3 => Pulse1_Target1_carry_i_14_n_0,
-      I4 => Pulse1_Target1_carry_i_11_n_0,
-      I5 => p_0_in3_in(8),
-      O => \Pulse1_Target1_carry__0_i_8_n_0\
-    );
-\Pulse1_Target1_carry__0_i_9\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"B8"
-    )
-        port map (
-      I0 => \Pulse1_Target1_carry__0_i_6_n_0\,
-      I1 => \^q\(0),
-      I2 => \Pulse1_Target1_carry__0_i_7_n_0\,
+      I0 => \^apu_pulse1_out\(16),
+      I1 => \^apu_pulse1_out\(33),
+      I2 => \^apu_pulse1_out\(35),
+      I3 => \^apu_pulse1_out\(15),
+      I4 => \^apu_pulse1_out\(34),
       O => p_0_in3_in(9)
     );
 Pulse1_Target1_carry_i_1: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"11141774"
+      INIT => X"4144D14D"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(7),
-      I1 => Pulse1_Target1_carry_i_9_n_0,
+      I0 => \^apu_pulse1_out\(13),
+      I1 => p_0_in3_in(7),
       I2 => Pulse1_Target1_carry_i_10_n_0,
-      I3 => Pulse1_Target1_carry_i_11_n_0,
-      I4 => \^apu_pulse1_reg[timer][7]_0\(6),
+      I3 => p_0_in3_in(6),
+      I4 => \^apu_pulse1_out\(12),
       O => Pulse1_Target1_carry_i_1_n_0
     );
 Pulse1_Target1_carry_i_10: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"EF"
+      INIT => X"7F"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_14_n_0,
+      I0 => p_0_in3_in(4),
       I1 => Pulse1_Target1_carry_i_13_n_0,
       I2 => p_0_in3_in(5),
       O => Pulse1_Target1_carry_i_10_n_0
     );
-Pulse1_Target1_carry_i_11: unisim.vcomponents.LUT3
+Pulse1_Target1_carry_i_11: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"A3"
+      INIT => X"00B8FFFF00B80000"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_20_n_0,
-      I1 => Pulse1_Target1_carry_i_21_n_0,
-      I2 => \^q\(0),
-      O => Pulse1_Target1_carry_i_11_n_0
+      I0 => \^apu_pulse1_out\(15),
+      I1 => \^apu_pulse1_out\(34),
+      I2 => \^apu_pulse1_out\(13),
+      I3 => \^apu_pulse1_out\(35),
+      I4 => \^apu_pulse1_out\(33),
+      I5 => Pulse1_Target1_carry_i_20_n_0,
+      O => p_0_in3_in(6)
     );
 Pulse1_Target1_carry_i_12: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_21_n_0,
-      I1 => \^q\(0),
-      I2 => Pulse1_Target1_carry_i_22_n_0,
+      I0 => Pulse1_Target1_carry_i_20_n_0,
+      I1 => \^apu_pulse1_out\(33),
+      I2 => Pulse1_Target1_carry_i_21_n_0,
       O => p_0_in3_in(5)
     );
 Pulse1_Target1_carry_i_13: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"5FFF7FFFFFFF7FFF"
+      INIT => X"A000800000008000"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_23_n_0,
-      I1 => \Pulse1_Target1_carry__0_i_5_n_0\,
+      I0 => Pulse1_Target1_carry_i_22_n_0,
+      I1 => Pulse1_Target1_carry_i_23_n_0,
       I2 => Pulse1_Target1_carry_i_24_n_0,
       I3 => Pulse1_Target1_carry_i_25_n_0,
-      I4 => \^q\(0),
+      I4 => \^apu_pulse1_out\(33),
       I5 => Pulse1_Target1_carry_i_26_n_0,
       O => Pulse1_Target1_carry_i_13_n_0
     );
 Pulse1_Target1_carry_i_14: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"1D"
+      INIT => X"B8"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_26_n_0,
-      I1 => \^q\(0),
-      I2 => Pulse1_Target1_carry_i_22_n_0,
-      O => Pulse1_Target1_carry_i_14_n_0
+      I0 => Pulse1_Target1_carry_i_21_n_0,
+      I1 => \^apu_pulse1_out\(33),
+      I2 => Pulse1_Target1_carry_i_26_n_0,
+      O => p_0_in3_in(4)
     );
 Pulse1_Target1_carry_i_15: unisim.vcomponents.LUT3
     generic map(
@@ -5872,7 +5798,7 @@ Pulse1_Target1_carry_i_15: unisim.vcomponents.LUT3
     )
         port map (
       I0 => Pulse1_Target1_carry_i_26_n_0,
-      I1 => \^q\(0),
+      I1 => \^apu_pulse1_out\(33),
       I2 => Pulse1_Target1_carry_i_25_n_0,
       O => p_0_in3_in(3)
     );
@@ -5881,20 +5807,20 @@ Pulse1_Target1_carry_i_16: unisim.vcomponents.LUT3
       INIT => X"B8"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_24_n_0,
-      I1 => \^q\(0),
-      I2 => \Pulse1_Target1_carry__0_i_5_n_0\,
-      O => p_0_in3_in(0)
+      I0 => Pulse1_Target1_carry_i_22_n_0,
+      I1 => \^apu_pulse1_out\(33),
+      I2 => Pulse1_Target1_carry_i_24_n_0,
+      O => p_0_in3_in(1)
     );
 Pulse1_Target1_carry_i_17: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_23_n_0,
-      I1 => \^q\(0),
-      I2 => Pulse1_Target1_carry_i_24_n_0,
-      O => p_0_in3_in(1)
+      I0 => Pulse1_Target1_carry_i_24_n_0,
+      I1 => \^apu_pulse1_out\(33),
+      I2 => Pulse1_Target1_carry_i_23_n_0,
+      O => p_0_in3_in(0)
     );
 Pulse1_Target1_carry_i_18: unisim.vcomponents.LUT3
     generic map(
@@ -5902,59 +5828,55 @@ Pulse1_Target1_carry_i_18: unisim.vcomponents.LUT3
     )
         port map (
       I0 => Pulse1_Target1_carry_i_25_n_0,
-      I1 => \^q\(0),
-      I2 => Pulse1_Target1_carry_i_23_n_0,
+      I1 => \^apu_pulse1_out\(33),
+      I2 => Pulse1_Target1_carry_i_22_n_0,
       O => p_0_in3_in(2)
     );
-Pulse1_Target1_carry_i_19: unisim.vcomponents.LUT6
+Pulse1_Target1_carry_i_19: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"505F3030505F3F3F"
+      INIT => X"00B8"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(3),
-      I1 => \^apu_pulse1_reg[timer][10]_0\,
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(1),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][8]_0\,
+      I0 => \^apu_pulse1_out\(15),
+      I1 => \^apu_pulse1_out\(34),
+      I2 => \^apu_pulse1_out\(13),
+      I3 => \^apu_pulse1_out\(35),
       O => Pulse1_Target1_carry_i_19_n_0
     );
 Pulse1_Target1_carry_i_2: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"44414DD1"
+      INIT => X"14441DD4"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(5),
+      I0 => \^apu_pulse1_out\(11),
       I1 => p_0_in3_in(5),
       I2 => Pulse1_Target1_carry_i_13_n_0,
-      I3 => Pulse1_Target1_carry_i_14_n_0,
-      I4 => \^apu_pulse1_reg[timer][7]_0\(4),
+      I3 => p_0_in3_in(4),
+      I4 => \^apu_pulse1_out\(10),
       O => Pulse1_Target1_carry_i_2_n_0
     );
-Pulse1_Target1_carry_i_20: unisim.vcomponents.LUT6
+Pulse1_Target1_carry_i_20: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"505F3030505F3F3F"
+      INIT => X"30BB3088"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(2),
-      I1 => \^apu_pulse1_message\(1),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(0),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(7),
+      I0 => \^apu_pulse1_out\(14),
+      I1 => \^apu_pulse1_out\(34),
+      I2 => \^apu_pulse1_out\(16),
+      I3 => \^apu_pulse1_out\(35),
+      I4 => \^apu_pulse1_out\(12),
       O => Pulse1_Target1_carry_i_20_n_0
     );
-Pulse1_Target1_carry_i_21: unisim.vcomponents.LUT6
+Pulse1_Target1_carry_i_21: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"30BB3088"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(1),
-      I1 => \^apu_pulse1_reg[timer][8]_0\,
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][10]_0\,
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(6),
+      I0 => \^apu_pulse1_out\(13),
+      I1 => \^apu_pulse1_out\(34),
+      I2 => \^apu_pulse1_out\(15),
+      I3 => \^apu_pulse1_out\(35),
+      I4 => \^apu_pulse1_out\(11),
       O => Pulse1_Target1_carry_i_21_n_0
     );
 Pulse1_Target1_carry_i_22: unisim.vcomponents.LUT6
@@ -5962,12 +5884,12 @@ Pulse1_Target1_carry_i_22: unisim.vcomponents.LUT6
       INIT => X"AFA0CFCFAFA0C0C0"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(0),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(7),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_message\(1),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(5),
+      I0 => \^apu_pulse1_out\(14),
+      I1 => \^apu_pulse1_out\(10),
+      I2 => \^apu_pulse1_out\(34),
+      I3 => \^apu_pulse1_out\(12),
+      I4 => \^apu_pulse1_out\(35),
+      I5 => \^apu_pulse1_out\(8),
       O => Pulse1_Target1_carry_i_22_n_0
     );
 Pulse1_Target1_carry_i_23: unisim.vcomponents.LUT6
@@ -5975,12 +5897,12 @@ Pulse1_Target1_carry_i_23: unisim.vcomponents.LUT6
       INIT => X"AFA0CFCFAFA0C0C0"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][8]_0\,
-      I1 => \^apu_pulse1_reg[timer][7]_0\(4),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(6),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(2),
+      I0 => \^apu_pulse1_out\(12),
+      I1 => \^apu_pulse1_out\(8),
+      I2 => \^apu_pulse1_out\(34),
+      I3 => \^apu_pulse1_out\(10),
+      I4 => \^apu_pulse1_out\(35),
+      I5 => \^apu_pulse1_out\(6),
       O => Pulse1_Target1_carry_i_23_n_0
     );
 Pulse1_Target1_carry_i_24: unisim.vcomponents.LUT6
@@ -5988,12 +5910,12 @@ Pulse1_Target1_carry_i_24: unisim.vcomponents.LUT6
       INIT => X"AFA0CFCFAFA0C0C0"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(7),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(3),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(5),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(1),
+      I0 => \^apu_pulse1_out\(13),
+      I1 => \^apu_pulse1_out\(9),
+      I2 => \^apu_pulse1_out\(34),
+      I3 => \^apu_pulse1_out\(11),
+      I4 => \^apu_pulse1_out\(35),
+      I5 => \^apu_pulse1_out\(7),
       O => Pulse1_Target1_carry_i_24_n_0
     );
 Pulse1_Target1_carry_i_25: unisim.vcomponents.LUT6
@@ -6001,12 +5923,12 @@ Pulse1_Target1_carry_i_25: unisim.vcomponents.LUT6
       INIT => X"AFA0CFCFAFA0C0C0"
     )
         port map (
-      I0 => \^apu_pulse1_message\(1),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(5),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(7),
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(3),
+      I0 => \^apu_pulse1_out\(15),
+      I1 => \^apu_pulse1_out\(11),
+      I2 => \^apu_pulse1_out\(34),
+      I3 => \^apu_pulse1_out\(13),
+      I4 => \^apu_pulse1_out\(35),
+      I5 => \^apu_pulse1_out\(9),
       O => Pulse1_Target1_carry_i_25_n_0
     );
 Pulse1_Target1_carry_i_26: unisim.vcomponents.LUT6
@@ -6014,12 +5936,12 @@ Pulse1_Target1_carry_i_26: unisim.vcomponents.LUT6
       INIT => X"AFA0CFCFAFA0C0C0"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][10]_0\,
-      I1 => \^apu_pulse1_reg[timer][7]_0\(6),
-      I2 => \^q\(1),
-      I3 => \^apu_pulse1_reg[timer][8]_0\,
-      I4 => \^q\(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(4),
+      I0 => \^apu_pulse1_out\(16),
+      I1 => \^apu_pulse1_out\(12),
+      I2 => \^apu_pulse1_out\(34),
+      I3 => \^apu_pulse1_out\(14),
+      I4 => \^apu_pulse1_out\(35),
+      I5 => \^apu_pulse1_out\(10),
       O => Pulse1_Target1_carry_i_26_n_0
     );
 Pulse1_Target1_carry_i_3: unisim.vcomponents.LUT6
@@ -6027,46 +5949,46 @@ Pulse1_Target1_carry_i_3: unisim.vcomponents.LUT6
       INIT => X"144444441DDDD444"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(3),
+      I0 => \^apu_pulse1_out\(9),
       I1 => p_0_in3_in(3),
-      I2 => p_0_in3_in(0),
-      I3 => p_0_in3_in(1),
+      I2 => p_0_in3_in(1),
+      I3 => p_0_in3_in(0),
       I4 => p_0_in3_in(2),
-      I5 => \^apu_pulse1_reg[timer][7]_0\(2),
+      I5 => \^apu_pulse1_out\(8),
       O => Pulse1_Target1_carry_i_3_n_0
     );
 Pulse1_Target1_carry_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"1435"
+      INIT => X"141D"
     )
         port map (
-      I0 => \^apu_pulse1_reg[timer][7]_0\(1),
-      I1 => p_0_in3_in(0),
-      I2 => p_0_in3_in(1),
-      I3 => \^apu_pulse1_reg[timer][7]_0\(0),
+      I0 => \^apu_pulse1_out\(7),
+      I1 => p_0_in3_in(1),
+      I2 => p_0_in3_in(0),
+      I3 => \^apu_pulse1_out\(6),
       O => Pulse1_Target1_carry_i_4_n_0
     );
 Pulse1_Target1_carry_i_5: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"06606009"
+      INIT => X"90090690"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_9_n_0,
-      I1 => \^apu_pulse1_reg[timer][7]_0\(7),
-      I2 => \^apu_pulse1_reg[timer][7]_0\(6),
-      I3 => Pulse1_Target1_carry_i_11_n_0,
+      I0 => p_0_in3_in(7),
+      I1 => \^apu_pulse1_out\(13),
+      I2 => \^apu_pulse1_out\(12),
+      I3 => p_0_in3_in(6),
       I4 => Pulse1_Target1_carry_i_10_n_0,
       O => Pulse1_Target1_carry_i_5_n_0
     );
 Pulse1_Target1_carry_i_6: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"09909006"
+      INIT => X"06909009"
     )
         port map (
       I0 => p_0_in3_in(5),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(5),
-      I2 => \^apu_pulse1_reg[timer][7]_0\(4),
-      I3 => Pulse1_Target1_carry_i_14_n_0,
+      I1 => \^apu_pulse1_out\(11),
+      I2 => \^apu_pulse1_out\(10),
+      I3 => p_0_in3_in(4),
       I4 => Pulse1_Target1_carry_i_13_n_0,
       O => Pulse1_Target1_carry_i_6_n_0
     );
@@ -6076,11 +5998,11 @@ Pulse1_Target1_carry_i_7: unisim.vcomponents.LUT6
     )
         port map (
       I0 => p_0_in3_in(3),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(3),
-      I2 => \^apu_pulse1_reg[timer][7]_0\(2),
+      I1 => \^apu_pulse1_out\(9),
+      I2 => \^apu_pulse1_out\(8),
       I3 => p_0_in3_in(2),
-      I4 => p_0_in3_in(1),
-      I5 => p_0_in3_in(0),
+      I4 => p_0_in3_in(0),
+      I5 => p_0_in3_in(1),
       O => Pulse1_Target1_carry_i_7_n_0
     );
 Pulse1_Target1_carry_i_8: unisim.vcomponents.LUT4
@@ -6089,20 +6011,23 @@ Pulse1_Target1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       I0 => p_0_in3_in(1),
-      I1 => \^apu_pulse1_reg[timer][7]_0\(1),
-      I2 => \^apu_pulse1_reg[timer][7]_0\(0),
+      I1 => \^apu_pulse1_out\(7),
+      I2 => \^apu_pulse1_out\(6),
       I3 => p_0_in3_in(0),
       O => Pulse1_Target1_carry_i_8_n_0
     );
-Pulse1_Target1_carry_i_9: unisim.vcomponents.LUT3
+Pulse1_Target1_carry_i_9: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"B8"
+      INIT => X"00B8FFFF00B80000"
     )
         port map (
-      I0 => Pulse1_Target1_carry_i_19_n_0,
-      I1 => \^q\(0),
-      I2 => Pulse1_Target1_carry_i_20_n_0,
-      O => Pulse1_Target1_carry_i_9_n_0
+      I0 => \^apu_pulse1_out\(16),
+      I1 => \^apu_pulse1_out\(34),
+      I2 => \^apu_pulse1_out\(14),
+      I3 => \^apu_pulse1_out\(35),
+      I4 => \^apu_pulse1_out\(33),
+      I5 => Pulse1_Target1_carry_i_19_n_0,
+      O => p_0_in3_in(7)
     );
 Pulse2_Target0_carry: unisim.vcomponents.CARRY4
      port map (
@@ -6112,7 +6037,7 @@ Pulse2_Target0_carry: unisim.vcomponents.CARRY4
       CO(1) => Pulse2_Target0_carry_n_2,
       CO(0) => Pulse2_Target0_carry_n_3,
       CYINIT => '1',
-      DI(3 downto 0) => \^apu_pulse2_reg[timer][7]_0\(3 downto 0),
+      DI(3 downto 0) => \^apu_pulse2_out\(9 downto 6),
       O(3 downto 0) => Pulse2_Target00_out(3 downto 0),
       S(3) => Pulse2_Target0_carry_i_1_n_0,
       S(2) => Pulse2_Target0_carry_i_2_n_0,
@@ -6127,54 +6052,49 @@ Pulse2_Target0_carry: unisim.vcomponents.CARRY4
       CO(1) => \Pulse2_Target0_carry__0_n_2\,
       CO(0) => \Pulse2_Target0_carry__0_n_3\,
       CYINIT => '0',
-      DI(3 downto 0) => \^apu_pulse2_reg[timer][7]_0\(7 downto 4),
+      DI(3 downto 0) => \^apu_pulse2_out\(13 downto 10),
       O(3 downto 0) => Pulse2_Target00_out(7 downto 4),
       S(3) => \Pulse2_Target0_carry__0_i_1_n_0\,
       S(2) => \Pulse2_Target0_carry__0_i_2_n_0\,
       S(1) => \Pulse2_Target0_carry__0_i_3_n_0\,
       S(0) => \Pulse2_Target0_carry__0_i_4_n_0\
     );
-\Pulse2_Target0_carry__0_i_1\: unisim.vcomponents.LUT4
+\Pulse2_Target0_carry__0_i_1\: unisim.vcomponents.LUT1
     generic map(
-      INIT => X"A656"
+      INIT => X"1"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(7),
-      I1 => Pulse2_Target1_carry_i_9_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_11_n_0,
+      I0 => Pulse2_Target1_carry_i_19_n_0,
       O => \Pulse2_Target0_carry__0_i_1_n_0\
     );
-\Pulse2_Target0_carry__0_i_2\: unisim.vcomponents.LUT4
+\Pulse2_Target0_carry__0_i_2\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"59A9"
+      INIT => X"9"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(6),
-      I1 => Pulse2_Target1_carry_i_10_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_9_n_0,
+      I0 => \^apu_pulse2_out\(12),
+      I1 => Pulse2_Target1_carry_i_18_n_0,
       O => \Pulse2_Target0_carry__0_i_2_n_0\
     );
 \Pulse2_Target0_carry__0_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"A965"
+      INIT => X"A959"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(5),
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => Pulse2_Target1_carry_i_13_n_0,
-      I3 => Pulse2_Target1_carry_i_10_n_0,
+      I0 => \^apu_pulse2_out\(11),
+      I1 => Pulse2_Target1_carry_i_12_n_0,
+      I2 => \^q\(0),
+      I3 => Pulse2_Target1_carry_i_11_n_0,
       O => \Pulse2_Target0_carry__0_i_3_n_0\
     );
 \Pulse2_Target0_carry__0_i_4\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"9A95"
+      INIT => X"A656"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(4),
+      I0 => \^apu_pulse2_out\(10),
       I1 => Pulse2_Target1_carry_i_13_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I2 => \^q\(0),
       I3 => Pulse2_Target1_carry_i_12_n_0,
       O => \Pulse2_Target0_carry__0_i_4_n_0\
     );
@@ -6197,79 +6117,82 @@ Pulse2_Target0_carry: unisim.vcomponents.CARRY4
     );
 \Pulse2_Target0_carry__1_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"B847"
+      INIT => X"01FF"
     )
         port map (
-      I0 => Pulse2_Target1_carry_i_17_n_0,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => \Pulse2_Target1_carry__0_i_5_n_0\,
+      I0 => \^q\(1),
+      I1 => \^q\(0),
+      I2 => \^q\(2),
       I3 => \^apu_pulse2_reg[timer][10]_0\,
       O => \Pulse2_Target0_carry__1_i_1_n_0\
     );
-\Pulse2_Target0_carry__1_i_2\: unisim.vcomponents.LUT4
+\Pulse2_Target0_carry__1_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"A959"
+      INIT => X"3333393F"
+    )
+        port map (
+      I0 => \^apu_pulse2_reg[timer][10]_0\,
+      I1 => \^apu_pulse2_reg[timer][9]_0\,
+      I2 => \^q\(2),
+      I3 => \^q\(0),
+      I4 => \^q\(1),
+      O => \Pulse2_Target0_carry__1_i_2_n_0\
+    );
+\Pulse2_Target0_carry__1_i_3\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000FFFF30BBCF77"
     )
         port map (
       I0 => \^apu_pulse2_reg[timer][9]_0\,
-      I1 => \Pulse2_Target1_carry__0_i_6_n_0\,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => \Pulse2_Target1_carry__0_i_5_n_0\,
-      O => \Pulse2_Target0_carry__1_i_2_n_0\
-    );
-\Pulse2_Target0_carry__1_i_3\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"A965"
-    )
-        port map (
-      I0 => \^apu_pulse2_reg[timer][8]_0\,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => Pulse2_Target1_carry_i_11_n_0,
-      I3 => \Pulse2_Target1_carry__0_i_6_n_0\,
+      I1 => \^q\(0),
+      I2 => \^apu_pulse2_reg[timer][10]_0\,
+      I3 => \^q\(1),
+      I4 => \^apu_pulse2_reg[timer][8]_0\,
+      I5 => \^q\(2),
       O => \Pulse2_Target0_carry__1_i_3_n_0\
     );
 Pulse2_Target0_carry_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"A959"
+      INIT => X"56A6"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(3),
+      I0 => \^apu_pulse2_out\(9),
       I1 => Pulse2_Target1_carry_i_14_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_12_n_0,
+      I2 => \^q\(0),
+      I3 => Pulse2_Target1_carry_i_13_n_0,
       O => Pulse2_Target0_carry_i_1_n_0
     );
 Pulse2_Target0_carry_i_2: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"A959"
+      INIT => X"56A6"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(2),
+      I0 => \^apu_pulse2_out\(8),
       I1 => Pulse2_Target1_carry_i_15_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I2 => \^q\(0),
       I3 => Pulse2_Target1_carry_i_14_n_0,
       O => Pulse2_Target0_carry_i_2_n_0
     );
 Pulse2_Target0_carry_i_3: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"A959"
+      INIT => X"59A9"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(1),
+      I0 => \^apu_pulse2_out\(7),
       I1 => Pulse2_Target1_carry_i_16_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I2 => \^q\(0),
       I3 => Pulse2_Target1_carry_i_15_n_0,
       O => Pulse2_Target0_carry_i_3_n_0
     );
 Pulse2_Target0_carry_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"A959"
+      INIT => X"B847"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(0),
-      I1 => Pulse2_Target1_carry_i_17_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_16_n_0,
+      I0 => Pulse2_Target1_carry_i_16_n_0,
+      I1 => \^q\(0),
+      I2 => Pulse2_Target1_carry_i_17_n_0,
+      I3 => \^apu_pulse2_out\(6),
       O => Pulse2_Target0_carry_i_4_n_0
     );
 Pulse2_Target1_carry: unisim.vcomponents.CARRY4
@@ -6297,177 +6220,135 @@ Pulse2_Target1_carry: unisim.vcomponents.CARRY4
       CO(1) => Pulse2_Target1,
       CO(0) => \Pulse2_Target1_carry__0_n_3\,
       CYINIT => '0',
-      DI(3 downto 2) => B"00",
-      DI(1) => \Pulse2_Target1_carry__0_i_1_n_0\,
-      DI(0) => \Pulse2_Target1_carry__0_i_2_n_0\,
+      DI(3 downto 1) => B"000",
+      DI(0) => \Pulse2_Target1_carry__0_i_1_n_0\,
       O(3 downto 0) => \NLW_Pulse2_Target1_carry__0_O_UNCONNECTED\(3 downto 0),
       S(3 downto 2) => B"00",
-      S(1) => \Pulse2_Target1_carry__0_i_3_n_0\,
-      S(0) => \Pulse2_Target1_carry__0_i_4_n_0\
+      S(1) => \Pulse2_Target1_carry__0_i_2_n_0\,
+      S(0) => \Pulse2_Target1_carry__0_i_3_n_0\
     );
-\Pulse2_Target1_carry__0_i_1\: unisim.vcomponents.LUT4
+\Pulse2_Target1_carry__0_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000020000020A00"
+    )
+        port map (
+      I0 => \^apu_pulse2_reg[timer][10]_0\,
+      I1 => \^apu_pulse2_reg[timer][9]_0\,
+      I2 => \^q\(2),
+      I3 => \^q\(0),
+      I4 => \^q\(1),
+      I5 => \^apu_pulse2_reg[timer][8]_0\,
+      O => \Pulse2_Target1_carry__0_i_1_n_0\
+    );
+\Pulse2_Target1_carry__0_i_2\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"01FF"
+    )
+        port map (
+      I0 => \^q\(1),
+      I1 => \^q\(0),
+      I2 => \^q\(2),
+      I3 => \^apu_pulse2_reg[timer][10]_0\,
+      O => \Pulse2_Target1_carry__0_i_2_n_0\
+    );
+\Pulse2_Target1_carry__0_i_3\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000555510B34537"
+    )
+        port map (
+      I0 => \^apu_pulse2_reg[timer][9]_0\,
+      I1 => \^q\(0),
+      I2 => \^apu_pulse2_reg[timer][10]_0\,
+      I3 => \^q\(1),
+      I4 => \^apu_pulse2_reg[timer][8]_0\,
+      I5 => \^q\(2),
+      O => \Pulse2_Target1_carry__0_i_3_n_0\
+    );
+Pulse2_Target1_carry_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"4500DFC54000DFC0"
+    )
+        port map (
+      I0 => \^apu_pulse2_out\(12),
+      I1 => Pulse2_Target1_carry_i_9_n_0,
+      I2 => \^q\(0),
+      I3 => Pulse2_Target1_carry_i_10_n_0,
+      I4 => \^apu_pulse2_out\(13),
+      I5 => Pulse2_Target1_carry_i_11_n_0,
+      O => Pulse2_Target1_carry_i_1_n_0
+    );
+Pulse2_Target1_carry_i_10: unisim.vcomponents.LUT4
     generic map(
       INIT => X"00B8"
     )
         port map (
-      I0 => Pulse2_Target1_carry_i_17_n_0,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => \Pulse2_Target1_carry__0_i_5_n_0\,
-      I3 => \^apu_pulse2_reg[timer][10]_0\,
-      O => \Pulse2_Target1_carry__0_i_1_n_0\
-    );
-\Pulse2_Target1_carry__0_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00B8B0FB00B880F8"
-    )
-        port map (
-      I0 => \Pulse2_Target1_carry__0_i_5_n_0\,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => \Pulse2_Target1_carry__0_i_6_n_0\,
-      I3 => \^apu_pulse2_reg[timer][9]_0\,
-      I4 => \^apu_pulse2_reg[timer][8]_0\,
-      I5 => Pulse2_Target1_carry_i_11_n_0,
-      O => \Pulse2_Target1_carry__0_i_2_n_0\
-    );
-\Pulse2_Target1_carry__0_i_3\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"B847"
-    )
-        port map (
-      I0 => Pulse2_Target1_carry_i_17_n_0,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => \Pulse2_Target1_carry__0_i_5_n_0\,
-      I3 => \^apu_pulse2_reg[timer][10]_0\,
-      O => \Pulse2_Target1_carry__0_i_3_n_0\
-    );
-\Pulse2_Target1_carry__0_i_4\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"8949201080402919"
-    )
-        port map (
       I0 => \^apu_pulse2_reg[timer][9]_0\,
-      I1 => \Pulse2_Target1_carry__0_i_6_n_0\,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => \Pulse2_Target1_carry__0_i_5_n_0\,
-      I4 => \^apu_pulse2_reg[timer][8]_0\,
-      I5 => Pulse2_Target1_carry_i_11_n_0,
-      O => \Pulse2_Target1_carry__0_i_4_n_0\
-    );
-\Pulse2_Target1_carry__0_i_5\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"F0FFF000AACCAACC"
-    )
-        port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(3),
-      I1 => \^apu_pulse2_reg[timer][10]_0\,
-      I2 => \^apu_pulse2_reg[timer][7]_0\(5),
-      I3 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I4 => \^apu_pulse2_reg[timer][7]_0\(1),
-      I5 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      O => \Pulse2_Target1_carry__0_i_5_n_0\
-    );
-\Pulse2_Target1_carry__0_i_6\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"AFAFCFC0A0A0CFC0"
-    )
-        port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(4),
-      I1 => \^apu_pulse2_reg[timer][7]_0\(0),
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][9]_0\,
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][7]_0\(2),
-      O => \Pulse2_Target1_carry__0_i_6_n_0\
-    );
-Pulse2_Target1_carry_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00540010DDFD1175"
-    )
-        port map (
-      I0 => Pulse2_Target1_carry_i_9_n_0,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => Pulse2_Target1_carry_i_10_n_0,
-      I3 => \^apu_pulse2_reg[timer][7]_0\(6),
-      I4 => Pulse2_Target1_carry_i_11_n_0,
-      I5 => \^apu_pulse2_reg[timer][7]_0\(7),
-      O => Pulse2_Target1_carry_i_1_n_0
-    );
-Pulse2_Target1_carry_i_10: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
-    )
-        port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(1),
-      I1 => \^apu_pulse2_reg[timer][8]_0\,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][10]_0\,
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][7]_0\(6),
+      I1 => \^q\(1),
+      I2 => \^apu_pulse2_out\(13),
+      I3 => \^q\(2),
       O => Pulse2_Target1_carry_i_10_n_0
     );
-Pulse2_Target1_carry_i_11: unisim.vcomponents.LUT6
+Pulse2_Target1_carry_i_11: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"0A0ACFC0"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(3),
+      I0 => \^apu_pulse2_reg[timer][8]_0\,
       I1 => \^apu_pulse2_reg[timer][10]_0\,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][7]_0\(1),
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][8]_0\,
+      I2 => \^q\(2),
+      I3 => \^apu_pulse2_out\(12),
+      I4 => \^q\(1),
       O => Pulse2_Target1_carry_i_11_n_0
     );
-Pulse2_Target1_carry_i_12: unisim.vcomponents.LUT6
+Pulse2_Target1_carry_i_12: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"30BB3088"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][10]_0\,
-      I1 => \^apu_pulse2_reg[timer][7]_0\(6),
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][8]_0\,
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][7]_0\(4),
+      I0 => \^apu_pulse2_out\(13),
+      I1 => \^q\(1),
+      I2 => \^apu_pulse2_reg[timer][9]_0\,
+      I3 => \^q\(2),
+      I4 => \^apu_pulse2_out\(11),
       O => Pulse2_Target1_carry_i_12_n_0
     );
 Pulse2_Target1_carry_i_13: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"5050303F5F5F303F"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(0),
-      I1 => \^apu_pulse2_reg[timer][7]_0\(7),
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][9]_0\,
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][7]_0\(5),
+      I0 => \^apu_pulse2_reg[timer][10]_0\,
+      I1 => \^apu_pulse2_out\(12),
+      I2 => \^q\(1),
+      I3 => \^apu_pulse2_out\(10),
+      I4 => \^q\(2),
+      I5 => \^apu_pulse2_reg[timer][8]_0\,
       O => Pulse2_Target1_carry_i_13_n_0
     );
 Pulse2_Target1_carry_i_14: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"001D331DCC1DFF1D"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][9]_0\,
-      I1 => \^apu_pulse2_reg[timer][7]_0\(5),
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][7]_0\(7),
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][7]_0\(3),
+      I0 => \^apu_pulse2_out\(9),
+      I1 => \^q\(2),
+      I2 => \^apu_pulse2_out\(13),
+      I3 => \^q\(1),
+      I4 => \^apu_pulse2_out\(11),
+      I5 => \^apu_pulse2_reg[timer][9]_0\,
       O => Pulse2_Target1_carry_i_14_n_0
     );
 Pulse2_Target1_carry_i_15: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AFA0CFCFAFA0C0C0"
+      INIT => X"505F3030505F3F3F"
     )
         port map (
       I0 => \^apu_pulse2_reg[timer][8]_0\,
-      I1 => \^apu_pulse2_reg[timer][7]_0\(4),
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][7]_0\(6),
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][7]_0\(2),
+      I1 => \^apu_pulse2_out\(10),
+      I2 => \^q\(1),
+      I3 => \^apu_pulse2_out\(12),
+      I4 => \^q\(2),
+      I5 => \^apu_pulse2_out\(8),
       O => Pulse2_Target1_carry_i_15_n_0
     );
 Pulse2_Target1_carry_i_16: unisim.vcomponents.LUT6
@@ -6475,129 +6356,150 @@ Pulse2_Target1_carry_i_16: unisim.vcomponents.LUT6
       INIT => X"AFA0CFCFAFA0C0C0"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(7),
-      I1 => \^apu_pulse2_reg[timer][7]_0\(3),
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][7]_0\(5),
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][7]_0\(1),
+      I0 => \^apu_pulse2_out\(13),
+      I1 => \^apu_pulse2_out\(9),
+      I2 => \^q\(1),
+      I3 => \^apu_pulse2_out\(11),
+      I4 => \^q\(2),
+      I5 => \^apu_pulse2_out\(7),
       O => Pulse2_Target1_carry_i_16_n_0
     );
 Pulse2_Target1_carry_i_17: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"F0FFF000AACCAACC"
+      INIT => X"AFA0CFCFAFA0C0C0"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(4),
-      I1 => \^apu_pulse2_reg[timer][7]_0\(0),
-      I2 => \^apu_pulse2_reg[timer][7]_0\(6),
-      I3 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I4 => \^apu_pulse2_reg[timer][7]_0\(2),
-      I5 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
+      I0 => \^apu_pulse2_out\(12),
+      I1 => \^apu_pulse2_out\(8),
+      I2 => \^q\(1),
+      I3 => \^apu_pulse2_out\(10),
+      I4 => \^q\(2),
+      I5 => \^apu_pulse2_out\(6),
       O => Pulse2_Target1_carry_i_17_n_0
+    );
+Pulse2_Target1_carry_i_18: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"00B8FFFF00B80000"
+    )
+        port map (
+      I0 => \^apu_pulse2_reg[timer][9]_0\,
+      I1 => \^q\(1),
+      I2 => \^apu_pulse2_out\(13),
+      I3 => \^q\(2),
+      I4 => \^q\(0),
+      I5 => Pulse2_Target1_carry_i_11_n_0,
+      O => Pulse2_Target1_carry_i_18_n_0
+    );
+Pulse2_Target1_carry_i_19: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"333398C8CCCC98C8"
+    )
+        port map (
+      I0 => \^q\(2),
+      I1 => \^apu_pulse2_out\(13),
+      I2 => \^q\(1),
+      I3 => \^apu_pulse2_reg[timer][9]_0\,
+      I4 => \^q\(0),
+      I5 => Pulse2_Target1_carry_i_9_n_0,
+      O => Pulse2_Target1_carry_i_19_n_0
     );
 Pulse2_Target1_carry_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00E00020FCFE30F2"
+      INIT => X"4000DFC04500DFC5"
     )
         port map (
-      I0 => Pulse2_Target1_carry_i_12_n_0,
-      I1 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I2 => Pulse2_Target1_carry_i_13_n_0,
-      I3 => \^apu_pulse2_reg[timer][7]_0\(4),
-      I4 => Pulse2_Target1_carry_i_10_n_0,
-      I5 => \^apu_pulse2_reg[timer][7]_0\(5),
+      I0 => \^apu_pulse2_out\(10),
+      I1 => Pulse2_Target1_carry_i_11_n_0,
+      I2 => \^q\(0),
+      I3 => Pulse2_Target1_carry_i_12_n_0,
+      I4 => \^apu_pulse2_out\(11),
+      I5 => Pulse2_Target1_carry_i_13_n_0,
       O => Pulse2_Target1_carry_i_2_n_0
     );
 Pulse2_Target1_carry_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"4500DFC54000DFC0"
+      INIT => X"000100451157DDDF"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(2),
-      I1 => Pulse2_Target1_carry_i_12_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_14_n_0,
-      I4 => \^apu_pulse2_reg[timer][7]_0\(3),
-      I5 => Pulse2_Target1_carry_i_15_n_0,
+      I0 => Pulse2_Target1_carry_i_14_n_0,
+      I1 => \^q\(0),
+      I2 => Pulse2_Target1_carry_i_15_n_0,
+      I3 => \^apu_pulse2_out\(8),
+      I4 => Pulse2_Target1_carry_i_13_n_0,
+      I5 => \^apu_pulse2_out\(9),
       O => Pulse2_Target1_carry_i_3_n_0
     );
 Pulse2_Target1_carry_i_4: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"4500DFC54000DFC0"
+      INIT => X"15007F3510007F30"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(0),
+      I0 => \^apu_pulse2_out\(6),
       I1 => Pulse2_Target1_carry_i_15_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I2 => \^q\(0),
       I3 => Pulse2_Target1_carry_i_16_n_0,
-      I4 => \^apu_pulse2_reg[timer][7]_0\(1),
+      I4 => \^apu_pulse2_out\(7),
       I5 => Pulse2_Target1_carry_i_17_n_0,
       O => Pulse2_Target1_carry_i_4_n_0
     );
-Pulse2_Target1_carry_i_5: unisim.vcomponents.LUT6
+Pulse2_Target1_carry_i_5: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"50A90900000959A0"
+      INIT => X"09"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(6),
-      I1 => Pulse2_Target1_carry_i_10_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_9_n_0,
-      I4 => \^apu_pulse2_reg[timer][7]_0\(7),
-      I5 => Pulse2_Target1_carry_i_11_n_0,
+      I0 => \^apu_pulse2_out\(12),
+      I1 => Pulse2_Target1_carry_i_18_n_0,
+      I2 => Pulse2_Target1_carry_i_19_n_0,
       O => Pulse2_Target1_carry_i_5_n_0
     );
 Pulse2_Target1_carry_i_6: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9894020108049291"
+      INIT => X"8040291989492010"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(4),
-      I1 => Pulse2_Target1_carry_i_13_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_12_n_0,
-      I4 => \^apu_pulse2_reg[timer][7]_0\(5),
-      I5 => Pulse2_Target1_carry_i_10_n_0,
+      I0 => \^apu_pulse2_out\(11),
+      I1 => Pulse2_Target1_carry_i_12_n_0,
+      I2 => \^q\(0),
+      I3 => Pulse2_Target1_carry_i_11_n_0,
+      I4 => \^apu_pulse2_out\(10),
+      I5 => Pulse2_Target1_carry_i_13_n_0,
       O => Pulse2_Target1_carry_i_6_n_0
     );
 Pulse2_Target1_carry_i_7: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8949201080402919"
+      INIT => X"000656A050A60600"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(3),
-      I1 => Pulse2_Target1_carry_i_14_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
-      I3 => Pulse2_Target1_carry_i_12_n_0,
-      I4 => \^apu_pulse2_reg[timer][7]_0\(2),
-      I5 => Pulse2_Target1_carry_i_15_n_0,
+      I0 => \^apu_pulse2_out\(8),
+      I1 => Pulse2_Target1_carry_i_15_n_0,
+      I2 => \^q\(0),
+      I3 => Pulse2_Target1_carry_i_14_n_0,
+      I4 => \^apu_pulse2_out\(9),
+      I5 => Pulse2_Target1_carry_i_13_n_0,
       O => Pulse2_Target1_carry_i_7_n_0
     );
 Pulse2_Target1_carry_i_8: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8949201080402919"
+      INIT => X"4989408010201929"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][7]_0\(1),
+      I0 => \^apu_pulse2_out\(7),
       I1 => Pulse2_Target1_carry_i_16_n_0,
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(0),
+      I2 => \^q\(0),
       I3 => Pulse2_Target1_carry_i_15_n_0,
-      I4 => \^apu_pulse2_reg[timer][7]_0\(0),
-      I5 => Pulse2_Target1_carry_i_17_n_0,
+      I4 => Pulse2_Target1_carry_i_17_n_0,
+      I5 => \^apu_pulse2_out\(6),
       O => Pulse2_Target1_carry_i_8_n_0
     );
-Pulse2_Target1_carry_i_9: unisim.vcomponents.LUT6
+Pulse2_Target1_carry_i_9: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"303F5050303F5F5F"
+      INIT => X"00B8"
     )
         port map (
-      I0 => \^apu_pulse2_reg[timer][9]_0\,
-      I1 => \^apu_pulse2_reg[timer][7]_0\(2),
-      I2 => \^apu_pulse2_reg[sweep_shift][2]_0\(1),
-      I3 => \^apu_pulse2_reg[timer][7]_0\(0),
-      I4 => \^apu_pulse2_reg[sweep_shift][2]_0\(2),
-      I5 => \^apu_pulse2_reg[timer][7]_0\(7),
+      I0 => \^apu_pulse2_reg[timer][10]_0\,
+      I1 => \^q\(1),
+      I2 => \^apu_pulse2_reg[timer][8]_0\,
+      I3 => \^q\(2),
       O => Pulse2_Target1_carry_i_9_n_0
     );
 dbg_overflow_1_INST_0: unisim.vcomponents.LUT4
@@ -6608,8 +6510,127 @@ dbg_overflow_1_INST_0: unisim.vcomponents.LUT4
       I0 => Reset,
       I1 => CPU_Rst,
       I2 => Pulse1_Target05_out(11),
-      I3 => \^apu_pulse1_out\(19),
+      I3 => \^apu_pulse1_out\(36),
       O => dbg_overflow_1
+    );
+dbg_overflow_1_INST_0_i_1: unisim.vcomponents.CARRY4
+     port map (
+      CI => dbg_overflow_1_INST_0_i_2_n_0,
+      CO(3) => Pulse1_Target05_out(11),
+      CO(2) => NLW_dbg_overflow_1_INST_0_i_1_CO_UNCONNECTED(2),
+      CO(1) => dbg_overflow_1_INST_0_i_1_n_2,
+      CO(0) => dbg_overflow_1_INST_0_i_1_n_3,
+      CYINIT => '0',
+      DI(3) => '0',
+      DI(2 downto 0) => \^apu_pulse1_out\(16 downto 14),
+      O(3) => NLW_dbg_overflow_1_INST_0_i_1_O_UNCONNECTED(3),
+      O(2 downto 0) => Pulse1_Target05_out(10 downto 8),
+      S(3) => '1',
+      S(2) => dbg_overflow_1_INST_0_i_3_n_0,
+      S(1) => dbg_overflow_1_INST_0_i_4_n_0,
+      S(0) => dbg_overflow_1_INST_0_i_5_n_0
+    );
+dbg_overflow_1_INST_0_i_10: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"00B8"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(16),
+      I1 => \^apu_pulse1_out\(34),
+      I2 => \^apu_pulse1_out\(14),
+      I3 => \^apu_pulse1_out\(35),
+      O => dbg_overflow_1_INST_0_i_10_n_0
+    );
+dbg_overflow_1_INST_0_i_2: unisim.vcomponents.CARRY4
+     port map (
+      CI => \APU_Pulse1_reg[timer][3]_i_3_n_0\,
+      CO(3) => dbg_overflow_1_INST_0_i_2_n_0,
+      CO(2) => dbg_overflow_1_INST_0_i_2_n_1,
+      CO(1) => dbg_overflow_1_INST_0_i_2_n_2,
+      CO(0) => dbg_overflow_1_INST_0_i_2_n_3,
+      CYINIT => '0',
+      DI(3 downto 0) => \^apu_pulse1_out\(13 downto 10),
+      O(3 downto 0) => Pulse1_Target05_out(7 downto 4),
+      S(3) => dbg_overflow_1_INST_0_i_6_n_0,
+      S(2) => dbg_overflow_1_INST_0_i_7_n_0,
+      S(1) => dbg_overflow_1_INST_0_i_8_n_0,
+      S(0) => dbg_overflow_1_INST_0_i_9_n_0
+    );
+dbg_overflow_1_INST_0_i_3: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"F0E0"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(33),
+      I1 => \^apu_pulse1_out\(35),
+      I2 => \^apu_pulse1_out\(16),
+      I3 => \^apu_pulse1_out\(34),
+      O => dbg_overflow_1_INST_0_i_3_n_0
+    );
+dbg_overflow_1_INST_0_i_4: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"C9C8CCC8"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(34),
+      I1 => \^apu_pulse1_out\(15),
+      I2 => \^apu_pulse1_out\(35),
+      I3 => \^apu_pulse1_out\(33),
+      I4 => \^apu_pulse1_out\(16),
+      O => dbg_overflow_1_INST_0_i_4_n_0
+    );
+dbg_overflow_1_INST_0_i_5: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"C9C998C8CCCC98C8"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(35),
+      I1 => \^apu_pulse1_out\(14),
+      I2 => \^apu_pulse1_out\(34),
+      I3 => \^apu_pulse1_out\(16),
+      I4 => \^apu_pulse1_out\(33),
+      I5 => \^apu_pulse1_out\(15),
+      O => dbg_overflow_1_INST_0_i_5_n_0
+    );
+dbg_overflow_1_INST_0_i_6: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"333398C8CCCC98C8"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(35),
+      I1 => \^apu_pulse1_out\(13),
+      I2 => \^apu_pulse1_out\(34),
+      I3 => \^apu_pulse1_out\(15),
+      I4 => \^apu_pulse1_out\(33),
+      I5 => dbg_overflow_1_INST_0_i_10_n_0,
+      O => dbg_overflow_1_INST_0_i_6_n_0
+    );
+dbg_overflow_1_INST_0_i_7: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"6"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(12),
+      I1 => p_0_in3_in(6),
+      O => dbg_overflow_1_INST_0_i_7_n_0
+    );
+dbg_overflow_1_INST_0_i_8: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"6"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(11),
+      I1 => p_0_in3_in(5),
+      O => dbg_overflow_1_INST_0_i_8_n_0
+    );
+dbg_overflow_1_INST_0_i_9: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"6"
+    )
+        port map (
+      I0 => \^apu_pulse1_out\(10),
+      I1 => p_0_in3_in(4),
+      O => dbg_overflow_1_INST_0_i_9_n_0
     );
 dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
     generic map(
@@ -6619,187 +6640,202 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       I0 => Reset,
       I1 => CPU_Rst,
       I2 => Pulse2_Target02_out(11),
-      I3 => \^apu_pulse2_out\(22),
+      I3 => \^apu_pulse2_out\(30),
       O => dbg_overflow_2
     );
-\procFrameCounter.counter[0]_i_2\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[0]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"EEEEAEAA"
+      INIT => X"EEEEEEEEEEEEAEAA"
     )
         port map (
       I0 => APU_Half_CE_i_6_n_0,
       I1 => APU_Quarter_CE2(3),
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE_i_5_n_0,
-      I4 => APU_Half_CE_i_3_n_0,
+      I2 => \^apu_counter_reg[mode]_0\,
+      I3 => APU_Quarter_CE_i_3_n_0,
+      I4 => APU_Quarter_CE_i_4_n_0,
+      I5 => APU_Quarter_CE_i_5_n_0,
       O => \procFrameCounter.counter[0]_i_2_n_0\
     );
-\procFrameCounter.counter[0]_i_3\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[0]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"EEEEAEAA"
+      INIT => X"EEEEEEEEEEEEAEAA"
     )
         port map (
       I0 => APU_Half_CE_i_6_n_0,
       I1 => APU_Quarter_CE2(2),
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE_i_5_n_0,
-      I4 => APU_Half_CE_i_3_n_0,
+      I2 => \^apu_counter_reg[mode]_0\,
+      I3 => APU_Quarter_CE_i_3_n_0,
+      I4 => APU_Quarter_CE_i_4_n_0,
+      I5 => APU_Quarter_CE_i_5_n_0,
       O => \procFrameCounter.counter[0]_i_3_n_0\
     );
-\procFrameCounter.counter[0]_i_4\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[0]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"EEEEAEAA"
+      INIT => X"EEEEEEEEEEEEAEAA"
     )
         port map (
       I0 => APU_Half_CE_i_6_n_0,
       I1 => APU_Quarter_CE2(1),
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE_i_5_n_0,
-      I4 => APU_Half_CE_i_3_n_0,
+      I2 => \^apu_counter_reg[mode]_0\,
+      I3 => APU_Quarter_CE_i_3_n_0,
+      I4 => APU_Quarter_CE_i_4_n_0,
+      I5 => APU_Quarter_CE_i_5_n_0,
       O => \procFrameCounter.counter[0]_i_4_n_0\
     );
-\procFrameCounter.counter[0]_i_5\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[0]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"000000AE"
+      INIT => X"000000000000EEFE"
     )
         port map (
-      I0 => APU_Half_CE_i_3_n_0,
-      I1 => APU_Quarter_CE_i_5_n_0,
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => \procFrameCounter.counter_reg\(0),
-      I4 => APU_Half_CE_i_6_n_0,
+      I0 => APU_Quarter_CE_i_5_n_0,
+      I1 => APU_Quarter_CE_i_4_n_0,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => \^apu_counter_reg[mode]_0\,
+      I4 => \procFrameCounter.counter_reg\(0),
+      I5 => APU_Half_CE_i_6_n_0,
       O => \procFrameCounter.counter[0]_i_5_n_0\
     );
-\procFrameCounter.counter[12]_i_2\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[12]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000AE00"
+      INIT => X"00000000EEFE0000"
     )
         port map (
-      I0 => APU_Half_CE_i_3_n_0,
-      I1 => APU_Quarter_CE_i_5_n_0,
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE2(14),
-      I4 => APU_Half_CE_i_6_n_0,
+      I0 => APU_Quarter_CE_i_5_n_0,
+      I1 => APU_Quarter_CE_i_4_n_0,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => \^apu_counter_reg[mode]_0\,
+      I4 => APU_Quarter_CE2(14),
+      I5 => APU_Half_CE_i_6_n_0,
       O => \procFrameCounter.counter[12]_i_2_n_0\
     );
-\procFrameCounter.counter[12]_i_3\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[12]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000AE00"
+      INIT => X"00000000EEFE0000"
     )
         port map (
-      I0 => APU_Half_CE_i_3_n_0,
-      I1 => APU_Quarter_CE_i_5_n_0,
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE2(13),
-      I4 => APU_Half_CE_i_6_n_0,
+      I0 => APU_Quarter_CE_i_5_n_0,
+      I1 => APU_Quarter_CE_i_4_n_0,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => \^apu_counter_reg[mode]_0\,
+      I4 => APU_Quarter_CE2(13),
+      I5 => APU_Half_CE_i_6_n_0,
       O => \procFrameCounter.counter[12]_i_3_n_0\
     );
-\procFrameCounter.counter[12]_i_4\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[12]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000AE00"
+      INIT => X"00000000EEFE0000"
     )
         port map (
-      I0 => APU_Half_CE_i_3_n_0,
-      I1 => APU_Quarter_CE_i_5_n_0,
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE2(12),
-      I4 => APU_Half_CE_i_6_n_0,
+      I0 => APU_Quarter_CE_i_5_n_0,
+      I1 => APU_Quarter_CE_i_4_n_0,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => \^apu_counter_reg[mode]_0\,
+      I4 => APU_Quarter_CE2(12),
+      I5 => APU_Half_CE_i_6_n_0,
       O => \procFrameCounter.counter[12]_i_4_n_0\
     );
-\procFrameCounter.counter[4]_i_2\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[4]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"EEEEAEAA"
+      INIT => X"FFFFFFBAAAAAAAAA"
     )
         port map (
       I0 => APU_Half_CE_i_6_n_0,
-      I1 => APU_Quarter_CE2(7),
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE_i_5_n_0,
-      I4 => APU_Half_CE_i_3_n_0,
+      I1 => \^apu_counter_reg[mode]_0\,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => APU_Quarter_CE_i_4_n_0,
+      I4 => APU_Quarter_CE_i_5_n_0,
+      I5 => APU_Quarter_CE2(7),
       O => \procFrameCounter.counter[4]_i_2_n_0\
     );
-\procFrameCounter.counter[4]_i_3\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[4]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000AE00"
+      INIT => X"00000000EEFE0000"
     )
         port map (
-      I0 => APU_Half_CE_i_3_n_0,
-      I1 => APU_Quarter_CE_i_5_n_0,
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE2(6),
-      I4 => APU_Half_CE_i_6_n_0,
+      I0 => APU_Quarter_CE_i_5_n_0,
+      I1 => APU_Quarter_CE_i_4_n_0,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => \^apu_counter_reg[mode]_0\,
+      I4 => APU_Quarter_CE2(6),
+      I5 => APU_Half_CE_i_6_n_0,
       O => \procFrameCounter.counter[4]_i_3_n_0\
     );
-\procFrameCounter.counter[4]_i_4\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[4]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000AE00"
+      INIT => X"00000000EEFE0000"
     )
         port map (
-      I0 => APU_Half_CE_i_3_n_0,
-      I1 => APU_Quarter_CE_i_5_n_0,
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE2(5),
-      I4 => APU_Half_CE_i_6_n_0,
+      I0 => APU_Quarter_CE_i_5_n_0,
+      I1 => APU_Quarter_CE_i_4_n_0,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => \^apu_counter_reg[mode]_0\,
+      I4 => APU_Quarter_CE2(5),
+      I5 => APU_Half_CE_i_6_n_0,
       O => \procFrameCounter.counter[4]_i_4_n_0\
     );
-\procFrameCounter.counter[4]_i_5\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[4]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000AE00"
+      INIT => X"00000000EEFE0000"
     )
         port map (
-      I0 => APU_Half_CE_i_3_n_0,
-      I1 => APU_Quarter_CE_i_5_n_0,
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE2(4),
-      I4 => APU_Half_CE_i_6_n_0,
+      I0 => APU_Quarter_CE_i_5_n_0,
+      I1 => APU_Quarter_CE_i_4_n_0,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => \^apu_counter_reg[mode]_0\,
+      I4 => APU_Quarter_CE2(4),
+      I5 => APU_Half_CE_i_6_n_0,
       O => \procFrameCounter.counter[4]_i_5_n_0\
     );
-\procFrameCounter.counter[8]_i_2\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[8]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"EEEEAEAA"
+      INIT => X"EEEEEEEEEEEEAEAA"
     )
         port map (
       I0 => APU_Half_CE_i_6_n_0,
       I1 => APU_Quarter_CE2(11),
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE_i_5_n_0,
-      I4 => APU_Half_CE_i_3_n_0,
+      I2 => \^apu_counter_reg[mode]_0\,
+      I3 => APU_Quarter_CE_i_3_n_0,
+      I4 => APU_Quarter_CE_i_4_n_0,
+      I5 => APU_Quarter_CE_i_5_n_0,
       O => \procFrameCounter.counter[8]_i_2_n_0\
     );
-\procFrameCounter.counter[8]_i_3\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[8]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFBAAAAA"
+      INIT => X"FFFFFFBAAAAAAAAA"
     )
         port map (
       I0 => APU_Half_CE_i_6_n_0,
-      I1 => APU_Quarter_CE_i_4_n_0,
-      I2 => APU_Quarter_CE_i_5_n_0,
-      I3 => APU_Half_CE_i_3_n_0,
-      I4 => APU_Quarter_CE2(10),
+      I1 => \^apu_counter_reg[mode]_0\,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => APU_Quarter_CE_i_4_n_0,
+      I4 => APU_Quarter_CE_i_5_n_0,
+      I5 => APU_Quarter_CE2(10),
       O => \procFrameCounter.counter[8]_i_3_n_0\
     );
-\procFrameCounter.counter[8]_i_4\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[8]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFBAAAAA"
+      INIT => X"FFFFFFBAAAAAAAAA"
     )
         port map (
       I0 => APU_Half_CE_i_6_n_0,
-      I1 => APU_Quarter_CE_i_4_n_0,
-      I2 => APU_Quarter_CE_i_5_n_0,
-      I3 => APU_Half_CE_i_3_n_0,
-      I4 => APU_Quarter_CE2(9),
+      I1 => \^apu_counter_reg[mode]_0\,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => APU_Quarter_CE_i_4_n_0,
+      I4 => APU_Quarter_CE_i_5_n_0,
+      I5 => APU_Quarter_CE2(9),
       O => \procFrameCounter.counter[8]_i_4_n_0\
     );
-\procFrameCounter.counter[8]_i_5\: unisim.vcomponents.LUT5
+\procFrameCounter.counter[8]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000AE00"
+      INIT => X"00000000EEFE0000"
     )
         port map (
-      I0 => APU_Half_CE_i_3_n_0,
-      I1 => APU_Quarter_CE_i_5_n_0,
-      I2 => APU_Quarter_CE_i_4_n_0,
-      I3 => APU_Quarter_CE2(8),
-      I4 => APU_Half_CE_i_6_n_0,
+      I0 => APU_Quarter_CE_i_5_n_0,
+      I1 => APU_Quarter_CE_i_4_n_0,
+      I2 => APU_Quarter_CE_i_3_n_0,
+      I3 => \^apu_counter_reg[mode]_0\,
+      I4 => APU_Quarter_CE2(8),
+      I5 => APU_Half_CE_i_6_n_0,
       O => \procFrameCounter.counter[8]_i_5_n_0\
     );
 \procFrameCounter.counter_reg[0]\: unisim.vcomponents.FDCE
@@ -7044,7 +7080,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       INIT => X"88BB88BB88BB88BA"
     )
         port map (
-      I0 => \^apu_pulse1_out\(28),
+      I0 => \^apu_pulse1_out\(45),
       I1 => \APU_Pulse1[volume][3]_i_5_n_0\,
       I2 => pulse1_envelope_divider(3),
       I3 => pulse1_envelope_divider(0),
@@ -7057,7 +7093,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       INIT => X"BB8888BBBB8888BA"
     )
         port map (
-      I0 => \^apu_pulse1_out\(29),
+      I0 => \^apu_pulse1_out\(46),
       I1 => \APU_Pulse1[volume][3]_i_5_n_0\,
       I2 => pulse1_envelope_divider(3),
       I3 => pulse1_envelope_divider(0),
@@ -7071,7 +7107,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
     )
         port map (
       I0 => \APU_Pulse1[volume][3]_i_5_n_0\,
-      I1 => \^apu_pulse1_out\(30),
+      I1 => \^apu_pulse1_out\(47),
       I2 => pulse1_envelope_divider(2),
       I3 => pulse1_envelope_divider(1),
       I4 => pulse1_envelope_divider(0),
@@ -7084,7 +7120,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
     )
         port map (
       I0 => \APU_Pulse1[volume][3]_i_5_n_0\,
-      I1 => \^apu_pulse1_out\(31),
+      I1 => \^apu_pulse1_out\(48),
       I2 => pulse1_envelope_divider(2),
       I3 => pulse1_envelope_divider(1),
       I4 => pulse1_envelope_divider(0),
@@ -7170,7 +7206,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       I2 => pulse1_sweep_divider(2),
       I3 => \APU_Pulse1[sweep_enable]\,
       I4 => \procMainLogic.pulse1_sweep_reload_reg_n_0\,
-      I5 => \^apu_pulse1_out\(20),
+      I5 => \^apu_pulse1_out\(37),
       O => \procMainLogic.pulse1_sweep_divider[0]_i_1_n_0\
     );
 \procMainLogic.pulse1_sweep_divider[1]_i_1\: unisim.vcomponents.LUT6
@@ -7183,7 +7219,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       I2 => pulse1_sweep_divider(2),
       I3 => \APU_Pulse1[sweep_enable]\,
       I4 => \procMainLogic.pulse1_sweep_reload_reg_n_0\,
-      I5 => \^apu_pulse1_out\(21),
+      I5 => \^apu_pulse1_out\(38),
       O => \procMainLogic.pulse1_sweep_divider[1]_i_1_n_0\
     );
 \procMainLogic.pulse1_sweep_divider[2]_i_1\: unisim.vcomponents.LUT6
@@ -7191,7 +7227,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       INIT => X"ABABABA8A8A8A8AA"
     )
         port map (
-      I0 => \^apu_pulse1_out\(22),
+      I0 => \^apu_pulse1_out\(39),
       I1 => \APU_Pulse1[sweep_enable]\,
       I2 => \procMainLogic.pulse1_sweep_reload_reg_n_0\,
       I3 => pulse1_sweep_divider(0),
@@ -7266,7 +7302,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       I1 => \APU_Pulse2[timer_load]\(10),
       I2 => \procMainLogic.pulse2_envelope_start_reg_n_0\,
       I3 => \APU_Pulse2[volume][3]_i_3_n_0\,
-      I4 => \^apu_pulse2_out\(31),
+      I4 => \^apu_pulse2_out\(39),
       O => \procMainLogic.pulse2_envelope_divider[0]_i_1_n_0\
     );
 \procMainLogic.pulse2_envelope_divider[1]_i_1\: unisim.vcomponents.LUT6
@@ -7279,7 +7315,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       I2 => \APU_Pulse2[timer_load]\(10),
       I3 => \procMainLogic.pulse2_envelope_start_reg_n_0\,
       I4 => \APU_Pulse2[volume][3]_i_3_n_0\,
-      I5 => \^apu_pulse2_out\(32),
+      I5 => \^apu_pulse2_out\(40),
       O => \procMainLogic.pulse2_envelope_divider[1]_i_1_n_0\
     );
 \procMainLogic.pulse2_envelope_divider[2]_i_1\: unisim.vcomponents.LUT6
@@ -7289,7 +7325,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
         port map (
       I0 => \procMainLogic.pulse2_envelope_start_reg_n_0\,
       I1 => \APU_Pulse2[timer_load]\(10),
-      I2 => \^apu_pulse2_out\(33),
+      I2 => \^apu_pulse2_out\(41),
       I3 => pulse2_envelope_divider(2),
       I4 => \procMainLogic.pulse2_envelope_divider[2]_i_2_n_0\,
       I5 => pulse2_envelope_divider(3),
@@ -7309,7 +7345,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       INIT => X"A8AAABA8"
     )
         port map (
-      I0 => \^apu_pulse2_out\(34),
+      I0 => \^apu_pulse2_out\(42),
       I1 => \procMainLogic.pulse2_envelope_start_reg_n_0\,
       I2 => \APU_Pulse2[timer_load]\(10),
       I3 => pulse2_envelope_divider(3),
@@ -7404,9 +7440,9 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       I0 => pulse2_sweep_divider(1),
       I1 => pulse2_sweep_divider(0),
       I2 => pulse2_sweep_divider(2),
-      I3 => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      I3 => \APU_Pulse2[sweep_enable]\,
       I4 => \procMainLogic.pulse2_sweep_reload_reg_n_0\,
-      I5 => \^apu_pulse2_out\(23),
+      I5 => \^apu_pulse2_out\(31),
       O => \procMainLogic.pulse2_sweep_divider[0]_i_1_n_0\
     );
 \procMainLogic.pulse2_sweep_divider[1]_i_1\: unisim.vcomponents.LUT6
@@ -7417,9 +7453,9 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       I0 => pulse2_sweep_divider(1),
       I1 => pulse2_sweep_divider(0),
       I2 => pulse2_sweep_divider(2),
-      I3 => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      I3 => \APU_Pulse2[sweep_enable]\,
       I4 => \procMainLogic.pulse2_sweep_reload_reg_n_0\,
-      I5 => \^apu_pulse2_out\(24),
+      I5 => \^apu_pulse2_out\(32),
       O => \procMainLogic.pulse2_sweep_divider[1]_i_1_n_0\
     );
 \procMainLogic.pulse2_sweep_divider[2]_i_1\: unisim.vcomponents.LUT6
@@ -7427,8 +7463,8 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       INIT => X"ABABABA8A8A8A8AA"
     )
         port map (
-      I0 => \^apu_pulse2_out\(25),
-      I1 => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      I0 => \^apu_pulse2_out\(33),
+      I1 => \APU_Pulse2[sweep_enable]\,
       I2 => \procMainLogic.pulse2_sweep_reload_reg_n_0\,
       I3 => pulse2_sweep_divider(0),
       I4 => pulse2_sweep_divider(1),
@@ -7476,7 +7512,7 @@ dbg_overflow_2_INST_0: unisim.vcomponents.LUT4
       INIT => X"0E"
     )
         port map (
-      I0 => \APU_Pulse2[sweep_enable]_i_1_n_0\,
+      I0 => \APU_Pulse2[sweep_enable]\,
       I1 => \procMainLogic.pulse2_sweep_reload_reg_n_0\,
       I2 => \^dbg_apu_half\,
       O => \procMainLogic.pulse2_sweep_reload_i_1_n_0\
@@ -7599,24 +7635,18 @@ inst: entity work.design_1_nes_apu_0_0_nes_apu
       \APU_Counter_reg[mode]_0\ => APU_Counter_Out(1),
       APU_DMC_Out(28 downto 0) => APU_DMC_Out(28 downto 0),
       APU_Noise_Out(15 downto 0) => APU_Noise_Out(15 downto 0),
-      APU_Pulse1_Message(5 downto 2) => \^apu_pulse1_message\(18 downto 15),
-      APU_Pulse1_Message(1) => \^apu_pulse1_message\(13),
+      APU_Pulse1_Message(4 downto 1) => \^apu_pulse1_message\(18 downto 15),
       APU_Pulse1_Message(0) => \^apu_pulse1_message\(3),
-      APU_Pulse1_Out(35 downto 19) => \^apu_pulse1_out\(52 downto 36),
-      APU_Pulse1_Out(18 downto 6) => \^apu_pulse1_out\(29 downto 17),
+      APU_Pulse1_Out(52 downto 17) => \^apu_pulse1_out\(52 downto 17),
+      APU_Pulse1_Out(16 downto 6) => \^apu_pulse1_message\(14 downto 4),
       APU_Pulse1_Out(5 downto 0) => \^apu_pulse1_out\(5 downto 0),
-      \APU_Pulse1_reg[timer][10]_0\ => \^apu_pulse1_message\(14),
-      \APU_Pulse1_reg[timer][7]_0\(7 downto 0) => \^apu_pulse1_message\(11 downto 4),
-      \APU_Pulse1_reg[timer][8]_0\ => \^apu_pulse1_message\(12),
-      \APU_Pulse1_reg[timer_load][10]_0\(2 downto 0) => \^apu_pulse1_out\(32 downto 30),
       APU_Pulse2_Message(4 downto 1) => \^apu_pulse2_message\(18 downto 15),
       APU_Pulse2_Message(0) => \^apu_pulse2_message\(3),
-      APU_Pulse2_Out(38 downto 22) => \^apu_pulse2_out\(52 downto 36),
-      APU_Pulse2_Out(21 downto 6) => \^apu_pulse2_out\(32 downto 17),
+      APU_Pulse2_Out(46 downto 30) => \^apu_pulse2_out\(52 downto 36),
+      APU_Pulse2_Out(29 downto 14) => \^apu_pulse2_out\(32 downto 17),
+      APU_Pulse2_Out(13 downto 6) => \^apu_pulse2_message\(11 downto 4),
       APU_Pulse2_Out(5 downto 0) => \^apu_pulse2_out\(5 downto 0),
-      \APU_Pulse2_reg[sweep_shift][2]_0\(2 downto 0) => \^apu_pulse2_out\(35 downto 33),
       \APU_Pulse2_reg[timer][10]_0\ => \^apu_pulse2_message\(14),
-      \APU_Pulse2_reg[timer][7]_0\(7 downto 0) => \^apu_pulse2_message\(11 downto 4),
       \APU_Pulse2_reg[timer][8]_0\ => \^apu_pulse2_message\(12),
       \APU_Pulse2_reg[timer][9]_0\ => \^apu_pulse2_message\(13),
       APU_Status_Out(4 downto 0) => \^apu_status_out\(4 downto 0),
@@ -7627,7 +7657,7 @@ inst: entity work.design_1_nes_apu_0_0_nes_apu
       CPU_RW => CPU_RW,
       CPU_RomSel => CPU_RomSel,
       CPU_Rst => CPU_Rst,
-      Q(2 downto 0) => \^apu_pulse1_out\(35 downto 33),
+      Q(2 downto 0) => \^apu_pulse2_out\(35 downto 33),
       Reset => Reset,
       dbg_apu_half => dbg_apu_half,
       dbg_apu_qtr => dbg_apu_qtr,

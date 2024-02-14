@@ -115,7 +115,7 @@ begin
             Pulse1_Target <= (others => '0');
         else
             shift := to_integer(APU_Pulse1.sweep_shift);
-            change_amount := shift_left(APU_Pulse1.timer, 11-shift) or shift_right(APU_Pulse1.timer, shift);
+            change_amount := shift_right(APU_Pulse1.timer, shift);
             if (APU_Pulse1.sweep_negate = '0') then
                 Pulse1_Target <= ('0' & APU_Pulse1.timer) + ('0' & change_amount);
             elsif ((change_amount + 1) >= APU_Pulse1.timer) then
@@ -134,7 +134,7 @@ begin
             Pulse2_Target <= (others => '0');
         else
             shift := to_integer(APU_Pulse2.sweep_shift);
-            change_amount := shift_left(APU_Pulse2.timer, 11-shift) or shift_right(APU_Pulse2.timer, shift);
+            change_amount := shift_right(APU_Pulse2.timer, shift);
             if (APU_Pulse2.sweep_negate = '0') then
                 Pulse2_Target <= ('0' & APU_Pulse2.timer) + ('0' & change_amount);
             elsif (change_amount >= APU_Pulse2.timer) then

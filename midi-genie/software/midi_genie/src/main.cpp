@@ -23,7 +23,7 @@ int main() {
 	}
 	reset_channels();
 	
-	xil_printf("Hello, world!\r\n");
+	xil_printf("MIDI Genie online.\r\n");
 
 	while (true) {}
 }

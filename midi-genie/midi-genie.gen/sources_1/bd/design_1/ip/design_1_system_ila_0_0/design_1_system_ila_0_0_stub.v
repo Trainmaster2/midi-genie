@@ -1,10 +1,10 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Tue Feb 13 23:11:22 2024
+// Date        : Wed Feb 14 12:05:11 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
-// Command     : write_verilog -force -mode synth_stub -rename_top design_1_system_ila_0_0 -prefix
-//               design_1_system_ila_0_0_ design_1_system_ila_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub
+//               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_system_ila_0_0/design_1_system_ila_0_0_stub.v
 // Design      : design_1_system_ila_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a35tcpg236-1
