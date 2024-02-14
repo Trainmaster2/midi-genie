@@ -72,8 +72,8 @@ void play_pulse_message(PulseBitField pulseMessage)
         if ((pulseMessage.timer != lastMessage->message.timer) || (pulseMessage.volume != lastMessage->message.volume))
         {
             pulse2midi(pulseMessage.timer, note, bend);
-            if (note != lastMessage->note) {stop_notes(pulseMessage.channel)};
-#if USE_FINE_ADJUST            
+            if (note != lastMessage->note) {stop_notes(pulseMessage.channel);}
+#if USE_FINE_ADJUST
             if (bend != lastMessage->bend) {pitch_bend(pulseMessage.channel, bend);}
 #endif
             if (note != lastMessage->note) {note_on(pulseMessage.channel, note, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1));}
