@@ -94,6 +94,10 @@ begin
     end process procFrameCounter;
 
     procMainLogic: process(CPU_M2, Reset, CPU_Rst) is
+        variable Pulse1_Envelope_Start   : std_logic := '0';
+        variable Pulse1_Envelope_Divider : natural range 0 to 15 := 0;
+        variable Pulse2_Envelope_Start   : std_logic := '0';
+        variable Pulse2_Envelope_Divider : natural range 0 to 15 := 0;
     begin
         if (Reset = '0') or (CPU_Rst = '0') then
             APU_Pulse1   <= c_APU_PULSE_INIT;
@@ -103,6 +107,10 @@ begin
             APU_DMC      <= c_APU_DMC_INIT;
             APU_Status   <= c_APU_STATUS_INIT;
             APU_Counter  <= c_APU_FRAME_COUNTER_INIT;
+            Pulse1_Envelope_Start   := '0';
+            Pulse1_Envelope_Divider := 0;
+            Pulse2_Envelope_Start   := '0';
+            Pulse2_Envelope_Divider := 0;
         elsif falling_edge(CPU_M2) then
             if (CPU_RomSel = '1') and (CPU_RW = '0') then
                 case (CPU_Addr) is
@@ -114,6 +122,7 @@ begin
                         APU_Pulse1 <= f_APU_PULSE_REG3(APU_Pulse1, CPU_Data);
                     when X"4003" =>
                         APU_Pulse1 <= f_APU_PULSE_REG4(APU_Pulse1, CPU_Data, APU_Status.pulse1_active);
+                        Pulse1_Envelope_Start := '1';
                     
                     when X"4004" =>
                         APU_Pulse2 <= f_APU_PULSE_REG1(APU_Pulse2, CPU_Data);
@@ -123,6 +132,7 @@ begin
                         APU_Pulse2 <= f_APU_PULSE_REG3(APU_Pulse2, CPU_Data);
                     when X"4007" =>
                         APU_Pulse2 <= f_APU_PULSE_REG4(APU_Pulse2, CPU_Data, APU_Status.pulse2_active);
+                        Pulse2_Envelope_Start := '1';
                     
                     when X"4008" =>
                         APU_Triangle <= f_APU_TRIANGLE_REG1(APU_Triangle, CPU_Data);
@@ -167,6 +177,37 @@ begin
                 end if;
                 if (APU_Pulse2.length_counter_halt = '0') and (APU_Pulse2.length_counter > 0) then
                     APU_Pulse2.length_counter <= APU_Pulse2.length_counter - 1;
+                end if;
+            end if;
+
+            if (APU_Quarter_CE = '1') then
+                if (Pulse1_Envelope_Start = '1') then
+                    Pulse1_Envelope_Start := '0';
+                    Pulse1_Envelope_Divider := to_integer(APU_Pulse1.envelope);
+                    APU_Pulse1.volume <= (others => '1');
+                elsif (Pulse1_Envelope_Divider = 0) then
+                    Pulse1_Envelope_Divider := to_integer(APU_Pulse1.envelope);
+                    if (APU_Pulse1.volume > 0) then
+                        APU_Pulse1.volume <= APU_Pulse1.volume - 1;
+                    elsif (APU_Pulse1.length_counter_halt = '1') then
+                        APU_Pulse1.volume <= (others => '1');
+                    end if;
+                else
+                    Pulse1_Envelope_Divider := Pulse1_Envelope_Divider - 1;
+                end if;
+                if (Pulse2_Envelope_Start = '1') then
+                    Pulse2_Envelope_Start := '0';
+                    Pulse2_Envelope_Divider := to_integer(APU_Pulse2.envelope);
+                    APU_Pulse2.volume <= (others => '1');
+                elsif (Pulse2_Envelope_Divider = 0) then
+                    Pulse2_Envelope_Divider := to_integer(APU_Pulse2.envelope);
+                    if (APU_Pulse2.volume > 0) then
+                        APU_Pulse2.volume <= APU_Pulse2.volume - 1;
+                    elsif (APU_Pulse2.length_counter_halt = '1') then
+                        APU_Pulse2.volume <= (others => '1');
+                    end if;
+                else
+                    Pulse2_Envelope_Divider := Pulse2_Envelope_Divider - 1;
                 end if;
             end if;
         end if;

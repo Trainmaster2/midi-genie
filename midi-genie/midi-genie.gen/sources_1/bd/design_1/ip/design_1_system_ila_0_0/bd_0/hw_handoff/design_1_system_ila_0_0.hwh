@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Feb 10 23:30:08 2024" VIVADOVERSION="2022.2.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Feb 13 15:59:34 2024" VIVADOVERSION="2022.2.2">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:cmod_a7-35t:part0:1.1" DEVICE="7a35t" NAME="bd_f60c" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -39,12 +39,12 @@
         <CONNECTION INSTANCE="ila_lib" PORT="probe5"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="48" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe6">
+    <PORT DIR="I" LEFT="52" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe6">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_lib" PORT="probe6"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="48" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe7">
+    <PORT DIR="I" LEFT="52" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe7">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_lib" PORT="probe7"/>
       </CONNECTIONS>
@@ -125,7 +125,7 @@
         <PARAMETER NAME="C_TRIGOUT_EN" VALUE="0"/>
         <PARAMETER NAME="C_TRIGIN_EN" VALUE="0"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TUSER_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_SLOT_0_AXIS_TDEST_WIDTH" VALUE="49"/>
+        <PARAMETER NAME="C_SLOT_0_AXIS_TDEST_WIDTH" VALUE="53"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TID_WIDTH" VALUE="42"/>
         <PARAMETER NAME="C_SLOT_0_AXI_ID_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_ARUSER_WIDTH" VALUE="1"/>
@@ -139,8 +139,8 @@
         <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="8"/>
         <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="49"/>
-        <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="49"/>
+        <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="53"/>
+        <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="53"/>
         <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="42"/>
         <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="16"/>
         <PARAMETER NAME="C_PROBE10_WIDTH" VALUE="29"/>
@@ -3264,12 +3264,12 @@
             <CONNECTION INSTANCE="External_Ports" PORT="probe5"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="48" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe6">
+        <PORT DIR="I" LEFT="52" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe6">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="probe6"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="48" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe7">
+        <PORT DIR="I" LEFT="52" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_probe7">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="probe7"/>
           </CONNECTIONS>

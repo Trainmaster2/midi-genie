@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Feb 10 23:30:12 2024" VIVADOVERSION="2022.2.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Feb 13 15:59:37 2024" VIVADOVERSION="2022.2.2">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:cmod_a7-35t:part0:1.1" DEVICE="7a35t" NAME="design_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -7203,12 +7203,12 @@
             <CONNECTION INSTANCE="External_Ports" PORT="nes_cpu_rw"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="48" NAME="APU_Pulse1_Out" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Out">
+        <PORT DIR="O" LEFT="52" NAME="APU_Pulse1_Out" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe6"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="48" NAME="APU_Pulse2_Out" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Out">
+        <PORT DIR="O" LEFT="52" NAME="APU_Pulse2_Out" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="system_ila_0" PORT="probe7"/>
           </CONNECTIONS>
@@ -11260,12 +11260,12 @@
             <CONNECTION INSTANCE="External_Ports" PORT="nes_cpu_rw"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="48" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Out">
+        <PORT DIR="I" LEFT="52" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse1_Out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse1_Out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="48" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Out">
+        <PORT DIR="I" LEFT="52" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Pulse2_Out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Pulse2_Out"/>
           </CONNECTIONS>

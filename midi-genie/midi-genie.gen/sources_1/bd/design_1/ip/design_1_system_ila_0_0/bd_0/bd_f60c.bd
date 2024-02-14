@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x442B96ECEE57D1CD",
+      "boundary_crc": "0x774CD307DD309426",
       "design_src": "SBD",
       "device": "xc7a35tcpg236-1",
       "name": "bd_f60c",
@@ -73,12 +73,12 @@
       },
       "probe6": {
         "direction": "I",
-        "left": "48",
+        "left": "52",
         "right": "0"
       },
       "probe7": {
         "direction": "I",
-        "left": "48",
+        "left": "52",
         "right": "0"
       },
       "probe8": {
@@ -260,7 +260,7 @@
             "value": "0"
           },
           "C_PROBE6_WIDTH": {
-            "value": "49"
+            "value": "53"
           },
           "C_PROBE7_MU_CNT": {
             "value": "1"
@@ -269,7 +269,7 @@
             "value": "0"
           },
           "C_PROBE7_WIDTH": {
-            "value": "49"
+            "value": "53"
           },
           "C_PROBE8_MU_CNT": {
             "value": "1"

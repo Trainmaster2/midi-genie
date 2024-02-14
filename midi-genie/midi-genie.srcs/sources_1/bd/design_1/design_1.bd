@@ -1918,12 +1918,12 @@
           },
           "APU_Pulse1_Out": {
             "direction": "O",
-            "left": "48",
+            "left": "52",
             "right": "0"
           },
           "APU_Pulse2_Out": {
             "direction": "O",
-            "left": "48",
+            "left": "52",
             "right": "0"
           },
           "APU_Triangle_Out": {

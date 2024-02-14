@@ -6700,3 +6700,424 @@ TRACE::2024-02-10.23:40:29::SCWMssOS::Checking the sw design at  /home/trainmast
 TRACE::2024-02-10.23:40:29::SCWMssOS::DEBUG:  swdes dump  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss|system||
 
 TRACE::2024-02-10.23:40:29::SCWMssOS::Sw design exists and opened at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:08::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:08::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:08::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:08::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:08::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:08::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:08::SCWPlatform::Do not have an existing db opened. 
+TRACE::2024-02-13.16:05:19::SCWPlatform::Opened new HwDB with name design_1_wrapper_0
+TRACE::2024-02-13.16:05:19::SCWReader::Active system found as  midi_genie_hw
+TRACE::2024-02-13.16:05:20::SCWReader::Handling sysconfig midi_genie_hw
+TRACE::2024-02-13.16:05:20::SCWDomain::checking for install qemu data   : 
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:20::SCWMssOS::Checking the sw design at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:20::SCWMssOS::DEBUG:  swdes dump  
+TRACE::2024-02-13.16:05:20::SCWMssOS::No sw design opened at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:20::SCWMssOS::mss exists loading the mss file  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:20::SCWMssOS::Opened the sw design from mss  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:20::SCWMssOS::Adding the swdes entry /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss with des name system
+TRACE::2024-02-13.16:05:20::SCWMssOS::updating the scw layer about changes
+TRACE::2024-02-13.16:05:20::SCWMssOS::Opened the sw design.  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:20::SCWMssOS::Saving the mss changes /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:20::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2024-02-13.16:05:20::SCWMssOS::Completed writemss as part of save.
+TRACE::2024-02-13.16:05:20::SCWMssOS::Commit changes completed.
+TRACE::2024-02-13.16:05:20::SCWReader::Adding prebuilt librarypaths as   
+TRACE::2024-02-13.16:05:20::SCWReader::Adding prebuilt incpaths  as   
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:20::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2024-02-13.16:05:20::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:20::SCWMssOS::Checking the sw design at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:20::SCWMssOS::DEBUG:  swdes dump  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss|system||
+
+TRACE::2024-02-13.16:05:20::SCWMssOS::Sw design exists and opened at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:20::SCWReader::No isolation master present  
+TRACE::2024-02-13.16:05:45::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:45::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:45::SCWPlatform:: Platform location is /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa
+TRACE::2024-02-13.16:05:45::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:45::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:56::SCWMssOS::Doing hw sync for the mss in domain: standalone_microblaze_0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:56::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:56::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:56::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:56::SCWMssOS::Checking the sw design at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:56::SCWMssOS::DEBUG:  swdes dump  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss|system||
+
+TRACE::2024-02-13.16:05:56::SCWMssOS::Sw design exists and opened at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:56::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa
+TRACE::2024-02-13.16:05:56::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/tempdsa/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:56::SCWPlatform::update - Opened existing hwdb design_1_wrapper_1
+TRACE::2024-02-13.16:05:56::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:05:56::SCWMssOS::Saving the mss changes /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:56::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2024-02-13.16:05:56::SCWMssOS::Completed writemss as part of save.
+TRACE::2024-02-13.16:05:56::SCWMssOS::Commit changes completed.
+TRACE::2024-02-13.16:05:56::SCWMssOS::Completed hw sync for the mss in domain: standalone_microblaze_0
+TRACE::2024-02-13.16:05:56::SCWMssOS::Removing the swdes entry for  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:05:56::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:05:56::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:05:56::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:05:56::SCWPlatform::Do not have an existing db opened. 
+TRACE::2024-02-13.16:06:08::SCWPlatform::Opened new HwDB with name design_1_wrapper_2
+TRACE::2024-02-13.16:06:08::SCWMssOS::Saving the mss changes /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:08::SCWMssOS::Adding the swdes entry, mss present, able to open swdb /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss with des name system
+TRACE::2024-02-13.16:06:08::SCWMssOS::Writing the mss file completed /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:08::SCWMssOS::Commit changes completed.
+TRACE::2024-02-13.16:06:08::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:08::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:08::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:08::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:06:08::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:08::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:06:08::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_2
+TRACE::2024-02-13.16:06:08::SCWPlatform::Opened existing hwdb design_1_wrapper_2
+TRACE::2024-02-13.16:06:08::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:06:08::SCWMssOS::Checking the sw design at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:08::SCWMssOS::DEBUG:  swdes dump  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss|system||
+
+TRACE::2024-02-13.16:06:08::SCWMssOS::Sw design exists and opened at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:08::SCWWriter::formatted JSON is {
+	"platformName":	"midi_genie_hw",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"midi_genie_hw",
+	"platHandOff":	"/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa",
+	"platIntHandOff":	"<platformDir>/hw/design_1_wrapper.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"midi_genie_hw",
+	"systems":	[{
+			"systemName":	"midi_genie_hw",
+			"systemDesc":	"midi_genie_hw",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"midi_genie_hw",
+			"sysActiveDom":	"standalone_microblaze_0",
+			"sysDefaultDom":	"standalone_microblaze_0",
+			"domains":	[{
+					"domainName":	"standalone_microblaze_0",
+					"domainDispName":	"standalone_microblaze_0",
+					"domainDesc":	"standalone_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"8.0",
+					"mssFile":	"",
+					"md5Digest":	"0d748a3c61cb4deeb9aeb2f07863e8191",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+LOG::2024-02-13.16:06:31::SCWPlatform::Started generating the artifacts platform midi_genie_hw
+TRACE::2024-02-13.16:06:31::SCWPlatform::Sanity checking of platform is completed
+LOG::2024-02-13.16:06:31::SCWPlatform::Started generating the artifacts for system configuration midi_genie_hw
+LOG::2024-02-13.16:06:31::SCWSystem::Checking the domain standalone_microblaze_0
+LOG::2024-02-13.16:06:31::SCWSystem::Not a boot domain 
+LOG::2024-02-13.16:06:31::SCWSystem::Started Processing the domain standalone_microblaze_0
+TRACE::2024-02-13.16:06:31::SCWDomain::Generating domain artifcats
+TRACE::2024-02-13.16:06:31::SCWMssOS::Generating standalone artifcats
+TRACE::2024-02-13.16:06:31::SCWMssOS:: Copying the user libraries. 
+TRACE::2024-02-13.16:06:31::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:31::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:31::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:31::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:06:31::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:31::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:06:31::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_2
+TRACE::2024-02-13.16:06:31::SCWPlatform::Opened existing hwdb design_1_wrapper_2
+TRACE::2024-02-13.16:06:31::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:06:31::SCWMssOS::Checking the sw design at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:31::SCWMssOS::DEBUG:  swdes dump  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss|system||
+
+TRACE::2024-02-13.16:06:31::SCWMssOS::Sw design exists and opened at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:31::SCWMssOS::Completed writing the mss file at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp
+TRACE::2024-02-13.16:06:31::SCWMssOS::Mss edits present, copying mssfile into export location /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:31::SCWMssOS::bsp generated is stale removing and regenerating. 
+TRACE::2024-02-13.16:06:35::SCWMssOS::doing bsp build ... 
+TRACE::2024-02-13.16:06:35::SCWMssOS::System Command Ran  cd  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp ; bash -c "make  " 
+TRACE::2024-02-13.16:06:35::SCWMssOS::make --no-print-directory seq_libs
+
+TRACE::2024-02-13.16:06:35::SCWMssOS::Finished building libraries sequentially.
+
+TRACE::2024-02-13.16:06:35::SCWMssOS::make -j 10 --no-print-directory par_libs
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make include in microblaze_0/libsrc/bram_v4_8/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/bram_v4_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
+TRACE::2024-02-13.16:06:36::SCWMssOS::PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
+TRACE::2024-02-13.16:06:36::SCWMssOS::ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make include in microblaze_0/libsrc/cpu_v2_16/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make include in microblaze_0/libsrc/intc_v3_15/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/cpu_v2_16/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
+TRACE::2024-02-13.16:06:36::SCWMssOS::PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffun
+TRACE::2024-02-13.16:06:36::SCWMssOS::ction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make include in microblaze_0/libsrc/standalone_v8_0/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/intc_v3_15/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
+TRACE::2024-02-13.16:06:36::SCWMssOS::MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffu
+TRACE::2024-02-13.16:06:36::SCWMssOS::nction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/standalone_v8_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar
+TRACE::2024-02-13.16:06:36::SCWMssOS::" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g
+TRACE::2024-02-13.16:06:36::SCWMssOS:: -ffunction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make include in microblaze_0/libsrc/uartlite_v3_7/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/uartlite_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" 
+TRACE::2024-02-13.16:06:36::SCWMssOS::"COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -
+TRACE::2024-02-13.16:06:36::SCWMssOS::ffunction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make libs in microblaze_0/libsrc/bram_v4_8/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/bram_v4_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
+TRACE::2024-02-13.16:06:36::SCWMssOS::ER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffuncti
+TRACE::2024-02-13.16:06:36::SCWMssOS::on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make libs in microblaze_0/libsrc/cpu_v2_16/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make libs in microblaze_0/libsrc/intc_v3_15/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/cpu_v2_16/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
+TRACE::2024-02-13.16:06:36::SCWMssOS::ER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffuncti
+TRACE::2024-02-13.16:06:36::SCWMssOS::on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
+TRACE::2024-02-13.16:06:36::SCWMssOS::LER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunct
+TRACE::2024-02-13.16:06:36::SCWMssOS::ion-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/standalone_v8_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "
+TRACE::2024-02-13.16:06:36::SCWMssOS::COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -f
+TRACE::2024-02-13.16:06:36::SCWMssOS::function-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::Running Make libs in microblaze_0/libsrc/uartlite_v3_7/src
+
+TRACE::2024-02-13.16:06:36::SCWMssOS::make -C microblaze_0/libsrc/uartlite_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
+TRACE::2024-02-13.16:06:36::SCWMssOS::MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffu
+TRACE::2024-02-13.16:06:36::SCWMssOS::nction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
+
+TRACE::2024-02-13.16:06:38::SCWMssOS::DEBUG NON_LTO_OBJECTS is ../../../lib/microblaze_interrupt_handler.o
+
+TRACE::2024-02-13.16:06:38::SCWMssOS::Finished building libraries parallelly.
+
+TRACE::2024-02-13.16:06:38::SCWMssOS::make --no-print-directory archive
+
+TRACE::2024-02-13.16:06:38::SCWMssOS::mb-ar -r  microblaze_0/lib/libxil.a microblaze_0/lib/_exit.o microblaze_0/lib/errno.o microblaze_0/lib/fcntl.o microblaze_0/lib
+TRACE::2024-02-13.16:06:38::SCWMssOS::/hw_exception_handler.o microblaze_0/lib/inbyte.o microblaze_0/lib/microblaze_disable_dcache.o microblaze_0/lib/microblaze_disa
+TRACE::2024-02-13.16:06:38::SCWMssOS::ble_exceptions.o microblaze_0/lib/microblaze_disable_icache.o microblaze_0/lib/microblaze_disable_interrupts.o microblaze_0/lib
+TRACE::2024-02-13.16:06:38::SCWMssOS::/microblaze_enable_dcache.o microblaze_0/lib/microblaze_enable_exceptions.o microblaze_0/lib/microblaze_enable_icache.o microbl
+TRACE::2024-02-13.16:06:38::SCWMssOS::aze_0/lib/microblaze_enable_interrupts.o microblaze_0/lib/microblaze_exception_handler.o microblaze_0/lib/microblaze_flush_cach
+TRACE::2024-02-13.16:06:38::SCWMssOS::e_ext.o microblaze_0/lib/microblaze_flush_cache_ext_range.o microblaze_0/lib/microblaze_flush_dcache.o microblaze_0/lib/microbl
+TRACE::2024-02-13.16:06:38::SCWMssOS::aze_flush_dcache_range.o microblaze_0/lib/microblaze_init_dcache_range.o microblaze_0/lib/microblaze_init_icache_range.o microb
+TRACE::2024-02-13.16:06:38::SCWMssOS::laze_0/lib/microblaze_interrupt_handler.o microblaze_0/lib/microblaze_interrupts_g.o microblaze_0/lib/microblaze_invalidate_cac
+TRACE::2024-02-13.16:06:38::SCWMssOS::he_ext.o microblaze_0/lib/microblaze_invalidate_cache_ext_range.o microblaze_0/lib/microblaze_invalidate_dcache.o microblaze_0/
+TRACE::2024-02-13.16:06:38::SCWMssOS::lib/microblaze_invalidate_dcache_range.o microblaze_0/lib/microblaze_invalidate_icache.o microblaze_0/lib/microblaze_invalidate
+TRACE::2024-02-13.16:06:38::SCWMssOS::_icache_range.o microblaze_0/lib/microblaze_scrub.o microblaze_0/lib/microblaze_selftest.o microblaze_0/lib/microblaze_sleep.o 
+TRACE::2024-02-13.16:06:38::SCWMssOS::microblaze_0/lib/microblaze_update_dcache.o microblaze_0/lib/microblaze_update_icache.o microblaze_0/lib/outbyte.o microblaze_0
+TRACE::2024-02-13.16:06:38::SCWMssOS::/lib/print.o microblaze_0/lib/pvr.o microblaze_0/lib/xbram.o microblaze_0/lib/xbram_g.o microblaze_0/lib/xbram_intr.o microblaz
+TRACE::2024-02-13.16:06:38::SCWMssOS::e_0/lib/xbram_selftest.o microblaze_0/lib/xbram_sinit.o microblaze_0/lib/xil_assert.o microblaze_0/lib/xil_cache.o microblaze_0
+TRACE::2024-02-13.16:06:38::SCWMssOS::/lib/xil_clocking.o microblaze_0/lib/xil_exception.o microblaze_0/lib/xil_mem.o microblaze_0/lib/xil_misc_psreset_api.o microbl
+TRACE::2024-02-13.16:06:38::SCWMssOS::aze_0/lib/xil_printf.o microblaze_0/lib/xil_sleepcommon.o microblaze_0/lib/xil_testcache.o microblaze_0/lib/xil_testio.o microb
+TRACE::2024-02-13.16:06:38::SCWMssOS::laze_0/lib/xil_testmem.o microblaze_0/lib/xil_util.o microblaze_0/lib/xintc.o microblaze_0/lib/xintc_g.o microblaze_0/lib/xintc
+TRACE::2024-02-13.16:06:38::SCWMssOS::_intr.o microblaze_0/lib/xintc_l.o microblaze_0/lib/xintc_options.o microblaze_0/lib/xintc_selftest.o microblaze_0/lib/xinterru
+TRACE::2024-02-13.16:06:38::SCWMssOS::pt_wrap.o microblaze_0/lib/xio.o microblaze_0/lib/xplatform_info.o microblaze_0/lib/xuartlite.o microblaze_0/lib/xuartlite_g.o 
+TRACE::2024-02-13.16:06:38::SCWMssOS::microblaze_0/lib/xuartlite_intr.o microblaze_0/lib/xuartlite_l.o microblaze_0/lib/xuartlite_selftest.o microblaze_0/lib/xuartli
+TRACE::2024-02-13.16:06:38::SCWMssOS::te_sinit.o microblaze_0/lib/xuartlite_stats.o
+
+TRACE::2024-02-13.16:06:38::SCWMssOS::Finished building libraries
+
+TRACE::2024-02-13.16:06:38::SCWMssOS:: Checking if to create the Supporting Applications
+TRACE::2024-02-13.16:06:38::SCWMssOS:: No Linux domain exists, trying to generate FSBL 
+LOG::2024-02-13.16:06:38::SCWSystem::Completed Processing the domain standalone_microblaze_0
+LOG::2024-02-13.16:06:38::SCWSystem::Completed Processing the sysconfig midi_genie_hw
+LOG::2024-02-13.16:06:38::SCWPlatform::Completed generating the artifacts for system configuration midi_genie_hw
+TRACE::2024-02-13.16:06:38::SCWPlatform::Started preparing the platform 
+TRACE::2024-02-13.16:06:38::SCWSystem::Writing the bif file for system config midi_genie_hw
+TRACE::2024-02-13.16:06:38::SCWSystem::dir created 
+TRACE::2024-02-13.16:06:38::SCWSystem::Writing the bif 
+TRACE::2024-02-13.16:06:38::SCWPlatform::Started writing the spfm file 
+TRACE::2024-02-13.16:06:38::SCWPlatform::Started writing the xpfm file 
+TRACE::2024-02-13.16:06:38::SCWPlatform::Completed generating the platform
+TRACE::2024-02-13.16:06:38::SCWMssOS::Saving the mss changes /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:38::SCWMssOS::Adding the swdes entry, mss present, able to open swdb /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss with des name system
+TRACE::2024-02-13.16:06:38::SCWMssOS::Writing the mss file completed /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:38::SCWMssOS::Commit changes completed.
+TRACE::2024-02-13.16:06:38::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:38::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:38::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:38::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:06:38::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:38::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:06:38::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_2
+TRACE::2024-02-13.16:06:38::SCWPlatform::Opened existing hwdb design_1_wrapper_2
+TRACE::2024-02-13.16:06:38::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:06:38::SCWMssOS::Checking the sw design at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:38::SCWMssOS::DEBUG:  swdes dump  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss|system||
+
+TRACE::2024-02-13.16:06:38::SCWMssOS::Sw design exists and opened at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:38::SCWWriter::formatted JSON is {
+	"platformName":	"midi_genie_hw",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"midi_genie_hw",
+	"platHandOff":	"/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa",
+	"platIntHandOff":	"<platformDir>/hw/design_1_wrapper.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"midi_genie_hw",
+	"systems":	[{
+			"systemName":	"midi_genie_hw",
+			"systemDesc":	"midi_genie_hw",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"midi_genie_hw",
+			"sysActiveDom":	"standalone_microblaze_0",
+			"sysDefaultDom":	"standalone_microblaze_0",
+			"domains":	[{
+					"domainName":	"standalone_microblaze_0",
+					"domainDispName":	"standalone_microblaze_0",
+					"domainDesc":	"standalone_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"8.0",
+					"mssFile":	"",
+					"md5Digest":	"0d748a3c61cb4deeb9aeb2f07863e819",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+KEYINFO::2024-02-13.16:06:38::SCWPlatform::updated the xpfm file.
+TRACE::2024-02-13.16:06:38::SCWPlatform::Trying to open the hw design at /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:38::SCWPlatform::DSA given /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:38::SCWPlatform::DSA absoulate path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:38::SCWPlatform::DSA directory /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw
+TRACE::2024-02-13.16:06:38::SCWPlatform:: Platform Path /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/hw/design_1_wrapper.xsa
+TRACE::2024-02-13.16:06:38::SCWPlatform:: Unique name xilinx:cmod_a7-35t::0.0
+TRACE::2024-02-13.16:06:38::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_2
+TRACE::2024-02-13.16:06:38::SCWPlatform::Opened existing hwdb design_1_wrapper_2
+TRACE::2024-02-13.16:06:38::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2024-02-13.16:06:38::SCWMssOS::Checking the sw design at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss
+TRACE::2024-02-13.16:06:38::SCWMssOS::DEBUG:  swdes dump  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss|system||
+
+TRACE::2024-02-13.16:06:38::SCWMssOS::Sw design exists and opened at  /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/microblaze_0/standalone_microblaze_0/bsp/system.mss

@@ -63,3 +63,9 @@ timestamp=[2024-02-10 23:40:45], mode=BUILD, duration=0:00:01.883, duration_ms=1
 timestamp=[2024-02-10 23:40:47], mode=BUILD, duration=0:00:00.629, duration_ms=629, data={name=midi_genie_system, configuration=Debug, clean_build=false}
 timestamp=[2024-02-10 23:45:29], mode=BUILD, duration=0:00:00.652, duration_ms=652, data={name=midi_genie, configuration=Debug, clean_build=false}
 timestamp=[2024-02-10 23:45:31], mode=BUILD, duration=0:00:00.626, duration_ms=626, data={name=midi_genie_system, configuration=Debug, clean_build=false}
+timestamp=[2024-02-13 15:25:44], mode=WORKBENCH_START, duration=0:00:26.513, duration_ms=26513, data={}
+timestamp=[2024-02-13 15:25:45], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.288, duration_ms=288, data={}
+timestamp=[2024-02-13 15:25:46], mode=WORKBENCH_UI_INIT, duration=0:00:01.894, duration_ms=1894, data={editors_count=1, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,midi_genie,midi_genie_hw,midi_genie_system}
+timestamp=[2024-02-13 16:06:41], mode=PLATFORM_GENERATION, duration=0:00:12.316, duration_ms=12316, data={name=midi_genie_hw}
+timestamp=[2024-02-13 16:06:57], mode=BUILD, duration=0:00:04.491, duration_ms=4491, data={name=midi_genie, configuration=Debug, clean_build=false}
+timestamp=[2024-02-13 16:06:59], mode=BUILD, duration=0:00:00.622, duration_ms=622, data={name=midi_genie_system, configuration=Debug, clean_build=false}
