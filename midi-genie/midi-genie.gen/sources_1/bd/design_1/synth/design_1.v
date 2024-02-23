@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Wed Feb 14 13:24:23 2024
+//Date        : Thu Feb 22 21:07:58 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -189,12 +189,11 @@ module design_1
   wire [18:0]nes_apu_0_APU_Pulse2_Message;
   wire [52:0]nes_apu_0_APU_Pulse2_Out;
   wire [6:0]nes_apu_0_APU_Status_Out;
-  wire [41:0]nes_apu_0_APU_Triangle_Out;
+  wire [14:0]nes_apu_0_APU_Triangle_Message;
+  wire [42:0]nes_apu_0_APU_Triangle_Out;
   wire nes_apu_0_dbg_apu_half;
   wire nes_apu_0_dbg_apu_qtr;
   wire nes_apu_0_dbg_apu_tick;
-  wire nes_apu_0_dbg_overflow_1;
-  wire nes_apu_0_dbg_overflow_2;
   wire [14:0]nes_cpu_addr_1;
   wire [7:0]nes_cpu_data_1;
   wire nes_cpu_rw_1;
@@ -268,7 +267,8 @@ module design_1
         .FifoWrite(Net1),
         .Pulse1_Message(nes_apu_0_APU_Pulse1_Message),
         .Pulse2_Message(nes_apu_0_APU_Pulse2_Message),
-        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn));
+        .Reset(rst_clk_wiz_0_100M_peripheral_aresetn),
+        .Triangle_Message(nes_apu_0_APU_Triangle_Message));
   design_1_axi_uartlite_0_1 axi_uartlite_0
        (.rx(axi_uartlite_0_UART_RxD),
         .s_axi_aclk(microblaze_0_Clk),
@@ -573,6 +573,7 @@ module design_1
         .APU_Pulse2_Message(nes_apu_0_APU_Pulse2_Message),
         .APU_Pulse2_Out(nes_apu_0_APU_Pulse2_Out),
         .APU_Status_Out(nes_apu_0_APU_Status_Out),
+        .APU_Triangle_Message(nes_apu_0_APU_Triangle_Message),
         .APU_Triangle_Out(nes_apu_0_APU_Triangle_Out),
         .CPU_Addr(nes_cpu_addr_1),
         .CPU_Clk(nes_system_clk_1),
@@ -585,9 +586,7 @@ module design_1
         .Reset(rst_clk_wiz_0_100M_peripheral_aresetn),
         .dbg_apu_half(nes_apu_0_dbg_apu_half),
         .dbg_apu_qtr(nes_apu_0_dbg_apu_qtr),
-        .dbg_apu_tick(nes_apu_0_dbg_apu_tick),
-        .dbg_overflow_1(nes_apu_0_dbg_overflow_1),
-        .dbg_overflow_2(nes_apu_0_dbg_overflow_2));
+        .dbg_apu_tick(nes_apu_0_dbg_apu_tick));
   design_1_reset_manager_0_0 reset_manager_0
        (.dual_reset(reset_manager_0_dual_reset),
         .nes_reset(btn1_1),
@@ -612,13 +611,12 @@ module design_1
         .probe10(nes_apu_0_APU_DMC_Out),
         .probe11(nes_apu_0_APU_Status_Out),
         .probe12(nes_apu_0_APU_Counter_Out),
-        .probe13(nes_apu_0_APU_Pulse1_Message),
-        .probe14(nes_apu_0_APU_Pulse2_Message),
-        .probe15(nes_apu_0_dbg_apu_tick),
-        .probe16(nes_apu_0_dbg_apu_half),
-        .probe17(nes_apu_0_dbg_apu_qtr),
-        .probe18(nes_apu_0_dbg_overflow_1),
-        .probe19(nes_apu_0_dbg_overflow_2),
+        .probe13(nes_apu_0_dbg_apu_tick),
+        .probe14(nes_apu_0_dbg_apu_half),
+        .probe15(nes_apu_0_dbg_apu_qtr),
+        .probe16(nes_apu_0_APU_Pulse1_Message),
+        .probe17(nes_apu_0_APU_Pulse2_Message),
+        .probe18(nes_apu_0_APU_Triangle_Message),
         .probe2(nes_cpu_addr_1),
         .probe3(nes_cpu_data_1),
         .probe4(nes_romsel_1),
@@ -656,6 +654,7 @@ module design_1
         .probe5(apu_fifo_reader_DataAvailable),
         .probe6(nes_apu_0_APU_Pulse1_Message),
         .probe7(nes_apu_0_APU_Pulse2_Message),
+        .probe8(nes_apu_0_APU_Triangle_Message),
         .resetn(rst_clk_wiz_0_100M_peripheral_aresetn));
 endmodule
 

@@ -25,16 +25,30 @@ struct PulseBitField{
     u32 volume  : 4;
 };
 
+struct TriangleBitField{
+    u32 channel : 3;
+    u32 onoff   : 1;
+    u32 timer   : 11;
+};
+
 union APUBitField {
     u32 raw;
     GenericBitField generic;
     PulseBitField pulse;
+    TriangleBitField triangle;
 };
 
 #define read_apu_message(apuMessage) apuMessage.raw = Xil_In32(APU_IN_ID)
 
 struct LastPulse{
-    PulseBitField message;
+    int timer;
+    int note;
+    int bend;
+    int volume;
+};
+
+struct LastTriangle{
+    int timer;
     int note;
     int bend;
 };
@@ -52,10 +66,12 @@ struct LastPulse{
 #if APU_DEBUG
 
 #define print_pulse_message(pulseMessage) xil_printf("Channel: %d, On/Off: %d, Timer: 0x%03x, Volume: 0x%01x\r\n", pulseMessage.channel, pulseMessage.onoff, pulseMessage.timer, pulseMessage.volume)
+#define print_triangle_message(triangleMessage) xil_printf("Channel: %d, On/Off: %d(%d), Timer: 0x%03x\r\n", triangleMessage.channel, triangleMessage.onoff, triangleMessage.timer >= 2, triangleMessage.timer)
 
 #else
 
 #define print_pulse_message(pulseMessage)
+#define print_triangle_message(triangleMessage)
 
 #endif
 
@@ -64,5 +80,6 @@ void enable_apu_interrupts(XIntc *InterruptController);
 void nes_reset_handler(void* CallbackRef);
 void apu_message_handler(void* CallbackRef);
 void play_pulse_message(PulseBitField pulseMessage);
+void play_triangle_message(TriangleBitField triangleMessage);
 
 #endif

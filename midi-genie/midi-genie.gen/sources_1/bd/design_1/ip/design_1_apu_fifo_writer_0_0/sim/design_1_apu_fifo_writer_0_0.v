@@ -60,6 +60,7 @@ module design_1_apu_fifo_writer_0_0 (
   CPU_Rst,
   Pulse1_Message,
   Pulse2_Message,
+  Triangle_Message,
   FifoData,
   FifoWrite
 );
@@ -75,6 +76,7 @@ input wire Reset;
 input wire CPU_Rst;
 input wire [18 : 0] Pulse1_Message;
 input wire [18 : 0] Pulse2_Message;
+input wire [14 : 0] Triangle_Message;
 output wire [18 : 0] FifoData;
 output wire FifoWrite;
 
@@ -82,7 +84,7 @@ output wire FifoWrite;
     .FIFO_DATA_WIDTH(19),
     .ENABLE_PULSE_1(1'B1),
     .ENABLE_PULSE_2(1'B1),
-    .ENABLE_TRIANGLE(1'B0),
+    .ENABLE_TRIANGLE(1'B1),
     .ENABLE_NOISE(1'B0),
     .ENABLE_DMC(1'B0)
   ) inst (
@@ -91,6 +93,7 @@ output wire FifoWrite;
     .CPU_Rst(CPU_Rst),
     .Pulse1_Message(Pulse1_Message),
     .Pulse2_Message(Pulse2_Message),
+    .Triangle_Message(Triangle_Message),
     .FifoData(FifoData),
     .FifoWrite(FifoWrite)
   );

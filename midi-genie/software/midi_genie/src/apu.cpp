@@ -4,6 +4,7 @@
 
 LastPulse pulse1 = {};
 LastPulse pulse2 = {};
+LastTriangle triangle = {};
 
 int connect_apu_interrupts(XIntc *InterruptController)
 {
@@ -34,6 +35,7 @@ void nes_reset_handler(void* CallbackRef)
 	reset_channels();
     pulse1 = {};
     pulse2 = {};
+    triangle = {};
 }
 
 void apu_message_handler(void* CallbackRef)
@@ -45,6 +47,9 @@ void apu_message_handler(void* CallbackRef)
         case 0:
         case 1:
             play_pulse_message(apuMessage.pulse);
+            break;
+        case 2:
+            play_triangle_message(apuMessage.triangle);
             break;
     }
     // XIntc_Acknowledge((XIntc*)CallbackRef, APU_MSG_INT_ID);
@@ -62,14 +67,14 @@ void play_pulse_message(PulseBitField pulseMessage)
     if (!pulseMessage.onoff)
     {
         stop_notes(pulseMessage.channel);
-        lastMessage->note = -1;
-        lastMessage->bend = -1;
+        lastMessage->timer = -1;
+        lastMessage->note  = -1;
     }
     else
     {
 #if USE_VELOCITY
 
-        if ((pulseMessage.timer != lastMessage->message.timer) || (pulseMessage.volume != lastMessage->message.volume))
+        if ((pulseMessage.timer != lastMessage->timer) || (pulseMessage.volume != lastMessage->volume))
         {
             pulse2midi(pulseMessage.timer, note, bend);
             if (note != lastMessage->note) {stop_notes(pulseMessage.channel);}
@@ -78,27 +83,29 @@ void play_pulse_message(PulseBitField pulseMessage)
 #endif
             if (note != lastMessage->note) {note_on(pulseMessage.channel, note, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1));}
 
-            lastMessage->note = note;
-            lastMessage->bend = bend;
+            lastMessage->timer = pulseMessage.timer;
+            lastMessage->note  = note;
+            lastMessage->bend  = bend;
         }
 
 #else
 
-        if (pulseMessage.timer != lastMessage->message.timer)
+        if (pulseMessage.timer != lastMessage->timer)
         {
             pulse2midi(pulseMessage.timer, note, bend);
             if (note != lastMessage->note) {stop_notes(pulseMessage.channel);}
 
 #if USE_VOLUME
-            if (pulseMessage.volume != lastMessage->message.volume) { set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1)); }
+            if (pulseMessage.volume != lastMessage->volume) { set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1)); }
 #endif
 #if USE_FINE_ADJUST            
             if (bend != lastMessage->bend) {pitch_bend(pulseMessage.channel, bend);}
 #endif
             if (note != lastMessage->note) {note_on(pulseMessage.channel, note, 0xFF);}
 
-            lastMessage->note = note;
-            lastMessage->bend = bend;
+            lastMessage->timer = pulseMessage.timer;
+            lastMessage->note  = note;
+            lastMessage->bend  = bend;
         }
 #if USE_VOLUME
         else
@@ -110,5 +117,32 @@ void play_pulse_message(PulseBitField pulseMessage)
 #endif
     }
 
-    lastMessage->message = pulseMessage;
+    lastMessage->volume = pulseMessage.volume;
+}
+
+void play_triangle_message(TriangleBitField triangleMessage)
+{
+    print_triangle_message(triangleMessage);
+    int note, bend;
+
+    if ((!triangleMessage.onoff) || (triangleMessage.timer < 2))
+    {
+        stop_notes(triangleMessage.channel);
+        triangle.timer = -1;
+        triangle.note  = -1;
+    }
+    else
+    {
+        triangle2midi(triangleMessage.timer, note, bend);
+        if (note != triangle.note) {stop_notes(triangleMessage.channel);}
+
+#if USE_FINE_ADJUST            
+        if (bend != triangle.bend) {pitch_bend(triangleMessage.channel, bend);}
+#endif
+        if (note != triangle.note) {note_on(triangleMessage.channel, note, 0xFF);}
+
+        triangle.timer = triangleMessage.timer;
+        triangle.note  = note;
+        triangle.bend  = bend;
+    }
 }

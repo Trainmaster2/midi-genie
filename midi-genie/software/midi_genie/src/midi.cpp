@@ -2,9 +2,18 @@
 
 void reset_channels()
 {
-    for (u8 i=0; i<5; i++)
-    {
-        reset_notes_hard(i);
-	    // pitch_bend(i, 8192);
-    }
+    // Pulse 1
+    reset_notes_hard(0);
+    pitch_bend(0, 8192);
+    set_volume(0, 0x7F);
+
+    // Pulse 2
+    reset_notes_hard(1);
+    pitch_bend(1, 8192);
+    set_volume(1, 0x7F);
+
+    // Triangle
+    reset_notes_hard(2);
+    pitch_bend(2, 8192);
+    set_volume(2, 0x3F);
 }

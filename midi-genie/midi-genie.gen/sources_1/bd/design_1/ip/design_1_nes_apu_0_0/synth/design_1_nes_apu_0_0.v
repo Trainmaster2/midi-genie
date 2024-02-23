@@ -74,11 +74,10 @@ module design_1_nes_apu_0_0 (
   APU_Counter_Out,
   APU_Pulse1_Message,
   APU_Pulse2_Message,
+  APU_Triangle_Message,
   dbg_apu_tick,
   dbg_apu_half,
-  dbg_apu_qtr,
-  dbg_overflow_1,
-  dbg_overflow_2
+  dbg_apu_qtr
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
@@ -100,18 +99,17 @@ input wire CPU_RomSel;
 input wire CPU_RW;
 output wire [52 : 0] APU_Pulse1_Out;
 output wire [52 : 0] APU_Pulse2_Out;
-output wire [41 : 0] APU_Triangle_Out;
+output wire [42 : 0] APU_Triangle_Out;
 output wire [15 : 0] APU_Noise_Out;
 output wire [28 : 0] APU_DMC_Out;
 output wire [6 : 0] APU_Status_Out;
 output wire [1 : 0] APU_Counter_Out;
 output wire [18 : 0] APU_Pulse1_Message;
 output wire [18 : 0] APU_Pulse2_Message;
+output wire [14 : 0] APU_Triangle_Message;
 output wire dbg_apu_tick;
 output wire dbg_apu_half;
 output wire dbg_apu_qtr;
-output wire dbg_overflow_1;
-output wire dbg_overflow_2;
 
   nes_apu inst (
     .Clk(Clk),
@@ -132,10 +130,9 @@ output wire dbg_overflow_2;
     .APU_Counter_Out(APU_Counter_Out),
     .APU_Pulse1_Message(APU_Pulse1_Message),
     .APU_Pulse2_Message(APU_Pulse2_Message),
+    .APU_Triangle_Message(APU_Triangle_Message),
     .dbg_apu_tick(dbg_apu_tick),
     .dbg_apu_half(dbg_apu_half),
-    .dbg_apu_qtr(dbg_apu_qtr),
-    .dbg_overflow_1(dbg_overflow_1),
-    .dbg_overflow_2(dbg_overflow_2)
+    .dbg_apu_qtr(dbg_apu_qtr)
   );
 endmodule

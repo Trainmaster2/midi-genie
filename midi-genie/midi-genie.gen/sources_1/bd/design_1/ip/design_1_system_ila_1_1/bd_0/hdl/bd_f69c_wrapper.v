@@ -35,6 +35,7 @@ module bd_f69c_wrapper
     probe5,
     probe6,
     probe7,
+    probe8,
     resetn);
   input [3:0]SLOT_0_AXI_araddr;
   input [2:0]SLOT_0_AXI_arprot;
@@ -64,6 +65,7 @@ module bd_f69c_wrapper
   input [0:0]probe5;
   input [18:0]probe6;
   input [18:0]probe7;
+  input [14:0]probe8;
   input resetn;
 
   wire [3:0]SLOT_0_AXI_araddr;
@@ -94,6 +96,7 @@ module bd_f69c_wrapper
   wire [0:0]probe5;
   wire [18:0]probe6;
   wire [18:0]probe7;
+  wire [14:0]probe8;
   wire resetn;
 
   bd_f69c bd_f69c_i
@@ -125,5 +128,6 @@ module bd_f69c_wrapper
         .probe5(probe5),
         .probe6(probe6),
         .probe7(probe7),
+        .probe8(probe8),
         .resetn(resetn));
 endmodule

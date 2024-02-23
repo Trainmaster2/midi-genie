@@ -582,7 +582,17 @@
             "direction": "I"
           },
           "FifoRead": {
-            "direction": "O"
+            "direction": "O",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
+              }
+            }
           },
           "DataAvailable": {
             "direction": "O"
@@ -596,13 +606,13 @@
         "inst_hier_path": "system_ila_0",
         "parameters": {
           "ALL_PROBE_SAME_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_MON_TYPE": {
             "value": "NATIVE"
           },
           "C_NUM_OF_PROBES": {
-            "value": "20"
+            "value": "19"
           }
         }
       },
@@ -616,7 +626,7 @@
             "value": "MIX"
           },
           "C_NUM_OF_PROBES": {
-            "value": "8"
+            "value": "9"
           }
         },
         "interface_ports": {
@@ -1804,11 +1814,14 @@
           "ENABLE_NOISE": {
             "value": "false"
           },
+          "ENABLE_PULSE_1": {
+            "value": "true"
+          },
           "ENABLE_PULSE_2": {
             "value": "true"
           },
           "ENABLE_TRIANGLE": {
-            "value": "false"
+            "value": "true"
           },
           "FIFO_DATA_WIDTH": {
             "value": "19"
@@ -1848,13 +1861,28 @@
             "left": "18",
             "right": "0"
           },
+          "Triangle_Message": {
+            "direction": "I",
+            "left": "14",
+            "right": "0"
+          },
           "FifoData": {
             "direction": "O",
             "left": "18",
             "right": "0"
           },
           "FifoWrite": {
-            "direction": "O"
+            "direction": "O",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
+              }
+            }
           }
         }
       },
@@ -1946,7 +1974,7 @@
           },
           "APU_Triangle_Out": {
             "direction": "O",
-            "left": "41",
+            "left": "42",
             "right": "0"
           },
           "APU_Noise_Out": {
@@ -1979,6 +2007,11 @@
             "left": "18",
             "right": "0"
           },
+          "APU_Triangle_Message": {
+            "direction": "O",
+            "left": "14",
+            "right": "0"
+          },
           "dbg_apu_tick": {
             "direction": "O"
           },
@@ -1986,12 +2019,6 @@
             "direction": "O"
           },
           "dbg_apu_qtr": {
-            "direction": "O"
-          },
-          "dbg_overflow_1": {
-            "direction": "O"
-          },
-          "dbg_overflow_2": {
             "direction": "O"
           }
         }
@@ -2213,7 +2240,7 @@
         "ports": [
           "nes_apu_0/APU_Pulse1_Message",
           "system_ila_1/probe6",
-          "system_ila_0/probe13",
+          "system_ila_0/probe16",
           "apu_fifo_writer_0/Pulse1_Message"
         ]
       },
@@ -2227,7 +2254,7 @@
         "ports": [
           "nes_apu_0/APU_Pulse2_Message",
           "system_ila_1/probe7",
-          "system_ila_0/probe14",
+          "system_ila_0/probe17",
           "apu_fifo_writer_0/Pulse2_Message"
         ]
       },
@@ -2243,6 +2270,14 @@
           "system_ila_0/probe11"
         ]
       },
+      "nes_apu_0_APU_Triangle_Message": {
+        "ports": [
+          "nes_apu_0/APU_Triangle_Message",
+          "system_ila_0/probe18",
+          "system_ila_1/probe8",
+          "apu_fifo_writer_0/Triangle_Message"
+        ]
+      },
       "nes_apu_0_APU_Triangle_Out": {
         "ports": [
           "nes_apu_0/APU_Triangle_Out",
@@ -2252,31 +2287,19 @@
       "nes_apu_0_dbg_apu_half": {
         "ports": [
           "nes_apu_0/dbg_apu_half",
-          "system_ila_0/probe16"
+          "system_ila_0/probe14"
         ]
       },
       "nes_apu_0_dbg_apu_qtr": {
         "ports": [
           "nes_apu_0/dbg_apu_qtr",
-          "system_ila_0/probe17"
+          "system_ila_0/probe15"
         ]
       },
       "nes_apu_0_dbg_apu_tick": {
         "ports": [
           "nes_apu_0/dbg_apu_tick",
-          "system_ila_0/probe15"
-        ]
-      },
-      "nes_apu_0_dbg_overflow_1": {
-        "ports": [
-          "nes_apu_0/dbg_overflow_1",
-          "system_ila_0/probe18"
-        ]
-      },
-      "nes_apu_0_dbg_overflow_2": {
-        "ports": [
-          "nes_apu_0/dbg_overflow_2",
-          "system_ila_0/probe19"
+          "system_ila_0/probe13"
         ]
       },
       "nes_cpu_addr_1": {

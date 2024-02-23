@@ -63,6 +63,7 @@ module design_1_system_ila_1_1 (
   probe5,
   probe6,
   probe7,
+  probe8,
   SLOT_0_AXI_awaddr,
   SLOT_0_AXI_awprot,
   SLOT_0_AXI_awvalid,
@@ -96,6 +97,7 @@ input wire [0 : 0] probe4;
 input wire [0 : 0] probe5;
 input wire [18 : 0] probe6;
 input wire [18 : 0] probe7;
+input wire [14 : 0] probe8;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 SLOT_0_AXI AWADDR" *)
 input wire [3 : 0] SLOT_0_AXI_awaddr;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 SLOT_0_AXI AWPROT" *)
@@ -150,6 +152,7 @@ input wire resetn;
     .probe5(probe5),
     .probe6(probe6),
     .probe7(probe7),
+    .probe8(probe8),
     .SLOT_0_AXI_awaddr(SLOT_0_AXI_awaddr),
     .SLOT_0_AXI_awprot(SLOT_0_AXI_awprot),
     .SLOT_0_AXI_awvalid(SLOT_0_AXI_awvalid),

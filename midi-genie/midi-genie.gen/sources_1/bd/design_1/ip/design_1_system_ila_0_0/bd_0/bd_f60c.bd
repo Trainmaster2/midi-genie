@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x1A6F754011D2F37B",
+      "boundary_crc": "0xCF2AF68FBC1FF79D",
       "design_src": "SBD",
       "device": "xc7a35tcpg236-1",
       "name": "bd_f60c",
@@ -83,7 +83,7 @@
       },
       "probe8": {
         "direction": "I",
-        "left": "41",
+        "left": "42",
         "right": "0"
       },
       "probe9": {
@@ -108,12 +108,12 @@
       },
       "probe13": {
         "direction": "I",
-        "left": "18",
+        "left": "0",
         "right": "0"
       },
       "probe14": {
         "direction": "I",
-        "left": "18",
+        "left": "0",
         "right": "0"
       },
       "probe15": {
@@ -123,22 +123,17 @@
       },
       "probe16": {
         "direction": "I",
-        "left": "0",
+        "left": "18",
         "right": "0"
       },
       "probe17": {
         "direction": "I",
-        "left": "0",
+        "left": "18",
         "right": "0"
       },
       "probe18": {
         "direction": "I",
-        "left": "0",
-        "right": "0"
-      },
-      "probe19": {
-        "direction": "I",
-        "left": "0",
+        "left": "14",
         "right": "0"
       }
     },
@@ -153,7 +148,7 @@
             "value": "TRUE"
           },
           "ALL_PROBE_SAME_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_ADV_TRIGGER": {
             "value": "FALSE"
@@ -177,10 +172,10 @@
             "value": "Native"
           },
           "C_NUM_OF_PROBES": {
-            "value": "20"
+            "value": "19"
           },
           "C_PROBE0_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE0_TYPE": {
             "value": "0"
@@ -189,7 +184,7 @@
             "value": "1"
           },
           "C_PROBE10_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE10_TYPE": {
             "value": "0"
@@ -198,7 +193,7 @@
             "value": "29"
           },
           "C_PROBE11_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE11_TYPE": {
             "value": "0"
@@ -207,7 +202,7 @@
             "value": "7"
           },
           "C_PROBE12_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE12_TYPE": {
             "value": "0"
@@ -216,25 +211,25 @@
             "value": "2"
           },
           "C_PROBE13_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE13_TYPE": {
             "value": "0"
           },
           "C_PROBE13_WIDTH": {
-            "value": "19"
+            "value": "1"
           },
           "C_PROBE14_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE14_TYPE": {
             "value": "0"
           },
           "C_PROBE14_WIDTH": {
-            "value": "19"
+            "value": "1"
           },
           "C_PROBE15_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE15_TYPE": {
             "value": "0"
@@ -243,43 +238,34 @@
             "value": "1"
           },
           "C_PROBE16_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE16_TYPE": {
             "value": "0"
           },
           "C_PROBE16_WIDTH": {
-            "value": "1"
+            "value": "19"
           },
           "C_PROBE17_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE17_TYPE": {
             "value": "0"
           },
           "C_PROBE17_WIDTH": {
-            "value": "1"
+            "value": "19"
           },
           "C_PROBE18_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE18_TYPE": {
             "value": "0"
           },
           "C_PROBE18_WIDTH": {
-            "value": "1"
-          },
-          "C_PROBE19_MU_CNT": {
-            "value": "1"
-          },
-          "C_PROBE19_TYPE": {
-            "value": "0"
-          },
-          "C_PROBE19_WIDTH": {
-            "value": "1"
+            "value": "15"
           },
           "C_PROBE1_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE1_TYPE": {
             "value": "0"
@@ -288,7 +274,7 @@
             "value": "1"
           },
           "C_PROBE2_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE2_TYPE": {
             "value": "0"
@@ -297,7 +283,7 @@
             "value": "15"
           },
           "C_PROBE3_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE3_TYPE": {
             "value": "0"
@@ -306,7 +292,7 @@
             "value": "8"
           },
           "C_PROBE4_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE4_TYPE": {
             "value": "0"
@@ -315,7 +301,7 @@
             "value": "1"
           },
           "C_PROBE5_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE5_TYPE": {
             "value": "0"
@@ -324,7 +310,7 @@
             "value": "1"
           },
           "C_PROBE6_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE6_TYPE": {
             "value": "0"
@@ -333,7 +319,7 @@
             "value": "53"
           },
           "C_PROBE7_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE7_TYPE": {
             "value": "0"
@@ -342,16 +328,16 @@
             "value": "53"
           },
           "C_PROBE8_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE8_TYPE": {
             "value": "0"
           },
           "C_PROBE8_WIDTH": {
-            "value": "42"
+            "value": "43"
           },
           "C_PROBE9_MU_CNT": {
-            "value": "1"
+            "value": "4"
           },
           "C_PROBE9_TYPE": {
             "value": "0"
@@ -439,12 +425,6 @@
         "ports": [
           "probe18",
           "ila_lib/probe18"
-        ]
-      },
-      "probe19_1": {
-        "ports": [
-          "probe19",
-          "ila_lib/probe19"
         ]
       },
       "probe1_1": {

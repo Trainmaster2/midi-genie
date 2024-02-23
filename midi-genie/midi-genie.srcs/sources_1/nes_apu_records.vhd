@@ -49,24 +49,26 @@ package nes_apu_records is
         length_counter_halt : std_logic;
         linear_counter_load : std_logic_vector(6 downto 0);
         timer_load          : std_logic_vector(10 downto 0);
-        length_counter      : std_logic_vector(4 downto 0);
-        linear_counter      : std_logic_vector(6 downto 0);
-        timer               : std_logic_vector(10 downto 0);
+        length_counter      : unsigned(5 downto 0);
+        linear_counter      : unsigned(6 downto 0);
+        timer               : unsigned(10 downto 0);
     end record t_APU_TRIANGLE;
 
-    constant c_APU_TRIANGLE_VECTOR : integer := 42;
-    constant c_APU_TRIANGLE_INIT   : t_APU_TRIANGLE := (length_counter_halt => '0',
-                                                        linear_counter_load => (others => '0'),
-                                                        timer_load => (others => '0'),
-                                                        length_counter => (others => '0'),
-                                                        linear_counter => (others => '0'),
-                                                        timer => (others => '0'));
+    constant c_APU_TRIANGLE_VECTOR  : integer := 43;
+    constant c_APU_TRIANGLE_MESSAGE : integer := 15;
+    constant c_APU_TRIANGLE_INIT    : t_APU_TRIANGLE := (length_counter_halt => '0',
+                                                         linear_counter_load => (others => '0'),
+                                                         timer_load => (others => '0'),
+                                                         length_counter => (others => '0'),
+                                                         linear_counter => (others => '0'),
+                                                         timer => (others => '0'));
 
     function f_APU_TRIANGLE_2_VECTOR (rec: t_APU_TRIANGLE) return std_logic_vector;
     function f_VECTOR_2_APU_TRIANGLE (vec: std_logic_vector(c_APU_TRIANGLE_VECTOR - 1 downto 0)) return t_APU_TRIANGLE;
+    function f_APU_TRIANGLE_2_MESSAGE (rec: t_APU_TRIANGLE) return std_logic_vector;
     function f_APU_TRIANGLE_REG1 (rec: t_APU_TRIANGLE; vec: std_logic_vector(7 downto 0)) return t_APU_TRIANGLE;
     function f_APU_TRIANGLE_REG3 (rec: t_APU_TRIANGLE; vec: std_logic_vector(7 downto 0)) return t_APU_TRIANGLE;
-    function f_APU_TRIANGLE_REG4 (rec: t_APU_TRIANGLE; vec: std_logic_vector(7 downto 0)) return t_APU_TRIANGLE;
+    function f_APU_TRIANGLE_REG4 (rec: t_APU_TRIANGLE; vec: std_logic_vector(7 downto 0); enabled: std_logic) return t_APU_TRIANGLE;
 
 
     type t_APU_NOISE is record
@@ -154,6 +156,8 @@ package nes_apu_records is
     function f_APU_FRAME_COUNTER_2_VECTOR (rec: t_APU_FRAME_COUNTER) return std_logic_vector;
     function f_VECTOR_2_APU_FRAME_COUNTER (vec: std_logic_vector(c_APU_FRAME_COUNTER_VECTOR - 1 downto 0)) return t_APU_FRAME_COUNTER;
     function f_APU_FRAME_COUNTER_REG1 (rec: t_APU_FRAME_COUNTER; vec: std_logic_vector(7 downto 0)) return t_APU_FRAME_COUNTER;
+    
+    function f_LENGTH_COUNTER (load:  std_logic_vector(4 downto 0)) return unsigned;
 
 end package nes_apu_records;
 
@@ -240,41 +244,7 @@ package body nes_apu_records is
         if (enabled = '0') then
             rec_out.length_counter      := (others => '0');
         else
-            case (vec(7 downto 3)) is
-                when x"00" => rec_out.length_counter := to_unsigned(10, 6);
-                when x"01" => rec_out.length_counter := to_unsigned(254, 6);
-                when x"02" => rec_out.length_counter := to_unsigned(20, 6);
-                when x"03" => rec_out.length_counter := to_unsigned(2, 6);
-                when x"04" => rec_out.length_counter := to_unsigned(40, 6);
-                when x"05" => rec_out.length_counter := to_unsigned(4, 6);
-                when x"06" => rec_out.length_counter := to_unsigned(80, 6);
-                when x"07" => rec_out.length_counter := to_unsigned(6, 6);
-                when x"08" => rec_out.length_counter := to_unsigned(160, 6);
-                when x"09" => rec_out.length_counter := to_unsigned(8, 6);
-                when x"0A" => rec_out.length_counter := to_unsigned(60, 6);
-                when x"0B" => rec_out.length_counter := to_unsigned(10, 6);
-                when x"0C" => rec_out.length_counter := to_unsigned(14, 6);
-                when x"0D" => rec_out.length_counter := to_unsigned(12, 6);
-                when x"0E" => rec_out.length_counter := to_unsigned(26, 6);
-                when x"0F" => rec_out.length_counter := to_unsigned(14, 6);
-                when x"10" => rec_out.length_counter := to_unsigned(12, 6);
-                when x"11" => rec_out.length_counter := to_unsigned(16, 6);
-                when x"12" => rec_out.length_counter := to_unsigned(24, 6);
-                when x"13" => rec_out.length_counter := to_unsigned(18, 6);
-                when x"14" => rec_out.length_counter := to_unsigned(48, 6);
-                when x"15" => rec_out.length_counter := to_unsigned(20, 6);
-                when x"16" => rec_out.length_counter := to_unsigned(96, 6);
-                when x"17" => rec_out.length_counter := to_unsigned(22, 6);
-                when x"18" => rec_out.length_counter := to_unsigned(192, 6);
-                when x"19" => rec_out.length_counter := to_unsigned(24, 6);
-                when x"1A" => rec_out.length_counter := to_unsigned(72, 6);
-                when x"1B" => rec_out.length_counter := to_unsigned(26, 6);
-                when x"1C" => rec_out.length_counter := to_unsigned(16, 6);
-                when x"1D" => rec_out.length_counter := to_unsigned(28, 6);
-                when x"1E" => rec_out.length_counter := to_unsigned(32, 6);
-                when x"1F" => rec_out.length_counter := to_unsigned(30, 6);
-                when others => null;
-            end case;
+            rec_out.length_counter      := f_LENGTH_COUNTER(vec(7 downto 3));
         end if;
         rec_out.timer_load(10 downto 8) := vec(2 downto 0);
         rec_out.timer(10 downto 8)      := unsigned(vec(2 downto 0));
@@ -285,20 +255,31 @@ package body nes_apu_records is
     function f_APU_TRIANGLE_2_VECTOR (rec: t_APU_TRIANGLE) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_TRIANGLE_VECTOR - 1 downto 0);
     begin
-        vec := rec.length_counter_halt & rec.linear_counter_load & rec.timer_load & rec.length_counter & rec.linear_counter & rec.timer;
+        vec := rec.length_counter_halt & rec.linear_counter_load & rec.timer_load & std_logic_vector(rec.length_counter) & std_logic_vector(rec.linear_counter) & std_logic_vector(rec.timer);
         return vec;
     end;
 
     function f_VECTOR_2_APU_TRIANGLE (vec: std_logic_vector(c_APU_TRIANGLE_VECTOR - 1 downto 0)) return t_APU_TRIANGLE is
         variable rec_out : t_APU_TRIANGLE;
     begin
-        rec_out.length_counter_halt := vec(41);
-        rec_out.linear_counter_load := vec(40 downto 34);
-        rec_out.timer_load          := vec(33 downto 23);
-        rec_out.length_counter      := vec(22 downto 18);
-        rec_out.linear_counter      := vec(17 downto 11);
-        rec_out.timer               := vec(10 downto 0);
+        rec_out.length_counter_halt := vec(42);
+        rec_out.linear_counter_load := vec(41 downto 35);
+        rec_out.timer_load          := vec(34 downto 24);
+        rec_out.length_counter      := unsigned(vec(23 downto 18));
+        rec_out.linear_counter      := unsigned(vec(17 downto 11));
+        rec_out.timer               := unsigned(vec(10 downto 0));
         return rec_out;
+    end;
+
+    function f_APU_TRIANGLE_2_MESSAGE (rec: t_APU_TRIANGLE) return std_logic_vector is
+        variable vec : std_logic_vector(c_APU_TRIANGLE_MESSAGE - 1 downto 0) := (others => '0');
+    begin
+        vec(1) := '1';
+        if (rec.length_counter > 0) and (rec.linear_counter > 0) then
+            vec(3) := '1';
+        end if;
+        vec(14 downto 4)  := std_logic_vector(rec.timer);
+        return vec;
     end;
 
     function f_APU_TRIANGLE_REG1 (rec: t_APU_TRIANGLE; vec: std_logic_vector(7 downto 0)) return t_APU_TRIANGLE is
@@ -314,17 +295,20 @@ package body nes_apu_records is
         variable rec_out : t_APU_TRIANGLE;
     begin
         rec_out := rec;
-        rec_out.timer_load(7 downto 0) := vec;
+        rec_out.timer(7 downto 0) := unsigned(vec);
         return rec_out;
     end;
 
-    function f_APU_TRIANGLE_REG4 (rec: t_APU_TRIANGLE; vec: std_logic_vector(7 downto 0)) return t_APU_TRIANGLE is
+    function f_APU_TRIANGLE_REG4 (rec: t_APU_TRIANGLE; vec: std_logic_vector(7 downto 0); enabled: std_logic) return t_APU_TRIANGLE is
         variable rec_out : t_APU_TRIANGLE;
     begin
         rec_out := rec;
-        rec_out.length_counter          := vec(7 downto 3);
-        rec_out.timer_load(10 downto 8) := vec(2 downto 0);
-        rec_out.linear_counter          := rec.linear_counter_load;
+        if (enabled = '0') then
+            rec_out.length_counter := (others => '0');
+        else
+            rec_out.length_counter := f_LENGTH_COUNTER(vec(7 downto 3));
+        end if;
+        rec_out.timer(10 downto 8) := unsigned(vec(2 downto 0));
         return rec_out;
     end;
     
@@ -485,6 +469,45 @@ package body nes_apu_records is
         rec_out.mode        := vec(7);
         rec_out.irq_inhibit := vec(6);
         return rec_out;
+    end;
+
+    function f_LENGTH_COUNTER (load:  std_logic_vector(4 downto 0)) return unsigned is
+    begin
+        case (load) is
+            when x"00" => return to_unsigned(10, 6) + 1;
+            when x"01" => return to_unsigned(254, 6) + 1;
+            when x"02" => return to_unsigned(20, 6) + 1;
+            when x"03" => return to_unsigned(2, 6) + 1;
+            when x"04" => return to_unsigned(40, 6) + 1;
+            when x"05" => return to_unsigned(4, 6) + 1;
+            when x"06" => return to_unsigned(80, 6) + 1;
+            when x"07" => return to_unsigned(6, 6) + 1;
+            when x"08" => return to_unsigned(160, 6) + 1;
+            when x"09" => return to_unsigned(8, 6) + 1;
+            when x"0A" => return to_unsigned(60, 6) + 1;
+            when x"0B" => return to_unsigned(10, 6) + 1;
+            when x"0C" => return to_unsigned(14, 6) + 1;
+            when x"0D" => return to_unsigned(12, 6) + 1;
+            when x"0E" => return to_unsigned(26, 6) + 1;
+            when x"0F" => return to_unsigned(14, 6) + 1;
+            when x"10" => return to_unsigned(12, 6) + 1;
+            when x"11" => return to_unsigned(16, 6) + 1;
+            when x"12" => return to_unsigned(24, 6) + 1;
+            when x"13" => return to_unsigned(18, 6) + 1;
+            when x"14" => return to_unsigned(48, 6) + 1;
+            when x"15" => return to_unsigned(20, 6) + 1;
+            when x"16" => return to_unsigned(96, 6) + 1;
+            when x"17" => return to_unsigned(22, 6) + 1;
+            when x"18" => return to_unsigned(192, 6) + 1;
+            when x"19" => return to_unsigned(24, 6) + 1;
+            when x"1A" => return to_unsigned(72, 6) + 1;
+            when x"1B" => return to_unsigned(26, 6) + 1;
+            when x"1C" => return to_unsigned(16, 6) + 1;
+            when x"1D" => return to_unsigned(28, 6) + 1;
+            when x"1E" => return to_unsigned(32, 6) + 1;
+            when x"1F" => return to_unsigned(30, 6) + 1;
+            when others => null;
+        end case;
     end;
 
 end package body;
