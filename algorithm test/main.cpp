@@ -1,13 +1,17 @@
 #include <iostream>
 #include <math.h>
+#include <vector>
+#include <set>
+#include <map>
 
-using std::cout;
-using std::endl;
+using namespace std;
 
 #define TEST 0
 
 const double TWELVE_ROOT_TWO = 1.0594630943592952645618252949463417007792043174941856285592084314;
 
+void noise_shift_reg(ushort& reg, bool mode);
+double noise_average_frequency(ushort start, bool mode, set<ushort>& values);
 double note2frequency(double note);
 double frequency2note(double frequency);
 void frequency2notebend(double frequency, int& note, int& bend);
@@ -39,6 +43,75 @@ struct LastPulse{
     int bend;
 };
 
+// https://www.geeksforgeeks.org/different-ways-to-print-elements-of-vector/
+template <typename S>
+ostream& operator<<(ostream& os, const vector<S>& vector)
+{
+    // Printing all the elements
+    if (vector.size())
+    {
+        bool first = true;
+        for (auto element : vector) {
+            os << (first ? "[ " : ", ") << element;
+            first = false;
+        }
+        os << " ]";
+    }
+    else
+    {
+        os << "[ ]";
+    }
+    return os;
+}
+
+template <typename S>
+ostream& operator<<(ostream& os, const set<S>& set)
+{
+    // Printing all the elements
+    if (set.size())
+    {
+        bool first = true;
+        for (auto element : set) {
+            os << (first ? "{ " : ", ") << element;
+            first = false;
+        }
+        os << " }";
+    }
+    else
+    {
+        os << "{ }";
+    }
+    return os;
+}
+
+template <typename S, typename T>
+ostream& operator<<(ostream& os, const pair<S, T>& pair)
+{
+    // Printing all the elements
+    os << "( " << pair.first << ", " << pair.second << " )";
+    return os;
+}
+
+template <typename S, typename T>
+ostream& operator<<(ostream& os, const map<S, T>& map)
+{
+    // Printing all the elements
+    if (map.size())
+    {
+        bool first = true;
+        for (auto element : map) {
+            os << (first ? "{ " : ", ") << element.first << ": " << element.second;
+            first = false;
+        }
+        os << " }";
+    }
+    else
+    {
+        os << "{ }";
+    }
+    return os;
+}
+
 int main()
 {
     // debug_pulse(1, 153, 7700);
@@ -56,19 +129,114 @@ int main()
     // bitFieldUnion.note.timer = 0xef;
     // cout << bitFieldUnion.raw << endl;
 
-    #if TEST
-    cout << "A" << endl;
-    #else
-    cout << "B" << endl;
-    #endif
+    // #if TEST
+    // cout << "A" << endl;
+    // #else
+    // cout << "B" << endl;
+    // #endif
 
-    LastPulse lastPulse1 = {};
-    int a = 5;
-    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
-    lastPulse1.note = a;
-    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
-    lastPulse1 = {};
-    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
+    // LastPulse lastPulse1 = {};
+    // int a = 5;
+    // cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
+    // lastPulse1.note = a;
+    // cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
+    // lastPulse1 = {};
+    // cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
+
+    // ushort reg, last;
+    // ulong count, firstCount;
+    // double total;
+    // bool first;
+    // vector<ulong> counts;
+    // set<ushort> current;
+    // set<set<ushort>> all;
+    // map<set<ushort>, double> freqs;
+    // set<pair<double, double>> test;
+
+    // for (ushort target = 1; target <= 32767; target++)
+    // {
+    //     reg = target;
+    //     last = target & 0b1;
+    //     count = 0;
+    //     total = 0;
+    //     first = true;
+    //     counts.clear();
+    //     current.clear();
+    //     do {
+    //         noise_shift_reg(reg, true);
+    //         current.insert(reg);
+    //         total++;
+    //         count++;
+    //         if (!last && (reg & 0b1))
+    //         {
+    //             if (first) {firstCount = count; first = false;}
+    //             else {counts.push_back(count);}
+    //             count = 0;
+    //         }
+    //         last = reg & 0b1;
+    //     } while (reg != target);
+    //     counts.push_back(firstCount + count);
+    //     if (all.insert(current).second) {freqs[current] = total / counts.size(); test.insert(pair<double, double>(total / counts.size(), total));}
+    // }
+
+    // cout << all.size() << endl;
+    // vector<double> tmp;
+    // // for (auto el : freqs) {tmp.push_back(el.second);}
+    // // cout << tmp << endl;
+    // cout << test << endl;
+
+    double freq;
+    set<ushort> values;
+    map<double, set<ushort>> freq2values;
+    map<double, ulong> counts;
+    double value2freq[32768];
+
+    for (ushort start = 1; start <= 32767; start++)
+    {
+        freq = noise_average_frequency(start, true, values);
+        freq2values[freq].merge(values);
+    }
+
+    value2freq[0] = noise_average_frequency(1, false, values);
+    for (auto el : freq2values) {for (auto val : el.second) {value2freq[val] = el.first; counts[el.first]++;}}
+
+    bool first = true;
+    cout << "const double NOISE_FREQ_LOOKUP[32768] =";
+    for (auto el : value2freq) {cout << (first?" {":", ") << el; first = false;}
+    cout << "};" << endl;
+
+    // cout << counts << endl;
+
+    // double last = 0;
+    // for (uint i = 0; i < 32768; i++)
+    // {
+    //     if (last != value2freq[i]) { cout << i << " "; }
+    //     last = value2freq[i];
+    // }
+    // cout << 32768 << endl;
+}
+
+void noise_shift_reg(ushort& reg, bool mode)
+{
+    short feedback = (reg & 0b1) ^ ((reg >> (mode ? 6 : 1)) & 0b1);
+    reg = (feedback << 14) | (reg >> 1);
+}
+
+double noise_average_frequency(ushort start, bool mode, set<ushort>& values)
+{
+    ushort reg = start;
+    ushort last = reg & 0b1;
+    float length = 0;
+    ulong pulses = 0;
+    values.clear();
+    do {
+        noise_shift_reg(reg, true);
+        length++;
+        values.insert(reg);
+        if (!last && (reg & 0b1)) {pulses++;}
+        last = reg & 0b1;
+    } while (reg != start);
+    return length / pulses;
 }
 
 double note2frequency(double note)
