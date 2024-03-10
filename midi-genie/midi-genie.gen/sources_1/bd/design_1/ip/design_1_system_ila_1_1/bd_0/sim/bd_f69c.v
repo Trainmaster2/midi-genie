@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "bd_f69c,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_f69c,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=Global}" *) (* HW_HANDOFF = "design_1_system_ila_1_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "bd_f69c,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_f69c,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1_system_ila_1_1.hwdef" *) 
 module bd_f69c
    (SLOT_0_AXI_araddr,
     SLOT_0_AXI_arprot,
@@ -30,6 +30,7 @@ module bd_f69c
     clk,
     probe0,
     probe1,
+    probe10,
     probe2,
     probe3,
     probe4,
@@ -61,6 +62,7 @@ module bd_f69c
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF SLOT_0_AXI, ASSOCIATED_RESET resetn, CLK_DOMAIN /clk_wiz_0_clk_out1, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
   input [27:0]probe0;
   input [0:0]probe1;
+  input [2:0]probe10;
   input [0:0]probe2;
   input [27:0]probe3;
   input [0:0]probe4;
@@ -120,6 +122,7 @@ module bd_f69c
   wire [3:0]net_slot_0_axi_wstrb;
   wire net_slot_0_axi_wvalid;
   wire [27:0]probe0_1;
+  wire [2:0]probe10_1;
   wire [0:0]probe1_1;
   wire [0:0]probe2_1;
   wire [27:0]probe3_1;
@@ -152,6 +155,7 @@ module bd_f69c
   assign Conn_WVALID = SLOT_0_AXI_wvalid;
   assign clk_1 = clk;
   assign probe0_1 = probe0[27:0];
+  assign probe10_1 = probe10[2:0];
   assign probe1_1 = probe1[0];
   assign probe2_1 = probe2[0];
   assign probe3_1 = probe3[27:0];
@@ -211,25 +215,26 @@ module bd_f69c
        (.clk(clk_1),
         .probe0(probe0_1),
         .probe1(probe1_1),
-        .probe10(net_slot_0_axi_ar_cnt),
-        .probe11(net_slot_0_axi_araddr),
-        .probe12(net_slot_0_axi_arprot),
-        .probe13(net_slot_0_axi_aw_cnt),
-        .probe14(net_slot_0_axi_awaddr),
-        .probe15(net_slot_0_axi_awprot),
-        .probe16(net_slot_0_axi_b_cnt),
-        .probe17(net_slot_0_axi_bresp),
-        .probe18(net_slot_0_axi_r_cnt),
-        .probe19(net_slot_0_axi_rdata),
+        .probe10(probe10_1),
+        .probe11(net_slot_0_axi_ar_cnt),
+        .probe12(net_slot_0_axi_araddr),
+        .probe13(net_slot_0_axi_arprot),
+        .probe14(net_slot_0_axi_aw_cnt),
+        .probe15(net_slot_0_axi_awaddr),
+        .probe16(net_slot_0_axi_awprot),
+        .probe17(net_slot_0_axi_b_cnt),
+        .probe18(net_slot_0_axi_bresp),
+        .probe19(net_slot_0_axi_r_cnt),
         .probe2(probe2_1),
-        .probe20(net_slot_0_axi_rresp),
-        .probe21(net_slot_0_axi_wdata),
-        .probe22(net_slot_0_axi_wstrb),
-        .probe23(net_slot_0_axi_aw_ctrl),
-        .probe24(net_slot_0_axi_w_ctrl),
-        .probe25(net_slot_0_axi_b_ctrl),
-        .probe26(net_slot_0_axi_ar_ctrl),
-        .probe27(net_slot_0_axi_r_ctrl),
+        .probe20(net_slot_0_axi_rdata),
+        .probe21(net_slot_0_axi_rresp),
+        .probe22(net_slot_0_axi_wdata),
+        .probe23(net_slot_0_axi_wstrb),
+        .probe24(net_slot_0_axi_aw_ctrl),
+        .probe25(net_slot_0_axi_w_ctrl),
+        .probe26(net_slot_0_axi_b_ctrl),
+        .probe27(net_slot_0_axi_ar_ctrl),
+        .probe28(net_slot_0_axi_r_ctrl),
         .probe3(probe3_1),
         .probe4(probe4_1),
         .probe5(probe5_1),

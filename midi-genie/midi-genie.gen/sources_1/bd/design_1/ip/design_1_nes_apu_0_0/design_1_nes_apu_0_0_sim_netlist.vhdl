@@ -1,7 +1,7 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Sun Mar 10 14:50:41 2024
+-- Date        : Sun Mar 10 15:20:41 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_nes_apu_0_0/design_1_nes_apu_0_0_sim_netlist.vhdl
@@ -8482,6 +8482,7 @@ entity design_1_nes_apu_0_0 is
     APU_Pulse2_Message : out STD_LOGIC_VECTOR ( 18 downto 0 );
     APU_Triangle_Message : out STD_LOGIC_VECTOR ( 14 downto 0 );
     APU_Noise_Message : out STD_LOGIC_VECTOR ( 27 downto 0 );
+    APU_DMC_Message : out STD_LOGIC_VECTOR ( 2 downto 0 );
     dbg_apu_tick : out STD_LOGIC;
     dbg_apu_half : out STD_LOGIC;
     dbg_apu_qtr : out STD_LOGIC
@@ -8521,6 +8522,9 @@ architecture STRUCTURE of design_1_nes_apu_0_0 is
   attribute X_INTERFACE_INFO of Reset : signal is "xilinx.com:signal:reset:1.0 Reset RST";
   attribute X_INTERFACE_PARAMETER of Reset : signal is "XIL_INTERFACENAME Reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 begin
+  APU_DMC_Message(2) <= \<const1>\;
+  APU_DMC_Message(1) <= \<const0>\;
+  APU_DMC_Message(0) <= \<const0>\;
   APU_Noise_Message(27 downto 24) <= \^apu_noise_message\(27 downto 24);
   APU_Noise_Message(23) <= \<const0>\;
   APU_Noise_Message(22) <= \<const0>\;

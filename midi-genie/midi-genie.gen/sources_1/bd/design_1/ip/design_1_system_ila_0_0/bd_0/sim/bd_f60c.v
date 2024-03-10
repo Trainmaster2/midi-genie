@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "bd_f60c,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_f60c,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=1,numReposBlks=1,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=Global}" *) (* HW_HANDOFF = "design_1_system_ila_0_0.hwdef" *) 
+(* CORE_GENERATION_INFO = "bd_f60c,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_f60c,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=1,numReposBlks=1,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1_system_ila_0_0.hwdef" *) 
 module bd_f60c
    (clk,
     probe0,
@@ -22,6 +22,7 @@ module bd_f60c
     probe18,
     probe19,
     probe2,
+    probe20,
     probe3,
     probe4,
     probe5,
@@ -43,6 +44,7 @@ module bd_f60c
   input [14:0]probe18;
   input [27:0]probe19;
   input [14:0]probe2;
+  input [2:0]probe20;
   input [7:0]probe3;
   input [0:0]probe4;
   input [0:0]probe5;
@@ -64,6 +66,7 @@ module bd_f60c
   wire [14:0]probe18_1;
   wire [27:0]probe19_1;
   wire [0:0]probe1_1;
+  wire [2:0]probe20_1;
   wire [14:0]probe2_1;
   wire [7:0]probe3_1;
   wire [0:0]probe4_1;
@@ -86,6 +89,7 @@ module bd_f60c
   assign probe18_1 = probe18[14:0];
   assign probe19_1 = probe19[27:0];
   assign probe1_1 = probe1[0];
+  assign probe20_1 = probe20[2:0];
   assign probe2_1 = probe2[14:0];
   assign probe3_1 = probe3[7:0];
   assign probe4_1 = probe4[0];
@@ -109,6 +113,7 @@ module bd_f60c
         .probe18(probe18_1),
         .probe19(probe19_1),
         .probe2(probe2_1),
+        .probe20(probe20_1),
         .probe3(probe3_1),
         .probe4(probe4_1),
         .probe5(probe5_1),

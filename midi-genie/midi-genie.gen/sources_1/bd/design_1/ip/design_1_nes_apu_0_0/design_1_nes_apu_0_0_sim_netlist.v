@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Sun Mar 10 14:50:41 2024
+// Date        : Sun Mar 10 15:20:40 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_nes_apu_0_0/design_1_nes_apu_0_0_sim_netlist.v
@@ -36,6 +36,7 @@ module design_1_nes_apu_0_0
     APU_Pulse2_Message,
     APU_Triangle_Message,
     APU_Noise_Message,
+    APU_DMC_Message,
     dbg_apu_tick,
     dbg_apu_half,
     dbg_apu_qtr);
@@ -59,6 +60,7 @@ module design_1_nes_apu_0_0
   output [18:0]APU_Pulse2_Message;
   output [14:0]APU_Triangle_Message;
   output [27:0]APU_Noise_Message;
+  output [2:0]APU_DMC_Message;
   output dbg_apu_tick;
   output dbg_apu_half;
   output dbg_apu_qtr;
@@ -87,6 +89,9 @@ module design_1_nes_apu_0_0
   wire dbg_apu_qtr;
   wire dbg_apu_tick;
 
+  assign APU_DMC_Message[2] = \<const1> ;
+  assign APU_DMC_Message[1] = \<const0> ;
+  assign APU_DMC_Message[0] = \<const0> ;
   assign APU_Noise_Message[27:24] = \^APU_Noise_Message [27:24];
   assign APU_Noise_Message[23] = \<const0> ;
   assign APU_Noise_Message[22] = \<const0> ;

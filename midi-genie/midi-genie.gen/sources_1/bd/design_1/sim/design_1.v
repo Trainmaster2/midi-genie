@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Sun Mar 10 14:49:23 2024
+//Date        : Sun Mar 10 15:19:38 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -182,6 +182,7 @@ module design_1
   wire microblaze_0_interrupt_INTERRUPT;
   wire [1:0]microblaze_0_intr;
   wire [1:0]nes_apu_0_APU_Counter_Out;
+  wire [2:0]nes_apu_0_APU_DMC_Message;
   wire [28:0]nes_apu_0_APU_DMC_Out;
   wire [27:0]nes_apu_0_APU_Noise_Message;
   wire [50:0]nes_apu_0_APU_Noise_Out;
@@ -264,6 +265,7 @@ module design_1
   design_1_apu_fifo_writer_0_0 apu_fifo_writer_0
        (.CPU_Rst(reset_manager_0_nes_resetn),
         .Clk(microblaze_0_Clk),
+        .DMC_Message(nes_apu_0_APU_DMC_Message),
         .FifoData(Net),
         .FifoWrite(Net1),
         .Noise_Message(nes_apu_0_APU_Noise_Message),
@@ -568,6 +570,7 @@ module design_1
         .Res(util_vector_logic_0_Res1));
   design_1_nes_apu_0_0 nes_apu_0
        (.APU_Counter_Out(nes_apu_0_APU_Counter_Out),
+        .APU_DMC_Message(nes_apu_0_APU_DMC_Message),
         .APU_DMC_Out(nes_apu_0_APU_DMC_Out),
         .APU_Noise_Message(nes_apu_0_APU_Noise_Message),
         .APU_Noise_Out(nes_apu_0_APU_Noise_Out),
@@ -622,6 +625,7 @@ module design_1
         .probe18(nes_apu_0_APU_Triangle_Message),
         .probe19(nes_apu_0_APU_Noise_Message),
         .probe2(nes_cpu_addr_1),
+        .probe20(nes_apu_0_APU_DMC_Message),
         .probe3(nes_cpu_data_1),
         .probe4(nes_romsel_1),
         .probe5(nes_cpu_rw_1),
@@ -652,6 +656,7 @@ module design_1
         .clk(microblaze_0_Clk),
         .probe0(Net),
         .probe1(Net1),
+        .probe10(nes_apu_0_APU_DMC_Message),
         .probe2(apu_fifo_empty),
         .probe3(apu_fifo_dout),
         .probe4(apu_fifo_reader_FifoRead),

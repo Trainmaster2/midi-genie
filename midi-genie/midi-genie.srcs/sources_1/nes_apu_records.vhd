@@ -83,17 +83,17 @@ package nes_apu_records is
         shift_reg_at_switch : std_logic_vector(14 downto 0);
     end record t_APU_NOISE;
 
-    constant c_APU_NOISE_VECTOR : integer := 51;
+    constant c_APU_NOISE_VECTOR  : integer := 51;
     constant c_APU_NOISE_MESSAGE : integer := 28;
-    constant c_APU_NOISE_INIT   : t_APU_NOISE := (length_counter_halt => '0',
-                                                  constant_volume => '0',
-                                                  envelope => (others => '0'),
-                                                  volume => (others => '0'),
-                                                  noise_mode => '0',
-                                                  noise_period => (others => '0'),
-                                                  length_counter => (0 => '1', others => '0'),
-                                                  shift_reg => (others => '0'),
-                                                  shift_reg_at_switch => (others => '0'));
+    constant c_APU_NOISE_INIT    : t_APU_NOISE := (length_counter_halt => '0',
+                                                   constant_volume => '0',
+                                                   envelope => (others => '0'),
+                                                   volume => (others => '0'),
+                                                   noise_mode => '0',
+                                                   noise_period => (others => '0'),
+                                                   length_counter => (0 => '1', others => '0'),
+                                                   shift_reg => (others => '0'),
+                                                   shift_reg_at_switch => (others => '0'));
 
     function f_APU_NOISE_2_VECTOR (rec: t_APU_NOISE) return std_logic_vector;
     function f_VECTOR_2_APU_NOISE (vec: std_logic_vector(c_APU_NOISE_VECTOR - 1 downto 0)) return t_APU_NOISE;
@@ -112,16 +112,18 @@ package nes_apu_records is
         sample_length  : std_logic_vector(7 downto 0);
     end record t_APU_DMC;
 
-    constant c_APU_DMC_VECTOR : integer := 29;
-    constant c_APU_DMC_INIT   : t_APU_DMC := (irq_enable => '0',
-                                              dmc_loop => '0',
-                                              frequency => (others => '0'),
-                                              load_counter => (others => '0'),
-                                              sample_address => (others => '0'),
-                                              sample_length => (others => '0'));
+    constant c_APU_DMC_VECTOR  : integer := 29;
+    constant c_APU_DMC_MESSAGE : integer := 3;
+    constant c_APU_DMC_INIT    : t_APU_DMC := (irq_enable => '0',
+                                               dmc_loop => '0',
+                                               frequency => (others => '0'),
+                                               load_counter => (others => '0'),
+                                               sample_address => (others => '0'),
+                                               sample_length => (others => '0'));
 
     function f_APU_DMC_2_VECTOR (rec: t_APU_DMC) return std_logic_vector;
     function f_VECTOR_2_APU_DMC (vec: std_logic_vector(c_APU_DMC_VECTOR - 1 downto 0)) return t_APU_DMC;
+    function f_APU_DMC_2_MESSAGE (rec: t_APU_DMC) return std_logic_vector;
     function f_APU_DMC_REG1 (rec: t_APU_DMC; vec: std_logic_vector(7 downto 0)) return t_APU_DMC;
     function f_APU_DMC_REG2 (rec: t_APU_DMC; vec: std_logic_vector(7 downto 0)) return t_APU_DMC;
     function f_APU_DMC_REG3 (rec: t_APU_DMC; vec: std_logic_vector(7 downto 0)) return t_APU_DMC;
@@ -413,6 +415,13 @@ package body nes_apu_records is
         rec_out.sample_address := vec(15 downto 8);
         rec_out.sample_length  := vec(7 downto 0);
         return rec_out;
+    end;
+
+    function f_APU_DMC_2_MESSAGE (rec: t_APU_DMC) return std_logic_vector is
+        variable vec : std_logic_vector(c_APU_DMC_MESSAGE - 1 downto 0) := (others => '0');
+    begin
+        vec(2 downto 0) := "100";
+        return vec;
     end;
 
     function f_APU_DMC_REG1 (rec: t_APU_DMC; vec: std_logic_vector(7 downto 0)) return t_APU_DMC is

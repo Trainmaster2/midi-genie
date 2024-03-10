@@ -26,6 +26,7 @@ entity nes_apu is
         APU_Pulse2_Message   : out std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
         APU_Triangle_Message : out std_logic_vector(c_APU_TRIANGLE_MESSAGE - 1 downto 0) := (others => '0');
         APU_Noise_Message    : out std_logic_vector(c_APU_NOISE_MESSAGE - 1 downto 0) := (others => '0');
+        APU_DMC_Message      : out std_logic_vector(c_APU_DMC_MESSAGE - 1 downto 0) := (others => '0');
         dbg_apu_tick         : out std_logic;
         dbg_apu_half         : out std_logic;
         dbg_apu_qtr          : out std_logic
@@ -61,6 +62,7 @@ begin
     APU_Pulse2_Message   <= f_APU_PULSE_2_MESSAGE('1', APU_Pulse2, Pulse2_Target(11));
     APU_Triangle_Message <= f_APU_TRIANGLE_2_MESSAGE(APU_Triangle);
     APU_Noise_Message    <= f_APU_NOISE_2_MESSAGE(APU_Noise);
+    APU_DMC_Message      <= f_APU_DMC_2_MESSAGE(APU_DMC);
 
     dbg_apu_tick <= APU_Tick_CE;
     dbg_apu_half <= APU_Half_CE;

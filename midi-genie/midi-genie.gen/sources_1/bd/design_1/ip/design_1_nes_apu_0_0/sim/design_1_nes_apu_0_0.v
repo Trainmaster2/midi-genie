@@ -75,6 +75,7 @@ module design_1_nes_apu_0_0 (
   APU_Pulse2_Message,
   APU_Triangle_Message,
   APU_Noise_Message,
+  APU_DMC_Message,
   dbg_apu_tick,
   dbg_apu_half,
   dbg_apu_qtr
@@ -108,6 +109,7 @@ output wire [18 : 0] APU_Pulse1_Message;
 output wire [18 : 0] APU_Pulse2_Message;
 output wire [14 : 0] APU_Triangle_Message;
 output wire [27 : 0] APU_Noise_Message;
+output wire [2 : 0] APU_DMC_Message;
 output wire dbg_apu_tick;
 output wire dbg_apu_half;
 output wire dbg_apu_qtr;
@@ -133,6 +135,7 @@ output wire dbg_apu_qtr;
     .APU_Pulse2_Message(APU_Pulse2_Message),
     .APU_Triangle_Message(APU_Triangle_Message),
     .APU_Noise_Message(APU_Noise_Message),
+    .APU_DMC_Message(APU_DMC_Message),
     .dbg_apu_tick(dbg_apu_tick),
     .dbg_apu_half(dbg_apu_half),
     .dbg_apu_qtr(dbg_apu_qtr)

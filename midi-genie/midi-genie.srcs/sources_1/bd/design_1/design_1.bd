@@ -606,13 +606,13 @@
         "inst_hier_path": "system_ila_0",
         "parameters": {
           "ALL_PROBE_SAME_MU_CNT": {
-            "value": "4"
+            "value": "1"
           },
           "C_MON_TYPE": {
             "value": "NATIVE"
           },
           "C_NUM_OF_PROBES": {
-            "value": "20"
+            "value": "21"
           }
         }
       },
@@ -623,13 +623,13 @@
         "inst_hier_path": "system_ila_1",
         "parameters": {
           "ALL_PROBE_SAME_MU_CNT": {
-            "value": "4"
+            "value": "1"
           },
           "C_MON_TYPE": {
             "value": "MIX"
           },
           "C_NUM_OF_PROBES": {
-            "value": "10"
+            "value": "11"
           }
         },
         "interface_ports": {
@@ -1874,6 +1874,11 @@
             "left": "27",
             "right": "0"
           },
+          "DMC_Message": {
+            "direction": "I",
+            "left": "2",
+            "right": "0"
+          },
           "FifoData": {
             "direction": "O",
             "left": "27",
@@ -2013,6 +2018,11 @@
           "APU_Noise_Message": {
             "direction": "O",
             "left": "27",
+            "right": "0"
+          },
+          "APU_DMC_Message": {
+            "direction": "O",
+            "left": "2",
             "right": "0"
           },
           "dbg_apu_tick": {
@@ -2225,6 +2235,14 @@
         "ports": [
           "nes_apu_0/APU_Counter_Out",
           "system_ila_0/probe12"
+        ]
+      },
+      "nes_apu_0_APU_DMC_Message": {
+        "ports": [
+          "nes_apu_0/APU_DMC_Message",
+          "system_ila_0/probe20",
+          "system_ila_1/probe10",
+          "apu_fifo_writer_0/DMC_Message"
         ]
       },
       "nes_apu_0_APU_DMC_Out": {

@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Sun Mar 10 14:50:39 2024
+// Date        : Sun Mar 10 15:20:37 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_apu_fifo_writer_0_0/design_1_apu_fifo_writer_0_0_sim_netlist.v
@@ -23,6 +23,7 @@ module design_1_apu_fifo_writer_0_0
     Pulse2_Message,
     Triangle_Message,
     Noise_Message,
+    DMC_Message,
     FifoData,
     FifoWrite);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input Clk;
@@ -32,6 +33,7 @@ module design_1_apu_fifo_writer_0_0
   input [18:0]Pulse2_Message;
   input [14:0]Triangle_Message;
   input [27:0]Noise_Message;
+  input [2:0]DMC_Message;
   output [27:0]FifoData;
   output FifoWrite;
 

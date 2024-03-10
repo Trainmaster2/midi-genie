@@ -40,15 +40,18 @@ struct NoiseBitField{
     u32 volume  : 4;
 };
 
+struct DMCBitField{
+    u32 channel : 3;
+};
+
 union APUBitField {
     u32 raw;
     GenericBitField generic;
     PulseBitField pulse;
     TriangleBitField triangle;
     NoiseBitField noise;
+    DMCBitField dmc;
 };
-
-#define read_apu_message(apuMessage) apuMessage.raw = Xil_In32(APU_IN_ID)
 
 struct LastPulse{
     int timer = -1;
@@ -71,6 +74,13 @@ struct LastNoise{
     int volume = 0xF;
 };
 
+struct LastDMC{
+    int note = -1;
+    int bend = 8192;
+};
+
+#define read_apu_message(apuMessage) apuMessage.raw = Xil_In32(APU_IN_ID)
+
 #if USE_HARD_RESET
 
 #define stop_notes(channel) reset_notes_hard(channel)
@@ -86,12 +96,14 @@ struct LastNoise{
 #define print_pulse_message(pulseMessage) xil_printf("Channel: %d, On/Off: %d, Timer: 0x%03x, Volume: 0x%01x\r\n", pulseMessage.channel, pulseMessage.onoff, pulseMessage.timer, pulseMessage.volume)
 #define print_triangle_message(triangleMessage) xil_printf("Channel: %d, On/Off: %d(%d), Timer: 0x%03x\r\n", triangleMessage.channel, triangleMessage.onoff, triangleMessage.timer >= 2, triangleMessage.timer)
 #define print_noise_message(noiseMessage) xil_printf("Channel: %d, On/Off: %d, Mode: %d, Period: 0x%01x, Start: 0x%04x, Volume: 0x%01x\r\n", noiseMessage.channel, noiseMessage.onoff, noiseMessage.mode, noiseMessage.period, noiseMessage.start, noiseMessage.volume)
+#define print_dmc_message(dmcMessage) xil_printf("Channel: %d\r\n", pulseMessage.channel)
 
 #else
 
 #define print_pulse_message(pulseMessage)
 #define print_triangle_message(triangleMessage)
 #define print_noise_message(noiseMessage)
+#define print_dmc_message(dmcMessage)
 
 #endif
 
@@ -102,5 +114,6 @@ void apu_message_handler(void* CallbackRef);
 void play_pulse_message(PulseBitField pulseMessage);
 void play_triangle_message(TriangleBitField triangleMessage);
 void play_noise_message(NoiseBitField noiseMessage);
+void play_dmc_message(DMCBitField dmcMessage);
 
 #endif

@@ -1,6 +1,6 @@
-14:59:46 **** Incremental Build of project midi_genie_hw ****
-buildplatform.sh 44193 midi_genie_hw standalone_microblaze_0 
-XSDB Server Channel: tcfchan#1
+15:37:21 **** Incremental Build of project midi_genie_hw ****
+buildplatform.sh 44193 midi_genie_hw no_domain_build 
+XSDB Server Channel: tcfchan#2
 /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin
 Building the BSP Library for domain  - standalone_microblaze_0 on processor microblaze_0
 make --no-print-directory seq_libs
@@ -53,11 +53,11 @@ on-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
 
 Running Make libs in microblaze_0/libsrc/intc_v3_15/src
 
+Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
+
 make -C microblaze_0/libsrc/intc_v3_15/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
 LER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunct
 ion-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns"
-
-Running Make libs in microblaze_0/libsrc/standalone_v8_0/src
 
 make -C microblaze_0/libsrc/standalone_v8_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "
 COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mhard-float -mlittle-endian -mno-xl-soft-div -mno-xl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -f
@@ -104,5 +104,5 @@ te_sinit.o microblaze_0/lib/xuartlite_stats.o
 Finished building libraries
 
 
-14:59:58 Build Finished (took 11s.882ms)
+15:37:28 Build Finished (took 7s.35ms)
 

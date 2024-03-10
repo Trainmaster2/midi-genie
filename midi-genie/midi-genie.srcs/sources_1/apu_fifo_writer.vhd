@@ -22,6 +22,7 @@ entity apu_fifo_writer is
         Pulse2_Message   : in  std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
         Triangle_Message : in  std_logic_vector(c_APU_TRIANGLE_MESSAGE - 1 downto 0) := (others => '0');
         Noise_Message    : in  std_logic_vector(c_APU_NOISE_MESSAGE - 1 downto 0) := (others => '0');
+        DMC_Message      : in  std_logic_vector(c_APU_DMC_MESSAGE - 1 downto 0) := (others => '0');
 
         FifoData         : out std_logic_vector(FIFO_DATA_WIDTH-1 downto 0) := (others => '0');
         FifoWrite        : out std_logic := '0'
@@ -33,6 +34,7 @@ architecture Rtl of apu_fifo_writer is
     signal pulse2_message_last   : std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
     signal triangle_message_last : std_logic_vector(c_APU_TRIANGLE_MESSAGE - 1 downto 0) := (others => '0');
     signal noise_message_last    : std_logic_vector(c_APU_NOISE_MESSAGE - 1 downto 0) := (others => '0');
+    signal dmc_message_last      : std_logic_vector(c_APU_DMC_MESSAGE - 1 downto 0) := (others => '0');
 begin
 
     procTrigger: process(Clk) is
@@ -45,6 +47,7 @@ begin
             pulse2_message_last   <= (others => '0');
             triangle_message_last <= (others => '0');
             noise_message_last    <= (others => '0');
+            dmc_message_last      <= (others => '0');
         elsif rising_edge(Clk) then
             if ENABLE_PULSE_1 and ((Pulse1_Message /= pulse1_message_last) and ((Pulse1_Message(3) = '1') or (pulse1_message_last(3) = '1'))) then
                 FifoData(c_APU_PULSE_MESSAGE - 1 downto 0) <= Pulse1_Message;
@@ -62,6 +65,10 @@ begin
                 FifoData(c_APU_NOISE_MESSAGE - 1 downto 0) <= Noise_Message;
                 FifoWrite <= '1';
                 noise_message_last <= Noise_Message;
+            elsif ENABLE_DMC and ((DMC_Message /= dmc_message_last) and ((DMC_Message(3) = '1') or (dmc_message_last(3) = '1'))) then
+                FifoData(c_APU_DMC_MESSAGE - 1 downto 0) <= DMC_Message;
+                FifoWrite <= '1';
+                dmc_message_last <= DMC_Message;
             else
                 FifoWrite <= '0';
             end if;

@@ -6,6 +6,7 @@ LastPulse pulse1 = {};
 LastPulse pulse2 = {};
 LastTriangle triangle = {};
 LastNoise noise = {};
+LastDMC dmc = {};
 
 int connect_apu_interrupts(XIntc *InterruptController)
 {
@@ -38,6 +39,7 @@ void nes_reset_handler(void* CallbackRef)
     pulse2 = {};
     triangle = {};
     noise = {};
+    dmc = {};
 }
 
 void apu_message_handler(void* CallbackRef)
@@ -55,6 +57,9 @@ void apu_message_handler(void* CallbackRef)
             break;
         case 3:
             play_noise_message(apuMessage.noise);
+            break;
+        case 4:
+            play_dmc_message(apuMessage.dmc);
             break;
     }
     // XIntc_Acknowledge((XIntc*)CallbackRef, APU_MSG_INT_ID);
@@ -213,4 +218,10 @@ void play_noise_message(NoiseBitField noiseMessage)
     }
 
     noise.volume = noiseMessage.volume;
+}
+
+void play_dmc_message(DMCBitField dmcMessage)
+{
+    print_dmc_message(dmcMessage);
+    int note, bend;
 }

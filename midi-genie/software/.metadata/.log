@@ -10529,3 +10529,253 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY com.xilinx.sdk.utils 1 0 2024-03-10 15:00:15.727
 !MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '1'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:27:54.276
+!MESSAGE XSCT Command: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Thread: Worker-10: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:28:05.188
+!MESSAGE XSCT command with result: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Result: [null, ]. Thread: Worker-10: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:28:18.718
+!MESSAGE XSCT Command: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Thread: Worker-17: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:28:43.413
+!MESSAGE XSCT command with result: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Result: [null, ]. Thread: Worker-17: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:28.297
+!MESSAGE XSCT Command: [::hsi::utils::closehw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:28.322
+!MESSAGE XSCT command with result: [::hsi::utils::closehw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:28.322
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:40.934
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:40.935
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:40.936
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:40.936
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:40.938
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-03-10 15:37:40.938
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:40.939
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:40.941
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:44.154
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:44.156
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:44.158
+!MESSAGE XSCT Command: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:44.169
+!MESSAGE XSCT command with result: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Result: [null, ]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:44.170
+!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:44.172
+!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"device": "7a35t",
+"family": "artix7",
+"timestamp": "Sun Mar 10 15:19:42 2024",
+"vivado_version": "2022.2.2",
+"part": "xc7a35tcpg236-1",
+}]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:44.172
+!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:37:44.179
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"apu_fifo": {"hier_name": "apu_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_reader": {"hier_name": "apu_fifo_reader",
+"type": "axi_fifo_reader",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_writer_0": {"hier_name": "apu_fifo_writer_0",
+"type": "apu_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"axi_uartlite_0": {"hier_name": "axi_uartlite_0",
+"type": "axi_uartlite",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"clk_wiz_0": {"hier_name": "clk_wiz_0",
+"type": "clk_wiz",
+"version": "6.0",
+"ip_type": "PERIPHERAL",
+},
+"fifo_transmitter_0": {"hier_name": "fifo_transmitter_0",
+"type": "fifo_transmitter",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"led_concat": {"hier_name": "led_concat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"mdm_1": {"hier_name": "mdm_1",
+"type": "mdm",
+"version": "3.2",
+"ip_type": "DEBUG",
+},
+"microblaze_0": {"hier_name": "microblaze_0",
+"type": "microblaze",
+"version": "11.0",
+"ip_type": "PROCESSOR",
+},
+"microblaze_0_axi_intc": {"hier_name": "microblaze_0_axi_intc",
+"type": "axi_intc",
+"version": "4.1",
+"ip_type": "INTERRUPT_CNTLR",
+},
+"microblaze_0_axi_periph": {"hier_name": "microblaze_0_axi_periph",
+"type": "axi_interconnect",
+"version": "2.1",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_dlmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_dlmb_v10": {"hier_name": "microblaze_0_local_memory_dlmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_ilmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_ilmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_ilmb_v10": {"hier_name": "microblaze_0_local_memory_ilmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_lmb_bram": {"hier_name": "microblaze_0_local_memory_lmb_bram",
+"type": "blk_mem_gen",
+"version": "8.4",
+"ip_type": "MEMORY",
+},
+"microblaze_0_xlconcat": {"hier_name": "microblaze_0_xlconcat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo": {"hier_name": "midi_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo_writer": {"hier_name": "midi_fifo_writer",
+"type": "axi_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"midi_led_invert": {"hier_name": "midi_led_invert",
+"type": "util_vector_logic",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"nes_apu_0": {"hier_name": "nes_apu_0",
+"type": "nes_apu",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"reset_manager_0": {"hier_name": "reset_manager_0",
+"type": "reset_manager",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"rgb_off": {"hier_name": "rgb_off",
+"type": "xlconstant",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"rst_clk_wiz_0_100M": {"hier_name": "rst_clk_wiz_0_100M",
+"type": "proc_sys_reset",
+"version": "5.0",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_0": {"hier_name": "system_ila_0",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1": {"hier_name": "system_ila_1",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "MONITOR",
+},
+"system_ila_0_ila_lib": {"hier_name": "system_ila_0/system_ila_0_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_g_inst": {"hier_name": "system_ila_1/system_ila_1_g_inst",
+"type": "gigantic_mux",
+"version": "1.0",
+"ip_type": "MONITOR",
+},
+"system_ila_1_ila_lib": {"hier_name": "system_ila_1/system_ila_1_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_ar": {"hier_name": "system_ila_1/system_ila_1_slot_0_ar",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_aw": {"hier_name": "system_ila_1/system_ila_1_slot_0_aw",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_b": {"hier_name": "system_ila_1/system_ila_1_slot_0_b",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_r": {"hier_name": "system_ila_1/system_ila_1_slot_0_r",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_w": {"hier_name": "system_ila_1/system_ila_1_slot_0_w",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+}]. Thread: Worker-18: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-03-10 15:37:44.811
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '2'

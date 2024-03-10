@@ -3261,3 +3261,11 @@ con
 15:00:15 INFO  : The file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit' stored in project is removed.
 15:00:15 INFO  : The file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.mmi' stored in project is removed.
 15:00:15 INFO  : The updated bitstream files are copied from platform to folder '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream' in project 'midi_genie'.
+15:28:43 INFO  : Hardware specification for platform project 'midi_genie_hw' is updated.
+15:37:25 INFO  : Result from executing command 'getProjects': midi_genie_hw
+15:37:25 INFO  : Result from executing command 'getPlatforms': midi_genie_hw|/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/midi_genie_hw.xpfm
+15:37:28 INFO  : Checking for BSP changes to sync application flags for project 'midi_genie'...
+15:37:44 INFO  : The hardware specification used by project 'midi_genie' is out of sync with the platform. Resource files extracted from the hardware specification will be updated.
+15:37:44 INFO  : The file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit' stored in project is removed.
+15:37:44 INFO  : The file '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.mmi' stored in project is removed.
+15:37:44 INFO  : The updated bitstream files are copied from platform to folder '/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream' in project 'midi_genie'.

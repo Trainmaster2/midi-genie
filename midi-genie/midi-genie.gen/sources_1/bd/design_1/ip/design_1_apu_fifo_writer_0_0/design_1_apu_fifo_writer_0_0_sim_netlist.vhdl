@@ -1,7 +1,7 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Sun Mar 10 14:50:39 2024
+-- Date        : Sun Mar 10 15:20:37 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_apu_fifo_writer_0_0/design_1_apu_fifo_writer_0_0_sim_netlist.vhdl
@@ -1559,6 +1559,7 @@ entity design_1_apu_fifo_writer_0_0 is
     Pulse2_Message : in STD_LOGIC_VECTOR ( 18 downto 0 );
     Triangle_Message : in STD_LOGIC_VECTOR ( 14 downto 0 );
     Noise_Message : in STD_LOGIC_VECTOR ( 27 downto 0 );
+    DMC_Message : in STD_LOGIC_VECTOR ( 2 downto 0 );
     FifoData : out STD_LOGIC_VECTOR ( 27 downto 0 );
     FifoWrite : out STD_LOGIC
   );
