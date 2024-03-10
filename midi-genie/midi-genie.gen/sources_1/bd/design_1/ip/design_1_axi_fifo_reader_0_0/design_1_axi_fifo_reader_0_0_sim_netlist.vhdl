@@ -1,10 +1,10 @@
 -- Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
--- Date        : Wed Jan 17 19:44:31 2024
+-- Date        : Sat Feb 24 23:38:04 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_axi_fifo_reader_0_0/design_1_axi_fifo_reader_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_axi_fifo_reader_0_0 -prefix
+--               design_1_axi_fifo_reader_0_0_ design_1_axi_fifo_reader_0_0_sim_netlist.vhdl
 -- Design      : design_1_axi_fifo_reader_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,13 +17,13 @@ use UNISIM.VCOMPONENTS.ALL;
 entity design_1_axi_fifo_reader_0_0_axi_skid_buf is
   port (
     AR : out STD_LOGIC_VECTOR ( 0 to 0 );
-    D : out STD_LOGIC_VECTOR ( 18 downto 0 );
+    D : out STD_LOGIC_VECTOR ( 27 downto 0 );
     S_AXI_ARREADY : out STD_LOGIC;
     dataAvailableBuf_reg : out STD_LOGIC;
     FifoEmpty_0 : out STD_LOGIC;
     S_AXI_RREADY_0 : out STD_LOGIC;
     S_AXI_ACLK : in STD_LOGIC;
-    FifoData : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    FifoData : in STD_LOGIC_VECTOR ( 27 downto 0 );
     S_AXI_RREADY : in STD_LOGIC;
     axi_read_valid_reg : in STD_LOGIC;
     S_AXI_ARVALID : in STD_LOGIC;
@@ -32,8 +32,6 @@ entity design_1_axi_fifo_reader_0_0_axi_skid_buf is
     FifoEmpty : in STD_LOGIC;
     FifoRead : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_fifo_reader_0_0_axi_skid_buf : entity is "axi_skid_buf";
 end design_1_axi_fifo_reader_0_0_axi_skid_buf;
 
 architecture STRUCTURE of design_1_axi_fifo_reader_0_0_axi_skid_buf is
@@ -207,7 +205,7 @@ axi_bvalid_i_1: unisim.vcomponents.LUT1
       I5 => S_AXI_ARESETN,
       O => D(17)
     );
-\axi_read_data[18]_i_2\: unisim.vcomponents.LUT6
+\axi_read_data[18]_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"8A8A8A0000000000"
     )
@@ -219,6 +217,19 @@ axi_bvalid_i_1: unisim.vcomponents.LUT1
       I4 => r_valid,
       I5 => S_AXI_ARESETN,
       O => D(18)
+    );
+\axi_read_data[19]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(19),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(19)
     );
 \axi_read_data[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -232,6 +243,110 @@ axi_bvalid_i_1: unisim.vcomponents.LUT1
       I4 => r_valid,
       I5 => S_AXI_ARESETN,
       O => D(1)
+    );
+\axi_read_data[20]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(20),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(20)
+    );
+\axi_read_data[21]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(21),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(21)
+    );
+\axi_read_data[22]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(22),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(22)
+    );
+\axi_read_data[23]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(23),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(23)
+    );
+\axi_read_data[24]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(24),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(24)
+    );
+\axi_read_data[25]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(25),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(25)
+    );
+\axi_read_data[26]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(26),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(26)
+    );
+\axi_read_data[27]_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"8A8A8A0000000000"
+    )
+        port map (
+      I0 => FifoData(27),
+      I1 => S_AXI_RREADY,
+      I2 => axi_read_valid_reg,
+      I3 => S_AXI_ARVALID,
+      I4 => r_valid,
+      I5 => S_AXI_ARESETN,
+      O => D(27)
     );
 \axi_read_data[2]_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -512,7 +627,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity design_1_axi_fifo_reader_0_0_axi_fifo_reader is
   port (
     axi_bvalid_reg_0 : out STD_LOGIC;
-    S_AXI_RDATA : out STD_LOGIC_VECTOR ( 18 downto 0 );
+    S_AXI_RDATA : out STD_LOGIC_VECTOR ( 27 downto 0 );
     axi_read_valid_reg_0 : out STD_LOGIC;
     S_AXI_AWREADY : out STD_LOGIC;
     S_AXI_WREADY : out STD_LOGIC;
@@ -523,14 +638,12 @@ entity design_1_axi_fifo_reader_0_0_axi_fifo_reader is
     S_AXI_AWVALID : in STD_LOGIC;
     S_AXI_WVALID : in STD_LOGIC;
     S_AXI_ACLK : in STD_LOGIC;
-    FifoData : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    FifoData : in STD_LOGIC_VECTOR ( 27 downto 0 );
     S_AXI_RREADY : in STD_LOGIC;
     S_AXI_ARVALID : in STD_LOGIC;
     S_AXI_ARESETN : in STD_LOGIC;
     FifoEmpty : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_axi_fifo_reader_0_0_axi_fifo_reader : entity is "axi_fifo_reader";
 end design_1_axi_fifo_reader_0_0_axi_fifo_reader;
 
 architecture STRUCTURE of design_1_axi_fifo_reader_0_0_axi_fifo_reader is
@@ -538,11 +651,11 @@ architecture STRUCTURE of design_1_axi_fifo_reader_0_0_axi_fifo_reader is
   signal \^fiforead\ : STD_LOGIC;
   signal FifoRead1 : STD_LOGIC;
   signal \^axi_bvalid_reg_0\ : STD_LOGIC;
-  signal axi_read_data : STD_LOGIC_VECTOR ( 18 downto 0 );
+  signal axi_read_data : STD_LOGIC_VECTOR ( 27 downto 0 );
   signal \^axi_read_valid_reg_0\ : STD_LOGIC;
-  signal instSkidAR_n_21 : STD_LOGIC;
-  signal instSkidAR_n_22 : STD_LOGIC;
-  signal instSkidAR_n_23 : STD_LOGIC;
+  signal instSkidAR_n_30 : STD_LOGIC;
+  signal instSkidAR_n_31 : STD_LOGIC;
+  signal instSkidAR_n_32 : STD_LOGIC;
   signal instSkidAW_n_0 : STD_LOGIC;
   signal instSkidAW_n_1 : STD_LOGIC;
   signal r_valid : STD_LOGIC;
@@ -559,7 +672,7 @@ FifoRead_reg: unisim.vcomponents.FDRE
         port map (
       C => S_AXI_ACLK,
       CE => '1',
-      D => instSkidAR_n_22,
+      D => instSkidAR_n_31,
       Q => \^fiforead\,
       R => '0'
     );
@@ -574,7 +687,7 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
       Q => \^axi_bvalid_reg_0\,
       R => reset
     );
-\axi_read_data[18]_i_1\: unisim.vcomponents.LUT2
+\axi_read_data[27]_i_1\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"B"
     )
@@ -693,6 +806,17 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
       D => axi_read_data(18),
       Q => S_AXI_RDATA(18)
     );
+\axi_read_data_reg[19]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(19),
+      Q => S_AXI_RDATA(19)
+    );
 \axi_read_data_reg[1]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
@@ -703,6 +827,94 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
       CLR => reset,
       D => axi_read_data(1),
       Q => S_AXI_RDATA(1)
+    );
+\axi_read_data_reg[20]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(20),
+      Q => S_AXI_RDATA(20)
+    );
+\axi_read_data_reg[21]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(21),
+      Q => S_AXI_RDATA(21)
+    );
+\axi_read_data_reg[22]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(22),
+      Q => S_AXI_RDATA(22)
+    );
+\axi_read_data_reg[23]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(23),
+      Q => S_AXI_RDATA(23)
+    );
+\axi_read_data_reg[24]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(24),
+      Q => S_AXI_RDATA(24)
+    );
+\axi_read_data_reg[25]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(25),
+      Q => S_AXI_RDATA(25)
+    );
+\axi_read_data_reg[26]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(26),
+      Q => S_AXI_RDATA(26)
+    );
+\axi_read_data_reg[27]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => S_AXI_ACLK,
+      CE => FifoRead1,
+      CLR => reset,
+      D => axi_read_data(27),
+      Q => S_AXI_RDATA(27)
     );
 \axi_read_data_reg[2]\: unisim.vcomponents.FDCE
     generic map(
@@ -799,7 +1011,7 @@ axi_read_valid_reg: unisim.vcomponents.FDRE
         port map (
       C => S_AXI_ACLK,
       CE => '1',
-      D => instSkidAR_n_23,
+      D => instSkidAR_n_32,
       Q => \^axi_read_valid_reg_0\,
       R => reset
     );
@@ -811,26 +1023,26 @@ dataAvailableBuf_reg: unisim.vcomponents.FDCE
       C => S_AXI_ACLK,
       CE => '1',
       CLR => reset,
-      D => instSkidAR_n_21,
+      D => instSkidAR_n_30,
       Q => \^dataavailable\
     );
 instSkidAR: entity work.design_1_axi_fifo_reader_0_0_axi_skid_buf
      port map (
       AR(0) => reset,
-      D(18 downto 0) => axi_read_data(18 downto 0),
+      D(27 downto 0) => axi_read_data(27 downto 0),
       DataAvailable => \^dataavailable\,
-      FifoData(18 downto 0) => FifoData(18 downto 0),
+      FifoData(27 downto 0) => FifoData(27 downto 0),
       FifoEmpty => FifoEmpty,
-      FifoEmpty_0 => instSkidAR_n_22,
+      FifoEmpty_0 => instSkidAR_n_31,
       FifoRead => \^fiforead\,
       S_AXI_ACLK => S_AXI_ACLK,
       S_AXI_ARESETN => S_AXI_ARESETN,
       S_AXI_ARREADY => S_AXI_ARREADY,
       S_AXI_ARVALID => S_AXI_ARVALID,
       S_AXI_RREADY => S_AXI_RREADY,
-      S_AXI_RREADY_0 => instSkidAR_n_23,
+      S_AXI_RREADY_0 => instSkidAR_n_32,
       axi_read_valid_reg => \^axi_read_valid_reg_0\,
-      dataAvailableBuf_reg => instSkidAR_n_21
+      dataAvailableBuf_reg => instSkidAR_n_30
     );
 instSkidAW: entity work.design_1_axi_fifo_reader_0_0_axi_skid_buf_0
      port map (
@@ -881,7 +1093,7 @@ entity design_1_axi_fifo_reader_0_0 is
     S_AXI_RREADY : in STD_LOGIC;
     S_AXI_RDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
     S_AXI_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    FifoData : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    FifoData : in STD_LOGIC_VECTOR ( 27 downto 0 );
     FifoEmpty : in STD_LOGIC;
     FifoRead : out STD_LOGIC;
     DataAvailable : out STD_LOGIC
@@ -900,7 +1112,7 @@ end design_1_axi_fifo_reader_0_0;
 
 architecture STRUCTURE of design_1_axi_fifo_reader_0_0 is
   signal \<const0>\ : STD_LOGIC;
-  signal \^s_axi_rdata\ : STD_LOGIC_VECTOR ( 18 downto 0 );
+  signal \^s_axi_rdata\ : STD_LOGIC_VECTOR ( 27 downto 0 );
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of S_AXI_ACLK : signal is "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK";
   attribute X_INTERFACE_PARAMETER : string;
@@ -934,16 +1146,7 @@ begin
   S_AXI_RDATA(30) <= \<const0>\;
   S_AXI_RDATA(29) <= \<const0>\;
   S_AXI_RDATA(28) <= \<const0>\;
-  S_AXI_RDATA(27) <= \<const0>\;
-  S_AXI_RDATA(26) <= \<const0>\;
-  S_AXI_RDATA(25) <= \<const0>\;
-  S_AXI_RDATA(24) <= \<const0>\;
-  S_AXI_RDATA(23) <= \<const0>\;
-  S_AXI_RDATA(22) <= \<const0>\;
-  S_AXI_RDATA(21) <= \<const0>\;
-  S_AXI_RDATA(20) <= \<const0>\;
-  S_AXI_RDATA(19) <= \<const0>\;
-  S_AXI_RDATA(18 downto 0) <= \^s_axi_rdata\(18 downto 0);
+  S_AXI_RDATA(27 downto 0) <= \^s_axi_rdata\(27 downto 0);
   S_AXI_RRESP(1) <= \<const0>\;
   S_AXI_RRESP(0) <= \<const0>\;
 GND: unisim.vcomponents.GND
@@ -953,7 +1156,7 @@ GND: unisim.vcomponents.GND
 inst: entity work.design_1_axi_fifo_reader_0_0_axi_fifo_reader
      port map (
       DataAvailable => DataAvailable,
-      FifoData(18 downto 0) => FifoData(18 downto 0),
+      FifoData(27 downto 0) => FifoData(27 downto 0),
       FifoEmpty => FifoEmpty,
       FifoRead => FifoRead,
       S_AXI_ACLK => S_AXI_ACLK,
@@ -963,7 +1166,7 @@ inst: entity work.design_1_axi_fifo_reader_0_0_axi_fifo_reader
       S_AXI_AWREADY => S_AXI_AWREADY,
       S_AXI_AWVALID => S_AXI_AWVALID,
       S_AXI_BREADY => S_AXI_BREADY,
-      S_AXI_RDATA(18 downto 0) => \^s_axi_rdata\(18 downto 0),
+      S_AXI_RDATA(27 downto 0) => \^s_axi_rdata\(27 downto 0),
       S_AXI_RREADY => S_AXI_RREADY,
       S_AXI_WREADY => S_AXI_WREADY,
       S_AXI_WVALID => S_AXI_WVALID,

@@ -69,13 +69,13 @@ module design_1_fifo_generator_0_1 (
 input wire clk;
 input wire rst;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_write:1.0 FIFO_WRITE WR_DATA" *)
-input wire [18 : 0] din;
+input wire [27 : 0] din;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_write:1.0 FIFO_WRITE WR_EN" *)
 input wire wr_en;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_read:1.0 FIFO_READ RD_EN" *)
 input wire rd_en;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_read:1.0 FIFO_READ RD_DATA" *)
-output wire [18 : 0] dout;
+output wire [27 : 0] dout;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_write:1.0 FIFO_WRITE FULL" *)
 output wire full;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_read:1.0 FIFO_READ EMPTY" *)
@@ -87,9 +87,9 @@ output wire empty;
     .C_COUNT_TYPE(0),
     .C_DATA_COUNT_WIDTH(10),
     .C_DEFAULT_VALUE("BlankString"),
-    .C_DIN_WIDTH(19),
+    .C_DIN_WIDTH(28),
     .C_DOUT_RST_VAL("0"),
-    .C_DOUT_WIDTH(19),
+    .C_DOUT_WIDTH(28),
     .C_ENABLE_RLOCS(0),
     .C_FAMILY("artix7"),
     .C_FULL_FLAGS_RST_VAL(1),

@@ -342,7 +342,7 @@
         "inst_hier_path": "apu_fifo_reader",
         "parameters": {
           "FIFO_DATA_WIDTH": {
-            "value": "19"
+            "value": "28"
           }
         },
         "reference_info": {
@@ -575,7 +575,7 @@
           },
           "FifoData": {
             "direction": "I",
-            "left": "18",
+            "left": "27",
             "right": "0"
           },
           "FifoEmpty": {
@@ -612,7 +612,7 @@
             "value": "NATIVE"
           },
           "C_NUM_OF_PROBES": {
-            "value": "19"
+            "value": "20"
           }
         }
       },
@@ -622,11 +622,14 @@
         "xci_path": "ip/design_1_system_ila_1_1/design_1_system_ila_1_1.xci",
         "inst_hier_path": "system_ila_1",
         "parameters": {
+          "ALL_PROBE_SAME_MU_CNT": {
+            "value": "4"
+          },
           "C_MON_TYPE": {
             "value": "MIX"
           },
           "C_NUM_OF_PROBES": {
-            "value": "9"
+            "value": "10"
           }
         },
         "interface_ports": {
@@ -647,7 +650,7 @@
             "value": "false"
           },
           "Input_Data_Width": {
-            "value": "19"
+            "value": "28"
           },
           "Reset_Type": {
             "value": "Asynchronous_Reset"
@@ -1824,7 +1827,7 @@
             "value": "true"
           },
           "FIFO_DATA_WIDTH": {
-            "value": "19"
+            "value": "28"
           }
         },
         "reference_info": {
@@ -1866,23 +1869,18 @@
             "left": "14",
             "right": "0"
           },
+          "Noise_Message": {
+            "direction": "I",
+            "left": "27",
+            "right": "0"
+          },
           "FifoData": {
             "direction": "O",
-            "left": "18",
+            "left": "27",
             "right": "0"
           },
           "FifoWrite": {
-            "direction": "O",
-            "parameters": {
-              "PortType": {
-                "value": "undef",
-                "value_src": "ip_prop"
-              },
-              "PortType.PROP_SRC": {
-                "value": "false",
-                "value_src": "ip_prop"
-              }
-            }
+            "direction": "O"
           }
         }
       },
@@ -1979,7 +1977,7 @@
           },
           "APU_Noise_Out": {
             "direction": "O",
-            "left": "15",
+            "left": "50",
             "right": "0"
           },
           "APU_DMC_Out": {
@@ -2010,6 +2008,11 @@
           "APU_Triangle_Message": {
             "direction": "O",
             "left": "14",
+            "right": "0"
+          },
+          "APU_Noise_Message": {
+            "direction": "O",
+            "left": "27",
             "right": "0"
           },
           "dbg_apu_tick": {
@@ -2228,6 +2231,14 @@
         "ports": [
           "nes_apu_0/APU_DMC_Out",
           "system_ila_0/probe10"
+        ]
+      },
+      "nes_apu_0_APU_Noise_Message": {
+        "ports": [
+          "nes_apu_0/APU_Noise_Message",
+          "system_ila_0/probe19",
+          "system_ila_1/probe9",
+          "apu_fifo_writer_0/Noise_Message"
         ]
       },
       "nes_apu_0_APU_Noise_Out": {

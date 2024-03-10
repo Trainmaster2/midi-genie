@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Thu Feb 22 21:09:07 2024
+// Date        : Sun Mar 10 14:50:39 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_apu_fifo_writer_0_0/design_1_apu_fifo_writer_0_0_sim_netlist.v
@@ -22,6 +22,7 @@ module design_1_apu_fifo_writer_0_0
     Pulse1_Message,
     Pulse2_Message,
     Triangle_Message,
+    Noise_Message,
     FifoData,
     FifoWrite);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input Clk;
@@ -30,22 +31,36 @@ module design_1_apu_fifo_writer_0_0
   input [18:0]Pulse1_Message;
   input [18:0]Pulse2_Message;
   input [14:0]Triangle_Message;
-  output [18:0]FifoData;
+  input [27:0]Noise_Message;
+  output [27:0]FifoData;
   output FifoWrite;
 
+  wire \<const0> ;
   wire CPU_Rst;
   wire Clk;
-  wire [18:0]FifoData;
+  wire [18:0]\^FifoData ;
   wire FifoWrite;
   wire [18:0]Pulse1_Message;
   wire [18:0]Pulse2_Message;
   wire Reset;
   wire [14:0]Triangle_Message;
 
+  assign FifoData[27] = \<const0> ;
+  assign FifoData[26] = \<const0> ;
+  assign FifoData[25] = \<const0> ;
+  assign FifoData[24] = \<const0> ;
+  assign FifoData[23] = \<const0> ;
+  assign FifoData[22] = \<const0> ;
+  assign FifoData[21] = \<const0> ;
+  assign FifoData[20] = \<const0> ;
+  assign FifoData[19] = \<const0> ;
+  assign FifoData[18:0] = \^FifoData [18:0];
+  GND GND
+       (.G(\<const0> ));
   design_1_apu_fifo_writer_0_0_apu_fifo_writer inst
        (.CPU_Rst(CPU_Rst),
         .Clk(Clk),
-        .FifoData(FifoData),
+        .FifoData(\^FifoData ),
         .FifoWrite(FifoWrite),
         .Pulse1_Message(Pulse1_Message),
         .Pulse2_Message(Pulse2_Message),
@@ -75,33 +90,16 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
   wire CPU_Rst;
   wire Clk;
   wire [18:0]FifoData;
+  wire [18:0]FifoData0_out;
   wire FifoData10_in;
   wire FifoData12_out;
   wire FifoData15_out;
-  wire FifoData1_carry__0_i_1_n_0;
-  wire FifoData1_carry_i_1_n_0;
-  wire FifoData1_carry_i_2_n_0;
-  wire FifoData1_carry_i_3_n_0;
-  wire FifoData1_carry_i_4_n_0;
-  wire FifoData1_carry_n_0;
-  wire FifoData1_carry_n_1;
-  wire FifoData1_carry_n_2;
-  wire FifoData1_carry_n_3;
+  wire \FifoData1_inferred__1/i__carry_n_0 ;
+  wire \FifoData1_inferred__1/i__carry_n_1 ;
+  wire \FifoData1_inferred__1/i__carry_n_2 ;
+  wire \FifoData1_inferred__1/i__carry_n_3 ;
   wire FifoData2;
   wire FifoData20_out;
-  wire FifoData2__7_carry__0_i_1_n_0;
-  wire FifoData2__7_carry__0_i_2_n_0;
-  wire FifoData2__7_carry__0_i_3_n_0;
-  wire FifoData2__7_carry__0_n_2;
-  wire FifoData2__7_carry__0_n_3;
-  wire FifoData2__7_carry_i_1_n_0;
-  wire FifoData2__7_carry_i_2_n_0;
-  wire FifoData2__7_carry_i_3_n_0;
-  wire FifoData2__7_carry_i_4_n_0;
-  wire FifoData2__7_carry_n_0;
-  wire FifoData2__7_carry_n_1;
-  wire FifoData2__7_carry_n_2;
-  wire FifoData2__7_carry_n_3;
   wire FifoData2_carry__0_i_1_n_0;
   wire FifoData2_carry__0_i_2_n_0;
   wire FifoData2_carry__0_i_3_n_0;
@@ -115,35 +113,34 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
   wire FifoData2_carry_n_1;
   wire FifoData2_carry_n_2;
   wire FifoData2_carry_n_3;
-  wire \FifoData[0]_i_1_n_0 ;
-  wire \FifoData[10]_i_1_n_0 ;
-  wire \FifoData[11]_i_1_n_0 ;
-  wire \FifoData[12]_i_1_n_0 ;
-  wire \FifoData[13]_i_1_n_0 ;
-  wire \FifoData[14]_i_2_n_0 ;
-  wire \FifoData[15]_i_1_n_0 ;
-  wire \FifoData[16]_i_1_n_0 ;
-  wire \FifoData[17]_i_1_n_0 ;
-  wire \FifoData[18]_i_2_n_0 ;
+  wire \FifoData2_inferred__0/i__carry__0_n_2 ;
+  wire \FifoData2_inferred__0/i__carry__0_n_3 ;
+  wire \FifoData2_inferred__0/i__carry_n_0 ;
+  wire \FifoData2_inferred__0/i__carry_n_1 ;
+  wire \FifoData2_inferred__0/i__carry_n_2 ;
+  wire \FifoData2_inferred__0/i__carry_n_3 ;
+  wire \FifoData[14]_i_1_n_0 ;
+  wire \FifoData[18]_i_1_n_0 ;
   wire \FifoData[18]_i_3_n_0 ;
-  wire \FifoData[1]_i_1_n_0 ;
-  wire \FifoData[2]_i_1_n_0 ;
-  wire \FifoData[3]_i_1_n_0 ;
-  wire \FifoData[4]_i_1_n_0 ;
-  wire \FifoData[5]_i_1_n_0 ;
-  wire \FifoData[6]_i_1_n_0 ;
-  wire \FifoData[7]_i_1_n_0 ;
-  wire \FifoData[8]_i_1_n_0 ;
-  wire \FifoData[9]_i_1_n_0 ;
   wire FifoWrite;
   wire [18:0]Pulse1_Message;
   wire [18:0]Pulse2_Message;
   wire Reset;
   wire [14:0]Triangle_Message;
-  wire [18:14]p_0_in;
+  wire i__carry__0_i_1__0_n_0;
+  wire i__carry__0_i_1_n_0;
+  wire i__carry__0_i_2_n_0;
+  wire i__carry__0_i_3_n_0;
+  wire i__carry_i_1__0_n_0;
+  wire i__carry_i_1_n_0;
+  wire i__carry_i_2__0_n_0;
+  wire i__carry_i_2_n_0;
+  wire i__carry_i_3__0_n_0;
+  wire i__carry_i_3_n_0;
+  wire i__carry_i_4__0_n_0;
+  wire i__carry_i_4_n_0;
   wire p_0_in2_in;
   wire p_0_in4_in;
-  wire p_0_in_0;
   wire \pulse1_message_last_reg_n_0_[0] ;
   wire \pulse1_message_last_reg_n_0_[10] ;
   wire \pulse1_message_last_reg_n_0_[11] ;
@@ -166,160 +163,31 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
   wire \pulse2_message_last[18]_i_1_n_0 ;
   wire [14:0]triangle_message_last;
   wire \triangle_message_last[14]_i_1_n_0 ;
-  wire [3:0]NLW_FifoData1_carry_O_UNCONNECTED;
-  wire [3:1]NLW_FifoData1_carry__0_CO_UNCONNECTED;
-  wire [3:0]NLW_FifoData1_carry__0_O_UNCONNECTED;
-  wire [3:0]NLW_FifoData2__7_carry_O_UNCONNECTED;
-  wire [3:3]NLW_FifoData2__7_carry__0_CO_UNCONNECTED;
-  wire [3:0]NLW_FifoData2__7_carry__0_O_UNCONNECTED;
+  wire \triangle_message_last_reg_n_0_[3] ;
+  wire [3:0]\NLW_FifoData1_inferred__1/i__carry_O_UNCONNECTED ;
+  wire [3:1]\NLW_FifoData1_inferred__1/i__carry__0_CO_UNCONNECTED ;
+  wire [3:0]\NLW_FifoData1_inferred__1/i__carry__0_O_UNCONNECTED ;
   wire [3:0]NLW_FifoData2_carry_O_UNCONNECTED;
   wire [3:3]NLW_FifoData2_carry__0_CO_UNCONNECTED;
   wire [3:0]NLW_FifoData2_carry__0_O_UNCONNECTED;
+  wire [3:0]\NLW_FifoData2_inferred__0/i__carry_O_UNCONNECTED ;
+  wire [3:3]\NLW_FifoData2_inferred__0/i__carry__0_CO_UNCONNECTED ;
+  wire [3:0]\NLW_FifoData2_inferred__0/i__carry__0_O_UNCONNECTED ;
 
-  CARRY4 FifoData1_carry
+  CARRY4 \FifoData1_inferred__1/i__carry 
        (.CI(1'b0),
-        .CO({FifoData1_carry_n_0,FifoData1_carry_n_1,FifoData1_carry_n_2,FifoData1_carry_n_3}),
+        .CO({\FifoData1_inferred__1/i__carry_n_0 ,\FifoData1_inferred__1/i__carry_n_1 ,\FifoData1_inferred__1/i__carry_n_2 ,\FifoData1_inferred__1/i__carry_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b1,1'b1,1'b1,1'b1}),
-        .O(NLW_FifoData1_carry_O_UNCONNECTED[3:0]),
-        .S({FifoData1_carry_i_1_n_0,FifoData1_carry_i_2_n_0,FifoData1_carry_i_3_n_0,FifoData1_carry_i_4_n_0}));
-  CARRY4 FifoData1_carry__0
-       (.CI(FifoData1_carry_n_0),
-        .CO({NLW_FifoData1_carry__0_CO_UNCONNECTED[3:1],FifoData10_in}),
+        .O(\NLW_FifoData1_inferred__1/i__carry_O_UNCONNECTED [3:0]),
+        .S({i__carry_i_1__0_n_0,i__carry_i_2__0_n_0,i__carry_i_3__0_n_0,i__carry_i_4__0_n_0}));
+  CARRY4 \FifoData1_inferred__1/i__carry__0 
+       (.CI(\FifoData1_inferred__1/i__carry_n_0 ),
+        .CO({\NLW_FifoData1_inferred__1/i__carry__0_CO_UNCONNECTED [3:1],FifoData10_in}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b1}),
-        .O(NLW_FifoData1_carry__0_O_UNCONNECTED[3:0]),
-        .S({1'b0,1'b0,1'b0,FifoData1_carry__0_i_1_n_0}));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData1_carry__0_i_1
-       (.I0(Triangle_Message[12]),
-        .I1(triangle_message_last[12]),
-        .I2(triangle_message_last[14]),
-        .I3(Triangle_Message[14]),
-        .I4(triangle_message_last[13]),
-        .I5(Triangle_Message[13]),
-        .O(FifoData1_carry__0_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData1_carry_i_1
-       (.I0(Triangle_Message[9]),
-        .I1(triangle_message_last[9]),
-        .I2(triangle_message_last[11]),
-        .I3(Triangle_Message[11]),
-        .I4(triangle_message_last[10]),
-        .I5(Triangle_Message[10]),
-        .O(FifoData1_carry_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData1_carry_i_2
-       (.I0(Triangle_Message[6]),
-        .I1(triangle_message_last[6]),
-        .I2(triangle_message_last[8]),
-        .I3(Triangle_Message[8]),
-        .I4(triangle_message_last[7]),
-        .I5(Triangle_Message[7]),
-        .O(FifoData1_carry_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData1_carry_i_3
-       (.I0(Triangle_Message[3]),
-        .I1(p_0_in_0),
-        .I2(triangle_message_last[5]),
-        .I3(Triangle_Message[5]),
-        .I4(triangle_message_last[4]),
-        .I5(Triangle_Message[4]),
-        .O(FifoData1_carry_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData1_carry_i_4
-       (.I0(Triangle_Message[0]),
-        .I1(triangle_message_last[0]),
-        .I2(triangle_message_last[2]),
-        .I3(Triangle_Message[2]),
-        .I4(triangle_message_last[1]),
-        .I5(Triangle_Message[1]),
-        .O(FifoData1_carry_i_4_n_0));
-  CARRY4 FifoData2__7_carry
-       (.CI(1'b0),
-        .CO({FifoData2__7_carry_n_0,FifoData2__7_carry_n_1,FifoData2__7_carry_n_2,FifoData2__7_carry_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
-        .O(NLW_FifoData2__7_carry_O_UNCONNECTED[3:0]),
-        .S({FifoData2__7_carry_i_1_n_0,FifoData2__7_carry_i_2_n_0,FifoData2__7_carry_i_3_n_0,FifoData2__7_carry_i_4_n_0}));
-  CARRY4 FifoData2__7_carry__0
-       (.CI(FifoData2__7_carry_n_0),
-        .CO({NLW_FifoData2__7_carry__0_CO_UNCONNECTED[3],FifoData2,FifoData2__7_carry__0_n_2,FifoData2__7_carry__0_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b1,1'b1,1'b1}),
-        .O(NLW_FifoData2__7_carry__0_O_UNCONNECTED[3:0]),
-        .S({1'b0,FifoData2__7_carry__0_i_1_n_0,FifoData2__7_carry__0_i_2_n_0,FifoData2__7_carry__0_i_3_n_0}));
-  LUT2 #(
-    .INIT(4'h9)) 
-    FifoData2__7_carry__0_i_1
-       (.I0(pulse2_message_last[18]),
-        .I1(Pulse2_Message[18]),
-        .O(FifoData2__7_carry__0_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData2__7_carry__0_i_2
-       (.I0(Pulse2_Message[15]),
-        .I1(pulse2_message_last[15]),
-        .I2(pulse2_message_last[17]),
-        .I3(Pulse2_Message[17]),
-        .I4(pulse2_message_last[16]),
-        .I5(Pulse2_Message[16]),
-        .O(FifoData2__7_carry__0_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData2__7_carry__0_i_3
-       (.I0(Pulse2_Message[12]),
-        .I1(pulse2_message_last[12]),
-        .I2(pulse2_message_last[14]),
-        .I3(Pulse2_Message[14]),
-        .I4(pulse2_message_last[13]),
-        .I5(Pulse2_Message[13]),
-        .O(FifoData2__7_carry__0_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData2__7_carry_i_1
-       (.I0(Pulse2_Message[9]),
-        .I1(pulse2_message_last[9]),
-        .I2(pulse2_message_last[11]),
-        .I3(Pulse2_Message[11]),
-        .I4(pulse2_message_last[10]),
-        .I5(Pulse2_Message[10]),
-        .O(FifoData2__7_carry_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData2__7_carry_i_2
-       (.I0(Pulse2_Message[6]),
-        .I1(pulse2_message_last[6]),
-        .I2(pulse2_message_last[8]),
-        .I3(Pulse2_Message[8]),
-        .I4(pulse2_message_last[7]),
-        .I5(Pulse2_Message[7]),
-        .O(FifoData2__7_carry_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData2__7_carry_i_3
-       (.I0(Pulse2_Message[3]),
-        .I1(p_0_in2_in),
-        .I2(pulse2_message_last[5]),
-        .I3(Pulse2_Message[5]),
-        .I4(pulse2_message_last[4]),
-        .I5(Pulse2_Message[4]),
-        .O(FifoData2__7_carry_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData2__7_carry_i_4
-       (.I0(Pulse2_Message[0]),
-        .I1(pulse2_message_last[0]),
-        .I2(pulse2_message_last[2]),
-        .I3(Pulse2_Message[2]),
-        .I4(pulse2_message_last[1]),
-        .I5(Pulse2_Message[1]),
-        .O(FifoData2__7_carry_i_4_n_0));
+        .O(\NLW_FifoData1_inferred__1/i__carry__0_O_UNCONNECTED [3:0]),
+        .S({1'b0,1'b0,1'b0,i__carry__0_i_1_n_0}));
   CARRY4 FifoData2_carry
        (.CI(1'b0),
         .CO({FifoData2_carry_n_0,FifoData2_carry_n_1,FifoData2_carry_n_2,FifoData2_carry_n_3}),
@@ -400,6 +268,20 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I4(\pulse1_message_last_reg_n_0_[1] ),
         .I5(Pulse1_Message[1]),
         .O(FifoData2_carry_i_4_n_0));
+  CARRY4 \FifoData2_inferred__0/i__carry 
+       (.CI(1'b0),
+        .CO({\FifoData2_inferred__0/i__carry_n_0 ,\FifoData2_inferred__0/i__carry_n_1 ,\FifoData2_inferred__0/i__carry_n_2 ,\FifoData2_inferred__0/i__carry_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b1,1'b1,1'b1,1'b1}),
+        .O(\NLW_FifoData2_inferred__0/i__carry_O_UNCONNECTED [3:0]),
+        .S({i__carry_i_1_n_0,i__carry_i_2_n_0,i__carry_i_3_n_0,i__carry_i_4_n_0}));
+  CARRY4 \FifoData2_inferred__0/i__carry__0 
+       (.CI(\FifoData2_inferred__0/i__carry_n_0 ),
+        .CO({\NLW_FifoData2_inferred__0/i__carry__0_CO_UNCONNECTED [3],FifoData2,\FifoData2_inferred__0/i__carry__0_n_2 ,\FifoData2_inferred__0/i__carry__0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b1,1'b1,1'b1}),
+        .O(\NLW_FifoData2_inferred__0/i__carry__0_O_UNCONNECTED [3:0]),
+        .S({1'b0,i__carry__0_i_1__0_n_0,i__carry__0_i_2_n_0,i__carry__0_i_3_n_0}));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[0]_i_1 
@@ -408,7 +290,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[0]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[0]),
-        .O(\FifoData[0]_i_1_n_0 ));
+        .O(FifoData0_out[0]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[10]_i_1 
@@ -417,7 +299,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[10]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[10]),
-        .O(\FifoData[10]_i_1_n_0 ));
+        .O(FifoData0_out[10]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[11]_i_1 
@@ -426,7 +308,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[11]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[11]),
-        .O(\FifoData[11]_i_1_n_0 ));
+        .O(FifoData0_out[11]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[12]_i_1 
@@ -435,7 +317,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[12]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[12]),
-        .O(\FifoData[12]_i_1_n_0 ));
+        .O(FifoData0_out[12]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[13]_i_1 
@@ -444,16 +326,16 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[13]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[13]),
-        .O(\FifoData[13]_i_1_n_0 ));
+        .O(FifoData0_out[13]));
   LUT5 #(
     .INIT(32'hFFFFEEEA)) 
     \FifoData[14]_i_1 
        (.I0(FifoData15_out),
         .I1(FifoData10_in),
-        .I2(p_0_in_0),
+        .I2(\triangle_message_last_reg_n_0_[3] ),
         .I3(Triangle_Message[3]),
         .I4(FifoData12_out),
-        .O(p_0_in[14]));
+        .O(\FifoData[14]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[14]_i_2 
@@ -462,7 +344,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[14]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[14]),
-        .O(\FifoData[14]_i_2_n_0 ));
+        .O(FifoData0_out[14]));
   LUT3 #(
     .INIT(8'hA8)) 
     \FifoData[14]_i_3 
@@ -478,7 +360,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(p_0_in4_in),
         .I3(Pulse1_Message[3]),
         .I4(Pulse2_Message[15]),
-        .O(\FifoData[15]_i_1_n_0 ));
+        .O(FifoData0_out[15]));
   LUT5 #(
     .INIT(32'hBBBF8880)) 
     \FifoData[16]_i_1 
@@ -487,7 +369,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(p_0_in4_in),
         .I3(Pulse1_Message[3]),
         .I4(Pulse2_Message[16]),
-        .O(\FifoData[16]_i_1_n_0 ));
+        .O(FifoData0_out[16]));
   LUT5 #(
     .INIT(32'hBBBF8880)) 
     \FifoData[17]_i_1 
@@ -496,7 +378,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(p_0_in4_in),
         .I3(Pulse1_Message[3]),
         .I4(Pulse2_Message[17]),
-        .O(\FifoData[17]_i_1_n_0 ));
+        .O(FifoData0_out[17]));
   LUT6 #(
     .INIT(64'hFFFFFFE0E0E0E0E0)) 
     \FifoData[18]_i_1 
@@ -506,7 +388,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I3(Pulse2_Message[3]),
         .I4(p_0_in2_in),
         .I5(FifoData2),
-        .O(p_0_in[18]));
+        .O(\FifoData[18]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'hBBBF8880)) 
     \FifoData[18]_i_2 
@@ -515,7 +397,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(p_0_in4_in),
         .I3(Pulse1_Message[3]),
         .I4(Pulse2_Message[18]),
-        .O(\FifoData[18]_i_2_n_0 ));
+        .O(FifoData0_out[18]));
   LUT2 #(
     .INIT(4'h7)) 
     \FifoData[18]_i_3 
@@ -530,7 +412,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[1]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[1]),
-        .O(\FifoData[1]_i_1_n_0 ));
+        .O(FifoData0_out[1]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[2]_i_1 
@@ -539,7 +421,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[2]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[2]),
-        .O(\FifoData[2]_i_1_n_0 ));
+        .O(FifoData0_out[2]));
   LUT6 #(
     .INIT(64'hBBBB8BBBB8B88888)) 
     \FifoData[3]_i_1 
@@ -549,7 +431,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I3(p_0_in2_in),
         .I4(Pulse2_Message[3]),
         .I5(Triangle_Message[3]),
-        .O(\FifoData[3]_i_1_n_0 ));
+        .O(FifoData0_out[3]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[4]_i_1 
@@ -558,7 +440,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[4]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[4]),
-        .O(\FifoData[4]_i_1_n_0 ));
+        .O(FifoData0_out[4]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[5]_i_1 
@@ -567,7 +449,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[5]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[5]),
-        .O(\FifoData[5]_i_1_n_0 ));
+        .O(FifoData0_out[5]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[6]_i_1 
@@ -576,7 +458,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[6]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[6]),
-        .O(\FifoData[6]_i_1_n_0 ));
+        .O(FifoData0_out[6]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[7]_i_1 
@@ -585,7 +467,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[7]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[7]),
-        .O(\FifoData[7]_i_1_n_0 ));
+        .O(FifoData0_out[7]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[8]_i_1 
@@ -594,7 +476,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[8]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[8]),
-        .O(\FifoData[8]_i_1_n_0 ));
+        .O(FifoData0_out[8]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \FifoData[9]_i_1 
@@ -603,158 +485,158 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .I2(Pulse2_Message[9]),
         .I3(FifoData12_out),
         .I4(Triangle_Message[9]),
-        .O(\FifoData[9]_i_1_n_0 ));
+        .O(FifoData0_out[9]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[0] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[0]_i_1_n_0 ),
+        .D(FifoData0_out[0]),
         .Q(FifoData[0]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[10] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[10]_i_1_n_0 ),
+        .D(FifoData0_out[10]),
         .Q(FifoData[10]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[11] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[11]_i_1_n_0 ),
+        .D(FifoData0_out[11]),
         .Q(FifoData[11]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[12] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[12]_i_1_n_0 ),
+        .D(FifoData0_out[12]),
         .Q(FifoData[12]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[13] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[13]_i_1_n_0 ),
+        .D(FifoData0_out[13]),
         .Q(FifoData[13]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[14] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[14]_i_2_n_0 ),
+        .D(FifoData0_out[14]),
         .Q(FifoData[14]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[15] 
        (.C(Clk),
-        .CE(p_0_in[18]),
+        .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[15]_i_1_n_0 ),
+        .D(FifoData0_out[15]),
         .Q(FifoData[15]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[16] 
        (.C(Clk),
-        .CE(p_0_in[18]),
+        .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[16]_i_1_n_0 ),
+        .D(FifoData0_out[16]),
         .Q(FifoData[16]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[17] 
        (.C(Clk),
-        .CE(p_0_in[18]),
+        .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[17]_i_1_n_0 ),
+        .D(FifoData0_out[17]),
         .Q(FifoData[17]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[18] 
        (.C(Clk),
-        .CE(p_0_in[18]),
+        .CE(\FifoData[18]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[18]_i_2_n_0 ),
+        .D(FifoData0_out[18]),
         .Q(FifoData[18]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[1] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[1]_i_1_n_0 ),
+        .D(FifoData0_out[1]),
         .Q(FifoData[1]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[2] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[2]_i_1_n_0 ),
+        .D(FifoData0_out[2]),
         .Q(FifoData[2]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[3] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[3]_i_1_n_0 ),
+        .D(FifoData0_out[3]),
         .Q(FifoData[3]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[4] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[4]_i_1_n_0 ),
+        .D(FifoData0_out[4]),
         .Q(FifoData[4]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[5] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[5]_i_1_n_0 ),
+        .D(FifoData0_out[5]),
         .Q(FifoData[5]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[6] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[6]_i_1_n_0 ),
+        .D(FifoData0_out[6]),
         .Q(FifoData[6]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[7] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[7]_i_1_n_0 ),
+        .D(FifoData0_out[7]),
         .Q(FifoData[7]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[8] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[8]_i_1_n_0 ),
+        .D(FifoData0_out[8]),
         .Q(FifoData[8]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[9] 
        (.C(Clk),
-        .CE(p_0_in[14]),
+        .CE(\FifoData[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(\FifoData[9]_i_1_n_0 ),
+        .D(FifoData0_out[9]),
         .Q(FifoData[9]));
   FDCE #(
     .INIT(1'b0)) 
@@ -762,8 +644,124 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
        (.C(Clk),
         .CE(1'b1),
         .CLR(\FifoData[18]_i_3_n_0 ),
-        .D(p_0_in[14]),
+        .D(\FifoData[14]_i_1_n_0 ),
         .Q(FifoWrite));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry__0_i_1
+       (.I0(Triangle_Message[12]),
+        .I1(triangle_message_last[12]),
+        .I2(triangle_message_last[14]),
+        .I3(Triangle_Message[14]),
+        .I4(triangle_message_last[13]),
+        .I5(Triangle_Message[13]),
+        .O(i__carry__0_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    i__carry__0_i_1__0
+       (.I0(pulse2_message_last[18]),
+        .I1(Pulse2_Message[18]),
+        .O(i__carry__0_i_1__0_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry__0_i_2
+       (.I0(Pulse2_Message[15]),
+        .I1(pulse2_message_last[15]),
+        .I2(pulse2_message_last[17]),
+        .I3(Pulse2_Message[17]),
+        .I4(pulse2_message_last[16]),
+        .I5(Pulse2_Message[16]),
+        .O(i__carry__0_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry__0_i_3
+       (.I0(Pulse2_Message[12]),
+        .I1(pulse2_message_last[12]),
+        .I2(pulse2_message_last[14]),
+        .I3(Pulse2_Message[14]),
+        .I4(pulse2_message_last[13]),
+        .I5(Pulse2_Message[13]),
+        .O(i__carry__0_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_1
+       (.I0(Pulse2_Message[9]),
+        .I1(pulse2_message_last[9]),
+        .I2(pulse2_message_last[11]),
+        .I3(Pulse2_Message[11]),
+        .I4(pulse2_message_last[10]),
+        .I5(Pulse2_Message[10]),
+        .O(i__carry_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_1__0
+       (.I0(Triangle_Message[9]),
+        .I1(triangle_message_last[9]),
+        .I2(triangle_message_last[11]),
+        .I3(Triangle_Message[11]),
+        .I4(triangle_message_last[10]),
+        .I5(Triangle_Message[10]),
+        .O(i__carry_i_1__0_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_2
+       (.I0(Pulse2_Message[6]),
+        .I1(pulse2_message_last[6]),
+        .I2(pulse2_message_last[8]),
+        .I3(Pulse2_Message[8]),
+        .I4(pulse2_message_last[7]),
+        .I5(Pulse2_Message[7]),
+        .O(i__carry_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_2__0
+       (.I0(Triangle_Message[6]),
+        .I1(triangle_message_last[6]),
+        .I2(triangle_message_last[8]),
+        .I3(Triangle_Message[8]),
+        .I4(triangle_message_last[7]),
+        .I5(Triangle_Message[7]),
+        .O(i__carry_i_2__0_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_3
+       (.I0(Pulse2_Message[3]),
+        .I1(p_0_in2_in),
+        .I2(pulse2_message_last[5]),
+        .I3(Pulse2_Message[5]),
+        .I4(pulse2_message_last[4]),
+        .I5(Pulse2_Message[4]),
+        .O(i__carry_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_3__0
+       (.I0(Triangle_Message[3]),
+        .I1(\triangle_message_last_reg_n_0_[3] ),
+        .I2(triangle_message_last[5]),
+        .I3(Triangle_Message[5]),
+        .I4(triangle_message_last[4]),
+        .I5(Triangle_Message[4]),
+        .O(i__carry_i_3__0_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_4
+       (.I0(Pulse2_Message[0]),
+        .I1(pulse2_message_last[0]),
+        .I2(pulse2_message_last[2]),
+        .I3(Pulse2_Message[2]),
+        .I4(pulse2_message_last[1]),
+        .I5(Pulse2_Message[1]),
+        .O(i__carry_i_4_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_4__0
+       (.I0(Triangle_Message[0]),
+        .I1(triangle_message_last[0]),
+        .I2(triangle_message_last[2]),
+        .I3(Triangle_Message[2]),
+        .I4(triangle_message_last[1]),
+        .I5(Triangle_Message[1]),
+        .O(i__carry_i_4__0_n_0));
   LUT3 #(
     .INIT(8'hA8)) 
     \pulse1_message_last[18]_i_1 
@@ -1090,7 +1088,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
     \triangle_message_last[14]_i_1 
        (.I0(FifoData12_out),
         .I1(FifoData10_in),
-        .I2(p_0_in_0),
+        .I2(\triangle_message_last_reg_n_0_[3] ),
         .I3(Triangle_Message[3]),
         .I4(FifoData15_out),
         .O(\triangle_message_last[14]_i_1_n_0 ));
@@ -1165,7 +1163,7 @@ module design_1_apu_fifo_writer_0_0_apu_fifo_writer
         .CE(\triangle_message_last[14]_i_1_n_0 ),
         .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[3]),
-        .Q(p_0_in_0));
+        .Q(\triangle_message_last_reg_n_0_[3] ));
   FDCE #(
     .INIT(1'b0)) 
     \triangle_message_last_reg[4] 

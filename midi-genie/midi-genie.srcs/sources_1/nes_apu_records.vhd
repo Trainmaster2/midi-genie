@@ -74,25 +74,33 @@ package nes_apu_records is
     type t_APU_NOISE is record
         length_counter_halt : std_logic;
         constant_volume     : std_logic;
-        volume              : std_logic_vector(3 downto 0);
-        loop_noise          : std_logic;
+        envelope            : unsigned(3 downto 0);
+        volume              : unsigned(3 downto 0);
+        noise_mode          : std_logic;
         noise_period        : std_logic_vector(3 downto 0);
-        length_counter      : std_logic_vector(4 downto 0);
+        length_counter      : unsigned(5 downto 0);
+        shift_reg           : std_logic_vector(14 downto 0);
+        shift_reg_at_switch : std_logic_vector(14 downto 0);
     end record t_APU_NOISE;
 
-    constant c_APU_NOISE_VECTOR : integer := 16;
+    constant c_APU_NOISE_VECTOR : integer := 51;
+    constant c_APU_NOISE_MESSAGE : integer := 28;
     constant c_APU_NOISE_INIT   : t_APU_NOISE := (length_counter_halt => '0',
                                                   constant_volume => '0',
+                                                  envelope => (others => '0'),
                                                   volume => (others => '0'),
-                                                  loop_noise => '0',
+                                                  noise_mode => '0',
                                                   noise_period => (others => '0'),
-                                                  length_counter => (others => '0'));
+                                                  length_counter => (0 => '1', others => '0'),
+                                                  shift_reg => (others => '0'),
+                                                  shift_reg_at_switch => (others => '0'));
 
     function f_APU_NOISE_2_VECTOR (rec: t_APU_NOISE) return std_logic_vector;
     function f_VECTOR_2_APU_NOISE (vec: std_logic_vector(c_APU_NOISE_VECTOR - 1 downto 0)) return t_APU_NOISE;
+    function f_APU_NOISE_2_MESSAGE (rec: t_APU_NOISE) return std_logic_vector;
     function f_APU_NOISE_REG1 (rec: t_APU_NOISE; vec: std_logic_vector(7 downto 0)) return t_APU_NOISE;
     function f_APU_NOISE_REG3 (rec: t_APU_NOISE; vec: std_logic_vector(7 downto 0)) return t_APU_NOISE;
-    function f_APU_NOISE_REG4 (rec: t_APU_NOISE; vec: std_logic_vector(7 downto 0)) return t_APU_NOISE;
+    function f_APU_NOISE_REG4 (rec: t_APU_NOISE; vec: std_logic_vector(7 downto 0); enabled: std_logic) return t_APU_NOISE;
     
 
     type t_APU_DMC is record
@@ -192,7 +200,7 @@ package body nes_apu_records is
     function f_APU_PULSE_2_MESSAGE (Channel: std_logic; rec: t_APU_PULSE; overflow_mute: std_logic) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
     begin
-        vec(0) := Channel;
+        vec(2 downto 0) := "00" & Channel;
         if (rec.length_counter > 0) and (rec.timer >= 8) and (overflow_mute = '0') then
             vec(3) := '1';
         end if;
@@ -274,7 +282,7 @@ package body nes_apu_records is
     function f_APU_TRIANGLE_2_MESSAGE (rec: t_APU_TRIANGLE) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_TRIANGLE_MESSAGE - 1 downto 0) := (others => '0');
     begin
-        vec(1) := '1';
+        vec(2 downto 0) := "010";
         if (rec.length_counter > 0) and (rec.linear_counter > 0) then
             vec(3) := '1';
         end if;
@@ -316,20 +324,41 @@ package body nes_apu_records is
     function f_APU_NOISE_2_VECTOR (rec: t_APU_NOISE) return std_logic_vector is
         variable vec : std_logic_vector(c_APU_NOISE_VECTOR - 1 downto 0);
     begin
-        vec := rec.length_counter_halt & rec.constant_volume & rec.volume & rec.loop_noise & rec.noise_period & rec.length_counter;
+        vec := rec.length_counter_halt & rec.constant_volume & std_logic_vector(rec.envelope) & std_logic_vector(rec.volume) & rec.noise_mode & rec.noise_period & std_logic_vector(rec.length_counter) & rec.shift_reg & rec.shift_reg_at_switch;
         return vec;
     end;
 
     function f_VECTOR_2_APU_NOISE (vec: std_logic_vector(c_APU_NOISE_VECTOR - 1 downto 0)) return t_APU_NOISE is
         variable rec_out : t_APU_NOISE;
     begin
-        rec_out.length_counter_halt := vec(15);
-        rec_out.constant_volume     := vec(14);
-        rec_out.volume              := vec(13 downto 10);
-        rec_out.loop_noise          := vec(9);
-        rec_out.noise_period        := vec(8 downto 5);
-        rec_out.length_counter      := vec(4 downto 0);
+        rec_out.length_counter_halt := vec(50);
+        rec_out.constant_volume     := vec(49);
+        rec_out.envelope            := unsigned(vec(48 downto 45));
+        rec_out.volume              := unsigned(vec(44 downto 41));
+        rec_out.noise_mode          := vec(40);
+        rec_out.noise_period        := vec(39 downto 36);
+        rec_out.length_counter      := unsigned(vec(35 downto 30));
+        rec_out.shift_reg           := vec(29 downto 15);
+        rec_out.shift_reg_at_switch := vec(14 downto 0);
         return rec_out;
+    end;
+
+    function f_APU_NOISE_2_MESSAGE (rec: t_APU_NOISE) return std_logic_vector is
+        variable vec : std_logic_vector(c_APU_NOISE_MESSAGE - 1 downto 0) := (others => '0');
+    begin
+        vec(2 downto 0) := "011";
+        if (rec.length_counter > 0) then
+            vec(3) := '1';
+        end if;
+        vec(4)            := rec.noise_mode;
+        vec(8 downto 5)   := rec.noise_period;
+        vec(23 downto 9)  := rec.shift_reg_at_switch;
+        if (rec.constant_volume = '1') then
+            vec(27 downto 24) := std_logic_vector(rec.envelope);
+        else
+            vec(27 downto 24) := std_logic_vector(rec.volume);
+        end if;
+        return vec;
     end;
 
     function f_APU_NOISE_REG1 (rec: t_APU_NOISE; vec: std_logic_vector(7 downto 0)) return t_APU_NOISE is
@@ -338,7 +367,7 @@ package body nes_apu_records is
         rec_out := rec;
         rec_out.length_counter_halt := vec(5);
         rec_out.constant_volume     := vec(4);
-        rec_out.volume              := vec(3 downto 0);
+        rec_out.envelope            := unsigned(vec(3 downto 0));
         return rec_out;
     end;
 
@@ -346,16 +375,23 @@ package body nes_apu_records is
         variable rec_out : t_APU_NOISE;
     begin
         rec_out := rec;
-        rec_out.loop_noise   := vec(7);
+        rec_out.noise_mode   := vec(7);
         rec_out.noise_period := vec(3 downto 0);
+        if (vec(7) /= rec.noise_mode) then
+            rec_out.shift_reg_at_switch := rec.shift_reg;
+        end if;
         return rec_out;
     end;
 
-    function f_APU_NOISE_REG4 (rec: t_APU_NOISE; vec: std_logic_vector(7 downto 0)) return t_APU_NOISE is
+    function f_APU_NOISE_REG4 (rec: t_APU_NOISE; vec: std_logic_vector(7 downto 0); enabled: std_logic) return t_APU_NOISE is
         variable rec_out : t_APU_NOISE;
     begin
         rec_out := rec;
-        rec_out.length_counter     := vec(7 downto 3);
+        if (enabled = '0') then
+            rec_out.length_counter := (others => '0');
+        else
+            rec_out.length_counter := f_LENGTH_COUNTER(vec(7 downto 3));
+        end if;
         return rec_out;
     end;
     

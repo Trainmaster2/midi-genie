@@ -1,10 +1,10 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Wed Jan 17 19:44:31 2024
+// Date        : Sat Feb 24 23:38:04 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_axi_fifo_reader_0_0/design_1_axi_fifo_reader_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top design_1_axi_fifo_reader_0_0 -prefix
+//               design_1_axi_fifo_reader_0_0_ design_1_axi_fifo_reader_0_0_sim_netlist.v
 // Design      : design_1_axi_fifo_reader_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,121 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "design_1_axi_fifo_reader_0_0,axi_fifo_reader,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "axi_fifo_reader,Vivado 2022.2.2" *) 
-(* NotValidForBitStream *)
-module design_1_axi_fifo_reader_0_0
-   (S_AXI_ACLK,
-    S_AXI_ARESETN,
-    S_AXI_ARVALID,
-    S_AXI_ARREADY,
-    S_AXI_ARADDR,
-    S_AXI_ARPROT,
-    S_AXI_WVALID,
-    S_AXI_WREADY,
-    S_AXI_WDATA,
-    S_AXI_WSTRB,
-    S_AXI_BVALID,
-    S_AXI_BREADY,
-    S_AXI_BRESP,
-    S_AXI_AWVALID,
-    S_AXI_AWREADY,
-    S_AXI_AWADDR,
-    S_AXI_AWPROT,
-    S_AXI_RVALID,
-    S_AXI_RREADY,
-    S_AXI_RDATA,
-    S_AXI_RRESP,
-    FifoData,
-    FifoEmpty,
-    FifoRead,
-    DataAvailable);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET S_AXI_ARESETN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input S_AXI_ACLK;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 S_AXI_ARESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input S_AXI_ARESETN;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARVALID" *) input S_AXI_ARVALID;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARREADY" *) output S_AXI_ARREADY;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARADDR" *) input [3:0]S_AXI_ARADDR;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARPROT" *) input [2:0]S_AXI_ARPROT;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WVALID" *) input S_AXI_WVALID;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WREADY" *) output S_AXI_WREADY;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WDATA" *) input [31:0]S_AXI_WDATA;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WSTRB" *) input [3:0]S_AXI_WSTRB;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BVALID" *) output S_AXI_BVALID;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BREADY" *) input S_AXI_BREADY;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BRESP" *) output [1:0]S_AXI_BRESP;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWVALID" *) input S_AXI_AWVALID;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWREADY" *) output S_AXI_AWREADY;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *) input [3:0]S_AXI_AWADDR;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWPROT" *) input [2:0]S_AXI_AWPROT;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RVALID" *) output S_AXI_RVALID;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RREADY" *) input S_AXI_RREADY;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RDATA" *) output [31:0]S_AXI_RDATA;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RRESP" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output [1:0]S_AXI_RRESP;
-  input [18:0]FifoData;
-  input FifoEmpty;
-  output FifoRead;
-  output DataAvailable;
-
-  wire \<const0> ;
-  wire DataAvailable;
-  wire [18:0]FifoData;
-  wire FifoEmpty;
-  wire FifoRead;
-  wire S_AXI_ACLK;
-  wire S_AXI_ARESETN;
-  wire S_AXI_ARREADY;
-  wire S_AXI_ARVALID;
-  wire S_AXI_AWREADY;
-  wire S_AXI_AWVALID;
-  wire S_AXI_BREADY;
-  wire S_AXI_BVALID;
-  wire [18:0]\^S_AXI_RDATA ;
-  wire S_AXI_RREADY;
-  wire S_AXI_RVALID;
-  wire S_AXI_WREADY;
-  wire S_AXI_WVALID;
-
-  assign S_AXI_BRESP[1] = \<const0> ;
-  assign S_AXI_BRESP[0] = \<const0> ;
-  assign S_AXI_RDATA[31] = \<const0> ;
-  assign S_AXI_RDATA[30] = \<const0> ;
-  assign S_AXI_RDATA[29] = \<const0> ;
-  assign S_AXI_RDATA[28] = \<const0> ;
-  assign S_AXI_RDATA[27] = \<const0> ;
-  assign S_AXI_RDATA[26] = \<const0> ;
-  assign S_AXI_RDATA[25] = \<const0> ;
-  assign S_AXI_RDATA[24] = \<const0> ;
-  assign S_AXI_RDATA[23] = \<const0> ;
-  assign S_AXI_RDATA[22] = \<const0> ;
-  assign S_AXI_RDATA[21] = \<const0> ;
-  assign S_AXI_RDATA[20] = \<const0> ;
-  assign S_AXI_RDATA[19] = \<const0> ;
-  assign S_AXI_RDATA[18:0] = \^S_AXI_RDATA [18:0];
-  assign S_AXI_RRESP[1] = \<const0> ;
-  assign S_AXI_RRESP[0] = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
-  design_1_axi_fifo_reader_0_0_axi_fifo_reader inst
-       (.DataAvailable(DataAvailable),
-        .FifoData(FifoData),
-        .FifoEmpty(FifoEmpty),
-        .FifoRead(FifoRead),
-        .S_AXI_ACLK(S_AXI_ACLK),
-        .S_AXI_ARESETN(S_AXI_ARESETN),
-        .S_AXI_ARREADY(S_AXI_ARREADY),
-        .S_AXI_ARVALID(S_AXI_ARVALID),
-        .S_AXI_AWREADY(S_AXI_AWREADY),
-        .S_AXI_AWVALID(S_AXI_AWVALID),
-        .S_AXI_BREADY(S_AXI_BREADY),
-        .S_AXI_RDATA(\^S_AXI_RDATA ),
-        .S_AXI_RREADY(S_AXI_RREADY),
-        .S_AXI_WREADY(S_AXI_WREADY),
-        .S_AXI_WVALID(S_AXI_WVALID),
-        .axi_bvalid_reg_0(S_AXI_BVALID),
-        .axi_read_valid_reg_0(S_AXI_RVALID));
-endmodule
-
-(* ORIG_REF_NAME = "axi_fifo_reader" *) 
 module design_1_axi_fifo_reader_0_0_axi_fifo_reader
    (axi_bvalid_reg_0,
     S_AXI_RDATA,
@@ -146,7 +31,7 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
     S_AXI_ARESETN,
     FifoEmpty);
   output axi_bvalid_reg_0;
-  output [18:0]S_AXI_RDATA;
+  output [27:0]S_AXI_RDATA;
   output axi_read_valid_reg_0;
   output S_AXI_AWREADY;
   output S_AXI_WREADY;
@@ -157,14 +42,14 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
   input S_AXI_AWVALID;
   input S_AXI_WVALID;
   input S_AXI_ACLK;
-  input [18:0]FifoData;
+  input [27:0]FifoData;
   input S_AXI_RREADY;
   input S_AXI_ARVALID;
   input S_AXI_ARESETN;
   input FifoEmpty;
 
   wire DataAvailable;
-  wire [18:0]FifoData;
+  wire [27:0]FifoData;
   wire FifoEmpty;
   wire FifoRead;
   wire FifoRead1;
@@ -175,16 +60,16 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
   wire S_AXI_AWREADY;
   wire S_AXI_AWVALID;
   wire S_AXI_BREADY;
-  wire [18:0]S_AXI_RDATA;
+  wire [27:0]S_AXI_RDATA;
   wire S_AXI_RREADY;
   wire S_AXI_WREADY;
   wire S_AXI_WVALID;
   wire axi_bvalid_reg_0;
-  wire [18:0]axi_read_data;
+  wire [27:0]axi_read_data;
   wire axi_read_valid_reg_0;
-  wire instSkidAR_n_21;
-  wire instSkidAR_n_22;
-  wire instSkidAR_n_23;
+  wire instSkidAR_n_30;
+  wire instSkidAR_n_31;
+  wire instSkidAR_n_32;
   wire instSkidAW_n_0;
   wire instSkidAW_n_1;
   wire r_valid;
@@ -195,7 +80,7 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
     FifoRead_reg
        (.C(S_AXI_ACLK),
         .CE(1'b1),
-        .D(instSkidAR_n_22),
+        .D(instSkidAR_n_31),
         .Q(FifoRead),
         .R(1'b0));
   FDRE #(
@@ -208,7 +93,7 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
         .R(reset));
   LUT2 #(
     .INIT(4'hB)) 
-    \axi_read_data[18]_i_1 
+    \axi_read_data[27]_i_1 
        (.I0(S_AXI_RREADY),
         .I1(axi_read_valid_reg_0),
         .O(FifoRead1));
@@ -294,12 +179,84 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
         .Q(S_AXI_RDATA[18]));
   FDCE #(
     .INIT(1'b0)) 
+    \axi_read_data_reg[19] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[19]),
+        .Q(S_AXI_RDATA[19]));
+  FDCE #(
+    .INIT(1'b0)) 
     \axi_read_data_reg[1] 
        (.C(S_AXI_ACLK),
         .CE(FifoRead1),
         .CLR(reset),
         .D(axi_read_data[1]),
         .Q(S_AXI_RDATA[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \axi_read_data_reg[20] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[20]),
+        .Q(S_AXI_RDATA[20]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \axi_read_data_reg[21] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[21]),
+        .Q(S_AXI_RDATA[21]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \axi_read_data_reg[22] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[22]),
+        .Q(S_AXI_RDATA[22]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \axi_read_data_reg[23] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[23]),
+        .Q(S_AXI_RDATA[23]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \axi_read_data_reg[24] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[24]),
+        .Q(S_AXI_RDATA[24]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \axi_read_data_reg[25] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[25]),
+        .Q(S_AXI_RDATA[25]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \axi_read_data_reg[26] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[26]),
+        .Q(S_AXI_RDATA[26]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \axi_read_data_reg[27] 
+       (.C(S_AXI_ACLK),
+        .CE(FifoRead1),
+        .CLR(reset),
+        .D(axi_read_data[27]),
+        .Q(S_AXI_RDATA[27]));
   FDCE #(
     .INIT(1'b0)) 
     \axi_read_data_reg[2] 
@@ -369,7 +326,7 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
     axi_read_valid_reg
        (.C(S_AXI_ACLK),
         .CE(1'b1),
-        .D(instSkidAR_n_23),
+        .D(instSkidAR_n_32),
         .Q(axi_read_valid_reg_0),
         .R(reset));
   FDCE #(
@@ -378,7 +335,7 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
        (.C(S_AXI_ACLK),
         .CE(1'b1),
         .CLR(reset),
-        .D(instSkidAR_n_21),
+        .D(instSkidAR_n_30),
         .Q(DataAvailable));
   design_1_axi_fifo_reader_0_0_axi_skid_buf instSkidAR
        (.AR(reset),
@@ -386,16 +343,16 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
         .DataAvailable(DataAvailable),
         .FifoData(FifoData),
         .FifoEmpty(FifoEmpty),
-        .FifoEmpty_0(instSkidAR_n_22),
+        .FifoEmpty_0(instSkidAR_n_31),
         .FifoRead(FifoRead),
         .S_AXI_ACLK(S_AXI_ACLK),
         .S_AXI_ARESETN(S_AXI_ARESETN),
         .S_AXI_ARREADY(S_AXI_ARREADY),
         .S_AXI_ARVALID(S_AXI_ARVALID),
         .S_AXI_RREADY(S_AXI_RREADY),
-        .S_AXI_RREADY_0(instSkidAR_n_23),
+        .S_AXI_RREADY_0(instSkidAR_n_32),
         .axi_read_valid_reg(axi_read_valid_reg_0),
-        .dataAvailableBuf_reg(instSkidAR_n_21));
+        .dataAvailableBuf_reg(instSkidAR_n_30));
   design_1_axi_fifo_reader_0_0_axi_skid_buf_0 instSkidAW
        (.AR(reset),
         .S_AXI_ACLK(S_AXI_ACLK),
@@ -415,7 +372,6 @@ module design_1_axi_fifo_reader_0_0_axi_fifo_reader
         .r_valid_reg_0(instSkidAW_n_1));
 endmodule
 
-(* ORIG_REF_NAME = "axi_skid_buf" *) 
 module design_1_axi_fifo_reader_0_0_axi_skid_buf
    (AR,
     D,
@@ -433,13 +389,13 @@ module design_1_axi_fifo_reader_0_0_axi_skid_buf
     FifoEmpty,
     FifoRead);
   output [0:0]AR;
-  output [18:0]D;
+  output [27:0]D;
   output S_AXI_ARREADY;
   output dataAvailableBuf_reg;
   output FifoEmpty_0;
   output S_AXI_RREADY_0;
   input S_AXI_ACLK;
-  input [18:0]FifoData;
+  input [27:0]FifoData;
   input S_AXI_RREADY;
   input axi_read_valid_reg;
   input S_AXI_ARVALID;
@@ -449,9 +405,9 @@ module design_1_axi_fifo_reader_0_0_axi_skid_buf
   input FifoRead;
 
   wire [0:0]AR;
-  wire [18:0]D;
+  wire [27:0]D;
   wire DataAvailable;
-  wire [18:0]FifoData;
+  wire [27:0]FifoData;
   wire FifoEmpty;
   wire FifoEmpty_0;
   wire FifoRead;
@@ -590,7 +546,7 @@ module design_1_axi_fifo_reader_0_0_axi_skid_buf
         .O(D[17]));
   LUT6 #(
     .INIT(64'h8A8A8A0000000000)) 
-    \axi_read_data[18]_i_2 
+    \axi_read_data[18]_i_1 
        (.I0(FifoData[18]),
         .I1(S_AXI_RREADY),
         .I2(axi_read_valid_reg),
@@ -598,6 +554,16 @@ module design_1_axi_fifo_reader_0_0_axi_skid_buf
         .I4(r_valid),
         .I5(S_AXI_ARESETN),
         .O(D[18]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[19]_i_1 
+       (.I0(FifoData[19]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[19]));
   LUT6 #(
     .INIT(64'h8A8A8A0000000000)) 
     \axi_read_data[1]_i_1 
@@ -608,6 +574,86 @@ module design_1_axi_fifo_reader_0_0_axi_skid_buf
         .I4(r_valid),
         .I5(S_AXI_ARESETN),
         .O(D[1]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[20]_i_1 
+       (.I0(FifoData[20]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[20]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[21]_i_1 
+       (.I0(FifoData[21]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[21]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[22]_i_1 
+       (.I0(FifoData[22]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[22]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[23]_i_1 
+       (.I0(FifoData[23]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[23]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[24]_i_1 
+       (.I0(FifoData[24]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[24]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[25]_i_1 
+       (.I0(FifoData[25]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[25]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[26]_i_1 
+       (.I0(FifoData[26]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[26]));
+  LUT6 #(
+    .INIT(64'h8A8A8A0000000000)) 
+    \axi_read_data[27]_i_2 
+       (.I0(FifoData[27]),
+        .I1(S_AXI_RREADY),
+        .I2(axi_read_valid_reg),
+        .I3(S_AXI_ARVALID),
+        .I4(r_valid),
+        .I5(S_AXI_ARESETN),
+        .O(D[27]));
   LUT6 #(
     .INIT(64'h8A8A8A0000000000)) 
     \axi_read_data[2]_i_1 
@@ -837,6 +883,111 @@ module design_1_axi_fifo_reader_0_0_axi_skid_buf__parameterized0
         .D(r_valid_reg_0),
         .Q(r_valid),
         .R(AR));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "design_1_axi_fifo_reader_0_0,axi_fifo_reader,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "axi_fifo_reader,Vivado 2022.2.2" *) 
+(* NotValidForBitStream *)
+module design_1_axi_fifo_reader_0_0
+   (S_AXI_ACLK,
+    S_AXI_ARESETN,
+    S_AXI_ARVALID,
+    S_AXI_ARREADY,
+    S_AXI_ARADDR,
+    S_AXI_ARPROT,
+    S_AXI_WVALID,
+    S_AXI_WREADY,
+    S_AXI_WDATA,
+    S_AXI_WSTRB,
+    S_AXI_BVALID,
+    S_AXI_BREADY,
+    S_AXI_BRESP,
+    S_AXI_AWVALID,
+    S_AXI_AWREADY,
+    S_AXI_AWADDR,
+    S_AXI_AWPROT,
+    S_AXI_RVALID,
+    S_AXI_RREADY,
+    S_AXI_RDATA,
+    S_AXI_RRESP,
+    FifoData,
+    FifoEmpty,
+    FifoRead,
+    DataAvailable);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET S_AXI_ARESETN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *) input S_AXI_ACLK;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 S_AXI_ARESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input S_AXI_ARESETN;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARVALID" *) input S_AXI_ARVALID;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARREADY" *) output S_AXI_ARREADY;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARADDR" *) input [3:0]S_AXI_ARADDR;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARPROT" *) input [2:0]S_AXI_ARPROT;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WVALID" *) input S_AXI_WVALID;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WREADY" *) output S_AXI_WREADY;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WDATA" *) input [31:0]S_AXI_WDATA;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WSTRB" *) input [3:0]S_AXI_WSTRB;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BVALID" *) output S_AXI_BVALID;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BREADY" *) input S_AXI_BREADY;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BRESP" *) output [1:0]S_AXI_BRESP;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWVALID" *) input S_AXI_AWVALID;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWREADY" *) output S_AXI_AWREADY;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *) input [3:0]S_AXI_AWADDR;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWPROT" *) input [2:0]S_AXI_AWPROT;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RVALID" *) output S_AXI_RVALID;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RREADY" *) input S_AXI_RREADY;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RDATA" *) output [31:0]S_AXI_RDATA;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RRESP" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output [1:0]S_AXI_RRESP;
+  input [27:0]FifoData;
+  input FifoEmpty;
+  output FifoRead;
+  output DataAvailable;
+
+  wire \<const0> ;
+  wire DataAvailable;
+  wire [27:0]FifoData;
+  wire FifoEmpty;
+  wire FifoRead;
+  wire S_AXI_ACLK;
+  wire S_AXI_ARESETN;
+  wire S_AXI_ARREADY;
+  wire S_AXI_ARVALID;
+  wire S_AXI_AWREADY;
+  wire S_AXI_AWVALID;
+  wire S_AXI_BREADY;
+  wire S_AXI_BVALID;
+  wire [27:0]\^S_AXI_RDATA ;
+  wire S_AXI_RREADY;
+  wire S_AXI_RVALID;
+  wire S_AXI_WREADY;
+  wire S_AXI_WVALID;
+
+  assign S_AXI_BRESP[1] = \<const0> ;
+  assign S_AXI_BRESP[0] = \<const0> ;
+  assign S_AXI_RDATA[31] = \<const0> ;
+  assign S_AXI_RDATA[30] = \<const0> ;
+  assign S_AXI_RDATA[29] = \<const0> ;
+  assign S_AXI_RDATA[28] = \<const0> ;
+  assign S_AXI_RDATA[27:0] = \^S_AXI_RDATA [27:0];
+  assign S_AXI_RRESP[1] = \<const0> ;
+  assign S_AXI_RRESP[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  design_1_axi_fifo_reader_0_0_axi_fifo_reader inst
+       (.DataAvailable(DataAvailable),
+        .FifoData(FifoData),
+        .FifoEmpty(FifoEmpty),
+        .FifoRead(FifoRead),
+        .S_AXI_ACLK(S_AXI_ACLK),
+        .S_AXI_ARESETN(S_AXI_ARESETN),
+        .S_AXI_ARREADY(S_AXI_ARREADY),
+        .S_AXI_ARVALID(S_AXI_ARVALID),
+        .S_AXI_AWREADY(S_AXI_AWREADY),
+        .S_AXI_AWVALID(S_AXI_AWVALID),
+        .S_AXI_BREADY(S_AXI_BREADY),
+        .S_AXI_RDATA(\^S_AXI_RDATA ),
+        .S_AXI_RREADY(S_AXI_RREADY),
+        .S_AXI_WREADY(S_AXI_WREADY),
+        .S_AXI_WVALID(S_AXI_WVALID),
+        .axi_bvalid_reg_0(S_AXI_BVALID),
+        .axi_read_valid_reg_0(S_AXI_RVALID));
 endmodule
 `ifndef GLBL
 `define GLBL

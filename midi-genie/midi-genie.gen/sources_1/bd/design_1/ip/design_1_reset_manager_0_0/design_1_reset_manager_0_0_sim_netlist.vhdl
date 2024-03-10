@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
 -- Date        : Thu Jan 18 12:06:48 2024
 -- Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_reset_manager_0_0/design_1_reset_manager_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_reset_manager_0_0 -prefix
+--               design_1_reset_manager_0_0_ design_1_reset_manager_0_0_sim_netlist.vhdl
 -- Design      : design_1_reset_manager_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.

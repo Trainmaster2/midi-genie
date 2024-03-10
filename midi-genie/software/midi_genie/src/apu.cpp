@@ -5,6 +5,7 @@
 LastPulse pulse1 = {};
 LastPulse pulse2 = {};
 LastTriangle triangle = {};
+LastNoise noise = {};
 
 int connect_apu_interrupts(XIntc *InterruptController)
 {
@@ -36,6 +37,7 @@ void nes_reset_handler(void* CallbackRef)
     pulse1 = {};
     pulse2 = {};
     triangle = {};
+    noise = {};
 }
 
 void apu_message_handler(void* CallbackRef)
@@ -50,6 +52,9 @@ void apu_message_handler(void* CallbackRef)
             break;
         case 2:
             play_triangle_message(apuMessage.triangle);
+            break;
+        case 3:
+            play_noise_message(apuMessage.noise);
             break;
     }
     // XIntc_Acknowledge((XIntc*)CallbackRef, APU_MSG_INT_ID);
@@ -81,7 +86,7 @@ void play_pulse_message(PulseBitField pulseMessage)
 #if USE_FINE_ADJUST
             if (bend != lastMessage->bend) {pitch_bend(pulseMessage.channel, bend);}
 #endif
-            if (note != lastMessage->note) {note_on(pulseMessage.channel, note, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1));}
+            if (note != lastMessage->note) {note_on(pulseMessage.channel, note, ((pulseMessage.volume << 3) | (pulseMessage.volume >> 1)));}
 
             lastMessage->timer = pulseMessage.timer;
             lastMessage->note  = note;
@@ -96,7 +101,7 @@ void play_pulse_message(PulseBitField pulseMessage)
             if (note != lastMessage->note) {stop_notes(pulseMessage.channel);}
 
 #if USE_VOLUME
-            if (pulseMessage.volume != lastMessage->volume) { set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1)); }
+            if (pulseMessage.volume != lastMessage->volume) { set_volume(pulseMessage.channel, ((pulseMessage.volume << 3) | (pulseMessage.volume >> 1))); }
 #endif
 #if USE_FINE_ADJUST            
             if (bend != lastMessage->bend) {pitch_bend(pulseMessage.channel, bend);}
@@ -110,7 +115,7 @@ void play_pulse_message(PulseBitField pulseMessage)
 #if USE_VOLUME
         else
         {
-            set_volume(pulseMessage.channel, (pulseMessage.volume << 3) | (pulseMessage.volume >> 1));
+            set_volume(pulseMessage.channel, ((pulseMessage.volume << 3) | (pulseMessage.volume >> 1)));
         }
 #endif
 
@@ -145,4 +150,67 @@ void play_triangle_message(TriangleBitField triangleMessage)
         triangle.note  = note;
         triangle.bend  = bend;
     }
+}
+
+void play_noise_message(NoiseBitField noiseMessage)
+{
+    print_noise_message(noiseMessage);
+    int note, bend;
+
+    if (!noiseMessage.onoff)
+    {
+        stop_notes(noiseMessage.channel);
+        noise.period = -1;
+        noise.note  = -1;
+    }
+    else
+    {
+#if USE_VELOCITY
+
+        if ((noiseMessage.period != noise.period) || (noiseMessage.mode != noise.mode) || (noiseMessage.volume != noise.volume))
+        {
+            noise2midi(noiseMessage.mode, noiseMessage.start, noiseMessage.period, note, bend);
+            if (note != noise.note) {stop_notes(noiseMessage.channel);}
+#if USE_FINE_ADJUST
+            if (bend != noise.bend) {pitch_bend(noiseMessage.channel, bend);}
+#endif
+            if ((note != noise.note) || (noiseMessage.volume != noise.volume)) {note_on(noiseMessage.channel, note, ((noiseMessage.volume << 3) | (noiseMessage.volume >> 1)));}
+
+            noise.mode   = noiseMessage.mode;
+            noise.period = noiseMessage.period;
+            noise.note   = note;
+            noise.bend   = bend;
+        }
+
+#else
+
+        if ((noiseMessage.period != noise.period) || (noiseMessage.mode != noise.mode))
+        {
+            noise2midi(noiseMessage.mode, noiseMessage.start, noiseMessage.period, note, bend);
+            if (note != noise.note) {stop_notes(noiseMessage.channel);}
+
+#if USE_VOLUME
+            if (noiseMessage.volume != noise.volume) { set_volume(noiseMessage.channel, ((noiseMessage.volume << 3) | (noiseMessage.volume >> 1))); }
+#endif
+#if USE_FINE_ADJUST            
+            if (bend != noise.bend) {pitch_bend(noiseMessage.channel, bend);}
+#endif
+            if (note != noise.note) {note_on(noiseMessage.channel, note, 0xFF);}
+
+            noise.mode   = noiseMessage.mode;
+            noise.period = noiseMessage.period;
+            noise.note   = note;
+            noise.bend   = bend;
+        }
+#if USE_VOLUME
+        else
+        {
+            set_volume(noiseMessage.channel, ((noiseMessage.volume << 3) | (noiseMessage.volume >> 1)));
+        }
+#endif
+
+#endif
+    }
+
+    noise.volume = noiseMessage.volume;
 }

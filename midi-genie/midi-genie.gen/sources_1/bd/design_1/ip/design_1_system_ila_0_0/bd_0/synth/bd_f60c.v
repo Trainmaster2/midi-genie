@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "bd_f60c,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_f60c,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=1,numReposBlks=1,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1_system_ila_0_0.hwdef" *) 
+(* CORE_GENERATION_INFO = "bd_f60c,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_f60c,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=1,numReposBlks=1,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=Global}" *) (* HW_HANDOFF = "design_1_system_ila_0_0.hwdef" *) 
 module bd_f60c
    (clk,
     probe0,
@@ -20,6 +20,7 @@ module bd_f60c
     probe16,
     probe17,
     probe18,
+    probe19,
     probe2,
     probe3,
     probe4,
@@ -40,6 +41,7 @@ module bd_f60c
   input [18:0]probe16;
   input [18:0]probe17;
   input [14:0]probe18;
+  input [27:0]probe19;
   input [14:0]probe2;
   input [7:0]probe3;
   input [0:0]probe4;
@@ -47,7 +49,7 @@ module bd_f60c
   input [52:0]probe6;
   input [52:0]probe7;
   input [42:0]probe8;
-  input [15:0]probe9;
+  input [50:0]probe9;
 
   wire clk_1;
   wire [0:0]probe0_1;
@@ -60,6 +62,7 @@ module bd_f60c
   wire [18:0]probe16_1;
   wire [18:0]probe17_1;
   wire [14:0]probe18_1;
+  wire [27:0]probe19_1;
   wire [0:0]probe1_1;
   wire [14:0]probe2_1;
   wire [7:0]probe3_1;
@@ -68,7 +71,7 @@ module bd_f60c
   wire [52:0]probe6_1;
   wire [52:0]probe7_1;
   wire [42:0]probe8_1;
-  wire [15:0]probe9_1;
+  wire [50:0]probe9_1;
 
   assign clk_1 = clk;
   assign probe0_1 = probe0[0];
@@ -81,6 +84,7 @@ module bd_f60c
   assign probe16_1 = probe16[18:0];
   assign probe17_1 = probe17[18:0];
   assign probe18_1 = probe18[14:0];
+  assign probe19_1 = probe19[27:0];
   assign probe1_1 = probe1[0];
   assign probe2_1 = probe2[14:0];
   assign probe3_1 = probe3[7:0];
@@ -89,7 +93,7 @@ module bd_f60c
   assign probe6_1 = probe6[52:0];
   assign probe7_1 = probe7[52:0];
   assign probe8_1 = probe8[42:0];
-  assign probe9_1 = probe9[15:0];
+  assign probe9_1 = probe9[50:0];
   bd_f60c_ila_lib_0 ila_lib
        (.clk(clk_1),
         .probe0(probe0_1),
@@ -103,6 +107,7 @@ module bd_f60c
         .probe16(probe16_1),
         .probe17(probe17_1),
         .probe18(probe18_1),
+        .probe19(probe19_1),
         .probe2(probe2_1),
         .probe3(probe3_1),
         .probe4(probe4_1),

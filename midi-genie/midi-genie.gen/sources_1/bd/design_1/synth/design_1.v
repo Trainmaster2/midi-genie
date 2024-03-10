@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Thu Feb 22 21:07:58 2024
+//Date        : Sun Mar 10 14:49:23 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -40,9 +40,9 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:interface:uart:1.0 usb_uart RxD" *) input usb_uart_rxd;
   (* X_INTERFACE_INFO = "xilinx.com:interface:uart:1.0 usb_uart TxD" *) output usb_uart_txd;
 
-  wire [18:0]Net;
+  wire [27:0]Net;
   wire Net1;
-  wire [18:0]apu_fifo_dout;
+  wire [27:0]apu_fifo_dout;
   wire apu_fifo_empty;
   wire apu_fifo_reader_DataAvailable;
   wire apu_fifo_reader_FifoRead;
@@ -183,7 +183,8 @@ module design_1
   wire [1:0]microblaze_0_intr;
   wire [1:0]nes_apu_0_APU_Counter_Out;
   wire [28:0]nes_apu_0_APU_DMC_Out;
-  wire [15:0]nes_apu_0_APU_Noise_Out;
+  wire [27:0]nes_apu_0_APU_Noise_Message;
+  wire [50:0]nes_apu_0_APU_Noise_Out;
   wire [18:0]nes_apu_0_APU_Pulse1_Message;
   wire [52:0]nes_apu_0_APU_Pulse1_Out;
   wire [18:0]nes_apu_0_APU_Pulse2_Message;
@@ -265,6 +266,7 @@ module design_1
         .Clk(microblaze_0_Clk),
         .FifoData(Net),
         .FifoWrite(Net1),
+        .Noise_Message(nes_apu_0_APU_Noise_Message),
         .Pulse1_Message(nes_apu_0_APU_Pulse1_Message),
         .Pulse2_Message(nes_apu_0_APU_Pulse2_Message),
         .Reset(rst_clk_wiz_0_100M_peripheral_aresetn),
@@ -567,6 +569,7 @@ module design_1
   design_1_nes_apu_0_0 nes_apu_0
        (.APU_Counter_Out(nes_apu_0_APU_Counter_Out),
         .APU_DMC_Out(nes_apu_0_APU_DMC_Out),
+        .APU_Noise_Message(nes_apu_0_APU_Noise_Message),
         .APU_Noise_Out(nes_apu_0_APU_Noise_Out),
         .APU_Pulse1_Message(nes_apu_0_APU_Pulse1_Message),
         .APU_Pulse1_Out(nes_apu_0_APU_Pulse1_Out),
@@ -617,6 +620,7 @@ module design_1
         .probe16(nes_apu_0_APU_Pulse1_Message),
         .probe17(nes_apu_0_APU_Pulse2_Message),
         .probe18(nes_apu_0_APU_Triangle_Message),
+        .probe19(nes_apu_0_APU_Noise_Message),
         .probe2(nes_cpu_addr_1),
         .probe3(nes_cpu_data_1),
         .probe4(nes_romsel_1),
@@ -655,6 +659,7 @@ module design_1
         .probe6(nes_apu_0_APU_Pulse1_Message),
         .probe7(nes_apu_0_APU_Pulse2_Message),
         .probe8(nes_apu_0_APU_Triangle_Message),
+        .probe9(nes_apu_0_APU_Noise_Message),
         .resetn(rst_clk_wiz_0_100M_peripheral_aresetn));
 endmodule
 

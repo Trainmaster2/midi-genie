@@ -73,7 +73,8 @@ module design_1_system_ila_0_0 (
   probe15,
   probe16,
   probe17,
-  probe18
+  probe18,
+  probe19
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
@@ -88,7 +89,7 @@ input wire [0 : 0] probe5;
 input wire [52 : 0] probe6;
 input wire [52 : 0] probe7;
 input wire [42 : 0] probe8;
-input wire [15 : 0] probe9;
+input wire [50 : 0] probe9;
 input wire [28 : 0] probe10;
 input wire [6 : 0] probe11;
 input wire [1 : 0] probe12;
@@ -98,6 +99,7 @@ input wire [0 : 0] probe15;
 input wire [18 : 0] probe16;
 input wire [18 : 0] probe17;
 input wire [14 : 0] probe18;
+input wire [27 : 0] probe19;
 
   bd_f60c inst (
     .clk(clk),
@@ -119,6 +121,7 @@ input wire [14 : 0] probe18;
     .probe15(probe15),
     .probe16(probe16),
     .probe17(probe17),
-    .probe18(probe18)
+    .probe18(probe18),
+    .probe19(probe19)
   );
 endmodule

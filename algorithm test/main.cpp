@@ -4,6 +4,8 @@
 #include <set>
 #include <map>
 
+#include "extern_const.h"
+
 using namespace std;
 
 #define TEST 0
@@ -185,25 +187,25 @@ int main()
     // // cout << tmp << endl;
     // cout << test << endl;
 
-    double freq;
-    set<ushort> values;
-    map<double, set<ushort>> freq2values;
-    map<double, ulong> counts;
-    double value2freq[32768];
+    // double freq;
+    // set<ushort> values;
+    // map<double, set<ushort>> freq2values;
+    // map<double, ulong> counts;
+    // double value2freq[32768];
 
-    for (ushort start = 1; start <= 32767; start++)
-    {
-        freq = noise_average_frequency(start, true, values);
-        freq2values[freq].merge(values);
-    }
+    // for (ushort start = 1; start <= 32767; start++)
+    // {
+    //     freq = noise_average_frequency(start, true, values);
+    //     freq2values[freq].merge(values);
+    // }
 
-    value2freq[0] = noise_average_frequency(1, false, values);
-    for (auto el : freq2values) {for (auto val : el.second) {value2freq[val] = el.first; counts[el.first]++;}}
+    // value2freq[0] = noise_average_frequency(1, false, values);
+    // for (auto el : freq2values) {for (auto val : el.second) {value2freq[val] = el.first; counts[el.first]++;}}
 
-    bool first = true;
-    cout << "const double NOISE_FREQ_LOOKUP[32768] =";
-    for (auto el : value2freq) {cout << (first?" {":", ") << el; first = false;}
-    cout << "};" << endl;
+    // bool first = true;
+    // cout << "const double NOISE_FREQ_LOOKUP[32768] =";
+    // for (auto el : value2freq) {cout << (first?" {":", ") << el; first = false;}
+    // cout << "};" << endl;
 
     // cout << counts << endl;
 
@@ -214,6 +216,8 @@ int main()
     //     last = value2freq[i];
     // }
     // cout << 32768 << endl;
+
+    cout << sizeof(TEST_CONST) << ',' << TEST_CONST[0] << ',' << TEST_CONST[1] << endl;
 }
 
 void noise_shift_reg(ushort& reg, bool mode)

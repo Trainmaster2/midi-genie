@@ -31,26 +31,44 @@ struct TriangleBitField{
     u32 timer   : 11;
 };
 
+struct NoiseBitField{
+    u32 channel : 3;
+    u32 onoff   : 1;
+    u32 mode    : 1;
+    u32 period  : 4;
+    u32 start   : 15;
+    u32 volume  : 4;
+};
+
 union APUBitField {
     u32 raw;
     GenericBitField generic;
     PulseBitField pulse;
     TriangleBitField triangle;
+    NoiseBitField noise;
 };
 
 #define read_apu_message(apuMessage) apuMessage.raw = Xil_In32(APU_IN_ID)
 
 struct LastPulse{
-    int timer;
-    int note;
-    int bend;
-    int volume;
+    int timer = -1;
+    int note = -1;
+    int bend = 8192;
+    int volume = 0xF;
 };
 
 struct LastTriangle{
-    int timer;
-    int note;
-    int bend;
+    int timer = -1;
+    int note = -1;
+    int bend = 8192;
+};
+
+struct LastNoise{
+    int mode = 0;
+    int period = -1;
+    int note = -1;
+    int bend = 8192;
+    int volume = 0xF;
 };
 
 #if USE_HARD_RESET
@@ -67,11 +85,13 @@ struct LastTriangle{
 
 #define print_pulse_message(pulseMessage) xil_printf("Channel: %d, On/Off: %d, Timer: 0x%03x, Volume: 0x%01x\r\n", pulseMessage.channel, pulseMessage.onoff, pulseMessage.timer, pulseMessage.volume)
 #define print_triangle_message(triangleMessage) xil_printf("Channel: %d, On/Off: %d(%d), Timer: 0x%03x\r\n", triangleMessage.channel, triangleMessage.onoff, triangleMessage.timer >= 2, triangleMessage.timer)
+#define print_noise_message(noiseMessage) xil_printf("Channel: %d, On/Off: %d, Mode: %d, Period: 0x%01x, Start: 0x%04x, Volume: 0x%01x\r\n", noiseMessage.channel, noiseMessage.onoff, noiseMessage.mode, noiseMessage.period, noiseMessage.start, noiseMessage.volume)
 
 #else
 
 #define print_pulse_message(pulseMessage)
 #define print_triangle_message(triangleMessage)
+#define print_noise_message(noiseMessage)
 
 #endif
 
@@ -81,5 +101,6 @@ void nes_reset_handler(void* CallbackRef);
 void apu_message_handler(void* CallbackRef);
 void play_pulse_message(PulseBitField pulseMessage);
 void play_triangle_message(TriangleBitField triangleMessage);
+void play_noise_message(NoiseBitField noiseMessage);
 
 #endif

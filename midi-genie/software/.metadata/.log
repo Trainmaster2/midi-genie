@@ -6924,3 +6924,3608 @@ Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-105: Laun
 
 !ENTRY com.xilinx.sdk.utils 1 0 2024-02-22 22:39:07.783
 !MESSAGE Tool usage for 'TCF_SYSTEM_DEBUG' updated to '23'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-22 23:01:22.505
+!MESSAGE XSCT Command: [disconnect tcfchan#30], Thread: Thread-1289
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-22 23:01:22.508
+!MESSAGE XSCT command with result: [disconnect tcfchan#30], Result: [null, ]. Thread: Thread-1289
+!SESSION 2024-02-24 14:11:38.330 -----------------------------------------------
+eclipse.buildId=2022.2
+java.version=11.0.11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.osgi 4 0 2024-02-24 14:11:42.650
+!MESSAGE Bundle reference:file:org.apache.log4j_1.2.15.v201012070815.jar not found.
+
+!ENTRY org.eclipse.osgi 4 0 2024-02-24 14:11:42.782
+!MESSAGE Bundle reference:file:org.slf4j.impl.log4j12_1.7.2.v20131105-2200.jar not found.
+
+!ENTRY org.eclipse.ui 4 4 2024-02-24 14:12:36.686
+!MESSAGE Plug-in 'org.eclipse.ui.editors' contributed an invalid Menu Extension (Path: 'navigate' is invalid): org.eclipse.ui.edit.text.gotoLastEditPosition
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:12:53.384
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-1: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:12:53.384
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-24
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:12:53.385
+!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:13:04.379
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-1: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:13:04.379
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-24
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:13:04.380
+!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:13:04.380
+!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-1: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:13:04.380
+!MESSAGE XSCT Command: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Thread: Thread-24
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:13:04.381
+!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/data]. Thread: Worker-1: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:13:04.381
+!MESSAGE XSCT command with result: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Result: [null, ]. Thread: Thread-24
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-02-24 14:14:40.757
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-02-24 14:14:40.758
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-02-24 14:14:40.758
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:14:42.705
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:14:53.452
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:14:53.738
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:14:53.763
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:14:53.765
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:14:53.770
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 14:14:53.776
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:14:53.798
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:14:53.800
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:15:00.459
+!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 14:15:00.471
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"apu_fifo": {"hier_name": "apu_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_reader": {"hier_name": "apu_fifo_reader",
+"type": "axi_fifo_reader",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_writer_0": {"hier_name": "apu_fifo_writer_0",
+"type": "apu_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"axi_uartlite_0": {"hier_name": "axi_uartlite_0",
+"type": "axi_uartlite",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"clk_wiz_0": {"hier_name": "clk_wiz_0",
+"type": "clk_wiz",
+"version": "6.0",
+"ip_type": "PERIPHERAL",
+},
+"fifo_transmitter_0": {"hier_name": "fifo_transmitter_0",
+"type": "fifo_transmitter",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"led_concat": {"hier_name": "led_concat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"mdm_1": {"hier_name": "mdm_1",
+"type": "mdm",
+"version": "3.2",
+"ip_type": "DEBUG",
+},
+"microblaze_0": {"hier_name": "microblaze_0",
+"type": "microblaze",
+"version": "11.0",
+"ip_type": "PROCESSOR",
+},
+"microblaze_0_axi_intc": {"hier_name": "microblaze_0_axi_intc",
+"type": "axi_intc",
+"version": "4.1",
+"ip_type": "INTERRUPT_CNTLR",
+},
+"microblaze_0_axi_periph": {"hier_name": "microblaze_0_axi_periph",
+"type": "axi_interconnect",
+"version": "2.1",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_dlmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_dlmb_v10": {"hier_name": "microblaze_0_local_memory_dlmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_ilmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_ilmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_ilmb_v10": {"hier_name": "microblaze_0_local_memory_ilmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_lmb_bram": {"hier_name": "microblaze_0_local_memory_lmb_bram",
+"type": "blk_mem_gen",
+"version": "8.4",
+"ip_type": "MEMORY",
+},
+"microblaze_0_xlconcat": {"hier_name": "microblaze_0_xlconcat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo": {"hier_name": "midi_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo_writer": {"hier_name": "midi_fifo_writer",
+"type": "axi_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"midi_led_invert": {"hier_name": "midi_led_invert",
+"type": "util_vector_logic",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"nes_apu_0": {"hier_name": "nes_apu_0",
+"type": "nes_apu",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"reset_manager_0": {"hier_name": "reset_manager_0",
+"type": "reset_manager",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"rgb_off": {"hier_name": "rgb_off",
+"type": "xlconstant",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"rst_clk_wiz_0_100M": {"hier_name": "rst_clk_wiz_0_100M",
+"type": "proc_sys_reset",
+"version": "5.0",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_0": {"hier_name": "system_ila_0",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1": {"hier_name": "system_ila_1",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "MONITOR",
+},
+"system_ila_0_ila_lib": {"hier_name": "system_ila_0/system_ila_0_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_g_inst": {"hier_name": "system_ila_1/system_ila_1_g_inst",
+"type": "gigantic_mux",
+"version": "1.0",
+"ip_type": "MONITOR",
+},
+"system_ila_1_ila_lib": {"hier_name": "system_ila_1/system_ila_1_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_ar": {"hier_name": "system_ila_1/system_ila_1_slot_0_ar",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_aw": {"hier_name": "system_ila_1/system_ila_1_slot_0_aw",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_b": {"hier_name": "system_ila_1/system_ila_1_slot_0_b",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_r": {"hier_name": "system_ila_1/system_ila_1_slot_0_r",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_w": {"hier_name": "system_ila_1/system_ila_1_slot_0_w",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+}]. Thread: Worker-1: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 14:15:01.154
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '1'
+
+!ENTRY org.eclipse.cdt.core 4 0 2024-02-24 14:17:03.515
+!MESSAGE Error while parsing /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/src/calc.h.:Error while parsing /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/gnu/microblaze/lin/microblazeeb-xilinx-elf/usr/include/c++/11.2.0/tuple.
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: assertion failed: 
+	at org.eclipse.core.runtime.Assert.isTrue(Assert.java:113)
+	at org.eclipse.core.runtime.Assert.isTrue(Assert.java:99)
+	at org.eclipse.cdt.internal.core.pdom.dom.cpp.PDOMCPPArgumentList.clearArguments(PDOMCPPArgumentList.java:58)
+	at org.eclipse.cdt.internal.core.pdom.dom.cpp.PDOMCPPVariableTemplatePartialSpecialization.setTemplateArguments(PDOMCPPVariableTemplatePartialSpecialization.java:84)
+	at org.eclipse.cdt.internal.core.pdom.dom.cpp.PDOMCPPLinkage$ConfigurePartialSpecialization.run(PDOMCPPLinkage.java:278)
+	at org.eclipse.cdt.internal.core.pdom.dom.cpp.PDOMCPPLinkage.handlePostProcesses(PDOMCPPLinkage.java:1301)
+	at org.eclipse.cdt.internal.core.pdom.dom.cpp.PDOMCPPLinkage.addBinding(PDOMCPPLinkage.java:631)
+	at org.eclipse.cdt.internal.core.pdom.dom.PDOMFile.createPDOMName(PDOMFile.java:515)
+	at org.eclipse.cdt.internal.core.pdom.dom.PDOMFile.addNames(PDOMFile.java:482)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.addFileContent(WritablePDOM.java:154)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.setFileContent(WritableCIndex.java:86)
+	at org.eclipse.cdt.internal.core.pdom.PDOMWriter.storeFileInIndex(PDOMWriter.java:678)
+	at org.eclipse.cdt.internal.core.pdom.PDOMWriter.storeSymbolsInIndex(PDOMWriter.java:325)
+	at org.eclipse.cdt.internal.core.pdom.PDOMWriter.addSymbols(PDOMWriter.java:284)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.writeToIndex(AbstractIndexerTask.java:1284)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.parseFile(AbstractIndexerTask.java:1096)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.parseVersionInContext(AbstractIndexerTask.java:994)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.parseLinkage(AbstractIndexerTask.java:911)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:557)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:161)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:155)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2024-02-24 21:08:40.495 -----------------------------------------------
+eclipse.buildId=2022.2
+java.version=11.0.11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.osgi 4 0 2024-02-24 21:08:41.826
+!MESSAGE Bundle reference:file:org.apache.log4j_1.2.15.v201012070815.jar not found.
+
+!ENTRY org.eclipse.osgi 4 0 2024-02-24 21:08:41.908
+!MESSAGE Bundle reference:file:org.slf4j.impl.log4j12_1.7.2.v20131105-2200.jar not found.
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-02-24 21:08:52.848
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 4 4 2024-02-24 21:08:58.939
+!MESSAGE Plug-in 'org.eclipse.ui.editors' contributed an invalid Menu Extension (Path: 'navigate' is invalid): org.eclipse.ui.edit.text.gotoLastEditPosition
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:12.066
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-5: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:12.066
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-23
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:12.066
+!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-15
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:12.193
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-23
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:12.194
+!MESSAGE XSCT Command: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Thread: Thread-23
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:19.524
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-5: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:19.524
+!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-15
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:19.524
+!MESSAGE XSCT command with result: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Result: [null, ]. Thread: Thread-23
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:19.524
+!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-5: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:09:19.525
+!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/data]. Thread: Worker-5: Initializing s/w repositories
+!SESSION 2024-02-24 21:12:32.208 -----------------------------------------------
+eclipse.buildId=2022.2
+java.version=11.0.11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.osgi 4 0 2024-02-24 21:12:32.659
+!MESSAGE Bundle reference:file:org.apache.log4j_1.2.15.v201012070815.jar not found.
+
+!ENTRY org.eclipse.osgi 4 0 2024-02-24 21:12:32.693
+!MESSAGE Bundle reference:file:org.slf4j.impl.log4j12_1.7.2.v20131105-2200.jar not found.
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-02-24 21:12:34.929
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 4 4 2024-02-24 21:12:37.796
+!MESSAGE Plug-in 'org.eclipse.ui.editors' contributed an invalid Menu Extension (Path: 'navigate' is invalid): org.eclipse.ui.edit.text.gotoLastEditPosition
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.469
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-4: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.469
+!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-11
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.470
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-22
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.566
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-4: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.566
+!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-11
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.566
+!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-4: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.567
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-22
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.568
+!MESSAGE XSCT Command: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Thread: Thread-22
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.568
+!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/data]. Thread: Worker-4: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:12:43.569
+!MESSAGE XSCT command with result: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Result: [null, ]. Thread: Thread-22
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-02-24 21:14:27.099
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-02-24 21:14:27.100
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-02-24 21:14:27.100
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:24:38.985
+!MESSAGE XSCT Command: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Thread: Worker-4: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:24:53.239
+!MESSAGE XSCT command with result: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Result: [null, ]. Thread: Worker-4: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:24:53.300
+!MESSAGE XSCT Command: [platform active {midi_genie_hw}], Thread: Worker-4: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:24:53.302
+!MESSAGE XSCT command with result: [platform active {midi_genie_hw}], Result: [null, ]. Thread: Worker-4: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:24:57.741
+!MESSAGE XSCT Command: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Thread: Worker-3: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:25:28.051
+!MESSAGE XSCT command with result: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Result: [null, ]. Thread: Worker-3: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:25:51.159
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:02.331
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:02.616
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:02.618
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:02.618
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:02.620
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:26:02.620
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:02.638
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:02.639
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:08.156
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:08.157
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:08.159
+!MESSAGE XSCT Command: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:08.171
+!MESSAGE XSCT command with result: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Result: [null, ]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:08.172
+!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:08.174
+!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"device": "7a35t",
+"family": "artix7",
+"timestamp": "Sat Feb 24 21:02:11 2024",
+"vivado_version": "2022.2.2",
+"part": "xc7a35tcpg236-1",
+}]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:08.175
+!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:08.184
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"apu_fifo": {"hier_name": "apu_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_reader": {"hier_name": "apu_fifo_reader",
+"type": "axi_fifo_reader",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_writer_0": {"hier_name": "apu_fifo_writer_0",
+"type": "apu_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"axi_uartlite_0": {"hier_name": "axi_uartlite_0",
+"type": "axi_uartlite",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"clk_wiz_0": {"hier_name": "clk_wiz_0",
+"type": "clk_wiz",
+"version": "6.0",
+"ip_type": "PERIPHERAL",
+},
+"fifo_transmitter_0": {"hier_name": "fifo_transmitter_0",
+"type": "fifo_transmitter",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"led_concat": {"hier_name": "led_concat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"mdm_1": {"hier_name": "mdm_1",
+"type": "mdm",
+"version": "3.2",
+"ip_type": "DEBUG",
+},
+"microblaze_0": {"hier_name": "microblaze_0",
+"type": "microblaze",
+"version": "11.0",
+"ip_type": "PROCESSOR",
+},
+"microblaze_0_axi_intc": {"hier_name": "microblaze_0_axi_intc",
+"type": "axi_intc",
+"version": "4.1",
+"ip_type": "INTERRUPT_CNTLR",
+},
+"microblaze_0_axi_periph": {"hier_name": "microblaze_0_axi_periph",
+"type": "axi_interconnect",
+"version": "2.1",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_dlmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_dlmb_v10": {"hier_name": "microblaze_0_local_memory_dlmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_ilmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_ilmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_ilmb_v10": {"hier_name": "microblaze_0_local_memory_ilmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_lmb_bram": {"hier_name": "microblaze_0_local_memory_lmb_bram",
+"type": "blk_mem_gen",
+"version": "8.4",
+"ip_type": "MEMORY",
+},
+"microblaze_0_xlconcat": {"hier_name": "microblaze_0_xlconcat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo": {"hier_name": "midi_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo_writer": {"hier_name": "midi_fifo_writer",
+"type": "axi_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"midi_led_invert": {"hier_name": "midi_led_invert",
+"type": "util_vector_logic",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"nes_apu_0": {"hier_name": "nes_apu_0",
+"type": "nes_apu",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"reset_manager_0": {"hier_name": "reset_manager_0",
+"type": "reset_manager",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"rgb_off": {"hier_name": "rgb_off",
+"type": "xlconstant",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"rst_clk_wiz_0_100M": {"hier_name": "rst_clk_wiz_0_100M",
+"type": "proc_sys_reset",
+"version": "5.0",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_0": {"hier_name": "system_ila_0",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1": {"hier_name": "system_ila_1",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "MONITOR",
+},
+"system_ila_0_ila_lib": {"hier_name": "system_ila_0/system_ila_0_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_g_inst": {"hier_name": "system_ila_1/system_ila_1_g_inst",
+"type": "gigantic_mux",
+"version": "1.0",
+"ip_type": "MONITOR",
+},
+"system_ila_1_ila_lib": {"hier_name": "system_ila_1/system_ila_1_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_ar": {"hier_name": "system_ila_1/system_ila_1_slot_0_ar",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_aw": {"hier_name": "system_ila_1/system_ila_1_slot_0_aw",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_b": {"hier_name": "system_ila_1/system_ila_1_slot_0_b",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_r": {"hier_name": "system_ila_1/system_ila_1_slot_0_r",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_w": {"hier_name": "system_ila_1/system_ila_1_slot_0_w",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+}]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:26:08.826
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '1'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:50.594
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-3: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:50.596
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-3: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:50.596
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-3: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:50.598
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-3: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:26:50.598
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:50.599
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-3: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:50.600
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-3: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:26:53.542
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '2'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.534
+!MESSAGE XSCT Command: [::hsi::utils::get_ps_config_params -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.537
+!MESSAGE XSCT command with result: [::hsi::utils::get_ps_config_params -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {}]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.538
+!MESSAGE XSCT Command: [::hsi::utils::get_all_register_data -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.551
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_register_data -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Result: [null, {"apu_fifo_reader": {},
+"axi_uartlite_0": {"RX_FIFO": {"description": "Receive data FIFO",
+"address_offset": "0x0",
+"access": "read-only",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"RX_DATA": {"access": "read-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "8",
+"desc": "UART Receive Data
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1080033280,
+},
+"TX_FIFO": {"description": "Transmit data FIFO",
+"address_offset": "0x4",
+"access": "write-only",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"TX_DATA": {"access": "write-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "8",
+"desc": "UART Transmit Data
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1080033284,
+},
+"CTRL_REG": {"description": "UART Lite control register",
+"address_offset": "0xC",
+"access": "write-only",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"RST_TXFIFO": {"access": "write-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Reset/clear the transmit FIFO
+Writing a 1 to this bit position clears the transmit FIFO
+  0 - Do nothing
+  1 - Clear the transmit FIFO
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"RST_RXFIFO": {"access": "write-only",
+"bit_offset": "1",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Reset/clear the receive FIFO
+Writing a 1 to this bit position clears the receive FIFO
+  0 - Do nothing
+  1 - Clear the receive FIFO
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Enable_Intr": {"access": "write-only",
+"bit_offset": "4",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Enable interrupt for the AXI UART Lite
+  0 - Disable interrupt signal
+  1 - Enable interrupt signal
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1080033292,
+},
+"STAT_REG": {"description": "UART Lite status register",
+"address_offset": "0x8",
+"access": "read-only",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"RX_FIFO_Valid_Data": {"access": "read-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates if the receive FIFO has data.
+  0 - Receive FIFO is empty
+  1 - Receive FIFO has data
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"RX_FIFO_Full": {"access": "read-only",
+"bit_offset": "1",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates if the receive FIFO is full.
+  0 - Receive FIFO is not full
+  1 - Receive FIFO is full
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"TX_FIFO_Empty": {"access": "read-only",
+"bit_offset": "2",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates if the transmit FIFO is empty.
+  0 - Transmit FIFO is not empty
+  1 - Transmit FIFO is empty
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"TX_FIFO_Full": {"access": "read-only",
+"bit_offset": "3",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates if the transmit FIFO is full.
+  0 - Transmit FIFO is not full
+  1 - Transmit FIFO is full
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Intr_Enabled": {"access": "read-only",
+"bit_offset": "4",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates that interrupts is enabled.
+  0 - Interrupt is disabled
+  1 - Interrupt is enabled
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Overrun_Error": {"access": "read-only",
+"bit_offset": "5",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates that a overrun error has occurred after the last time the status register was read. Overrun is when a new character has been received but the receive FIFO is full. The received character is ignored and not written into the receive FIFO. This bit is cleared when the status register is read.      0 - No overrun error has occurred      1 - Overrun error has occurred
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Frame_Error": {"access": "read-only",
+"bit_offset": "6",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates that a frame error has occurred after the last time the status register was read. Frame error is defined as detection of a stop bit with the value 0. The receive character is ignored and not written to the receive FIFO. This bit is cleared when the status register is read.      0 - No frame error has occurred   1 - Frame error has occurred
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Parity_Error": {"access": "read-only",
+"bit_offset": "7",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates that a parity error has occurred after the last time the status register was read. If the UART is configured without any parity handling, this bit is always 0. The received character is written into the receive FIFO. This bit is cleared when the status register is read.      0 - No parity error has occurred      1 - Parity error has occurred
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1080033288,
+},
+},
+"microblaze_0_axi_intc": {"ISR": {"description": "Interrupt Status Register",
+"address_offset": "0x0",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Status Register.
+For each bit up to number of periperhal interrupts:
+  R - Reads active interrupt signal.
+  W - No effect after MER HIE bit has been set, otherwise writes active interrupt signal.
+For remaining bits defined by number of software interrupts:
+  R - Reads software interrupt value.
+  W - Writes software interrupt value.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616192,
+},
+"IPR": {"description": "Interrupt Pending Register",
+"address_offset": "0x4",
+"access": "read-only",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Pending Register.
+For each bit:
+  R - Reads logical AND of bits in ISR and IER.
+  W - No effect.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616196,
+},
+"IER": {"description": "Interrupt Enable Register",
+"address_offset": "0x8",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Enable Register.
+For each bit:
+  R - Reads interrupt enable value.
+  W - Writes interrupt enable value.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616200,
+},
+"IAR": {"description": "Interrupt Acknowledge Register",
+"address_offset": "0xC",
+"access": "write-only",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "write-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Acknowledge Register.
+For each bit:
+  W - Acknowledge interrupt.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616204,
+},
+"SIE": {"description": "Set Interrupt Enables",
+"address_offset": "0x10",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Set Interrupt Enables
+For each bit:
+  R - Reads active interrupt.
+  W - Writing 1 enables the interrupt, writing 0 has no effect.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616208,
+},
+"CIE": {"description": "Clear Interrupt Enables",
+"address_offset": "0x14",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Clear Interrupt Enables
+For each bit:
+  R - Reads active interrupt.
+  W - Writing 1 disables the interrupt, writing 0 has no effect.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616212,
+},
+"IVR": {"description": "Interrupt Vector Register",
+"address_offset": "0x18",
+"access": "read-only",
+"size": "5",
+"interface": "S_AXI",
+"fields": {"IVN": {"access": "read-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "5",
+"desc": "Interrupt Vector Number.
+  R - Reads ordinal of highest priority, enabled, active interrupt.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616216,
+},
+"MER": {"description": "Master Enable Register",
+"address_offset": "0x1C",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"ME": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Master IRQ Enable.
+  0 - All interrupts disabled.
+  1 - All interrupts can be enabled.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"HIE": {"access": "read-write",
+"bit_offset": "1",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Hardware Interrupt Enable.
+  0 - HW interrupts disabled.
+  1 - HW interrupts enabled.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616220,
+},
+"IMR": {"description": "Interrupt Mode Register",
+"address_offset": "0x20",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Mode Register.
+For each bit:
+  R - Reads interrupt mode.
+  W - Sets interrupt mode, where 0 is normal mode and 1 is fast mode.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616224,
+},
+"IVAR[0]": {"description": "Interrupt Vector Address Register 0",
+"address_offset": "0x100",
+"access": "read-write",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"IVA": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "32",
+"desc": "Interrupt vector address of active interrupt 0 with highest priority.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616448,
+},
+"IVAR[1]": {"description": "Interrupt Vector Address Register 1",
+"address_offset": "0x104",
+"access": "read-write",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"IVA": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "32",
+"desc": "Interrupt vector address of active interrupt 1 with highest priority.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616452,
+},
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr": {},
+"microblaze_0_local_memory_ilmb_bram_if_cntlr": {},
+"midi_fifo_writer": {},
+}]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.553
+!MESSAGE XSCT Command: [::hsi::utils::get_addr_ranges -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.557
+!MESSAGE XSCT command with result: [::hsi::utils::get_addr_ranges -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Result: [null, {"midi_fifo_writer_S_AXI": {"name": "midi_fifo_writer",
+"base": "0x00010000",
+"high": "0x00010FFF",
+"size": "4096",
+"slaveintf": "S_AXI",
+"type": "REGISTER",
+"flags": "3",
+"segment": "",
+"acctype": "",
+"tz": "",
+},
+"apu_fifo_reader_S_AXI": {"name": "apu_fifo_reader",
+"base": "0x00020000",
+"high": "0x00020FFF",
+"size": "4096",
+"slaveintf": "S_AXI",
+"type": "REGISTER",
+"flags": "3",
+"segment": "",
+"acctype": "",
+"tz": "",
+},
+"axi_uartlite_0_S_AXI": {"name": "axi_uartlite_0",
+"base": "0x40600000",
+"high": "0x4060FFFF",
+"size": "65536",
+"slaveintf": "S_AXI",
+"type": "REGISTER",
+"flags": "3",
+"segment": "",
+"acctype": "",
+"tz": "",
+},
+"microblaze_0_axi_intc_s_axi": {"name": "microblaze_0_axi_intc",
+"base": "0x41200000",
+"high": "0x4120FFFF",
+"size": "65536",
+"slaveintf": "s_axi",
+"type": "REGISTER",
+"flags": "3",
+"segment": "",
+"acctype": "",
+"tz": "",
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr_SLMB_Mem": {"name": "microblaze_0_local_memory_dlmb_bram_if_cntlr",
+"base": "0x00000000",
+"high": "0x0000FFFF",
+"size": "65536",
+"slaveintf": "SLMB",
+"type": "MEMORY",
+"flags": "7",
+"segment": "Mem",
+"acctype": "",
+"tz": "",
+},
+}]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.558
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_ENABLED], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.559
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_ENABLED], Result: [null, 1]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.559
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_EVENT_COUNTERS], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.560
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_EVENT_COUNTERS], Result: [null, 5]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.560
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_LATENCY_COUNTERS], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.561
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_LATENCY_COUNTERS], Result: [null, 1]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.562
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_COUNTER_WIDTH], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.563
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_COUNTER_WIDTH], Result: [null, 32]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.563
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_FREQ], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.564
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_FREQ], Result: [null, 100000000]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.565
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_CPU_CLK_FREQ_HZ], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.567
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_CPU_CLK_FREQ_HZ], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.567
+!MESSAGE XSCT Command: [::hsi::utils::get_cpu_nr -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.570
+!MESSAGE XSCT command with result: [::hsi::utils::get_cpu_nr -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"microblaze_0": {"bscan": "2",
+"index": "0",
+},
+}]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.572
+!MESSAGE XSCT Command: [::hsi::utils::get_addr_ranges -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.574
+!MESSAGE XSCT command with result: [::hsi::utils::get_addr_ranges -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Result: [null, {}]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.574
+!MESSAGE XSCT Command: [::hsi::utils::get_all_register_data -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.575
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_register_data -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Result: [null, {"microblaze_0": {},
+}]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.576
+!MESSAGE XSCT Command: [::hsi::utils::get_connected_periphs /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.577
+!MESSAGE XSCT command with result: [::hsi::utils::get_connected_periphs /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Result: [null, microblaze_0]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:57.579
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY org.eclipse.tcf 4 0 2024-02-24 21:26:58.650
+!MESSAGE Invalid peerAdded event
+!STACK 0
+java.lang.Error
+	at org.eclipse.tcf.internal.services.remote.LocatorProxy$1.event(LocatorProxy.java:64)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1191)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.658
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#2]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.659
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.835
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1  Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.836
+!MESSAGE XSCT Command: [version -server], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.840
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2022.2.2]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.840
+!MESSAGE XSCT Command: [version], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.841
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2022.2.2
+SW Build 0 on 2023-02-17-07:01:26
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.849
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.854
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1  Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.854
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.870
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.878
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.883
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1  Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.884
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.898
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.898
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.904
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1  Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.905
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.918
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.918
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.923
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1  Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.923
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.937
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.941
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.948
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1  Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.948
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.962
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.962
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.978
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.978
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.980
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.980
+!MESSAGE XSCT Command: [::hsi::utils::get_clock_info -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:58.983
+!MESSAGE XSCT command with result: [::hsi::utils::get_clock_info -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Result: [null, {"Clk": "100000000",
+"Dbg_Clk": "",
+}]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:59.023
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:59.027
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:59.027
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:59.051
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:59.060
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:59.111
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:26:59.112
+!MESSAGE XSCT Command: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.382
+!MESSAGE XSCT command with result: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.427
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.456
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.456
+!MESSAGE XSCT Command: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.480
+!MESSAGE XSCT command with result: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Result: [null, design_1_wrapper_2]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.480
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.482
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.482
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.498
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.498
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.502
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:00.502
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.506
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.507
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.553
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.554
+!MESSAGE XSCT Command: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.744
+!MESSAGE XSCT command with result: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.821
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.842
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.843
+!MESSAGE XSCT Command: [con], Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:27:03.858
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-13: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:27:03.861
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '1'
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:27:03.861
+!MESSAGE Tool usage for 'TCF_SYSTEM_DEBUG' updated to '1'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:47.200
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:47.203
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:47.203
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:47.205
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:29:47.206
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:47.207
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:47.208
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-8: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:29:51.020
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '3'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.131
+!MESSAGE XSCT Command: [disconnect tcfchan#2], Thread: Thread-116
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.190
+!MESSAGE XSCT command with result: [disconnect tcfchan#2], Result: [null, ]. Thread: Thread-116
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.210
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.215
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#3]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.215
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.224
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.225
+!MESSAGE XSCT Command: [version -server], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.226
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2022.2.2]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.226
+!MESSAGE XSCT Command: [version], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.227
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2022.2.2
+SW Build 0 on 2023-02-17-07:01:26
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.227
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.231
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.231
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.244
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.245
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.249
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.250
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.263
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.264
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.272
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.272
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.285
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.286
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.291
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.291
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.304
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.304
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.309
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.309
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.325
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.325
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.339
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.340
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.341
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.418
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.438
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.438
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.457
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.458
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.492
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:54.493
+!MESSAGE XSCT Command: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.759
+!MESSAGE XSCT command with result: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.773
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.791
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.791
+!MESSAGE XSCT Command: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.796
+!MESSAGE XSCT command with result: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Result: [null, design_1_wrapper_2]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.797
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.798
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.799
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.814
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.814
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.817
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:55.818
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:58.822
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:58.823
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:58.865
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:58.866
+!MESSAGE XSCT Command: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:59.060
+!MESSAGE XSCT command with result: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:59.079
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:59.102
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:59.103
+!MESSAGE XSCT Command: [con], Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:29:59.112
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-15: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:29:59.112
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '2'
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:29:59.113
+!MESSAGE Tool usage for 'TCF_SYSTEM_DEBUG' updated to '2'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:08.263
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-13: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:08.265
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-13: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:08.266
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-13: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:08.268
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-13: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:31:08.268
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:08.268
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-13: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:08.269
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-13: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:31:12.032
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '4'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.902
+!MESSAGE XSCT Command: [disconnect tcfchan#3], Thread: Thread-162
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.906
+!MESSAGE XSCT command with result: [disconnect tcfchan#3], Result: [null, ]. Thread: Thread-162
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.912
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.916
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#4]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.917
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.926
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.926
+!MESSAGE XSCT Command: [version -server], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.928
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2022.2.2]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.928
+!MESSAGE XSCT Command: [version], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.929
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2022.2.2
+SW Build 0 on 2023-02-17-07:01:26
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.929
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.933
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.933
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.947
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.947
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.952
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.952
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.965
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.966
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.970
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.970
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.983
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.984
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.988
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:13.989
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.002
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.002
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.006
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.007
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.020
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.020
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.033
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.034
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.035
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.056
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.061
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.061
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.074
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.075
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.105
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:14.105
+!MESSAGE XSCT Command: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.373
+!MESSAGE XSCT command with result: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.386
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.403
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.404
+!MESSAGE XSCT Command: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.409
+!MESSAGE XSCT command with result: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Result: [null, design_1_wrapper_2]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.410
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.412
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.412
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.427
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.427
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.431
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:15.431
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.435
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.436
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.473
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.474
+!MESSAGE XSCT Command: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.656
+!MESSAGE XSCT command with result: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.668
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.691
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.692
+!MESSAGE XSCT Command: [con], Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-24 21:31:18.701
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-17: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:31:18.702
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '3'
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-24 21:31:18.702
+!MESSAGE Tool usage for 'TCF_SYSTEM_DEBUG' updated to '3'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:07:42.724
+!MESSAGE XSCT Command: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Thread: Worker-37: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:07:55.227
+!MESSAGE XSCT command with result: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Result: [null, ]. Thread: Worker-37: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:07:57.883
+!MESSAGE XSCT Command: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Thread: Worker-41: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:08:21.364
+!MESSAGE XSCT command with result: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Result: [null, ]. Thread: Worker-41: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:30.005
+!MESSAGE XSCT Command: [::hsi::utils::closehw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:30.035
+!MESSAGE XSCT command with result: [::hsi::utils::closehw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:30.036
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:41.643
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:41.643
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:41.645
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:41.645
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:41.647
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:09:41.647
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:41.647
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:41.648
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2024-02-25 00:09:45.438
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:46.920
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:46.921
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:46.922
+!MESSAGE XSCT Command: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:46.937
+!MESSAGE XSCT command with result: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Result: [null, ]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:46.938
+!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:46.940
+!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"device": "7a35t",
+"family": "artix7",
+"timestamp": "Sat Feb 24 23:55:41 2024",
+"vivado_version": "2022.2.2",
+"part": "xc7a35tcpg236-1",
+}]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:46.941
+!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:09:46.954
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"apu_fifo": {"hier_name": "apu_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_reader": {"hier_name": "apu_fifo_reader",
+"type": "axi_fifo_reader",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_writer_0": {"hier_name": "apu_fifo_writer_0",
+"type": "apu_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"axi_uartlite_0": {"hier_name": "axi_uartlite_0",
+"type": "axi_uartlite",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"clk_wiz_0": {"hier_name": "clk_wiz_0",
+"type": "clk_wiz",
+"version": "6.0",
+"ip_type": "PERIPHERAL",
+},
+"fifo_transmitter_0": {"hier_name": "fifo_transmitter_0",
+"type": "fifo_transmitter",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"led_concat": {"hier_name": "led_concat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"mdm_1": {"hier_name": "mdm_1",
+"type": "mdm",
+"version": "3.2",
+"ip_type": "DEBUG",
+},
+"microblaze_0": {"hier_name": "microblaze_0",
+"type": "microblaze",
+"version": "11.0",
+"ip_type": "PROCESSOR",
+},
+"microblaze_0_axi_intc": {"hier_name": "microblaze_0_axi_intc",
+"type": "axi_intc",
+"version": "4.1",
+"ip_type": "INTERRUPT_CNTLR",
+},
+"microblaze_0_axi_periph": {"hier_name": "microblaze_0_axi_periph",
+"type": "axi_interconnect",
+"version": "2.1",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_dlmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_dlmb_v10": {"hier_name": "microblaze_0_local_memory_dlmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_ilmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_ilmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_ilmb_v10": {"hier_name": "microblaze_0_local_memory_ilmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_lmb_bram": {"hier_name": "microblaze_0_local_memory_lmb_bram",
+"type": "blk_mem_gen",
+"version": "8.4",
+"ip_type": "MEMORY",
+},
+"microblaze_0_xlconcat": {"hier_name": "microblaze_0_xlconcat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo": {"hier_name": "midi_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo_writer": {"hier_name": "midi_fifo_writer",
+"type": "axi_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"midi_led_invert": {"hier_name": "midi_led_invert",
+"type": "util_vector_logic",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"nes_apu_0": {"hier_name": "nes_apu_0",
+"type": "nes_apu",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"reset_manager_0": {"hier_name": "reset_manager_0",
+"type": "reset_manager",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"rgb_off": {"hier_name": "rgb_off",
+"type": "xlconstant",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"rst_clk_wiz_0_100M": {"hier_name": "rst_clk_wiz_0_100M",
+"type": "proc_sys_reset",
+"version": "5.0",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_0": {"hier_name": "system_ila_0",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1": {"hier_name": "system_ila_1",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "MONITOR",
+},
+"system_ila_0_ila_lib": {"hier_name": "system_ila_0/system_ila_0_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_g_inst": {"hier_name": "system_ila_1/system_ila_1_g_inst",
+"type": "gigantic_mux",
+"version": "1.0",
+"ip_type": "MONITOR",
+},
+"system_ila_1_ila_lib": {"hier_name": "system_ila_1/system_ila_1_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_ar": {"hier_name": "system_ila_1/system_ila_1_slot_0_ar",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_aw": {"hier_name": "system_ila_1/system_ila_1_slot_0_aw",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_b": {"hier_name": "system_ila_1/system_ila_1_slot_0_b",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_r": {"hier_name": "system_ila_1/system_ila_1_slot_0_r",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_w": {"hier_name": "system_ila_1/system_ila_1_slot_0_w",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+}]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:03.039
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:03.041
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:03.041
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:03.043
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:13:03.043
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:03.043
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:03.044
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-41: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2024-02-25 00:13:04.125
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:18.634
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:18.636
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:18.636
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:18.638
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:13:18.638
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:18.638
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:18.639
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:13:22.886
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '5'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:32.591
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:32.592
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:32.592
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:32.594
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:13:32.594
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:32.595
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:32.596
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:13:35.120
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '6'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:49.752
+!MESSAGE XSCT Command: [disconnect tcfchan#4], Thread: Thread-234
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.061
+!MESSAGE XSCT command with result: [disconnect tcfchan#4], Result: [null, ]. Thread: Thread-234
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.088
+!MESSAGE XSCT Command: [::hsi::utils::get_ps_config_params -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.091
+!MESSAGE XSCT command with result: [::hsi::utils::get_ps_config_params -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {}]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.091
+!MESSAGE XSCT Command: [::hsi::utils::get_all_register_data -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.104
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_register_data -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Result: [null, {"apu_fifo_reader": {},
+"axi_uartlite_0": {"RX_FIFO": {"description": "Receive data FIFO",
+"address_offset": "0x0",
+"access": "read-only",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"RX_DATA": {"access": "read-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "8",
+"desc": "UART Receive Data
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1080033280,
+},
+"TX_FIFO": {"description": "Transmit data FIFO",
+"address_offset": "0x4",
+"access": "write-only",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"TX_DATA": {"access": "write-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "8",
+"desc": "UART Transmit Data
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1080033284,
+},
+"CTRL_REG": {"description": "UART Lite control register",
+"address_offset": "0xC",
+"access": "write-only",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"RST_TXFIFO": {"access": "write-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Reset/clear the transmit FIFO
+Writing a 1 to this bit position clears the transmit FIFO
+  0 - Do nothing
+  1 - Clear the transmit FIFO
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"RST_RXFIFO": {"access": "write-only",
+"bit_offset": "1",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Reset/clear the receive FIFO
+Writing a 1 to this bit position clears the receive FIFO
+  0 - Do nothing
+  1 - Clear the receive FIFO
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Enable_Intr": {"access": "write-only",
+"bit_offset": "4",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Enable interrupt for the AXI UART Lite
+  0 - Disable interrupt signal
+  1 - Enable interrupt signal
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1080033292,
+},
+"STAT_REG": {"description": "UART Lite status register",
+"address_offset": "0x8",
+"access": "read-only",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"RX_FIFO_Valid_Data": {"access": "read-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates if the receive FIFO has data.
+  0 - Receive FIFO is empty
+  1 - Receive FIFO has data
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"RX_FIFO_Full": {"access": "read-only",
+"bit_offset": "1",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates if the receive FIFO is full.
+  0 - Receive FIFO is not full
+  1 - Receive FIFO is full
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"TX_FIFO_Empty": {"access": "read-only",
+"bit_offset": "2",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates if the transmit FIFO is empty.
+  0 - Transmit FIFO is not empty
+  1 - Transmit FIFO is empty
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"TX_FIFO_Full": {"access": "read-only",
+"bit_offset": "3",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates if the transmit FIFO is full.
+  0 - Transmit FIFO is not full
+  1 - Transmit FIFO is full
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Intr_Enabled": {"access": "read-only",
+"bit_offset": "4",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates that interrupts is enabled.
+  0 - Interrupt is disabled
+  1 - Interrupt is enabled
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Overrun_Error": {"access": "read-only",
+"bit_offset": "5",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates that a overrun error has occurred after the last time the status register was read. Overrun is when a new character has been received but the receive FIFO is full. The received character is ignored and not written into the receive FIFO. This bit is cleared when the status register is read.      0 - No overrun error has occurred      1 - Overrun error has occurred
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Frame_Error": {"access": "read-only",
+"bit_offset": "6",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates that a frame error has occurred after the last time the status register was read. Frame error is defined as detection of a stop bit with the value 0. The receive character is ignored and not written to the receive FIFO. This bit is cleared when the status register is read.      0 - No frame error has occurred   1 - Frame error has occurred
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"Parity_Error": {"access": "read-only",
+"bit_offset": "7",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Indicates that a parity error has occurred after the last time the status register was read. If the UART is configured without any parity handling, this bit is always 0. The received character is written into the receive FIFO. This bit is cleared when the status register is read.      0 - No parity error has occurred      1 - Parity error has occurred
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1080033288,
+},
+},
+"microblaze_0_axi_intc": {"ISR": {"description": "Interrupt Status Register",
+"address_offset": "0x0",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Status Register.
+For each bit up to number of periperhal interrupts:
+  R - Reads active interrupt signal.
+  W - No effect after MER HIE bit has been set, otherwise writes active interrupt signal.
+For remaining bits defined by number of software interrupts:
+  R - Reads software interrupt value.
+  W - Writes software interrupt value.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616192,
+},
+"IPR": {"description": "Interrupt Pending Register",
+"address_offset": "0x4",
+"access": "read-only",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Pending Register.
+For each bit:
+  R - Reads logical AND of bits in ISR and IER.
+  W - No effect.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616196,
+},
+"IER": {"description": "Interrupt Enable Register",
+"address_offset": "0x8",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Enable Register.
+For each bit:
+  R - Reads interrupt enable value.
+  W - Writes interrupt enable value.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616200,
+},
+"IAR": {"description": "Interrupt Acknowledge Register",
+"address_offset": "0xC",
+"access": "write-only",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "write-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Acknowledge Register.
+For each bit:
+  W - Acknowledge interrupt.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616204,
+},
+"SIE": {"description": "Set Interrupt Enables",
+"address_offset": "0x10",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Set Interrupt Enables
+For each bit:
+  R - Reads active interrupt.
+  W - Writing 1 enables the interrupt, writing 0 has no effect.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616208,
+},
+"CIE": {"description": "Clear Interrupt Enables",
+"address_offset": "0x14",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Clear Interrupt Enables
+For each bit:
+  R - Reads active interrupt.
+  W - Writing 1 disables the interrupt, writing 0 has no effect.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616212,
+},
+"IVR": {"description": "Interrupt Vector Register",
+"address_offset": "0x18",
+"access": "read-only",
+"size": "5",
+"interface": "S_AXI",
+"fields": {"IVN": {"access": "read-only",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "5",
+"desc": "Interrupt Vector Number.
+  R - Reads ordinal of highest priority, enabled, active interrupt.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616216,
+},
+"MER": {"description": "Master Enable Register",
+"address_offset": "0x1C",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"ME": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Master IRQ Enable.
+  0 - All interrupts disabled.
+  1 - All interrupts can be enabled.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+"HIE": {"access": "read-write",
+"bit_offset": "1",
+"bit_range": "",
+"bit_width": "1",
+"desc": "Hardware Interrupt Enable.
+  0 - HW interrupts disabled.
+  1 - HW interrupts enabled.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616220,
+},
+"IMR": {"description": "Interrupt Mode Register",
+"address_offset": "0x20",
+"access": "read-write",
+"size": "2",
+"interface": "S_AXI",
+"fields": {"INT": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "2",
+"desc": "Interrupt Mode Register.
+For each bit:
+  R - Reads interrupt mode.
+  W - Sets interrupt mode, where 0 is normal mode and 1 is fast mode.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616224,
+},
+"IVAR[0]": {"description": "Interrupt Vector Address Register 0",
+"address_offset": "0x100",
+"access": "read-write",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"IVA": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "32",
+"desc": "Interrupt vector address of active interrupt 0 with highest priority.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616448,
+},
+"IVAR[1]": {"description": "Interrupt Vector Address Register 1",
+"address_offset": "0x104",
+"access": "read-write",
+"size": "32",
+"interface": "S_AXI",
+"fields": {"IVA": {"access": "read-write",
+"bit_offset": "0",
+"bit_range": "",
+"bit_width": "32",
+"desc": "Interrupt vector address of active interrupt 1 with highest priority.
+",
+"enum_values": "",
+"lsb": "",
+"mod_write_val": "",
+"msb": "",
+"read_action": "",
+},
+},
+"memoryAddr": 1092616452,
+},
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr": {},
+"microblaze_0_local_memory_ilmb_bram_if_cntlr": {},
+"midi_fifo_writer": {},
+}]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.104
+!MESSAGE XSCT Command: [::hsi::utils::get_addr_ranges -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.150
+!MESSAGE XSCT command with result: [::hsi::utils::get_addr_ranges -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Result: [null, {"midi_fifo_writer_S_AXI": {"name": "midi_fifo_writer",
+"base": "0x00010000",
+"high": "0x00010FFF",
+"size": "4096",
+"slaveintf": "S_AXI",
+"type": "REGISTER",
+"flags": "3",
+"segment": "",
+"acctype": "",
+"tz": "",
+},
+"apu_fifo_reader_S_AXI": {"name": "apu_fifo_reader",
+"base": "0x00020000",
+"high": "0x00020FFF",
+"size": "4096",
+"slaveintf": "S_AXI",
+"type": "REGISTER",
+"flags": "3",
+"segment": "",
+"acctype": "",
+"tz": "",
+},
+"axi_uartlite_0_S_AXI": {"name": "axi_uartlite_0",
+"base": "0x40600000",
+"high": "0x4060FFFF",
+"size": "65536",
+"slaveintf": "S_AXI",
+"type": "REGISTER",
+"flags": "3",
+"segment": "",
+"acctype": "",
+"tz": "",
+},
+"microblaze_0_axi_intc_s_axi": {"name": "microblaze_0_axi_intc",
+"base": "0x41200000",
+"high": "0x4120FFFF",
+"size": "65536",
+"slaveintf": "s_axi",
+"type": "REGISTER",
+"flags": "3",
+"segment": "",
+"acctype": "",
+"tz": "",
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr_SLMB_Mem": {"name": "microblaze_0_local_memory_dlmb_bram_if_cntlr",
+"base": "0x00000000",
+"high": "0x0000FFFF",
+"size": "65536",
+"slaveintf": "SLMB",
+"type": "MEMORY",
+"flags": "7",
+"segment": "Mem",
+"acctype": "",
+"tz": "",
+},
+}]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.151
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_ENABLED], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.152
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_ENABLED], Result: [null, 1]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.153
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_EVENT_COUNTERS], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.155
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_EVENT_COUNTERS], Result: [null, 5]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.155
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_LATENCY_COUNTERS], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.156
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_LATENCY_COUNTERS], Result: [null, 1]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.157
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_COUNTER_WIDTH], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.158
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_DEBUG_COUNTER_WIDTH], Result: [null, 32]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.159
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_FREQ], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.160
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_FREQ], Result: [null, 100000000]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.160
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_CPU_CLK_FREQ_HZ], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.162
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_param_value /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0 C_CPU_CLK_FREQ_HZ], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.162
+!MESSAGE XSCT Command: [::hsi::utils::get_cpu_nr -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.167
+!MESSAGE XSCT command with result: [::hsi::utils::get_cpu_nr -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"microblaze_0": {"bscan": "2",
+"index": "0",
+},
+}]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.168
+!MESSAGE XSCT Command: [::hsi::utils::get_addr_ranges -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.171
+!MESSAGE XSCT command with result: [::hsi::utils::get_addr_ranges -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Result: [null, {}]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.171
+!MESSAGE XSCT Command: [::hsi::utils::get_all_register_data -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.173
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_register_data -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Result: [null, {"microblaze_0": {},
+}]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.174
+!MESSAGE XSCT Command: [::hsi::utils::get_connected_periphs /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.175
+!MESSAGE XSCT command with result: [::hsi::utils::get_connected_periphs /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa mdm_1], Result: [null, microblaze_0]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.176
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.202
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#6]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.202
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.222
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.222
+!MESSAGE XSCT Command: [version -server], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.224
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2022.2.2]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.224
+!MESSAGE XSCT Command: [version], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.224
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2022.2.2
+SW Build 0 on 2023-02-17-07:01:26
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.225
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.230
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.230
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.244
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.244
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.249
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.249
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.264
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.265
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.272
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.272
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.286
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.286
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.291
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.291
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.304
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.305
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.309
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.310
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.324
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.324
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.339
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.339
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.340
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.341
+!MESSAGE XSCT Command: [::hsi::utils::get_clock_info -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.342
+!MESSAGE XSCT command with result: [::hsi::utils::get_clock_info -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa microblaze_0], Result: [null, {"Clk": "100000000",
+"Dbg_Clk": "",
+}]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.367
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.374
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.374
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.398
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.398
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.452
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:50.452
+!MESSAGE XSCT Command: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.771
+!MESSAGE XSCT command with result: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.790
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.808
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.808
+!MESSAGE XSCT Command: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.831
+!MESSAGE XSCT command with result: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Result: [null, design_1_wrapper_6]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.831
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.833
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.834
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.847
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.848
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.852
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:51.853
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:54.855
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:54.856
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:54.910
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:54.911
+!MESSAGE XSCT Command: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:55.110
+!MESSAGE XSCT command with result: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:55.121
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:55.137
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:55.137
+!MESSAGE XSCT Command: [con], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:13:55.146
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:13:55.146
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '4'
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:13:55.146
+!MESSAGE Tool usage for 'TCF_SYSTEM_DEBUG' updated to '4'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:11.693
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:11.695
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:11.696
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:11.697
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:15:11.697
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:11.698
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:11.698
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:15:15.653
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '7'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.685
+!MESSAGE XSCT Command: [disconnect tcfchan#6], Thread: Thread-294
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.693
+!MESSAGE XSCT command with result: [disconnect tcfchan#6], Result: [null, ]. Thread: Thread-294
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.707
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.714
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#7]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.715
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.728
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.728
+!MESSAGE XSCT Command: [version -server], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.729
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2022.2.2]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.729
+!MESSAGE XSCT Command: [version], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.730
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2022.2.2
+SW Build 0 on 2023-02-17-07:01:26
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.730
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.736
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.736
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.750
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.751
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.755
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.755
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.771
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.771
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.775
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.776
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.790
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.791
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.798
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.798
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.811
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.812
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.817
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.817
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.831
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.831
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.846
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level == 0}], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.846
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.847
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.869
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.877
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent Cmod A7 - 35T 210328B7E907A]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.877
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.891
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==1}], Result: [null,      2  xc7a35t (idcode 0362d093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.891
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.924
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent Cmod A7 - 35T 210328B7E907A" && level==0 && jtag_device_ctx=="jsn-Cmod A7 - 35T-210328B7E907A-0362d093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:20.924
+!MESSAGE XSCT Command: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.196
+!MESSAGE XSCT command with result: [fpga -file /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream/design_1_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.227
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.259
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.259
+!MESSAGE XSCT Command: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.263
+!MESSAGE XSCT command with result: [loadhw -hw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa -regs], Result: [null, design_1_wrapper_6]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.264
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.265
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.265
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.279
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.279
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.282
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:22.283
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.287
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.288
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.330
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.331
+!MESSAGE XSCT Command: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.539
+!MESSAGE XSCT command with result: [dow /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/Debug/midi_genie.elf], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.550
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.565
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.565
+!MESSAGE XSCT Command: [con], Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-02-25 00:15:25.573
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-41: Launching SystemDebugger_midi_genie_system
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:15:25.574
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '5'
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-02-25 00:15:25.574
+!MESSAGE Tool usage for 'TCF_SYSTEM_DEBUG' updated to '5'
+!SESSION 2024-03-10 14:42:08.392 -----------------------------------------------
+eclipse.buildId=2022.2
+java.version=11.0.11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.osgi 4 0 2024-03-10 14:42:11.301
+!MESSAGE Bundle reference:file:org.apache.log4j_1.2.15.v201012070815.jar not found.
+
+!ENTRY org.eclipse.osgi 4 0 2024-03-10 14:42:11.388
+!MESSAGE Bundle reference:file:org.slf4j.impl.log4j12_1.7.2.v20131105-2200.jar not found.
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-03-10 14:42:26.855
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 4 4 2024-03-10 14:42:41.340
+!MESSAGE Plug-in 'org.eclipse.ui.editors' contributed an invalid Menu Extension (Path: 'navigate' is invalid): org.eclipse.ui.edit.text.gotoLastEditPosition
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:05.027
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-5: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:05.028
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-26
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:05.029
+!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-11
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:12.941
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-5: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:12.941
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-26
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:12.941
+!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-11
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:12.942
+!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-5: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:12.942
+!MESSAGE XSCT Command: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Thread: Thread-26
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:12.942
+!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /media/trainmaster2/DATA/Xilinx/Vitis/2022.2/data]. Thread: Worker-5: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:43:12.943
+!MESSAGE XSCT command with result: [setws /home/trainmaster2/Documents/midi-genie/midi-genie/software], Result: [null, ]. Thread: Thread-26
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-03-10 14:58:57.523
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-03-10 14:58:57.524
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-03-10 14:58:57.524
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:58:59.609
+!MESSAGE XSCT Command: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Thread: Worker-6: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:59:11.971
+!MESSAGE XSCT command with result: [platform read {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/platform.spr}], Result: [null, ]. Thread: Worker-6: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:59:12.033
+!MESSAGE XSCT Command: [platform active {midi_genie_hw}], Thread: Worker-6: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:59:12.034
+!MESSAGE XSCT command with result: [platform active {midi_genie_hw}], Result: [null, ]. Thread: Worker-6: Reading platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:59:14.800
+!MESSAGE XSCT Command: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Thread: Worker-10: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:59:37.145
+!MESSAGE XSCT command with result: [platform config -updatehw {/home/trainmaster2/Documents/midi-genie/midi-genie/design_1_wrapper.xsa}], Result: [null, ]. Thread: Worker-10: Updating hardware platform
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 14:59:58.424
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:09.506
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:09.797
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:09.799
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:09.800
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:09.802
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "8.0",
+}]. Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-03-10 15:00:09.803
+!MESSAGE Generating MD5 hash for file: /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:09.824
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:09.825
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:15.037
+!MESSAGE XSCT Command: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:15.038
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:15.041
+!MESSAGE XSCT Command: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:15.054
+!MESSAGE XSCT command with result: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie/_ide/bitstream}], Result: [null, ]. Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:15.055
+!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:15.058
+!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"device": "7a35t",
+"family": "artix7",
+"timestamp": "Sun Mar 10 14:49:27 2024",
+"vivado_version": "2022.2.2",
+"part": "xc7a35tcpg236-1",
+}]. Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:15.059
+!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2024-03-10 15:00:15.072
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/hw/design_1_wrapper.xsa], Result: [null, {"apu_fifo": {"hier_name": "apu_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_reader": {"hier_name": "apu_fifo_reader",
+"type": "axi_fifo_reader",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"apu_fifo_writer_0": {"hier_name": "apu_fifo_writer_0",
+"type": "apu_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"axi_uartlite_0": {"hier_name": "axi_uartlite_0",
+"type": "axi_uartlite",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"clk_wiz_0": {"hier_name": "clk_wiz_0",
+"type": "clk_wiz",
+"version": "6.0",
+"ip_type": "PERIPHERAL",
+},
+"fifo_transmitter_0": {"hier_name": "fifo_transmitter_0",
+"type": "fifo_transmitter",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"led_concat": {"hier_name": "led_concat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"mdm_1": {"hier_name": "mdm_1",
+"type": "mdm",
+"version": "3.2",
+"ip_type": "DEBUG",
+},
+"microblaze_0": {"hier_name": "microblaze_0",
+"type": "microblaze",
+"version": "11.0",
+"ip_type": "PROCESSOR",
+},
+"microblaze_0_axi_intc": {"hier_name": "microblaze_0_axi_intc",
+"type": "axi_intc",
+"version": "4.1",
+"ip_type": "INTERRUPT_CNTLR",
+},
+"microblaze_0_axi_periph": {"hier_name": "microblaze_0_axi_periph",
+"type": "axi_interconnect",
+"version": "2.1",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_dlmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_dlmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_dlmb_v10": {"hier_name": "microblaze_0_local_memory_dlmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_ilmb_bram_if_cntlr": {"hier_name": "microblaze_0_local_memory_ilmb_bram_if_cntlr",
+"type": "lmb_bram_if_cntlr",
+"version": "4.0",
+"ip_type": "MEMORY_CNTLR",
+},
+"microblaze_0_local_memory_ilmb_v10": {"hier_name": "microblaze_0_local_memory_ilmb_v10",
+"type": "lmb_v10",
+"version": "3.0",
+"ip_type": "BUS",
+},
+"microblaze_0_local_memory_lmb_bram": {"hier_name": "microblaze_0_local_memory_lmb_bram",
+"type": "blk_mem_gen",
+"version": "8.4",
+"ip_type": "MEMORY",
+},
+"microblaze_0_xlconcat": {"hier_name": "microblaze_0_xlconcat",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo": {"hier_name": "midi_fifo",
+"type": "fifo_generator",
+"version": "13.2",
+"ip_type": "PERIPHERAL",
+},
+"midi_fifo_writer": {"hier_name": "midi_fifo_writer",
+"type": "axi_fifo_writer",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"midi_led_invert": {"hier_name": "midi_led_invert",
+"type": "util_vector_logic",
+"version": "2.0",
+"ip_type": "PERIPHERAL",
+},
+"nes_apu_0": {"hier_name": "nes_apu_0",
+"type": "nes_apu",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"reset_manager_0": {"hier_name": "reset_manager_0",
+"type": "reset_manager",
+"version": "1.0",
+"ip_type": "PERIPHERAL",
+},
+"rgb_off": {"hier_name": "rgb_off",
+"type": "xlconstant",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"rst_clk_wiz_0_100M": {"hier_name": "rst_clk_wiz_0_100M",
+"type": "proc_sys_reset",
+"version": "5.0",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_0": {"hier_name": "system_ila_0",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1": {"hier_name": "system_ila_1",
+"type": "system_ila",
+"version": "1.1",
+"ip_type": "MONITOR",
+},
+"system_ila_0_ila_lib": {"hier_name": "system_ila_0/system_ila_0_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_g_inst": {"hier_name": "system_ila_1/system_ila_1_g_inst",
+"type": "gigantic_mux",
+"version": "1.0",
+"ip_type": "MONITOR",
+},
+"system_ila_1_ila_lib": {"hier_name": "system_ila_1/system_ila_1_ila_lib",
+"type": "ila",
+"version": "6.2",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_ar": {"hier_name": "system_ila_1/system_ila_1_slot_0_ar",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_aw": {"hier_name": "system_ila_1/system_ila_1_slot_0_aw",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_b": {"hier_name": "system_ila_1/system_ila_1_slot_0_b",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_r": {"hier_name": "system_ila_1/system_ila_1_slot_0_r",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+"system_ila_1_slot_0_w": {"hier_name": "system_ila_1/system_ila_1_slot_0_w",
+"type": "xlconcat",
+"version": "2.1",
+"ip_type": "PERIPHERAL",
+},
+}]. Thread: Worker-12: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2024-03-10 15:00:15.727
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '1'

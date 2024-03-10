@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "apu_fifo_writer,Vivado 2022.2.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_apu_fifo_writer_0_0,apu_fifo_writer,{}" *)
-(* CORE_GENERATION_INFO = "design_1_apu_fifo_writer_0_0,apu_fifo_writer,{x_ipProduct=Vivado 2022.2.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=apu_fifo_writer,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,FIFO_DATA_WIDTH=19,ENABLE_PULSE_1=true,ENABLE_PULSE_2=true,ENABLE_TRIANGLE=true,ENABLE_NOISE=false,ENABLE_DMC=false}" *)
+(* CORE_GENERATION_INFO = "design_1_apu_fifo_writer_0_0,apu_fifo_writer,{x_ipProduct=Vivado 2022.2.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=apu_fifo_writer,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,FIFO_DATA_WIDTH=28,ENABLE_PULSE_1=true,ENABLE_PULSE_2=true,ENABLE_TRIANGLE=true,ENABLE_NOISE=false,ENABLE_DMC=false}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_apu_fifo_writer_0_0 (
@@ -62,6 +62,7 @@ module design_1_apu_fifo_writer_0_0 (
   Pulse1_Message,
   Pulse2_Message,
   Triangle_Message,
+  Noise_Message,
   FifoData,
   FifoWrite
 );
@@ -78,11 +79,12 @@ input wire CPU_Rst;
 input wire [18 : 0] Pulse1_Message;
 input wire [18 : 0] Pulse2_Message;
 input wire [14 : 0] Triangle_Message;
-output wire [18 : 0] FifoData;
+input wire [27 : 0] Noise_Message;
+output wire [27 : 0] FifoData;
 output wire FifoWrite;
 
   apu_fifo_writer #(
-    .FIFO_DATA_WIDTH(19),
+    .FIFO_DATA_WIDTH(28),
     .ENABLE_PULSE_1(1'B1),
     .ENABLE_PULSE_2(1'B1),
     .ENABLE_TRIANGLE(1'B1),
@@ -95,6 +97,7 @@ output wire FifoWrite;
     .Pulse1_Message(Pulse1_Message),
     .Pulse2_Message(Pulse2_Message),
     .Triangle_Message(Triangle_Message),
+    .Noise_Message(Noise_Message),
     .FifoData(FifoData),
     .FifoWrite(FifoWrite)
   );

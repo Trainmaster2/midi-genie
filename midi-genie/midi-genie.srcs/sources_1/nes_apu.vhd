@@ -25,6 +25,7 @@ entity nes_apu is
         APU_Pulse1_Message   : out std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
         APU_Pulse2_Message   : out std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
         APU_Triangle_Message : out std_logic_vector(c_APU_TRIANGLE_MESSAGE - 1 downto 0) := (others => '0');
+        APU_Noise_Message    : out std_logic_vector(c_APU_NOISE_MESSAGE - 1 downto 0) := (others => '0');
         dbg_apu_tick         : out std_logic;
         dbg_apu_half         : out std_logic;
         dbg_apu_qtr          : out std_logic
@@ -59,6 +60,7 @@ begin
     APU_Pulse1_Message   <= f_APU_PULSE_2_MESSAGE('0', APU_Pulse1, Pulse1_Target(11));
     APU_Pulse2_Message   <= f_APU_PULSE_2_MESSAGE('1', APU_Pulse2, Pulse2_Target(11));
     APU_Triangle_Message <= f_APU_TRIANGLE_2_MESSAGE(APU_Triangle);
+    APU_Noise_Message    <= f_APU_NOISE_2_MESSAGE(APU_Noise);
 
     dbg_apu_tick <= APU_Tick_CE;
     dbg_apu_half <= APU_Half_CE;
@@ -153,6 +155,10 @@ begin
         variable pulse2_sweep_reload     : boolean := false;
         variable pulse2_sweep_divider    : natural range 0 to 7 := 0;
         variable triangle_linear_reload  : boolean := false;
+        variable noise_envelope_start    : boolean := false;
+        variable noise_envelope_divider  : natural range 0 to 15 := 0;
+        variable noise_shift_mode        : boolean := false;
+        variable noise_shift_timer       : natural range 0 to 2035 := 0;
     begin
         if (Reset = '0') or (CPU_Rst = '0') then
             APU_Pulse1   <= c_APU_PULSE_INIT;
@@ -171,6 +177,9 @@ begin
             pulse2_sweep_reload     := false;
             pulse2_sweep_divider    := 0;
             triangle_linear_reload  := false;
+            noise_envelope_divider  := 0;
+            noise_shift_mode        := false;
+            noise_shift_timer       := 0;
         elsif falling_edge(CPU_M2) then
             if (CPU_RomSel = '1') and (CPU_RW = '0') then
                 case (CPU_Addr) is
@@ -209,7 +218,9 @@ begin
                     when X"400E" =>
                         APU_Noise <= f_APU_NOISE_REG3(APU_Noise, CPU_Data);
                     when X"400F" =>
-                        APU_Noise <= f_APU_NOISE_REG4(APU_Noise, CPU_Data);
+                        APU_Noise <= f_APU_NOISE_REG4(APU_Noise, CPU_Data, APU_Status.noise_active);
+                        noise_envelope_start := true;
+                        noise_shift_mode := CPU_Data(7) = '1';
                     
                     when X"4010" =>
                         APU_DMC <= f_APU_DMC_REG1(APU_DMC, CPU_Data);
@@ -227,6 +238,12 @@ begin
                         end if;
                         if (CPU_Data(1) = '0') then
                             APU_Pulse2.length_counter <= (others => '0');
+                        end if;
+                        if (CPU_Data(2) = '0') then
+                            APU_Triangle.length_counter <= (others => '0');
+                        end if;
+                        if (CPU_Data(3) = '0') then
+                            APU_Noise.length_counter <= (others => '0');
                         end if;
                     when X"4017" =>
                         APU_Counter <= f_APU_FRAME_COUNTER_REG1(APU_Counter, CPU_Data);
@@ -246,6 +263,10 @@ begin
                 -- Triangle Length
                 if (APU_Triangle.length_counter_halt = '0') and (APU_Triangle.length_counter > 0) then
                     APU_Triangle.length_counter <= APU_Triangle.length_counter - 1;
+                end if;
+                -- Noise Length
+                if (APU_Noise.length_counter_halt = '0') and (APU_Noise.length_counter > 0) then
+                    APU_Noise.length_counter <= APU_Noise.length_counter - 1;
                 end if;
                 -- Pulse 1 Sweep
                 if (pulse1_sweep_divider = 0) then
@@ -306,6 +327,21 @@ begin
                 else
                     pulse2_envelope_divider := pulse2_envelope_divider - 1;
                 end if;
+                -- Noise Envelope
+                if (noise_envelope_start) then
+                    noise_envelope_start := false;
+                    noise_envelope_divider := to_integer(APU_Noise.envelope);
+                    APU_Noise.volume <= (others => '1');
+                elsif (noise_envelope_divider = 0) then
+                    noise_envelope_divider := to_integer(APU_Noise.envelope);
+                    if (APU_Noise.volume > 0) then
+                        APU_Noise.volume <= APU_Noise.volume - 1;
+                    elsif (APU_Noise.length_counter_halt = '1') then
+                        APU_Noise.volume <= (others => '1');
+                    end if;
+                else
+                    noise_envelope_divider := noise_envelope_divider - 1;
+                end if;
                 -- Triangle Linear
                 if (triangle_linear_reload) then
                     APU_Triangle.linear_counter <= unsigned(APU_Triangle.linear_counter_load);
@@ -314,6 +350,38 @@ begin
                 end if;
                 if (APU_Triangle.length_counter_halt = '0') then
                     triangle_linear_reload := false;
+                end if;
+            end if;
+
+            if (APU_Tick_CE = '1') then
+                -- Noise Shift Register
+                if (noise_shift_timer = 0) then
+                    case (APU_Noise.noise_period) is
+                        when x"0" => noise_shift_timer := 2;
+                        when x"1" => noise_shift_timer := 4;
+                        when x"2" => noise_shift_timer := 8;
+                        when x"3" => noise_shift_timer := 16;
+                        when x"4" => noise_shift_timer := 32;
+                        when x"5" => noise_shift_timer := 48;
+                        when x"6" => noise_shift_timer := 64;
+                        when x"7" => noise_shift_timer := 80;
+                        when x"8" => noise_shift_timer := 101;
+                        when x"9" => noise_shift_timer := 127;
+                        when x"A" => noise_shift_timer := 192;
+                        when x"B" => noise_shift_timer := 254;
+                        when x"C" => noise_shift_timer := 381;
+                        when x"D" => noise_shift_timer := 508;
+                        when x"E" => noise_shift_timer := 1017;
+                        when x"F" => noise_shift_timer := 2034;
+                        when others => null;
+                    end case;
+                    if (noise_shift_mode) then
+                        APU_Noise.shift_reg <= (APU_Noise.shift_reg(6) xor APU_Noise.shift_reg(0)) & APU_Noise.shift_reg(14 downto 1);
+                    else
+                        APU_Noise.shift_reg <= (APU_Noise.shift_reg(1) xor APU_Noise.shift_reg(0)) & APU_Noise.shift_reg(14 downto 1);
+                    end if;
+                else
+                    noise_shift_timer := noise_shift_timer - 1;
                 end if;
             end if;
         end if;

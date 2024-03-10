@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "axi_fifo_reader,Vivado 2022.2.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_axi_fifo_reader_0_0,axi_fifo_reader,{}" *)
-(* CORE_GENERATION_INFO = "design_1_axi_fifo_reader_0_0,axi_fifo_reader,{x_ipProduct=Vivado 2022.2.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=axi_fifo_reader,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,AXI_DATA_WIDTH=32,FIFO_DATA_WIDTH=19}" *)
+(* CORE_GENERATION_INFO = "design_1_axi_fifo_reader_0_0,axi_fifo_reader,{x_ipProduct=Vivado 2022.2.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=axi_fifo_reader,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,AXI_DATA_WIDTH=32,FIFO_DATA_WIDTH=28}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_axi_fifo_reader_0_0 (
@@ -129,14 +129,14 @@ output wire [31 : 0] S_AXI_RDATA;
  RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RRESP" *)
 output wire [1 : 0] S_AXI_RRESP;
-input wire [18 : 0] FifoData;
+input wire [27 : 0] FifoData;
 input wire FifoEmpty;
 output wire FifoRead;
 output wire DataAvailable;
 
   axi_fifo_reader #(
     .AXI_DATA_WIDTH(32),
-    .FIFO_DATA_WIDTH(19)
+    .FIFO_DATA_WIDTH(28)
   ) inst (
     .S_AXI_ACLK(S_AXI_ACLK),
     .S_AXI_ARESETN(S_AXI_ARESETN),
