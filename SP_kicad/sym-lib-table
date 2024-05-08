@@ -1,0 +1,8 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "doragasu")(type "KiCad")(uri "${KIPRJMOD}/Footprints/doragasu-kicad-lib/doragasu.kicad_sym")(options "")(descr ""))
+  (lib (name "Tomarus")(type "Legacy")(uri "${KIPRJMOD}/Footprints/kicad-footprints/Tomarus.lib")(options "")(descr ""))
+  (lib (name "eurocad")(type "Legacy")(uri "${KIPRJMOD}/Footprints/eurocad/eurocad.lib")(options "")(descr ""))
+  (lib (name "LD1117V33")(type "KiCad")(uri "${KIPRJMOD}/Footprints/LD1117V33/LD1117V33.kicad_sym")(options "")(descr ""))
+  (lib (name "level-shifter")(type "KiCad")(uri "${KIPRJMOD}/Footprints/level-shifter/level-shifter.kicad_sym")(options "")(descr ""))
+)
