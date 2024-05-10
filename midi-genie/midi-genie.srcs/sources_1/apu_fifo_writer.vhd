@@ -37,8 +37,7 @@ architecture Rtl of apu_fifo_writer is
     signal dmc_message_last      : std_logic_vector(c_APU_DMC_MESSAGE - 1 downto 0) := (others => '0');
 begin
 
-    procTrigger: process(Clk) is
-        variable last_trig : std_logic := '0';
+    procTrigger: process(Clk, Reset, CPU_Rst) is
     begin
         if (Reset = '0') or (CPU_Rst = '0') then
             FifoData              <= (others => '0');

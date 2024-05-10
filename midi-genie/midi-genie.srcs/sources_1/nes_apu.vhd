@@ -15,21 +15,11 @@ entity nes_apu is
         CPU_Data             : in  std_logic_vector(7 downto 0) := (others => '0');
         CPU_RomSel           : in  std_logic := '0';
         CPU_RW               : in  std_logic := '0';
-        APU_Pulse1_Out       : out std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0) := (others => '0');
-        APU_Pulse2_Out       : out std_logic_vector(c_APU_PULSE_VECTOR - 1 downto 0) := (others => '0');
-        APU_Triangle_Out     : out std_logic_vector(c_APU_TRIANGLE_VECTOR - 1 downto 0) := (others => '0');
-        APU_Noise_Out        : out std_logic_vector(c_APU_NOISE_VECTOR - 1 downto 0) := (others => '0');
-        APU_DMC_Out          : out std_logic_vector(c_APU_DMC_VECTOR - 1 downto 0) := (others => '0');
-        APU_Status_Out       : out std_logic_vector(c_APU_STATUS_VECTOR - 1 downto 0) := (others => '0');
-        APU_Counter_Out      : out std_logic_vector(c_APU_FRAME_COUNTER_VECTOR - 1 downto 0) := (others => '0');
         APU_Pulse1_Message   : out std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
         APU_Pulse2_Message   : out std_logic_vector(c_APU_PULSE_MESSAGE - 1 downto 0) := (others => '0');
         APU_Triangle_Message : out std_logic_vector(c_APU_TRIANGLE_MESSAGE - 1 downto 0) := (others => '0');
         APU_Noise_Message    : out std_logic_vector(c_APU_NOISE_MESSAGE - 1 downto 0) := (others => '0');
-        APU_DMC_Message      : out std_logic_vector(c_APU_DMC_MESSAGE - 1 downto 0) := (others => '0');
-        dbg_apu_tick         : out std_logic;
-        dbg_apu_half         : out std_logic;
-        dbg_apu_qtr          : out std_logic
+        APU_DMC_Message      : out std_logic_vector(c_APU_DMC_MESSAGE - 1 downto 0) := (others => '0')
     );
 end nes_apu;
 
@@ -50,23 +40,11 @@ architecture Rtl of nes_apu is
     signal Pulse2_Target  : unsigned(11 downto 0) := (others => '0');
 begin
 
-    APU_Pulse1_Out       <= f_APU_PULSE_2_VECTOR(APU_Pulse1);
-    APU_Pulse2_Out       <= f_APU_PULSE_2_VECTOR(APU_Pulse2);
-    APU_Triangle_Out     <= f_APU_TRIANGLE_2_VECTOR(APU_Triangle);
-    APU_Noise_Out        <= f_APU_NOISE_2_VECTOR(APU_Noise);
-    APU_DMC_Out          <= f_APU_DMC_2_VECTOR(APU_DMC);
-    APU_Status_Out       <= f_APU_STATUS_2_VECTOR(APU_Status);
-    APU_Counter_Out      <= f_APU_FRAME_COUNTER_2_VECTOR(APU_Counter);
-
     APU_Pulse1_Message   <= f_APU_PULSE_2_MESSAGE('0', APU_Pulse1, Pulse1_Target(11));
     APU_Pulse2_Message   <= f_APU_PULSE_2_MESSAGE('1', APU_Pulse2, Pulse2_Target(11));
     APU_Triangle_Message <= f_APU_TRIANGLE_2_MESSAGE(APU_Triangle);
     APU_Noise_Message    <= f_APU_NOISE_2_MESSAGE(APU_Noise);
     APU_DMC_Message      <= f_APU_DMC_2_MESSAGE(APU_DMC);
-
-    dbg_apu_tick <= APU_Tick_CE;
-    dbg_apu_half <= APU_Half_CE;
-    dbg_apu_qtr  <= APU_Quarter_CE;
 
     procTick: process(CPU_M2, Reset, CPU_Rst) is
     begin

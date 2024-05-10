@@ -1,4 +1,4 @@
-15:37:40 **** Incremental Build of configuration Debug for project midi_genie ****
+00:11:04 **** Incremental Build of configuration Debug for project midi_genie ****
 make all 
 Building file: ../src/apu.cpp
 Invoking: MicroBlaze g++ compiler
@@ -12,20 +12,10 @@ mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/apu.o" -I/home/trainmaster2/D
       |               ^~~~
 Finished building: ../src/apu.cpp
  
-Building file: ../src/calc.cpp
-Invoking: MicroBlaze g++ compiler
-mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/calc.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mno-xl-soft-div -mcpu=v11.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/calc.d" -MT"src/calc.o" -o "src/calc.o" "../src/calc.cpp"
-Finished building: ../src/calc.cpp
- 
 Building file: ../src/main.cpp
 Invoking: MicroBlaze g++ compiler
 mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mno-xl-soft-div -mcpu=v11.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cpp"
 Finished building: ../src/main.cpp
- 
-Building file: ../src/midi.cpp
-Invoking: MicroBlaze g++ compiler
-mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/midi.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mno-xl-soft-div -mcpu=v11.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/midi.d" -MT"src/midi.o" -o "src/midi.o" "../src/midi.cpp"
-Finished building: ../src/midi.cpp
  
 Building target: midi_genie.elf
 Invoking: MicroBlaze g++ linker
@@ -35,9 +25,9 @@ Finished building target: midi_genie.elf
 Invoking: MicroBlaze Print Size
 mb-size midi_genie.elf  |tee "midi_genie.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  37876	    400	   6340	  44616	   ae48	midi_genie.elf
+  37952	    408	   6336	  44696	   ae98	midi_genie.elf
 Finished building: midi_genie.elf.size
  
 
-15:37:42 Build Finished (took 1s.872ms)
+00:11:05 Build Finished (took 1s.422ms)
 

@@ -65,21 +65,11 @@ module design_1_nes_apu_0_0 (
   CPU_Data,
   CPU_RomSel,
   CPU_RW,
-  APU_Pulse1_Out,
-  APU_Pulse2_Out,
-  APU_Triangle_Out,
-  APU_Noise_Out,
-  APU_DMC_Out,
-  APU_Status_Out,
-  APU_Counter_Out,
   APU_Pulse1_Message,
   APU_Pulse2_Message,
   APU_Triangle_Message,
   APU_Noise_Message,
-  APU_DMC_Message,
-  dbg_apu_tick,
-  dbg_apu_half,
-  dbg_apu_qtr
+  APU_DMC_Message
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Clk, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
@@ -99,21 +89,11 @@ input wire [14 : 0] CPU_Addr;
 input wire [7 : 0] CPU_Data;
 input wire CPU_RomSel;
 input wire CPU_RW;
-output wire [52 : 0] APU_Pulse1_Out;
-output wire [52 : 0] APU_Pulse2_Out;
-output wire [42 : 0] APU_Triangle_Out;
-output wire [50 : 0] APU_Noise_Out;
-output wire [28 : 0] APU_DMC_Out;
-output wire [6 : 0] APU_Status_Out;
-output wire [1 : 0] APU_Counter_Out;
 output wire [18 : 0] APU_Pulse1_Message;
 output wire [18 : 0] APU_Pulse2_Message;
 output wire [14 : 0] APU_Triangle_Message;
 output wire [27 : 0] APU_Noise_Message;
-output wire [2 : 0] APU_DMC_Message;
-output wire dbg_apu_tick;
-output wire dbg_apu_half;
-output wire dbg_apu_qtr;
+output wire [3 : 0] APU_DMC_Message;
 
   nes_apu inst (
     .Clk(Clk),
@@ -125,20 +105,10 @@ output wire dbg_apu_qtr;
     .CPU_Data(CPU_Data),
     .CPU_RomSel(CPU_RomSel),
     .CPU_RW(CPU_RW),
-    .APU_Pulse1_Out(APU_Pulse1_Out),
-    .APU_Pulse2_Out(APU_Pulse2_Out),
-    .APU_Triangle_Out(APU_Triangle_Out),
-    .APU_Noise_Out(APU_Noise_Out),
-    .APU_DMC_Out(APU_DMC_Out),
-    .APU_Status_Out(APU_Status_Out),
-    .APU_Counter_Out(APU_Counter_Out),
     .APU_Pulse1_Message(APU_Pulse1_Message),
     .APU_Pulse2_Message(APU_Pulse2_Message),
     .APU_Triangle_Message(APU_Triangle_Message),
     .APU_Noise_Message(APU_Noise_Message),
-    .APU_DMC_Message(APU_DMC_Message),
-    .dbg_apu_tick(dbg_apu_tick),
-    .dbg_apu_half(dbg_apu_half),
-    .dbg_apu_qtr(dbg_apu_qtr)
+    .APU_DMC_Message(APU_DMC_Message)
   );
 endmodule

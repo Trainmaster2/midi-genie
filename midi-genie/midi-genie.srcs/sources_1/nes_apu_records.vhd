@@ -113,7 +113,7 @@ package nes_apu_records is
     end record t_APU_DMC;
 
     constant c_APU_DMC_VECTOR  : integer := 29;
-    constant c_APU_DMC_MESSAGE : integer := 3;
+    constant c_APU_DMC_MESSAGE : integer := 4;
     constant c_APU_DMC_INIT    : t_APU_DMC := (irq_enable => '0',
                                                dmc_loop => '0',
                                                frequency => (others => '0'),
