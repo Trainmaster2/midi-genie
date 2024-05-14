@@ -23,6 +23,4 @@
 #define enable_channel(bitfield) Xil_Out32(APU_WRITER_SET_ADDR, (bitfield) & CHANNEL_MASK)
 #define disable_channel(bitfield) Xil_Out32(APU_WRITER_RESET_ADDR, (bitfield) & CHANNEL_MASK)
 
-void reset_channels();
-
 #endif

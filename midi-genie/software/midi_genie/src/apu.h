@@ -7,12 +7,13 @@
 #include "xparameters.h"
 #include "xintc.h"
 #include "xil_io.h"
+#include "xil_printf.h"
+#include "midi.h"
 
-#define INTC_ID		XPAR_INTC_0_DEVICE_ID
 #define APU_IN_ID	XPAR_APU_FIFO_READER_BASEADDR
 
-#define NES_RST_INT_ID	0
-#define APU_MSG_INT_ID	1
+#define NES_RST_INT_ID	XPAR_MICROBLAZE_0_AXI_INTC_SYSTEM_BTN1_INTR
+#define APU_MSG_INT_ID	XPAR_MICROBLAZE_0_AXI_INTC_APU_FIFO_READER_FIFOREAD_INTR
 
 struct GenericBitField{
     u32 channel : 3;
