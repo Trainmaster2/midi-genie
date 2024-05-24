@@ -116,5 +116,9 @@ void play_pulse_message(PulseBitField pulseMessage);
 void play_triangle_message(TriangleBitField triangleMessage);
 void play_noise_message(NoiseBitField noiseMessage);
 void play_dmc_message(DMCBitField dmcMessage);
+void set_octave_shift(int8_t octaves);
+int8_t get_octave_shift();
+void set_semitone_shift(int8_t semitones);
+int8_t get_semitone_shift();
 
 #endif

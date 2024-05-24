@@ -1,9 +1,18 @@
-14:24:33 **** Incremental Build of configuration Debug for project midi_genie ****
+15:14:33 **** Incremental Build of configuration Debug for project midi_genie ****
 make all 
-Building file: ../src/main.cpp
+Building file: ../src/uart_interface.cpp
 Invoking: MicroBlaze g++ compiler
-mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mno-xl-soft-div -mcpu=v11.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cpp"
-Finished building: ../src/main.cpp
+mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/uart_interface.o" -I/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include -mlittle-endian -mno-xl-soft-div -mcpu=v11.0 -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/uart_interface.d" -MT"src/uart_interface.o" -o "src/uart_interface.o" "../src/uart_interface.cpp"
+In file included from ../src/uart_interface.h:7,
+                 from ../src/uart_interface.cpp:1:
+../src/uart_interface.cpp: In function 'int initialize_uart(XIntc*)':
+/home/trainmaster2/Documents/midi-genie/midi-genie/software/midi_genie_hw/export/midi_genie_hw/sw/midi_genie_hw/standalone_microblaze_0/bspinclude/include/xparameters.h:471:28: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '1080033280' to '0' [-Woverflow]
+  471 | #define STDOUT_BASEADDRESS 0x40600000
+      |                            ^~~~~~~~~~
+../src/uart_interface.cpp:11:46: note: in expansion of macro 'STDOUT_BASEADDRESS'
+   11 |     Status = XUartLite_Initialize(&usb_uart, STDOUT_BASEADDRESS);
+      |                                              ^~~~~~~~~~~~~~~~~~
+Finished building: ../src/uart_interface.cpp
  
 Building target: midi_genie.elf
 Invoking: MicroBlaze g++ linker
@@ -13,9 +22,9 @@ Finished building target: midi_genie.elf
 Invoking: MicroBlaze Print Size
 mb-size midi_genie.elf  |tee "midi_genie.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  47272	    424	   6496	  54192	   d3b0	midi_genie.elf
+  51664	    424	   6496	  58584	   e4d8	midi_genie.elf
 Finished building: midi_genie.elf.size
  
 
-14:24:34 Build Finished (took 1s.173ms)
+15:14:35 Build Finished (took 1s.678ms)
 

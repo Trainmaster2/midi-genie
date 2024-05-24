@@ -1,12 +1,16 @@
 #include "apu.h"
 #include "calc.h"
 #include "midi.h"
+#include "xil_types.h"
 
 LastPulse pulse1 = {};
 LastPulse pulse2 = {};
 LastTriangle triangle = {};
 LastNoise noise = {};
 LastDMC dmc = {};
+
+int8_t octaves_shift = 0;
+int8_t semitones_shift = 0;
 
 int connect_apu_interrupts(XIntc *InterruptController)
 {
@@ -69,6 +73,7 @@ void play_pulse_message(PulseBitField pulseMessage)
 {
     print_pulse_message(pulseMessage);
     int note, bend;
+    double frequency;
     LastPulse* lastMessage;
 
     if (pulseMessage.channel) { lastMessage = &pulse2; }
@@ -86,7 +91,9 @@ void play_pulse_message(PulseBitField pulseMessage)
 
         if ((pulseMessage.timer != lastMessage->timer) || (pulseMessage.volume != lastMessage->volume))
         {
-            pulse2midi(pulseMessage.timer, note, bend);
+            frequency = pulse2frequency(pulseMessage.timer);
+            shift_frequency(frequency, octaves_shift, semitones_shift);
+            frequency2midi(frequency, note, bend);
             if (note != lastMessage->note) {stop_notes(pulseMessage.channel);}
 #if USE_FINE_ADJUST
             if (bend != lastMessage->bend) {pitch_bend(pulseMessage.channel, bend);}
@@ -102,7 +109,9 @@ void play_pulse_message(PulseBitField pulseMessage)
 
         if (pulseMessage.timer != lastMessage->timer)
         {
-            pulse2midi(pulseMessage.timer, note, bend);
+            frequency = pulse2frequency(pulseMessage.timer);
+            shift_frequency(frequency, octaves_shift, semitones_shift);
+            frequency2midi(frequency, note, bend);
             if (note != lastMessage->note) {stop_notes(pulseMessage.channel);}
 
 #if USE_VOLUME
@@ -134,6 +143,7 @@ void play_triangle_message(TriangleBitField triangleMessage)
 {
     print_triangle_message(triangleMessage);
     int note, bend;
+    double frequency;
 
     if ((!triangleMessage.onoff) || (triangleMessage.timer < 2))
     {
@@ -143,7 +153,9 @@ void play_triangle_message(TriangleBitField triangleMessage)
     }
     else
     {
-        triangle2midi(triangleMessage.timer, note, bend);
+        frequency = triangle2frequency(triangleMessage.timer);
+        shift_frequency(frequency, octaves_shift, semitones_shift);
+        frequency2midi(frequency, note, bend);
         if (note != triangle.note) {stop_notes(triangleMessage.channel);}
 
 #if USE_FINE_ADJUST            
@@ -224,4 +236,24 @@ void play_dmc_message(DMCBitField dmcMessage)
 {
     print_dmc_message(dmcMessage);
     int note, bend;
+}
+
+void set_octave_shift(int8_t octaves)
+{
+    octaves_shift = octaves;
+}
+
+int8_t get_octave_shift()
+{
+    return octaves_shift;
+}
+
+void set_semitone_shift(int8_t semitones)
+{
+    semitones_shift = semitones;
+}
+
+int8_t get_semitone_shift()
+{
+    return semitones_shift;
 }

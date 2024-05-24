@@ -7,7 +7,6 @@
 #include "xparameters.h"
 #include "xintc.h"
 #include "xuartlite.h"
-#include "xil_printf.h"
 
 #define UART_INT_ID	XPAR_MICROBLAZE_0_AXI_INTC_AXI_UARTLITE_0_INTERRUPT_INTR
 
@@ -25,7 +24,9 @@ void uart_transmit(XUartLite* uart, const char* data, unsigned int length);
 
 void pop_word(const char* string, char*& remainder);
 
+void print_long(XUartLite* uart, long number, uint8_t base = 10);
 void print_channel_state(XUartLite* uart);
+void print_shift_state(XUartLite* uart);
 
 void run_help(XUartLite* uart);
 void run_status(XUartLite* uart);
@@ -33,5 +34,7 @@ void run_toggle(XUartLite* uart, const char* arguments);
 void run_enable(XUartLite* uart, const char* arguments);
 void run_disable(XUartLite* uart, const char* arguments);
 void run_stop(XUartLite* uart, const char* arguments);
+void run_octave(XUartLite* uart, const char* arguments);
+void run_semitone(XUartLite* uart, const char* arguments);
 
 #endif

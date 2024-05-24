@@ -1,4 +1,5 @@
 #include "uart_interface.h"
+#include <stdlib.h>
 #include "apu_writer.h"
 #include "apu.h"
 
@@ -77,6 +78,8 @@ void uart_handler(void *CallbackRef, unsigned int ByteCount)
             else if (strcmp(command, "enable") == 0) { run_enable(uart, arguments); }
             else if (strcmp(command, "disable") == 0) { run_disable(uart, arguments); }
             else if (strcmp(command, "stop") == 0) { run_stop(uart, arguments); }
+            else if (strcmp(command, "octave") == 0) { run_octave(uart, arguments); }
+            else if (strcmp(command, "semitone") == 0) { run_semitone(uart, arguments); }
             else { uart_transmit_auto(uart, "Invalid command.\r\n"); }
 
             // uart_transmit(uart, "\r\n", 2);
@@ -115,6 +118,37 @@ void pop_word(const char* string, char*& remainder)
     }
 }
 
+// Based on outnum in xil_printf.c
+void print_long(XUartLite* uart, long number, uint8_t base)
+{
+    const char digits[] = "0123456789ABCDEF";
+    char buffer[10] = {'\0'};
+    uint8_t length = 0;
+
+    if (number < 0)
+    {
+        do
+        {
+            buffer[9 - length] = digits[-1 * (number % base)];
+            number /= base;
+            length++;
+        } while (number < 0);
+
+        uart_transmit(uart, "-", 1);
+    }
+    else
+    {
+        do
+        {
+            buffer[9 - length] = digits[number % base];
+            number /= base;
+            length++;
+        } while (number > 0);
+    }
+    
+    uart_transmit(uart, &buffer[10 - length], length); 
+}
+
 void print_channel_state(XUartLite* uart)
 {
     uint8_t status = get_channel_state();
@@ -131,6 +165,25 @@ void print_channel_state(XUartLite* uart)
     uart_transmit_auto(uart, "\r\n");
 }
 
+void print_shift_state(XUartLite* uart)
+{
+    int8_t number;
+
+    uart_transmit_auto(uart, "Octave Shift: ");
+
+    number = get_octave_shift();
+    if (number > 0) { uart_transmit(uart, "+", 1); }
+    print_long(uart, number);
+    
+    uart_transmit_auto(uart, ", Semitone Shift: ");
+
+    number = get_semitone_shift();
+    if (number > 0) { uart_transmit(uart, "+", 1); }
+    print_long(uart, number);
+    
+    uart_transmit_auto(uart, "\r\n");
+}
+
 void run_help(XUartLite* uart)
 {
     uart_transmit_auto(uart, "help|?\r\n");
@@ -139,11 +192,14 @@ void run_help(XUartLite* uart)
     uart_transmit_auto(uart, "enable [all|pulse1|pulse2|triangle|noise|dmc]\r\n");
     uart_transmit_auto(uart, "disable [all|pulse1|pulse2|triangle|noise|dmc]\r\n");
     uart_transmit_auto(uart, "stop [all|pulse1|pulse2|triangle|noise|dmc]\r\n");
+    uart_transmit_auto(uart, "octave #|+#|-#\r\n");
+    uart_transmit_auto(uart, "semitone #|+#|-#\r\n");
 }
 
 void run_status(XUartLite* uart)
 {
     print_channel_state(uart);
+    print_shift_state(uart);
 }
 
 void run_toggle(XUartLite* uart, const char* arguments)
@@ -257,14 +313,110 @@ void run_stop(XUartLite* uart, const char* arguments)
     if (pulse1 || pulse2 || triangle || noise || dmc)
     {
         if (pulse1) { stop_notes(0); }
-        else if (pulse2) { stop_notes(1); }
-        else if (triangle) { stop_notes(2); }
-        else if (noise) { stop_notes(3); }
-        else if (dmc) { stop_notes(4); }
+        if (pulse2) { stop_notes(1); }
+        if (triangle) { stop_notes(2); }
+        if (noise) { stop_notes(3); }
+        if (dmc) { stop_notes(4); }
         uart_transmit_auto(uart, "Channels have been silenced.\r\n");
     }
     else
     {
         uart_transmit_auto(uart, "No valid arguments. Nothing has been changed.\r\n");
+    }
+}
+
+void run_octave(XUartLite* uart, const char* arguments)
+{
+    long value;
+    char* end;
+    if (arguments != nullptr)
+    {
+        while (arguments[0] == ' ') { arguments++; }
+        if (arguments[0] == '\0')
+        {
+            uart_transmit_auto(uart, "Missing argument.\r\n");
+            return;
+        }
+
+        pop_word(arguments, end);
+        if (arguments[0] == '+')
+        {
+            value = strtol(&arguments[1], &end, 10);
+        }
+        else if (arguments[0] == '-')
+        {
+            value = -strtol(&arguments[1], &end, 10);
+        }
+        else
+        {
+            value = strtol(arguments, &end, 10);
+        }
+
+        if (*end)
+        {
+            uart_transmit_auto(uart, "Invalid argument.\r\n");
+            return;
+        }
+        
+        if (value > 11 || value < -11)
+        {
+            uart_transmit_auto(uart, "Value must be within the range -11 to 11.\r\n");
+            return;
+        }
+
+        set_octave_shift(value);
+        print_shift_state(uart);
+    }
+    else
+    {
+        uart_transmit_auto(uart, "Missing argument.\r\n");
+    }
+}
+
+void run_semitone(XUartLite* uart, const char* arguments)
+{
+    long value;
+    char* end;
+    if (arguments != nullptr)
+    {
+        while (arguments[0] == ' ') { arguments++; }
+        if (arguments[0] == '\0')
+        {
+            uart_transmit_auto(uart, "Missing argument.\r\n");
+            return;
+        }
+
+        pop_word(arguments, end);
+        if (arguments[0] == '+')
+        {
+            value = strtol(&arguments[1], &end, 10);
+        }
+        else if (arguments[0] == '-')
+        {
+            value = -strtol(&arguments[1], &end, 10);
+        }
+        else
+        {
+            value = strtol(arguments, &end, 10);
+        }
+
+        if (*end)
+        {
+            uart_transmit_auto(uart, "Invalid argument.\r\n");
+            return;
+        }
+        
+        if (value > 11 || value < -11)
+        {
+            uart_transmit_auto(uart, "Value must be within the range -11 to 11.\r\n");
+            return;
+        }
+
+        set_semitone_shift(value);
+        print_shift_state(uart);
+    }
+    else
+    {
+        uart_transmit_auto(uart, "Missing argument.\r\n");
     }
 }
