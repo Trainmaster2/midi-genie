@@ -8,7 +8,7 @@
 #include <algorithm>
 #include "xil_types.h"
 
-const double TWELFTH_ROOTS_OF_TWO[] = {
+const double TWELFTH_ROOTS_OF_TWO[11] = {
     1.0594630943592952645618252949463417007792043174941856285592084314,
     1.1224620483093729814335330496791795162324111106139867534404095458,
     1.1892071150027210667174999705604759152929720924638174130190022247,
@@ -25,7 +25,10 @@ const double TWELFTH_ROOTS_OF_TWO[] = {
 #define LOG2_TWELVE_ROOT_TWO 0.0833333333333333333333333333333333333333333333333333333333333333
 
 const double NOISE_TMR_LOOKUP[16] = {2, 4, 8, 16, 32, 48, 64, 80, 101, 127, 190, 254, 381, 508, 1017, 2034};
-extern const double NOISE_FREQ_LOOKUP[32768];
+#define NOISE_0_AVG_FREQ 4
+#define NOISE_1_AVG_FREQ 3.875 // Accurate for all 31-long cycles and ~91% of 93-long cycles
+#define MIN_HEARING_FREQ 20
+#define MAX_HEARING_FREQ 40000
 
 #define clamp(value, minVal, maxVal) std::min(std::max(value, minVal), maxVal)
 
@@ -39,20 +42,11 @@ extern const double NOISE_FREQ_LOOKUP[32768];
 
 #define triangle2frequency(timer) (1789773 / (32 * (timer + 1.0)))
 
-#if ESTIMATE_NOISE
-
-#define noise2frequency(mode, start, period) (1789773 / ((mode ? 3.875 : 5.8125) * 2 * (NOISE_TMR_LOOKUP[period] + 1.0)))
-
-#else
-
-#define noise2frequency(mode, start, period) (1789773 / (NOISE_FREQ_LOOKUP[mode * start] * 2 * (NOISE_TMR_LOOKUP[period] + 1.0)))
-
-#endif
-
 #define pulse2midi(timer, note, bend) frequency2midi(pulse2frequency(timer), note, bend)
 #define triangle2midi(timer, note, bend) frequency2midi(triangle2frequency(timer), note, bend)
-#define noise2midi(mode, start, period, note, bend) frequency2midi(noise2frequency(mode, start, period), note, bend)
+#define noise2midi(mode, period, is_31_cycle, note, bend) frequency2midi(noise2frequency(mode, period, is_31_cycle), note, bend)
 
+double noise2frequency(bool mode, uint8_t period, bool is_31_cycle);
 void frequency2midi(double frequency, int& note, int& bend);
 
 void shift_frequency(double &frequency, int8_t octaves, int8_t semitones);

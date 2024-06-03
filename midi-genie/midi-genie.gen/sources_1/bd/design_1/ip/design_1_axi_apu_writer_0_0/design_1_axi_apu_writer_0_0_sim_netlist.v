@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Thu May  9 23:46:53 2024
+// Date        : Fri May 24 22:37:47 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_axi_apu_writer_0_0/design_1_axi_apu_writer_0_0_sim_netlist.v
@@ -70,7 +70,7 @@ module design_1_axi_apu_writer_0_0
   input [18:0]Pulse1_Message;
   input [18:0]Pulse2_Message;
   input [14:0]Triangle_Message;
-  input [27:0]Noise_Message;
+  input [13:0]Noise_Message;
   input [3:0]DMC_Message;
   output [27:0]FifoData;
   output FifoWrite;
@@ -78,9 +78,9 @@ module design_1_axi_apu_writer_0_0
   wire \<const0> ;
   wire CPU_Rst;
   wire [3:0]DMC_Message;
-  wire [27:0]FifoData;
+  wire [18:0]\^FifoData ;
   wire FifoWrite;
-  wire [27:0]Noise_Message;
+  wire [13:0]Noise_Message;
   wire [18:0]Pulse1_Message;
   wire [18:0]Pulse2_Message;
   wire S_AXI_ACLK;
@@ -101,6 +101,16 @@ module design_1_axi_apu_writer_0_0
   wire S_AXI_WVALID;
   wire [14:0]Triangle_Message;
 
+  assign FifoData[27] = \<const0> ;
+  assign FifoData[26] = \<const0> ;
+  assign FifoData[25] = \<const0> ;
+  assign FifoData[24] = \<const0> ;
+  assign FifoData[23] = \<const0> ;
+  assign FifoData[22] = \<const0> ;
+  assign FifoData[21] = \<const0> ;
+  assign FifoData[20] = \<const0> ;
+  assign FifoData[19] = \<const0> ;
+  assign FifoData[18:0] = \^FifoData [18:0];
   assign S_AXI_BRESP[1] = \<const0> ;
   assign S_AXI_BRESP[0] = \<const0> ;
   assign S_AXI_RRESP[1] = \<const0> ;
@@ -110,7 +120,7 @@ module design_1_axi_apu_writer_0_0
   design_1_axi_apu_writer_0_0_axi_apu_writer inst
        (.CPU_Rst(CPU_Rst),
         .DMC_Message(DMC_Message),
-        .FifoData(FifoData),
+        .FifoData(\^FifoData ),
         .FifoWrite(FifoWrite),
         .Noise_Message(Noise_Message),
         .Pulse1_Message(Pulse1_Message),
@@ -136,8 +146,8 @@ endmodule
 
 (* ORIG_REF_NAME = "axi_apu_writer" *) 
 module design_1_axi_apu_writer_0_0_axi_apu_writer
-   (FifoData,
-    S_AXI_RDATA,
+   (S_AXI_RDATA,
+    FifoData,
     FifoWrite,
     S_AXI_BVALID,
     axi_read_valid_reg_0,
@@ -146,12 +156,12 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     S_AXI_ARREADY,
     Pulse1_Message,
     Pulse2_Message,
-    Noise_Message,
     S_AXI_AWADDR,
     S_AXI_ACLK,
     S_AXI_WDATA,
     S_AXI_WSTRB,
     Triangle_Message,
+    Noise_Message,
     DMC_Message,
     S_AXI_BREADY,
     S_AXI_AWVALID,
@@ -160,8 +170,8 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     S_AXI_RREADY,
     CPU_Rst,
     S_AXI_ARVALID);
-  output [27:0]FifoData;
   output [31:0]S_AXI_RDATA;
+  output [18:0]FifoData;
   output FifoWrite;
   output S_AXI_BVALID;
   output axi_read_valid_reg_0;
@@ -170,12 +180,12 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   output S_AXI_ARREADY;
   input [18:0]Pulse1_Message;
   input [18:0]Pulse2_Message;
-  input [27:0]Noise_Message;
   input [1:0]S_AXI_AWADDR;
   input S_AXI_ACLK;
   input [31:0]S_AXI_WDATA;
   input [3:0]S_AXI_WSTRB;
   input [14:0]Triangle_Message;
+  input [13:0]Noise_Message;
   input [3:0]DMC_Message;
   input S_AXI_BREADY;
   input S_AXI_AWVALID;
@@ -191,8 +201,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire ENABLE_NOISE;
   wire ENABLE_PULSE_2;
   wire ENABLE_TRIANGLE;
-  wire [27:0]FifoData;
-  wire FifoData0__0;
+  wire [18:0]FifoData;
   wire FifoData110_out;
   wire FifoData14_out;
   wire FifoData17_out;
@@ -201,47 +210,6 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire FifoData30_out;
   wire FifoData31_in;
   wire FifoData33_in;
-  wire FifoData3__15_carry__0_i_1_n_0;
-  wire FifoData3__15_carry_i_1_n_0;
-  wire FifoData3__15_carry_i_2_n_0;
-  wire FifoData3__15_carry_i_3_n_0;
-  wire FifoData3__15_carry_i_4_n_0;
-  wire FifoData3__15_carry_n_0;
-  wire FifoData3__15_carry_n_1;
-  wire FifoData3__15_carry_n_2;
-  wire FifoData3__15_carry_n_3;
-  wire FifoData3__20_carry__0_i_1_n_0;
-  wire FifoData3__20_carry__0_i_2_n_0;
-  wire FifoData3__20_carry__0_i_3_n_0;
-  wire FifoData3__20_carry__0_i_4_n_0;
-  wire FifoData3__20_carry__0_n_0;
-  wire FifoData3__20_carry__0_n_1;
-  wire FifoData3__20_carry__0_n_2;
-  wire FifoData3__20_carry__0_n_3;
-  wire FifoData3__20_carry__1_i_1_n_0;
-  wire FifoData3__20_carry__1_i_2_n_0;
-  wire FifoData3__20_carry__1_n_3;
-  wire FifoData3__20_carry_i_1_n_0;
-  wire FifoData3__20_carry_i_2_n_0;
-  wire FifoData3__20_carry_i_3_n_0;
-  wire FifoData3__20_carry_i_4_n_0;
-  wire FifoData3__20_carry_n_0;
-  wire FifoData3__20_carry_n_1;
-  wire FifoData3__20_carry_n_2;
-  wire FifoData3__20_carry_n_3;
-  wire FifoData3__7_carry__0_i_1_n_0;
-  wire FifoData3__7_carry__0_i_2_n_0;
-  wire FifoData3__7_carry__0_i_3_n_0;
-  wire FifoData3__7_carry__0_n_2;
-  wire FifoData3__7_carry__0_n_3;
-  wire FifoData3__7_carry_i_1_n_0;
-  wire FifoData3__7_carry_i_2_n_0;
-  wire FifoData3__7_carry_i_3_n_0;
-  wire FifoData3__7_carry_i_4_n_0;
-  wire FifoData3__7_carry_n_0;
-  wire FifoData3__7_carry_n_1;
-  wire FifoData3__7_carry_n_2;
-  wire FifoData3__7_carry_n_3;
   wire FifoData3_carry__0_i_1_n_0;
   wire FifoData3_carry__0_i_2_n_0;
   wire FifoData3_carry__0_i_3_n_0;
@@ -255,6 +223,20 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire FifoData3_carry_n_1;
   wire FifoData3_carry_n_2;
   wire FifoData3_carry_n_3;
+  wire \FifoData3_inferred__0/i__carry__0_n_2 ;
+  wire \FifoData3_inferred__0/i__carry__0_n_3 ;
+  wire \FifoData3_inferred__0/i__carry_n_0 ;
+  wire \FifoData3_inferred__0/i__carry_n_1 ;
+  wire \FifoData3_inferred__0/i__carry_n_2 ;
+  wire \FifoData3_inferred__0/i__carry_n_3 ;
+  wire \FifoData3_inferred__1/i__carry_n_0 ;
+  wire \FifoData3_inferred__1/i__carry_n_1 ;
+  wire \FifoData3_inferred__1/i__carry_n_2 ;
+  wire \FifoData3_inferred__1/i__carry_n_3 ;
+  wire \FifoData3_inferred__2/i__carry_n_0 ;
+  wire \FifoData3_inferred__2/i__carry_n_1 ;
+  wire \FifoData3_inferred__2/i__carry_n_2 ;
+  wire \FifoData3_inferred__2/i__carry_n_3 ;
   wire \FifoData[0]_i_1_n_0 ;
   wire \FifoData[0]_i_2_n_0 ;
   wire \FifoData[10]_i_1_n_0 ;
@@ -265,6 +247,8 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire \FifoData[12]_i_2_n_0 ;
   wire \FifoData[13]_i_1_n_0 ;
   wire \FifoData[13]_i_2_n_0 ;
+  wire \FifoData[13]_i_3_n_0 ;
+  wire \FifoData[13]_i_4_n_0 ;
   wire \FifoData[14]_i_1_n_0 ;
   wire \FifoData[14]_i_2_n_0 ;
   wire \FifoData[14]_i_3_n_0 ;
@@ -275,15 +259,16 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire \FifoData[18]_i_2_n_0 ;
   wire \FifoData[18]_i_3_n_0 ;
   wire \FifoData[18]_i_4_n_0 ;
+  wire \FifoData[18]_i_5_n_0 ;
+  wire \FifoData[18]_i_6_n_0 ;
+  wire \FifoData[18]_i_7_n_0 ;
   wire \FifoData[1]_i_1_n_0 ;
   wire \FifoData[1]_i_2_n_0 ;
-  wire \FifoData[27]_i_1_n_0 ;
-  wire \FifoData[27]_i_2_n_0 ;
-  wire \FifoData[27]_i_4_n_0 ;
   wire \FifoData[2]_i_1_n_0 ;
   wire \FifoData[2]_i_2_n_0 ;
   wire \FifoData[3]_i_1_n_0 ;
   wire \FifoData[3]_i_2_n_0 ;
+  wire \FifoData[3]_i_3_n_0 ;
   wire \FifoData[3]_i_4_n_0 ;
   wire \FifoData[3]_i_5_n_0 ;
   wire \FifoData[3]_i_6_n_0 ;
@@ -300,7 +285,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire \FifoData[9]_i_1_n_0 ;
   wire \FifoData[9]_i_2_n_0 ;
   wire FifoWrite;
-  wire [27:0]Noise_Message;
+  wire [13:0]Noise_Message;
   wire [18:0]Pulse1_Message;
   wire [18:0]Pulse2_Message;
   wire S_AXI_ACLK;
@@ -325,6 +310,23 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire [2:0]dmc_message_last;
   wire dmc_message_last_1;
   wire \dmc_message_last_reg_n_0_[3] ;
+  wire i__carry__0_i_1__0_n_0;
+  wire i__carry__0_i_1__1_n_0;
+  wire i__carry__0_i_1_n_0;
+  wire i__carry__0_i_2_n_0;
+  wire i__carry__0_i_3_n_0;
+  wire i__carry_i_1__0_n_0;
+  wire i__carry_i_1__1_n_0;
+  wire i__carry_i_1_n_0;
+  wire i__carry_i_2__0_n_0;
+  wire i__carry_i_2__1_n_0;
+  wire i__carry_i_2_n_0;
+  wire i__carry_i_3__0_n_0;
+  wire i__carry_i_3__1_n_0;
+  wire i__carry_i_3_n_0;
+  wire i__carry_i_4__0_n_0;
+  wire i__carry_i_4__1_n_0;
+  wire i__carry_i_4_n_0;
   wire instSkidAR_n_2;
   wire instSkidAW_n_10;
   wire instSkidAW_n_11;
@@ -363,11 +365,10 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire instSkidAW_n_7;
   wire instSkidAW_n_8;
   wire instSkidAW_n_9;
-  wire instSkidW_n_66;
-  wire instSkidW_n_67;
-  wire instSkidW_n_68;
-  wire instSkidW_n_69;
-  wire instSkidW_n_70;
+  wire instSkidW_n_35;
+  wire instSkidW_n_36;
+  wire instSkidW_n_37;
+  wire instSkidW_n_38;
   wire instSkidW_n_71;
   wire instSkidW_n_72;
   wire instSkidW_n_73;
@@ -382,8 +383,14 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire instSkidW_n_82;
   wire instSkidW_n_83;
   wire instSkidW_n_84;
-  wire instSkidW_n_93;
-  wire [18:0]noise_message_last;
+  wire instSkidW_n_85;
+  wire instSkidW_n_86;
+  wire instSkidW_n_87;
+  wire instSkidW_n_88;
+  wire instSkidW_n_89;
+  wire instSkidW_n_98;
+  wire [13:0]noise_message_last;
+  wire noise_message_last_2;
   wire p_0_in1_in;
   wire p_0_in3_in;
   wire p_0_in6_in;
@@ -409,9 +416,8 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire \pulse1_message_last_reg_n_0_[8] ;
   wire \pulse1_message_last_reg_n_0_[9] ;
   wire [18:0]pulse2_message_last;
-  wire \pulse2_message_last[18]_i_2_n_0 ;
-  wire \pulse2_message_last[18]_i_3_n_0 ;
   wire pulse2_message_last_0;
+  wire r_valid;
   wire reset;
   wire reset_state;
   wire \reset_state_reg_n_0_[0] ;
@@ -512,281 +518,19 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   wire [31:0]wskd_reset;
   wire [31:0]wskd_set;
   wire wskd_valid;
-  wire [3:0]NLW_FifoData3__15_carry_O_UNCONNECTED;
-  wire [3:1]NLW_FifoData3__15_carry__0_CO_UNCONNECTED;
-  wire [3:0]NLW_FifoData3__15_carry__0_O_UNCONNECTED;
-  wire [3:0]NLW_FifoData3__20_carry_O_UNCONNECTED;
-  wire [3:0]NLW_FifoData3__20_carry__0_O_UNCONNECTED;
-  wire [3:2]NLW_FifoData3__20_carry__1_CO_UNCONNECTED;
-  wire [3:0]NLW_FifoData3__20_carry__1_O_UNCONNECTED;
-  wire [3:0]NLW_FifoData3__7_carry_O_UNCONNECTED;
-  wire [3:3]NLW_FifoData3__7_carry__0_CO_UNCONNECTED;
-  wire [3:0]NLW_FifoData3__7_carry__0_O_UNCONNECTED;
   wire [3:0]NLW_FifoData3_carry_O_UNCONNECTED;
   wire [3:3]NLW_FifoData3_carry__0_CO_UNCONNECTED;
   wire [3:0]NLW_FifoData3_carry__0_O_UNCONNECTED;
+  wire [3:0]\NLW_FifoData3_inferred__0/i__carry_O_UNCONNECTED ;
+  wire [3:3]\NLW_FifoData3_inferred__0/i__carry__0_CO_UNCONNECTED ;
+  wire [3:0]\NLW_FifoData3_inferred__0/i__carry__0_O_UNCONNECTED ;
+  wire [3:0]\NLW_FifoData3_inferred__1/i__carry_O_UNCONNECTED ;
+  wire [3:1]\NLW_FifoData3_inferred__1/i__carry__0_CO_UNCONNECTED ;
+  wire [3:0]\NLW_FifoData3_inferred__1/i__carry__0_O_UNCONNECTED ;
+  wire [3:0]\NLW_FifoData3_inferred__2/i__carry_O_UNCONNECTED ;
+  wire [3:1]\NLW_FifoData3_inferred__2/i__carry__0_CO_UNCONNECTED ;
+  wire [3:0]\NLW_FifoData3_inferred__2/i__carry__0_O_UNCONNECTED ;
 
-  CARRY4 FifoData3__15_carry
-       (.CI(1'b0),
-        .CO({FifoData3__15_carry_n_0,FifoData3__15_carry_n_1,FifoData3__15_carry_n_2,FifoData3__15_carry_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
-        .O(NLW_FifoData3__15_carry_O_UNCONNECTED[3:0]),
-        .S({FifoData3__15_carry_i_1_n_0,FifoData3__15_carry_i_2_n_0,FifoData3__15_carry_i_3_n_0,FifoData3__15_carry_i_4_n_0}));
-  CARRY4 FifoData3__15_carry__0
-       (.CI(FifoData3__15_carry_n_0),
-        .CO({NLW_FifoData3__15_carry__0_CO_UNCONNECTED[3:1],FifoData33_in}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b1}),
-        .O(NLW_FifoData3__15_carry__0_O_UNCONNECTED[3:0]),
-        .S({1'b0,1'b0,1'b0,FifoData3__15_carry__0_i_1_n_0}));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__15_carry__0_i_1
-       (.I0(Triangle_Message[13]),
-        .I1(triangle_message_last[13]),
-        .I2(Triangle_Message[12]),
-        .I3(triangle_message_last[12]),
-        .I4(triangle_message_last[14]),
-        .I5(Triangle_Message[14]),
-        .O(FifoData3__15_carry__0_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__15_carry_i_1
-       (.I0(Triangle_Message[10]),
-        .I1(triangle_message_last[10]),
-        .I2(Triangle_Message[9]),
-        .I3(triangle_message_last[9]),
-        .I4(triangle_message_last[11]),
-        .I5(Triangle_Message[11]),
-        .O(FifoData3__15_carry_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__15_carry_i_2
-       (.I0(Triangle_Message[7]),
-        .I1(triangle_message_last[7]),
-        .I2(Triangle_Message[6]),
-        .I3(triangle_message_last[6]),
-        .I4(triangle_message_last[8]),
-        .I5(Triangle_Message[8]),
-        .O(FifoData3__15_carry_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__15_carry_i_3
-       (.I0(Triangle_Message[4]),
-        .I1(triangle_message_last[4]),
-        .I2(Triangle_Message[5]),
-        .I3(triangle_message_last[5]),
-        .I4(Triangle_Message[3]),
-        .I5(p_0_in3_in),
-        .O(FifoData3__15_carry_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__15_carry_i_4
-       (.I0(Triangle_Message[1]),
-        .I1(triangle_message_last[1]),
-        .I2(Triangle_Message[0]),
-        .I3(triangle_message_last[0]),
-        .I4(triangle_message_last[2]),
-        .I5(Triangle_Message[2]),
-        .O(FifoData3__15_carry_i_4_n_0));
-  CARRY4 FifoData3__20_carry
-       (.CI(1'b0),
-        .CO({FifoData3__20_carry_n_0,FifoData3__20_carry_n_1,FifoData3__20_carry_n_2,FifoData3__20_carry_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
-        .O(NLW_FifoData3__20_carry_O_UNCONNECTED[3:0]),
-        .S({FifoData3__20_carry_i_1_n_0,FifoData3__20_carry_i_2_n_0,FifoData3__20_carry_i_3_n_0,FifoData3__20_carry_i_4_n_0}));
-  CARRY4 FifoData3__20_carry__0
-       (.CI(FifoData3__20_carry_n_0),
-        .CO({FifoData3__20_carry__0_n_0,FifoData3__20_carry__0_n_1,FifoData3__20_carry__0_n_2,FifoData3__20_carry__0_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
-        .O(NLW_FifoData3__20_carry__0_O_UNCONNECTED[3:0]),
-        .S({FifoData3__20_carry__0_i_1_n_0,FifoData3__20_carry__0_i_2_n_0,FifoData3__20_carry__0_i_3_n_0,FifoData3__20_carry__0_i_4_n_0}));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry__0_i_1
-       (.I0(Noise_Message[22]),
-        .I1(FifoData[22]),
-        .I2(Noise_Message[21]),
-        .I3(FifoData[21]),
-        .I4(FifoData[23]),
-        .I5(Noise_Message[23]),
-        .O(FifoData3__20_carry__0_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry__0_i_2
-       (.I0(Noise_Message[19]),
-        .I1(FifoData[19]),
-        .I2(Noise_Message[18]),
-        .I3(noise_message_last[18]),
-        .I4(FifoData[20]),
-        .I5(Noise_Message[20]),
-        .O(FifoData3__20_carry__0_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry__0_i_3
-       (.I0(Noise_Message[16]),
-        .I1(noise_message_last[16]),
-        .I2(Noise_Message[15]),
-        .I3(noise_message_last[15]),
-        .I4(noise_message_last[17]),
-        .I5(Noise_Message[17]),
-        .O(FifoData3__20_carry__0_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry__0_i_4
-       (.I0(Noise_Message[13]),
-        .I1(noise_message_last[13]),
-        .I2(Noise_Message[12]),
-        .I3(noise_message_last[12]),
-        .I4(noise_message_last[14]),
-        .I5(Noise_Message[14]),
-        .O(FifoData3__20_carry__0_i_4_n_0));
-  CARRY4 FifoData3__20_carry__1
-       (.CI(FifoData3__20_carry__0_n_0),
-        .CO({NLW_FifoData3__20_carry__1_CO_UNCONNECTED[3:2],FifoData31_in,FifoData3__20_carry__1_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b1,1'b1}),
-        .O(NLW_FifoData3__20_carry__1_O_UNCONNECTED[3:0]),
-        .S({1'b0,1'b0,FifoData3__20_carry__1_i_1_n_0,FifoData3__20_carry__1_i_2_n_0}));
-  LUT2 #(
-    .INIT(4'h9)) 
-    FifoData3__20_carry__1_i_1
-       (.I0(FifoData[27]),
-        .I1(Noise_Message[27]),
-        .O(FifoData3__20_carry__1_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry__1_i_2
-       (.I0(Noise_Message[25]),
-        .I1(FifoData[25]),
-        .I2(Noise_Message[24]),
-        .I3(FifoData[24]),
-        .I4(FifoData[26]),
-        .I5(Noise_Message[26]),
-        .O(FifoData3__20_carry__1_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry_i_1
-       (.I0(Noise_Message[10]),
-        .I1(noise_message_last[10]),
-        .I2(Noise_Message[9]),
-        .I3(noise_message_last[9]),
-        .I4(noise_message_last[11]),
-        .I5(Noise_Message[11]),
-        .O(FifoData3__20_carry_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry_i_2
-       (.I0(Noise_Message[7]),
-        .I1(noise_message_last[7]),
-        .I2(Noise_Message[6]),
-        .I3(noise_message_last[6]),
-        .I4(noise_message_last[8]),
-        .I5(Noise_Message[8]),
-        .O(FifoData3__20_carry_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry_i_3
-       (.I0(Noise_Message[4]),
-        .I1(noise_message_last[4]),
-        .I2(Noise_Message[5]),
-        .I3(noise_message_last[5]),
-        .I4(Noise_Message[3]),
-        .I5(p_0_in1_in),
-        .O(FifoData3__20_carry_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__20_carry_i_4
-       (.I0(Noise_Message[1]),
-        .I1(noise_message_last[1]),
-        .I2(Noise_Message[0]),
-        .I3(noise_message_last[0]),
-        .I4(noise_message_last[2]),
-        .I5(Noise_Message[2]),
-        .O(FifoData3__20_carry_i_4_n_0));
-  CARRY4 FifoData3__7_carry
-       (.CI(1'b0),
-        .CO({FifoData3__7_carry_n_0,FifoData3__7_carry_n_1,FifoData3__7_carry_n_2,FifoData3__7_carry_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
-        .O(NLW_FifoData3__7_carry_O_UNCONNECTED[3:0]),
-        .S({FifoData3__7_carry_i_1_n_0,FifoData3__7_carry_i_2_n_0,FifoData3__7_carry_i_3_n_0,FifoData3__7_carry_i_4_n_0}));
-  CARRY4 FifoData3__7_carry__0
-       (.CI(FifoData3__7_carry_n_0),
-        .CO({NLW_FifoData3__7_carry__0_CO_UNCONNECTED[3],FifoData3,FifoData3__7_carry__0_n_2,FifoData3__7_carry__0_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b1,1'b1,1'b1}),
-        .O(NLW_FifoData3__7_carry__0_O_UNCONNECTED[3:0]),
-        .S({1'b0,FifoData3__7_carry__0_i_1_n_0,FifoData3__7_carry__0_i_2_n_0,FifoData3__7_carry__0_i_3_n_0}));
-  LUT2 #(
-    .INIT(4'h9)) 
-    FifoData3__7_carry__0_i_1
-       (.I0(pulse2_message_last[18]),
-        .I1(Pulse2_Message[18]),
-        .O(FifoData3__7_carry__0_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__7_carry__0_i_2
-       (.I0(Pulse2_Message[16]),
-        .I1(pulse2_message_last[16]),
-        .I2(Pulse2_Message[15]),
-        .I3(pulse2_message_last[15]),
-        .I4(pulse2_message_last[17]),
-        .I5(Pulse2_Message[17]),
-        .O(FifoData3__7_carry__0_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__7_carry__0_i_3
-       (.I0(Pulse2_Message[13]),
-        .I1(pulse2_message_last[13]),
-        .I2(Pulse2_Message[12]),
-        .I3(pulse2_message_last[12]),
-        .I4(pulse2_message_last[14]),
-        .I5(Pulse2_Message[14]),
-        .O(FifoData3__7_carry__0_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__7_carry_i_1
-       (.I0(Pulse2_Message[10]),
-        .I1(pulse2_message_last[10]),
-        .I2(Pulse2_Message[9]),
-        .I3(pulse2_message_last[9]),
-        .I4(pulse2_message_last[11]),
-        .I5(Pulse2_Message[11]),
-        .O(FifoData3__7_carry_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__7_carry_i_2
-       (.I0(Pulse2_Message[7]),
-        .I1(pulse2_message_last[7]),
-        .I2(Pulse2_Message[6]),
-        .I3(pulse2_message_last[6]),
-        .I4(pulse2_message_last[8]),
-        .I5(Pulse2_Message[8]),
-        .O(FifoData3__7_carry_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__7_carry_i_3
-       (.I0(Pulse2_Message[4]),
-        .I1(pulse2_message_last[4]),
-        .I2(Pulse2_Message[5]),
-        .I3(pulse2_message_last[5]),
-        .I4(Pulse2_Message[3]),
-        .I5(p_0_in6_in),
-        .O(FifoData3__7_carry_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    FifoData3__7_carry_i_4
-       (.I0(Pulse2_Message[1]),
-        .I1(pulse2_message_last[1]),
-        .I2(Pulse2_Message[0]),
-        .I3(pulse2_message_last[0]),
-        .I4(pulse2_message_last[2]),
-        .I5(Pulse2_Message[2]),
-        .O(FifoData3__7_carry_i_4_n_0));
   CARRY4 FifoData3_carry
        (.CI(1'b0),
         .CO({FifoData3_carry_n_0,FifoData3_carry_n_1,FifoData3_carry_n_2,FifoData3_carry_n_3}),
@@ -810,40 +554,40 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     FifoData3_carry__0_i_2
-       (.I0(Pulse1_Message[16]),
-        .I1(\pulse1_message_last_reg_n_0_[16] ),
-        .I2(Pulse1_Message[15]),
-        .I3(\pulse1_message_last_reg_n_0_[15] ),
+       (.I0(Pulse1_Message[15]),
+        .I1(\pulse1_message_last_reg_n_0_[15] ),
+        .I2(Pulse1_Message[16]),
+        .I3(\pulse1_message_last_reg_n_0_[16] ),
         .I4(\pulse1_message_last_reg_n_0_[17] ),
         .I5(Pulse1_Message[17]),
         .O(FifoData3_carry__0_i_2_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     FifoData3_carry__0_i_3
-       (.I0(Pulse1_Message[13]),
-        .I1(\pulse1_message_last_reg_n_0_[13] ),
-        .I2(Pulse1_Message[12]),
-        .I3(\pulse1_message_last_reg_n_0_[12] ),
+       (.I0(Pulse1_Message[12]),
+        .I1(\pulse1_message_last_reg_n_0_[12] ),
+        .I2(Pulse1_Message[13]),
+        .I3(\pulse1_message_last_reg_n_0_[13] ),
         .I4(\pulse1_message_last_reg_n_0_[14] ),
         .I5(Pulse1_Message[14]),
         .O(FifoData3_carry__0_i_3_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     FifoData3_carry_i_1
-       (.I0(Pulse1_Message[10]),
-        .I1(\pulse1_message_last_reg_n_0_[10] ),
-        .I2(Pulse1_Message[9]),
-        .I3(\pulse1_message_last_reg_n_0_[9] ),
+       (.I0(Pulse1_Message[9]),
+        .I1(\pulse1_message_last_reg_n_0_[9] ),
+        .I2(Pulse1_Message[10]),
+        .I3(\pulse1_message_last_reg_n_0_[10] ),
         .I4(\pulse1_message_last_reg_n_0_[11] ),
         .I5(Pulse1_Message[11]),
         .O(FifoData3_carry_i_1_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     FifoData3_carry_i_2
-       (.I0(Pulse1_Message[7]),
-        .I1(\pulse1_message_last_reg_n_0_[7] ),
-        .I2(Pulse1_Message[6]),
-        .I3(\pulse1_message_last_reg_n_0_[6] ),
+       (.I0(Pulse1_Message[6]),
+        .I1(\pulse1_message_last_reg_n_0_[6] ),
+        .I2(Pulse1_Message[7]),
+        .I3(\pulse1_message_last_reg_n_0_[7] ),
         .I4(\pulse1_message_last_reg_n_0_[8] ),
         .I5(Pulse1_Message[8]),
         .O(FifoData3_carry_i_2_n_0));
@@ -860,20 +604,62 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     FifoData3_carry_i_4
-       (.I0(Pulse1_Message[1]),
-        .I1(\pulse1_message_last_reg_n_0_[1] ),
-        .I2(Pulse1_Message[0]),
-        .I3(\pulse1_message_last_reg_n_0_[0] ),
+       (.I0(Pulse1_Message[0]),
+        .I1(\pulse1_message_last_reg_n_0_[0] ),
+        .I2(Pulse1_Message[1]),
+        .I3(\pulse1_message_last_reg_n_0_[1] ),
         .I4(\pulse1_message_last_reg_n_0_[2] ),
         .I5(Pulse1_Message[2]),
         .O(FifoData3_carry_i_4_n_0));
+  CARRY4 \FifoData3_inferred__0/i__carry 
+       (.CI(1'b0),
+        .CO({\FifoData3_inferred__0/i__carry_n_0 ,\FifoData3_inferred__0/i__carry_n_1 ,\FifoData3_inferred__0/i__carry_n_2 ,\FifoData3_inferred__0/i__carry_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b1,1'b1,1'b1,1'b1}),
+        .O(\NLW_FifoData3_inferred__0/i__carry_O_UNCONNECTED [3:0]),
+        .S({i__carry_i_1_n_0,i__carry_i_2_n_0,i__carry_i_3_n_0,i__carry_i_4_n_0}));
+  CARRY4 \FifoData3_inferred__0/i__carry__0 
+       (.CI(\FifoData3_inferred__0/i__carry_n_0 ),
+        .CO({\NLW_FifoData3_inferred__0/i__carry__0_CO_UNCONNECTED [3],FifoData3,\FifoData3_inferred__0/i__carry__0_n_2 ,\FifoData3_inferred__0/i__carry__0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b1,1'b1,1'b1}),
+        .O(\NLW_FifoData3_inferred__0/i__carry__0_O_UNCONNECTED [3:0]),
+        .S({1'b0,i__carry__0_i_1__1_n_0,i__carry__0_i_2_n_0,i__carry__0_i_3_n_0}));
+  CARRY4 \FifoData3_inferred__1/i__carry 
+       (.CI(1'b0),
+        .CO({\FifoData3_inferred__1/i__carry_n_0 ,\FifoData3_inferred__1/i__carry_n_1 ,\FifoData3_inferred__1/i__carry_n_2 ,\FifoData3_inferred__1/i__carry_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b1,1'b1,1'b1,1'b1}),
+        .O(\NLW_FifoData3_inferred__1/i__carry_O_UNCONNECTED [3:0]),
+        .S({i__carry_i_1__0_n_0,i__carry_i_2__0_n_0,i__carry_i_3__0_n_0,i__carry_i_4__0_n_0}));
+  CARRY4 \FifoData3_inferred__1/i__carry__0 
+       (.CI(\FifoData3_inferred__1/i__carry_n_0 ),
+        .CO({\NLW_FifoData3_inferred__1/i__carry__0_CO_UNCONNECTED [3:1],FifoData33_in}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b1}),
+        .O(\NLW_FifoData3_inferred__1/i__carry__0_O_UNCONNECTED [3:0]),
+        .S({1'b0,1'b0,1'b0,i__carry__0_i_1_n_0}));
+  CARRY4 \FifoData3_inferred__2/i__carry 
+       (.CI(1'b0),
+        .CO({\FifoData3_inferred__2/i__carry_n_0 ,\FifoData3_inferred__2/i__carry_n_1 ,\FifoData3_inferred__2/i__carry_n_2 ,\FifoData3_inferred__2/i__carry_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b1,1'b1,1'b1,1'b1}),
+        .O(\NLW_FifoData3_inferred__2/i__carry_O_UNCONNECTED [3:0]),
+        .S({i__carry_i_1__1_n_0,i__carry_i_2__1_n_0,i__carry_i_3__1_n_0,i__carry_i_4__1_n_0}));
+  CARRY4 \FifoData3_inferred__2/i__carry__0 
+       (.CI(\FifoData3_inferred__2/i__carry_n_0 ),
+        .CO({\NLW_FifoData3_inferred__2/i__carry__0_CO_UNCONNECTED [3:1],FifoData31_in}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b1}),
+        .O(\NLW_FifoData3_inferred__2/i__carry__0_O_UNCONNECTED [3:0]),
+        .S({1'b0,1'b0,1'b0,i__carry__0_i_1__0_n_0}));
   LUT5 #(
-    .INIT(32'hFFAEAEAE)) 
+    .INIT(32'hFFEAEAEA)) 
     \FifoData[0]_i_1 
        (.I0(\FifoData[0]_i_2_n_0 ),
-        .I1(DMC_Message[0]),
-        .I2(\FifoData[14]_i_1_n_0 ),
-        .I3(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[3]_i_5_n_0 ),
+        .I2(DMC_Message[0]),
+        .I3(\FifoData[13]_i_4_n_0 ),
         .I4(Noise_Message[0]),
         .O(\FifoData[0]_i_1_n_0 ));
   LUT6 #(
@@ -890,7 +676,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(32'hFFEAEAEA)) 
     \FifoData[10]_i_1 
        (.I0(\FifoData[10]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[10]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[10]),
@@ -899,15 +685,15 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[10]_i_2 
        (.I0(Pulse1_Message[10]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[10]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[10]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'hFFEAEAEA)) 
     \FifoData[11]_i_1 
        (.I0(\FifoData[11]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[11]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[11]),
@@ -916,15 +702,15 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[11]_i_2 
        (.I0(Pulse1_Message[11]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[11]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[11]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'hFFEAEAEA)) 
     \FifoData[12]_i_1 
        (.I0(\FifoData[12]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[12]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[12]),
@@ -933,128 +719,176 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[12]_i_2 
        (.I0(Pulse1_Message[12]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[12]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[12]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'hFFEAEAEA)) 
+    .INIT(32'hFEAAAAAA)) 
     \FifoData[13]_i_1 
-       (.I0(\FifoData[13]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+       (.I0(\FifoData[14]_i_3_n_0 ),
+        .I1(Noise_Message[3]),
+        .I2(p_0_in1_in),
+        .I3(FifoData31_in),
+        .I4(ENABLE_NOISE),
+        .O(\FifoData[13]_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFEAEAEA)) 
+    \FifoData[13]_i_2 
+       (.I0(\FifoData[13]_i_3_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[13]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[13]),
-        .O(\FifoData[13]_i_1_n_0 ));
+        .O(\FifoData[13]_i_2_n_0 ));
   LUT4 #(
     .INIT(16'hF888)) 
-    \FifoData[13]_i_2 
+    \FifoData[13]_i_3 
        (.I0(Pulse1_Message[13]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[13]),
-        .I3(\FifoData[18]_i_3_n_0 ),
-        .O(\FifoData[13]_i_2_n_0 ));
+        .I3(\FifoData[18]_i_7_n_0 ),
+        .O(\FifoData[13]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFF8880)) 
-    \FifoData[14]_i_1 
-       (.I0(ENABLE_TRIANGLE),
-        .I1(FifoData33_in),
+    .INIT(64'h0155555500000000)) 
+    \FifoData[13]_i_4 
+       (.I0(\FifoData[18]_i_1_n_0 ),
+        .I1(Triangle_Message[3]),
         .I2(p_0_in3_in),
-        .I3(Triangle_Message[3]),
-        .I4(\FifoData[27]_i_4_n_0 ),
+        .I3(FifoData33_in),
+        .I4(ENABLE_TRIANGLE),
         .I5(FifoData1__2),
+        .O(\FifoData[13]_i_4_n_0 ));
+  LUT4 #(
+    .INIT(16'h8880)) 
+    \FifoData[13]_i_5 
+       (.I0(ENABLE_NOISE),
+        .I1(FifoData31_in),
+        .I2(p_0_in1_in),
+        .I3(Noise_Message[3]),
+        .O(FifoData1__2));
+  LUT5 #(
+    .INIT(32'hEAFFEA00)) 
+    \FifoData[14]_i_1 
+       (.I0(\FifoData[14]_i_2_n_0 ),
+        .I1(Pulse1_Message[14]),
+        .I2(\FifoData[18]_i_6_n_0 ),
+        .I3(\FifoData[14]_i_3_n_0 ),
+        .I4(FifoData[14]),
         .O(\FifoData[14]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'hFFEAEAEA)) 
+    .INIT(32'h8888F000)) 
     \FifoData[14]_i_2 
-       (.I0(\FifoData[14]_i_3_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
-        .I2(Noise_Message[14]),
-        .I3(\triangle_message_last[14]_i_1_n_0 ),
-        .I4(Triangle_Message[14]),
+       (.I0(Pulse2_Message[14]),
+        .I1(pulse2_message_last_0),
+        .I2(Triangle_Message[14]),
+        .I3(FifoData14_out),
+        .I4(\FifoData[18]_i_1_n_0 ),
         .O(\FifoData[14]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hF888)) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT5 #(
+    .INIT(32'hFEAAAAAA)) 
     \FifoData[14]_i_3 
-       (.I0(Pulse1_Message[14]),
-        .I1(\FifoData[18]_i_4_n_0 ),
-        .I2(Pulse2_Message[14]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+       (.I0(\FifoData[18]_i_1_n_0 ),
+        .I1(Triangle_Message[3]),
+        .I2(p_0_in3_in),
+        .I3(FifoData33_in),
+        .I4(ENABLE_TRIANGLE),
         .O(\FifoData[14]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
-    \FifoData[15]_i_1 
-       (.I0(\FifoData[27]_i_1_n_0 ),
-        .I1(Noise_Message[15]),
-        .I2(\FifoData[18]_i_3_n_0 ),
-        .I3(Pulse2_Message[15]),
-        .I4(Pulse1_Message[15]),
-        .I5(\FifoData[18]_i_4_n_0 ),
-        .O(\FifoData[15]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
-    \FifoData[16]_i_1 
-       (.I0(\FifoData[27]_i_1_n_0 ),
-        .I1(Noise_Message[16]),
-        .I2(\FifoData[18]_i_3_n_0 ),
-        .I3(Pulse2_Message[16]),
-        .I4(Pulse1_Message[16]),
-        .I5(\FifoData[18]_i_4_n_0 ),
-        .O(\FifoData[16]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
-    \FifoData[17]_i_1 
-       (.I0(\FifoData[27]_i_1_n_0 ),
-        .I1(Noise_Message[17]),
-        .I2(\FifoData[18]_i_3_n_0 ),
-        .I3(Pulse2_Message[17]),
-        .I4(Pulse1_Message[17]),
-        .I5(\FifoData[18]_i_4_n_0 ),
-        .O(\FifoData[17]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF777F0000)) 
-    \FifoData[18]_i_1 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT4 #(
+    .INIT(16'h8880)) 
+    \FifoData[14]_i_4 
        (.I0(ENABLE_TRIANGLE),
         .I1(FifoData33_in),
         .I2(p_0_in3_in),
         .I3(Triangle_Message[3]),
-        .I4(FifoData1__2),
-        .I5(\FifoData[27]_i_4_n_0 ),
+        .O(FifoData14_out));
+  LUT4 #(
+    .INIT(16'hF888)) 
+    \FifoData[15]_i_1 
+       (.I0(Pulse1_Message[15]),
+        .I1(\FifoData[18]_i_6_n_0 ),
+        .I2(Pulse2_Message[15]),
+        .I3(\FifoData[18]_i_7_n_0 ),
+        .O(\FifoData[15]_i_1_n_0 ));
+  LUT4 #(
+    .INIT(16'hF888)) 
+    \FifoData[16]_i_1 
+       (.I0(Pulse1_Message[16]),
+        .I1(\FifoData[18]_i_6_n_0 ),
+        .I2(Pulse2_Message[16]),
+        .I3(\FifoData[18]_i_7_n_0 ),
+        .O(\FifoData[16]_i_1_n_0 ));
+  LUT4 #(
+    .INIT(16'hF888)) 
+    \FifoData[17]_i_1 
+       (.I0(Pulse1_Message[17]),
+        .I1(\FifoData[18]_i_6_n_0 ),
+        .I2(Pulse2_Message[17]),
+        .I3(\FifoData[18]_i_7_n_0 ),
+        .O(\FifoData[17]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hFF80808080808080)) 
+    \FifoData[18]_i_1 
+       (.I0(\FifoData[18]_i_4_n_0 ),
+        .I1(FifoData3),
+        .I2(ENABLE_PULSE_2),
+        .I3(\FifoData[18]_i_5_n_0 ),
+        .I4(FifoData30_out),
+        .I5(\state_reg_n_0_[0] ),
         .O(\FifoData[18]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF888F888F888)) 
+  LUT4 #(
+    .INIT(16'hF888)) 
     \FifoData[18]_i_2 
-       (.I0(\FifoData[27]_i_1_n_0 ),
-        .I1(Noise_Message[18]),
-        .I2(\FifoData[18]_i_3_n_0 ),
-        .I3(Pulse2_Message[18]),
-        .I4(Pulse1_Message[18]),
-        .I5(\FifoData[18]_i_4_n_0 ),
+       (.I0(Pulse1_Message[18]),
+        .I1(\FifoData[18]_i_6_n_0 ),
+        .I2(Pulse2_Message[18]),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[18]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h7F00000000000000)) 
+  LUT2 #(
+    .INIT(4'h7)) 
     \FifoData[18]_i_3 
-       (.I0(\state_reg_n_0_[0] ),
-        .I1(FifoData30_out),
-        .I2(\pulse2_message_last[18]_i_3_n_0 ),
-        .I3(ENABLE_PULSE_2),
-        .I4(FifoData3),
-        .I5(\pulse2_message_last[18]_i_2_n_0 ),
+       (.I0(S_AXI_ARESETN),
+        .I1(CPU_Rst),
         .O(\FifoData[18]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    \FifoData[18]_i_4 
+       (.I0(Pulse2_Message[3]),
+        .I1(p_0_in6_in),
+        .O(\FifoData[18]_i_4_n_0 ));
+  LUT2 #(
+    .INIT(4'hE)) 
+    \FifoData[18]_i_5 
+       (.I0(Pulse1_Message[3]),
+        .I1(p_0_in9_in),
+        .O(\FifoData[18]_i_5_n_0 ));
   LUT3 #(
     .INIT(8'h80)) 
-    \FifoData[18]_i_4 
-       (.I0(\pulse2_message_last[18]_i_3_n_0 ),
+    \FifoData[18]_i_6 
+       (.I0(\FifoData[18]_i_5_n_0 ),
         .I1(FifoData30_out),
         .I2(\state_reg_n_0_[0] ),
-        .O(\FifoData[18]_i_4_n_0 ));
+        .O(\FifoData[18]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h7F00000000000000)) 
+    \FifoData[18]_i_7 
+       (.I0(\state_reg_n_0_[0] ),
+        .I1(FifoData30_out),
+        .I2(\FifoData[18]_i_5_n_0 ),
+        .I3(ENABLE_PULSE_2),
+        .I4(FifoData3),
+        .I5(\FifoData[18]_i_4_n_0 ),
+        .O(\FifoData[18]_i_7_n_0 ));
   LUT5 #(
-    .INIT(32'hFFAEAEAE)) 
+    .INIT(32'hFFEAEAEA)) 
     \FifoData[1]_i_1 
        (.I0(\FifoData[1]_i_2_n_0 ),
-        .I1(DMC_Message[1]),
-        .I2(\FifoData[14]_i_1_n_0 ),
-        .I3(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[3]_i_5_n_0 ),
+        .I2(DMC_Message[1]),
+        .I3(\FifoData[13]_i_4_n_0 ),
         .I4(Noise_Message[1]),
         .O(\FifoData[1]_i_1_n_0 ));
   LUT6 #(
@@ -1067,47 +901,13 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
         .I4(FifoData17_out),
         .I5(FifoData110_out),
         .O(\FifoData[1]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h000000002A2A2AAA)) 
-    \FifoData[27]_i_1 
-       (.I0(FifoData1__2),
-        .I1(ENABLE_TRIANGLE),
-        .I2(FifoData33_in),
-        .I3(p_0_in3_in),
-        .I4(Triangle_Message[3]),
-        .I5(\FifoData[27]_i_4_n_0 ),
-        .O(\FifoData[27]_i_1_n_0 ));
-  LUT2 #(
-    .INIT(4'h7)) 
-    \FifoData[27]_i_2 
-       (.I0(S_AXI_ARESETN),
-        .I1(CPU_Rst),
-        .O(\FifoData[27]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'h8880)) 
-    \FifoData[27]_i_3 
-       (.I0(ENABLE_NOISE),
-        .I1(FifoData31_in),
-        .I2(p_0_in1_in),
-        .I3(Noise_Message[3]),
-        .O(FifoData1__2));
-  LUT6 #(
-    .INIT(64'hFF80808080808080)) 
-    \FifoData[27]_i_4 
-       (.I0(\pulse2_message_last[18]_i_2_n_0 ),
-        .I1(FifoData3),
-        .I2(ENABLE_PULSE_2),
-        .I3(\pulse2_message_last[18]_i_3_n_0 ),
-        .I4(FifoData30_out),
-        .I5(\state_reg_n_0_[0] ),
-        .O(\FifoData[27]_i_4_n_0 ));
   LUT5 #(
-    .INIT(32'hFFAEAEAE)) 
+    .INIT(32'hFFEAEAEA)) 
     \FifoData[2]_i_1 
        (.I0(\FifoData[2]_i_2_n_0 ),
-        .I1(DMC_Message[2]),
-        .I2(\FifoData[14]_i_1_n_0 ),
-        .I3(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[3]_i_5_n_0 ),
+        .I2(DMC_Message[2]),
+        .I3(\FifoData[13]_i_4_n_0 ),
         .I4(Noise_Message[2]),
         .O(\FifoData[2]_i_1_n_0 ));
   LUT6 #(
@@ -1123,20 +923,20 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
   LUT6 #(
     .INIT(64'hFFFFFFFFEAEAEAAA)) 
     \FifoData[3]_i_1 
-       (.I0(FifoData0__0),
+       (.I0(\FifoData[3]_i_3_n_0 ),
         .I1(ENABLE_NOISE),
         .I2(FifoData31_in),
         .I3(p_0_in1_in),
         .I4(Noise_Message[3]),
-        .I5(\FifoData[3]_i_4_n_0 ),
+        .I5(\FifoData[14]_i_3_n_0 ),
         .O(\FifoData[3]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'hFFAEAEAE)) 
+    .INIT(32'hFFEAEAEA)) 
     \FifoData[3]_i_2 
-       (.I0(\FifoData[3]_i_5_n_0 ),
-        .I1(DMC_Message[3]),
-        .I2(\FifoData[14]_i_1_n_0 ),
-        .I3(\FifoData[27]_i_1_n_0 ),
+       (.I0(\FifoData[3]_i_4_n_0 ),
+        .I1(\FifoData[3]_i_5_n_0 ),
+        .I2(DMC_Message[3]),
+        .I3(\FifoData[13]_i_4_n_0 ),
         .I4(Noise_Message[3]),
         .O(\FifoData[3]_i_2_n_0 ));
   LUT6 #(
@@ -1148,26 +948,26 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
         .I3(DMC_Message[3]),
         .I4(\dmc_message_last_reg_n_0_[3] ),
         .I5(\FifoData[3]_i_6_n_0 ),
-        .O(FifoData0__0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFEAEAEAAA)) 
-    \FifoData[3]_i_4 
-       (.I0(FifoData110_out),
-        .I1(ENABLE_PULSE_2),
-        .I2(FifoData3),
-        .I3(p_0_in6_in),
-        .I4(Pulse2_Message[3]),
-        .I5(FifoData14_out),
-        .O(\FifoData[3]_i_4_n_0 ));
+        .O(\FifoData[3]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'hFF00FF00F0F08888)) 
-    \FifoData[3]_i_5 
+    \FifoData[3]_i_4 
        (.I0(FifoData14_out),
         .I1(Triangle_Message[3]),
         .I2(Pulse2_Message[3]),
         .I3(Pulse1_Message[3]),
         .I4(FifoData17_out),
         .I5(FifoData110_out),
+        .O(\FifoData[3]_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000001555555)) 
+    \FifoData[3]_i_5 
+       (.I0(\FifoData[18]_i_1_n_0 ),
+        .I1(Triangle_Message[3]),
+        .I2(p_0_in3_in),
+        .I3(FifoData33_in),
+        .I4(ENABLE_TRIANGLE),
+        .I5(FifoData1__2),
         .O(\FifoData[3]_i_5_n_0 ));
   LUT4 #(
     .INIT(16'h6FF6)) 
@@ -1177,7 +977,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
         .I2(DMC_Message[1]),
         .I3(dmc_message_last[1]),
         .O(\FifoData[3]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT4 #(
     .INIT(16'h8880)) 
     \FifoData[3]_i_7 
@@ -1190,7 +990,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(32'hFFEAEAEA)) 
     \FifoData[4]_i_1 
        (.I0(\FifoData[4]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[4]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[4]),
@@ -1199,15 +999,15 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[4]_i_2 
        (.I0(Pulse1_Message[4]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[4]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[4]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'hFFEAEAEA)) 
     \FifoData[5]_i_1 
        (.I0(\FifoData[5]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[5]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[5]),
@@ -1216,15 +1016,15 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[5]_i_2 
        (.I0(Pulse1_Message[5]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[5]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[5]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'hFFEAEAEA)) 
     \FifoData[6]_i_1 
        (.I0(\FifoData[6]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[6]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[6]),
@@ -1233,15 +1033,15 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[6]_i_2 
        (.I0(Pulse1_Message[6]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[6]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[6]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'hFFEAEAEA)) 
     \FifoData[7]_i_1 
        (.I0(\FifoData[7]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[7]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[7]),
@@ -1250,15 +1050,15 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[7]_i_2 
        (.I0(Pulse1_Message[7]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[7]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[7]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'hFFEAEAEA)) 
     \FifoData[8]_i_1 
        (.I0(\FifoData[8]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[8]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[8]),
@@ -1267,15 +1067,15 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[8]_i_2 
        (.I0(Pulse1_Message[8]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[8]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[8]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'hFFEAEAEA)) 
     \FifoData[9]_i_1 
        (.I0(\FifoData[9]_i_2_n_0 ),
-        .I1(\FifoData[27]_i_1_n_0 ),
+        .I1(\FifoData[13]_i_4_n_0 ),
         .I2(Noise_Message[9]),
         .I3(\triangle_message_last[14]_i_1_n_0 ),
         .I4(Triangle_Message[9]),
@@ -1284,64 +1084,64 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     .INIT(16'hF888)) 
     \FifoData[9]_i_2 
        (.I0(Pulse1_Message[9]),
-        .I1(\FifoData[18]_i_4_n_0 ),
+        .I1(\FifoData[18]_i_6_n_0 ),
         .I2(Pulse2_Message[9]),
-        .I3(\FifoData[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_7_n_0 ),
         .O(\FifoData[9]_i_2_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[0] 
        (.C(S_AXI_ACLK),
         .CE(\FifoData[3]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[0]_i_1_n_0 ),
         .Q(FifoData[0]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[10] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[10]_i_1_n_0 ),
         .Q(FifoData[10]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[11] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[11]_i_1_n_0 ),
         .Q(FifoData[11]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[12] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[12]_i_1_n_0 ),
         .Q(FifoData[12]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[13] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(\FifoData[13]_i_1_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
+        .D(\FifoData[13]_i_2_n_0 ),
         .Q(FifoData[13]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[14] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(\FifoData[14]_i_2_n_0 ),
+        .CE(1'b1),
+        .CLR(\FifoData[18]_i_3_n_0 ),
+        .D(\FifoData[14]_i_1_n_0 ),
         .Q(FifoData[14]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[15] 
        (.C(S_AXI_ACLK),
         .CE(\FifoData[18]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[15]_i_1_n_0 ),
         .Q(FifoData[15]));
   FDCE #(
@@ -1349,7 +1149,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \FifoData_reg[16] 
        (.C(S_AXI_ACLK),
         .CE(\FifoData[18]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[16]_i_1_n_0 ),
         .Q(FifoData[16]));
   FDCE #(
@@ -1357,7 +1157,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \FifoData_reg[17] 
        (.C(S_AXI_ACLK),
         .CE(\FifoData[18]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[17]_i_1_n_0 ),
         .Q(FifoData[17]));
   FDCE #(
@@ -1365,95 +1165,23 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \FifoData_reg[18] 
        (.C(S_AXI_ACLK),
         .CE(\FifoData[18]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[18]_i_2_n_0 ),
         .Q(FifoData[18]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[19] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[19]),
-        .Q(FifoData[19]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[1] 
        (.C(S_AXI_ACLK),
         .CE(\FifoData[3]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[1]_i_1_n_0 ),
         .Q(FifoData[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[20] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[20]),
-        .Q(FifoData[20]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[21] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[21]),
-        .Q(FifoData[21]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[22] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[22]),
-        .Q(FifoData[22]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[23] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[23]),
-        .Q(FifoData[23]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[24] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[24]),
-        .Q(FifoData[24]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[25] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[25]),
-        .Q(FifoData[25]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[26] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[26]),
-        .Q(FifoData[26]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \FifoData_reg[27] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[27]),
-        .Q(FifoData[27]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[2] 
        (.C(S_AXI_ACLK),
         .CE(\FifoData[3]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[2]_i_1_n_0 ),
         .Q(FifoData[2]));
   FDCE #(
@@ -1461,55 +1189,55 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \FifoData_reg[3] 
        (.C(S_AXI_ACLK),
         .CE(\FifoData[3]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[3]_i_2_n_0 ),
         .Q(FifoData[3]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[4] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[4]_i_1_n_0 ),
         .Q(FifoData[4]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[5] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[5]_i_1_n_0 ),
         .Q(FifoData[5]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[6] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[6]_i_1_n_0 ),
         .Q(FifoData[6]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[7] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[7]_i_1_n_0 ),
         .Q(FifoData[7]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[8] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[8]_i_1_n_0 ),
         .Q(FifoData[8]));
   FDCE #(
     .INIT(1'b0)) 
     \FifoData_reg[9] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(\FifoData[13]_i_1_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[9]_i_1_n_0 ),
         .Q(FifoData[9]));
   FDCE #(
@@ -1517,7 +1245,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     FifoWrite_reg
        (.C(S_AXI_ACLK),
         .CE(1'b1),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(\FifoData[3]_i_1_n_0 ),
         .Q(FifoWrite));
   FDRE #(
@@ -1798,18 +1526,22 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
         .D(instSkidAR_n_2),
         .Q(axi_read_valid_reg_0),
         .R(reset));
-  LUT2 #(
-    .INIT(4'h4)) 
+  LUT6 #(
+    .INIT(64'h000000002A2A2AAA)) 
     \dmc_message_last[3]_i_1 
-       (.I0(\FifoData[14]_i_1_n_0 ),
-        .I1(FifoData0__0),
+       (.I0(\FifoData[3]_i_3_n_0 ),
+        .I1(ENABLE_NOISE),
+        .I2(FifoData31_in),
+        .I3(p_0_in1_in),
+        .I4(Noise_Message[3]),
+        .I5(\FifoData[14]_i_3_n_0 ),
         .O(dmc_message_last_1));
   FDCE #(
     .INIT(1'b0)) 
     \dmc_message_last_reg[0] 
        (.C(S_AXI_ACLK),
         .CE(dmc_message_last_1),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(DMC_Message[0]),
         .Q(dmc_message_last[0]));
   FDCE #(
@@ -1817,7 +1549,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \dmc_message_last_reg[1] 
        (.C(S_AXI_ACLK),
         .CE(dmc_message_last_1),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(DMC_Message[1]),
         .Q(dmc_message_last[1]));
   FDCE #(
@@ -1825,7 +1557,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \dmc_message_last_reg[2] 
        (.C(S_AXI_ACLK),
         .CE(dmc_message_last_1),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(DMC_Message[2]),
         .Q(dmc_message_last[2]));
   FDCE #(
@@ -1833,22 +1565,186 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \dmc_message_last_reg[3] 
        (.C(S_AXI_ACLK),
         .CE(dmc_message_last_1),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(DMC_Message[3]),
         .Q(\dmc_message_last_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry__0_i_1
+       (.I0(Triangle_Message[12]),
+        .I1(triangle_message_last[12]),
+        .I2(Triangle_Message[13]),
+        .I3(triangle_message_last[13]),
+        .I4(triangle_message_last[14]),
+        .I5(Triangle_Message[14]),
+        .O(i__carry__0_i_1_n_0));
+  LUT4 #(
+    .INIT(16'h9009)) 
+    i__carry__0_i_1__0
+       (.I0(Noise_Message[12]),
+        .I1(noise_message_last[12]),
+        .I2(noise_message_last[13]),
+        .I3(Noise_Message[13]),
+        .O(i__carry__0_i_1__0_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    i__carry__0_i_1__1
+       (.I0(pulse2_message_last[18]),
+        .I1(Pulse2_Message[18]),
+        .O(i__carry__0_i_1__1_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry__0_i_2
+       (.I0(Pulse2_Message[15]),
+        .I1(pulse2_message_last[15]),
+        .I2(Pulse2_Message[16]),
+        .I3(pulse2_message_last[16]),
+        .I4(pulse2_message_last[17]),
+        .I5(Pulse2_Message[17]),
+        .O(i__carry__0_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry__0_i_3
+       (.I0(Pulse2_Message[12]),
+        .I1(pulse2_message_last[12]),
+        .I2(Pulse2_Message[13]),
+        .I3(pulse2_message_last[13]),
+        .I4(pulse2_message_last[14]),
+        .I5(Pulse2_Message[14]),
+        .O(i__carry__0_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_1
+       (.I0(Pulse2_Message[9]),
+        .I1(pulse2_message_last[9]),
+        .I2(Pulse2_Message[10]),
+        .I3(pulse2_message_last[10]),
+        .I4(pulse2_message_last[11]),
+        .I5(Pulse2_Message[11]),
+        .O(i__carry_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_1__0
+       (.I0(Triangle_Message[9]),
+        .I1(triangle_message_last[9]),
+        .I2(Triangle_Message[10]),
+        .I3(triangle_message_last[10]),
+        .I4(triangle_message_last[11]),
+        .I5(Triangle_Message[11]),
+        .O(i__carry_i_1__0_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_1__1
+       (.I0(Noise_Message[9]),
+        .I1(noise_message_last[9]),
+        .I2(Noise_Message[10]),
+        .I3(noise_message_last[10]),
+        .I4(noise_message_last[11]),
+        .I5(Noise_Message[11]),
+        .O(i__carry_i_1__1_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_2
+       (.I0(Pulse2_Message[6]),
+        .I1(pulse2_message_last[6]),
+        .I2(Pulse2_Message[7]),
+        .I3(pulse2_message_last[7]),
+        .I4(pulse2_message_last[8]),
+        .I5(Pulse2_Message[8]),
+        .O(i__carry_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_2__0
+       (.I0(Triangle_Message[6]),
+        .I1(triangle_message_last[6]),
+        .I2(Triangle_Message[7]),
+        .I3(triangle_message_last[7]),
+        .I4(triangle_message_last[8]),
+        .I5(Triangle_Message[8]),
+        .O(i__carry_i_2__0_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_2__1
+       (.I0(Noise_Message[6]),
+        .I1(noise_message_last[6]),
+        .I2(Noise_Message[7]),
+        .I3(noise_message_last[7]),
+        .I4(noise_message_last[8]),
+        .I5(Noise_Message[8]),
+        .O(i__carry_i_2__1_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_3
+       (.I0(Pulse2_Message[4]),
+        .I1(pulse2_message_last[4]),
+        .I2(Pulse2_Message[5]),
+        .I3(pulse2_message_last[5]),
+        .I4(Pulse2_Message[3]),
+        .I5(p_0_in6_in),
+        .O(i__carry_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_3__0
+       (.I0(Triangle_Message[4]),
+        .I1(triangle_message_last[4]),
+        .I2(Triangle_Message[5]),
+        .I3(triangle_message_last[5]),
+        .I4(Triangle_Message[3]),
+        .I5(p_0_in3_in),
+        .O(i__carry_i_3__0_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_3__1
+       (.I0(Noise_Message[4]),
+        .I1(noise_message_last[4]),
+        .I2(Noise_Message[5]),
+        .I3(noise_message_last[5]),
+        .I4(Noise_Message[3]),
+        .I5(p_0_in1_in),
+        .O(i__carry_i_3__1_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_4
+       (.I0(Pulse2_Message[0]),
+        .I1(pulse2_message_last[0]),
+        .I2(Pulse2_Message[1]),
+        .I3(pulse2_message_last[1]),
+        .I4(pulse2_message_last[2]),
+        .I5(Pulse2_Message[2]),
+        .O(i__carry_i_4_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_4__0
+       (.I0(Triangle_Message[0]),
+        .I1(triangle_message_last[0]),
+        .I2(Triangle_Message[1]),
+        .I3(triangle_message_last[1]),
+        .I4(triangle_message_last[2]),
+        .I5(Triangle_Message[2]),
+        .O(i__carry_i_4__0_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    i__carry_i_4__1
+       (.I0(Noise_Message[0]),
+        .I1(noise_message_last[0]),
+        .I2(Noise_Message[1]),
+        .I3(noise_message_last[1]),
+        .I4(noise_message_last[2]),
+        .I5(Noise_Message[2]),
+        .O(i__carry_i_4__1_n_0));
   design_1_axi_apu_writer_0_0_axi_skid_buf instSkidAR
        (.SR(reset),
         .S_AXI_ACLK(S_AXI_ACLK),
         .S_AXI_ARESETN(S_AXI_ARESETN),
         .S_AXI_ARREADY(S_AXI_ARREADY),
         .S_AXI_ARVALID(S_AXI_ARVALID),
-        .S_AXI_ARVALID_0(instSkidAR_n_2),
         .S_AXI_RREADY(S_AXI_RREADY),
-        .axi_read_valid_reg(axi_read_valid_reg_0));
+        .axi_read_valid_reg(instSkidAR_n_2),
+        .axi_read_valid_reg_0(axi_read_valid_reg_0));
   design_1_axi_apu_writer_0_0_axi_skid_buf_0 instSkidAW
        (.D({instSkidAW_n_7,instSkidAW_n_8,instSkidAW_n_9,instSkidAW_n_10,instSkidAW_n_11,instSkidAW_n_12,instSkidAW_n_13,instSkidAW_n_14,instSkidAW_n_15,instSkidAW_n_16,instSkidAW_n_17,instSkidAW_n_18,instSkidAW_n_19,instSkidAW_n_20,instSkidAW_n_21,instSkidAW_n_22,instSkidAW_n_23,instSkidAW_n_24,instSkidAW_n_25,instSkidAW_n_26,instSkidAW_n_27,instSkidAW_n_28,instSkidAW_n_29,instSkidAW_n_30,instSkidAW_n_31,instSkidAW_n_32,instSkidAW_n_33,instSkidAW_n_34,instSkidAW_n_35,instSkidAW_n_36,instSkidAW_n_37,instSkidAW_n_38}),
         .E(reset_state),
-        .Q({\set_state_reg_n_0_[31] ,\set_state_reg_n_0_[30] ,\set_state_reg_n_0_[29] ,\set_state_reg_n_0_[28] ,\set_state_reg_n_0_[27] ,\set_state_reg_n_0_[26] ,\set_state_reg_n_0_[25] ,\set_state_reg_n_0_[24] ,\set_state_reg_n_0_[23] ,\set_state_reg_n_0_[22] ,\set_state_reg_n_0_[21] ,\set_state_reg_n_0_[20] ,\set_state_reg_n_0_[19] ,\set_state_reg_n_0_[18] ,\set_state_reg_n_0_[17] ,\set_state_reg_n_0_[16] ,\set_state_reg_n_0_[15] ,\set_state_reg_n_0_[14] ,\set_state_reg_n_0_[13] ,\set_state_reg_n_0_[12] ,\set_state_reg_n_0_[11] ,\set_state_reg_n_0_[10] ,\set_state_reg_n_0_[9] ,\set_state_reg_n_0_[8] ,\set_state_reg_n_0_[7] ,\set_state_reg_n_0_[6] ,\set_state_reg_n_0_[5] ,\set_state_reg_n_0_[4] ,\set_state_reg_n_0_[3] ,\set_state_reg_n_0_[2] ,\set_state_reg_n_0_[1] ,\set_state_reg_n_0_[0] }),
+        .Q({\reset_state_reg_n_0_[31] ,\reset_state_reg_n_0_[30] ,\reset_state_reg_n_0_[29] ,\reset_state_reg_n_0_[28] ,\reset_state_reg_n_0_[27] ,\reset_state_reg_n_0_[26] ,\reset_state_reg_n_0_[25] ,\reset_state_reg_n_0_[24] ,\reset_state_reg_n_0_[23] ,\reset_state_reg_n_0_[22] ,\reset_state_reg_n_0_[21] ,\reset_state_reg_n_0_[20] ,\reset_state_reg_n_0_[19] ,\reset_state_reg_n_0_[18] ,\reset_state_reg_n_0_[17] ,\reset_state_reg_n_0_[16] ,\reset_state_reg_n_0_[15] ,\reset_state_reg_n_0_[14] ,\reset_state_reg_n_0_[13] ,\reset_state_reg_n_0_[12] ,\reset_state_reg_n_0_[11] ,\reset_state_reg_n_0_[10] ,\reset_state_reg_n_0_[9] ,\reset_state_reg_n_0_[8] ,\reset_state_reg_n_0_[7] ,\reset_state_reg_n_0_[6] ,\reset_state_reg_n_0_[5] ,\reset_state_reg_n_0_[4] ,\reset_state_reg_n_0_[3] ,\reset_state_reg_n_0_[2] ,\reset_state_reg_n_0_[1] ,\reset_state_reg_n_0_[0] }),
         .SR(reset),
         .S_AXI_ACLK(S_AXI_ACLK),
         .S_AXI_ARESETN(S_AXI_ARESETN),
@@ -1858,37 +1754,40 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
         .S_AXI_BREADY(S_AXI_BREADY),
         .S_AXI_BREADY_0(instSkidAW_n_40),
         .S_AXI_BVALID(S_AXI_BVALID),
+        .S_AXI_WSTRB(S_AXI_WSTRB),
         .axi_write_ready(axi_write_ready),
         .p_2_in(p_2_in),
         .p_6_out(p_6_out),
         .\r_data_reg[0]_0 ({instSkidAW_n_3,instSkidAW_n_4,instSkidAW_n_5,instSkidAW_n_6}),
         .\r_data_reg[1]_0 (set_state),
-        .\state_reg[15] (instSkidW_n_84),
-        .\state_reg[16] (instSkidW_n_83),
-        .\state_reg[17] (instSkidW_n_82),
-        .\state_reg[18] (instSkidW_n_81),
-        .\state_reg[19] (instSkidW_n_80),
-        .\state_reg[20] (instSkidW_n_79),
-        .\state_reg[21] (instSkidW_n_78),
-        .\state_reg[22] (instSkidW_n_77),
-        .\state_reg[23] (instSkidW_n_75),
-        .\state_reg[23]_0 (instSkidW_n_76),
-        .\state_reg[24] (instSkidW_n_74),
-        .\state_reg[25] (instSkidW_n_73),
-        .\state_reg[26] (instSkidW_n_72),
-        .\state_reg[27] (instSkidW_n_71),
-        .\state_reg[28] (instSkidW_n_70),
-        .\state_reg[29] (instSkidW_n_69),
-        .\state_reg[30] (instSkidW_n_68),
-        .\state_reg[31] (instSkidW_n_66),
-        .\state_reg[31]_0 (instSkidW_n_67),
-        .\state_reg[31]_1 ({\reset_state_reg_n_0_[31] ,\reset_state_reg_n_0_[30] ,\reset_state_reg_n_0_[29] ,\reset_state_reg_n_0_[28] ,\reset_state_reg_n_0_[27] ,\reset_state_reg_n_0_[26] ,\reset_state_reg_n_0_[25] ,\reset_state_reg_n_0_[24] ,\reset_state_reg_n_0_[23] ,\reset_state_reg_n_0_[22] ,\reset_state_reg_n_0_[21] ,\reset_state_reg_n_0_[20] ,\reset_state_reg_n_0_[19] ,\reset_state_reg_n_0_[18] ,\reset_state_reg_n_0_[17] ,\reset_state_reg_n_0_[16] ,\reset_state_reg_n_0_[15] ,\reset_state_reg_n_0_[14] ,\reset_state_reg_n_0_[13] ,\reset_state_reg_n_0_[12] ,\reset_state_reg_n_0_[11] ,\reset_state_reg_n_0_[10] ,\reset_state_reg_n_0_[9] ,\reset_state_reg_n_0_[8] ,\reset_state_reg_n_0_[7] ,\reset_state_reg_n_0_[6] ,\reset_state_reg_n_0_[5] ,\reset_state_reg_n_0_[4] ,\reset_state_reg_n_0_[3] ,\reset_state_reg_n_0_[2] ,\reset_state_reg_n_0_[1] ,\reset_state_reg_n_0_[0] }),
-        .\state_reg[31]_2 ({\state_reg_n_0_[31] ,\state_reg_n_0_[30] ,\state_reg_n_0_[29] ,\state_reg_n_0_[28] ,\state_reg_n_0_[27] ,\state_reg_n_0_[26] ,\state_reg_n_0_[25] ,\state_reg_n_0_[24] ,\state_reg_n_0_[23] ,\state_reg_n_0_[22] ,\state_reg_n_0_[21] ,\state_reg_n_0_[20] ,\state_reg_n_0_[19] ,\state_reg_n_0_[18] ,\state_reg_n_0_[17] ,\state_reg_n_0_[16] ,\state_reg_n_0_[15] ,\state_reg_n_0_[14] ,\state_reg_n_0_[13] ,\state_reg_n_0_[12] ,\state_reg_n_0_[11] ,\state_reg_n_0_[10] ,\state_reg_n_0_[9] ,\state_reg_n_0_[8] ,\state_reg_n_0_[7] ,\state_reg_n_0_[6] ,\state_reg_n_0_[5] ,ENABLE_DMC,ENABLE_NOISE,ENABLE_TRIANGLE,ENABLE_PULSE_2,\state_reg_n_0_[0] }),
-        .\state_reg[7] (instSkidW_n_93),
+        .r_valid(r_valid),
+        .\state_reg[15] (instSkidW_n_89),
+        .\state_reg[16] (instSkidW_n_88),
+        .\state_reg[17] (instSkidW_n_87),
+        .\state_reg[18] (instSkidW_n_86),
+        .\state_reg[19] (instSkidW_n_85),
+        .\state_reg[20] (instSkidW_n_84),
+        .\state_reg[21] (instSkidW_n_83),
+        .\state_reg[22] (instSkidW_n_82),
+        .\state_reg[23] (instSkidW_n_80),
+        .\state_reg[23]_0 (instSkidW_n_81),
+        .\state_reg[24] (instSkidW_n_79),
+        .\state_reg[25] (instSkidW_n_78),
+        .\state_reg[26] (instSkidW_n_77),
+        .\state_reg[27] (instSkidW_n_76),
+        .\state_reg[28] (instSkidW_n_75),
+        .\state_reg[29] (instSkidW_n_74),
+        .\state_reg[30] (instSkidW_n_73),
+        .\state_reg[31] (instSkidW_n_71),
+        .\state_reg[31]_0 ({\state_reg_n_0_[31] ,\state_reg_n_0_[30] ,\state_reg_n_0_[29] ,\state_reg_n_0_[28] ,\state_reg_n_0_[27] ,\state_reg_n_0_[26] ,\state_reg_n_0_[25] ,\state_reg_n_0_[24] ,\state_reg_n_0_[23] ,\state_reg_n_0_[22] ,\state_reg_n_0_[21] ,\state_reg_n_0_[20] ,\state_reg_n_0_[19] ,\state_reg_n_0_[18] ,\state_reg_n_0_[17] ,\state_reg_n_0_[16] ,\state_reg_n_0_[15] ,\state_reg_n_0_[14] ,\state_reg_n_0_[13] ,\state_reg_n_0_[12] ,\state_reg_n_0_[11] ,\state_reg_n_0_[10] ,\state_reg_n_0_[9] ,\state_reg_n_0_[8] ,\state_reg_n_0_[7] ,\state_reg_n_0_[6] ,\state_reg_n_0_[5] ,ENABLE_DMC,ENABLE_NOISE,ENABLE_TRIANGLE,ENABLE_PULSE_2,\state_reg_n_0_[0] }),
+        .\state_reg[31]_1 (instSkidW_n_72),
+        .\state_reg[31]_2 ({\set_state_reg_n_0_[31] ,\set_state_reg_n_0_[30] ,\set_state_reg_n_0_[29] ,\set_state_reg_n_0_[28] ,\set_state_reg_n_0_[27] ,\set_state_reg_n_0_[26] ,\set_state_reg_n_0_[25] ,\set_state_reg_n_0_[24] ,\set_state_reg_n_0_[23] ,\set_state_reg_n_0_[22] ,\set_state_reg_n_0_[21] ,\set_state_reg_n_0_[20] ,\set_state_reg_n_0_[19] ,\set_state_reg_n_0_[18] ,\set_state_reg_n_0_[17] ,\set_state_reg_n_0_[16] ,\set_state_reg_n_0_[15] ,\set_state_reg_n_0_[14] ,\set_state_reg_n_0_[13] ,\set_state_reg_n_0_[12] ,\set_state_reg_n_0_[11] ,\set_state_reg_n_0_[10] ,\set_state_reg_n_0_[9] ,\set_state_reg_n_0_[8] ,\set_state_reg_n_0_[7] ,\set_state_reg_n_0_[6] ,\set_state_reg_n_0_[5] ,\set_state_reg_n_0_[4] ,\set_state_reg_n_0_[3] ,\set_state_reg_n_0_[2] ,\set_state_reg_n_0_[1] ,\set_state_reg_n_0_[0] }),
+        .\state_reg[31]_3 ({instSkidW_n_35,instSkidW_n_36,instSkidW_n_37,instSkidW_n_38}),
+        .\state_reg[7] (instSkidW_n_98),
         .wskd_valid(wskd_valid));
   design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0 instSkidW
        (.D(wskd_set),
-        .Q({\set_state_reg_n_0_[31] ,\set_state_reg_n_0_[30] ,\set_state_reg_n_0_[29] ,\set_state_reg_n_0_[28] ,\set_state_reg_n_0_[27] ,\set_state_reg_n_0_[26] ,\set_state_reg_n_0_[25] ,\set_state_reg_n_0_[24] ,\set_state_reg_n_0_[23] ,\set_state_reg_n_0_[22] ,\set_state_reg_n_0_[21] ,\set_state_reg_n_0_[20] ,\set_state_reg_n_0_[19] ,\set_state_reg_n_0_[18] ,\set_state_reg_n_0_[17] ,\set_state_reg_n_0_[16] ,\set_state_reg_n_0_[15] ,\set_state_reg_n_0_[14] ,\set_state_reg_n_0_[13] ,\set_state_reg_n_0_[12] ,\set_state_reg_n_0_[11] ,\set_state_reg_n_0_[10] ,\set_state_reg_n_0_[9] ,\set_state_reg_n_0_[8] ,\set_state_reg_n_0_[7] ,\set_state_reg_n_0_[6] ,\set_state_reg_n_0_[5] ,\set_state_reg_n_0_[4] ,\set_state_reg_n_0_[3] ,\set_state_reg_n_0_[2] ,\set_state_reg_n_0_[1] ,\set_state_reg_n_0_[0] }),
+        .Q({instSkidW_n_35,instSkidW_n_36,instSkidW_n_37,instSkidW_n_38}),
         .SR(reset),
         .S_AXI_ACLK(S_AXI_ACLK),
         .S_AXI_ARESETN(S_AXI_ARESETN),
@@ -1897,180 +1796,151 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
         .axi_write_ready(axi_write_ready),
         .p_2_in(p_2_in),
         .p_6_out(p_6_out),
-        .\r_data_reg[0]_0 (instSkidW_n_93),
-        .\r_data_reg[1]_0 (instSkidW_n_84),
-        .\r_data_reg[20]_0 (instSkidW_n_83),
-        .\r_data_reg[21]_0 (instSkidW_n_82),
-        .\r_data_reg[22]_0 (instSkidW_n_81),
-        .\r_data_reg[23]_0 (instSkidW_n_80),
-        .\r_data_reg[24]_0 (instSkidW_n_79),
-        .\r_data_reg[25]_0 (instSkidW_n_78),
-        .\r_data_reg[26]_0 (instSkidW_n_77),
-        .\r_data_reg[27]_0 (instSkidW_n_76),
-        .\r_data_reg[28]_0 (instSkidW_n_74),
-        .\r_data_reg[29]_0 (instSkidW_n_73),
-        .\r_data_reg[2]_0 (instSkidW_n_75),
-        .\r_data_reg[30]_0 (instSkidW_n_72),
-        .\r_data_reg[31]_0 (instSkidW_n_71),
-        .\r_data_reg[32]_0 (instSkidW_n_70),
-        .\r_data_reg[33]_0 (instSkidW_n_69),
-        .\r_data_reg[34]_0 (instSkidW_n_68),
+        .\r_data_reg[0]_0 (instSkidW_n_98),
+        .\r_data_reg[1]_0 (instSkidW_n_89),
+        .\r_data_reg[20]_0 (instSkidW_n_88),
+        .\r_data_reg[21]_0 (instSkidW_n_87),
+        .\r_data_reg[22]_0 (instSkidW_n_86),
+        .\r_data_reg[23]_0 (instSkidW_n_85),
+        .\r_data_reg[24]_0 (instSkidW_n_84),
+        .\r_data_reg[25]_0 (instSkidW_n_83),
+        .\r_data_reg[26]_0 (instSkidW_n_82),
+        .\r_data_reg[27]_0 (instSkidW_n_81),
+        .\r_data_reg[28]_0 (instSkidW_n_79),
+        .\r_data_reg[29]_0 (instSkidW_n_78),
+        .\r_data_reg[2]_0 (instSkidW_n_80),
+        .\r_data_reg[30]_0 (instSkidW_n_77),
+        .\r_data_reg[31]_0 (instSkidW_n_76),
+        .\r_data_reg[32]_0 (instSkidW_n_75),
+        .\r_data_reg[33]_0 (instSkidW_n_74),
+        .\r_data_reg[34]_0 (instSkidW_n_73),
         .\r_data_reg[35]_0 (wskd_reset),
-        .\r_data_reg[35]_1 (instSkidW_n_67),
+        .\r_data_reg[35]_1 (instSkidW_n_72),
         .\r_data_reg[35]_2 ({S_AXI_WDATA,S_AXI_WSTRB}),
-        .\r_data_reg[3]_0 (instSkidW_n_66),
+        .\r_data_reg[3]_0 (instSkidW_n_71),
+        .r_valid(r_valid),
         .\reset_state_reg[31] ({\reset_state_reg_n_0_[31] ,\reset_state_reg_n_0_[30] ,\reset_state_reg_n_0_[29] ,\reset_state_reg_n_0_[28] ,\reset_state_reg_n_0_[27] ,\reset_state_reg_n_0_[26] ,\reset_state_reg_n_0_[25] ,\reset_state_reg_n_0_[24] ,\reset_state_reg_n_0_[23] ,\reset_state_reg_n_0_[22] ,\reset_state_reg_n_0_[21] ,\reset_state_reg_n_0_[20] ,\reset_state_reg_n_0_[19] ,\reset_state_reg_n_0_[18] ,\reset_state_reg_n_0_[17] ,\reset_state_reg_n_0_[16] ,\reset_state_reg_n_0_[15] ,\reset_state_reg_n_0_[14] ,\reset_state_reg_n_0_[13] ,\reset_state_reg_n_0_[12] ,\reset_state_reg_n_0_[11] ,\reset_state_reg_n_0_[10] ,\reset_state_reg_n_0_[9] ,\reset_state_reg_n_0_[8] ,\reset_state_reg_n_0_[7] ,\reset_state_reg_n_0_[6] ,\reset_state_reg_n_0_[5] ,\reset_state_reg_n_0_[4] ,\reset_state_reg_n_0_[3] ,\reset_state_reg_n_0_[2] ,\reset_state_reg_n_0_[1] ,\reset_state_reg_n_0_[0] }),
+        .\set_state_reg[31] ({\set_state_reg_n_0_[31] ,\set_state_reg_n_0_[30] ,\set_state_reg_n_0_[29] ,\set_state_reg_n_0_[28] ,\set_state_reg_n_0_[27] ,\set_state_reg_n_0_[26] ,\set_state_reg_n_0_[25] ,\set_state_reg_n_0_[24] ,\set_state_reg_n_0_[23] ,\set_state_reg_n_0_[22] ,\set_state_reg_n_0_[21] ,\set_state_reg_n_0_[20] ,\set_state_reg_n_0_[19] ,\set_state_reg_n_0_[18] ,\set_state_reg_n_0_[17] ,\set_state_reg_n_0_[16] ,\set_state_reg_n_0_[15] ,\set_state_reg_n_0_[14] ,\set_state_reg_n_0_[13] ,\set_state_reg_n_0_[12] ,\set_state_reg_n_0_[11] ,\set_state_reg_n_0_[10] ,\set_state_reg_n_0_[9] ,\set_state_reg_n_0_[8] ,\set_state_reg_n_0_[7] ,\set_state_reg_n_0_[6] ,\set_state_reg_n_0_[5] ,\set_state_reg_n_0_[4] ,\set_state_reg_n_0_[3] ,\set_state_reg_n_0_[2] ,\set_state_reg_n_0_[1] ,\set_state_reg_n_0_[0] }),
         .wskd_valid(wskd_valid));
+  LUT5 #(
+    .INIT(32'h0000E000)) 
+    \noise_message_last[13]_i_1 
+       (.I0(Noise_Message[3]),
+        .I1(p_0_in1_in),
+        .I2(FifoData31_in),
+        .I3(ENABLE_NOISE),
+        .I4(\FifoData[14]_i_3_n_0 ),
+        .O(noise_message_last_2));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[0] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[0]),
         .Q(noise_message_last[0]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[10] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[10]),
         .Q(noise_message_last[10]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[11] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[11]),
         .Q(noise_message_last[11]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[12] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[12]),
         .Q(noise_message_last[12]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[13] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[13]),
         .Q(noise_message_last[13]));
   FDCE #(
     .INIT(1'b0)) 
-    \noise_message_last_reg[14] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[14]),
-        .Q(noise_message_last[14]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \noise_message_last_reg[15] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[15]),
-        .Q(noise_message_last[15]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \noise_message_last_reg[16] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[16]),
-        .Q(noise_message_last[16]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \noise_message_last_reg[17] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[17]),
-        .Q(noise_message_last[17]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \noise_message_last_reg[18] 
-       (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
-        .D(Noise_Message[18]),
-        .Q(noise_message_last[18]));
-  FDCE #(
-    .INIT(1'b0)) 
     \noise_message_last_reg[1] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[1]),
         .Q(noise_message_last[1]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[2] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[2]),
         .Q(noise_message_last[2]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[3] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[3]),
         .Q(p_0_in1_in));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[4] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[4]),
         .Q(noise_message_last[4]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[5] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[5]),
         .Q(noise_message_last[5]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[6] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[6]),
         .Q(noise_message_last[6]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[7] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[7]),
         .Q(noise_message_last[7]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[8] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[8]),
         .Q(noise_message_last[8]));
   FDCE #(
     .INIT(1'b0)) 
     \noise_message_last_reg[9] 
        (.C(S_AXI_ACLK),
-        .CE(\FifoData[27]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CE(noise_message_last_2),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Noise_Message[9]),
         .Q(noise_message_last[9]));
   LUT4 #(
@@ -2086,7 +1956,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[0] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[0]),
         .Q(\pulse1_message_last_reg_n_0_[0] ));
   FDCE #(
@@ -2094,7 +1964,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[10] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[10]),
         .Q(\pulse1_message_last_reg_n_0_[10] ));
   FDCE #(
@@ -2102,7 +1972,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[11] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[11]),
         .Q(\pulse1_message_last_reg_n_0_[11] ));
   FDCE #(
@@ -2110,7 +1980,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[12] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[12]),
         .Q(\pulse1_message_last_reg_n_0_[12] ));
   FDCE #(
@@ -2118,7 +1988,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[13] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[13]),
         .Q(\pulse1_message_last_reg_n_0_[13] ));
   FDCE #(
@@ -2126,7 +1996,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[14] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[14]),
         .Q(\pulse1_message_last_reg_n_0_[14] ));
   FDCE #(
@@ -2134,7 +2004,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[15] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[15]),
         .Q(\pulse1_message_last_reg_n_0_[15] ));
   FDCE #(
@@ -2142,7 +2012,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[16] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[16]),
         .Q(\pulse1_message_last_reg_n_0_[16] ));
   FDCE #(
@@ -2150,7 +2020,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[17] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[17]),
         .Q(\pulse1_message_last_reg_n_0_[17] ));
   FDCE #(
@@ -2158,7 +2028,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[18] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[18]),
         .Q(\pulse1_message_last_reg_n_0_[18] ));
   FDCE #(
@@ -2166,7 +2036,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[1] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[1]),
         .Q(\pulse1_message_last_reg_n_0_[1] ));
   FDCE #(
@@ -2174,7 +2044,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[2] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[2]),
         .Q(\pulse1_message_last_reg_n_0_[2] ));
   FDCE #(
@@ -2182,7 +2052,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[3] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[3]),
         .Q(p_0_in9_in));
   FDCE #(
@@ -2190,7 +2060,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[4] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[4]),
         .Q(\pulse1_message_last_reg_n_0_[4] ));
   FDCE #(
@@ -2198,7 +2068,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[5] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[5]),
         .Q(\pulse1_message_last_reg_n_0_[5] ));
   FDCE #(
@@ -2206,7 +2076,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[6] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[6]),
         .Q(\pulse1_message_last_reg_n_0_[6] ));
   FDCE #(
@@ -2214,7 +2084,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[7] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[7]),
         .Q(\pulse1_message_last_reg_n_0_[7] ));
   FDCE #(
@@ -2222,7 +2092,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[8] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[8]),
         .Q(\pulse1_message_last_reg_n_0_[8] ));
   FDCE #(
@@ -2230,38 +2100,25 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse1_message_last_reg[9] 
        (.C(S_AXI_ACLK),
         .CE(FifoData110_out),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse1_Message[9]),
         .Q(\pulse1_message_last_reg_n_0_[9] ));
   LUT6 #(
     .INIT(64'h0080808080808080)) 
     \pulse2_message_last[18]_i_1 
-       (.I0(\pulse2_message_last[18]_i_2_n_0 ),
+       (.I0(\FifoData[18]_i_4_n_0 ),
         .I1(FifoData3),
         .I2(ENABLE_PULSE_2),
-        .I3(\pulse2_message_last[18]_i_3_n_0 ),
+        .I3(\FifoData[18]_i_5_n_0 ),
         .I4(FifoData30_out),
         .I5(\state_reg_n_0_[0] ),
         .O(pulse2_message_last_0));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    \pulse2_message_last[18]_i_2 
-       (.I0(Pulse2_Message[3]),
-        .I1(p_0_in6_in),
-        .O(\pulse2_message_last[18]_i_2_n_0 ));
-  LUT2 #(
-    .INIT(4'hE)) 
-    \pulse2_message_last[18]_i_3 
-       (.I0(Pulse1_Message[3]),
-        .I1(p_0_in9_in),
-        .O(\pulse2_message_last[18]_i_3_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
     \pulse2_message_last_reg[0] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[0]),
         .Q(pulse2_message_last[0]));
   FDCE #(
@@ -2269,7 +2126,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[10] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[10]),
         .Q(pulse2_message_last[10]));
   FDCE #(
@@ -2277,7 +2134,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[11] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[11]),
         .Q(pulse2_message_last[11]));
   FDCE #(
@@ -2285,7 +2142,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[12] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[12]),
         .Q(pulse2_message_last[12]));
   FDCE #(
@@ -2293,7 +2150,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[13] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[13]),
         .Q(pulse2_message_last[13]));
   FDCE #(
@@ -2301,7 +2158,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[14] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[14]),
         .Q(pulse2_message_last[14]));
   FDCE #(
@@ -2309,7 +2166,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[15] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[15]),
         .Q(pulse2_message_last[15]));
   FDCE #(
@@ -2317,7 +2174,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[16] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[16]),
         .Q(pulse2_message_last[16]));
   FDCE #(
@@ -2325,7 +2182,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[17] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[17]),
         .Q(pulse2_message_last[17]));
   FDCE #(
@@ -2333,7 +2190,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[18] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[18]),
         .Q(pulse2_message_last[18]));
   FDCE #(
@@ -2341,7 +2198,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[1] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[1]),
         .Q(pulse2_message_last[1]));
   FDCE #(
@@ -2349,7 +2206,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[2] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[2]),
         .Q(pulse2_message_last[2]));
   FDCE #(
@@ -2357,7 +2214,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[3] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[3]),
         .Q(p_0_in6_in));
   FDCE #(
@@ -2365,7 +2222,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[4] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[4]),
         .Q(pulse2_message_last[4]));
   FDCE #(
@@ -2373,7 +2230,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[5] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[5]),
         .Q(pulse2_message_last[5]));
   FDCE #(
@@ -2381,7 +2238,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[6] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[6]),
         .Q(pulse2_message_last[6]));
   FDCE #(
@@ -2389,7 +2246,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[7] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[7]),
         .Q(pulse2_message_last[7]));
   FDCE #(
@@ -2397,7 +2254,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[8] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[8]),
         .Q(pulse2_message_last[8]));
   FDCE #(
@@ -2405,7 +2262,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \pulse2_message_last_reg[9] 
        (.C(S_AXI_ACLK),
         .CE(pulse2_message_last_0),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Pulse2_Message[9]),
         .Q(pulse2_message_last[9]));
   FDRE #(
@@ -3120,14 +2977,14 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
         .D(instSkidAW_n_7),
         .Q(\state_reg_n_0_[31] ),
         .R(reset));
-  FDRE #(
-    .INIT(1'b0)) 
+  FDSE #(
+    .INIT(1'b1)) 
     \state_reg[3] 
        (.C(S_AXI_ACLK),
         .CE(instSkidAW_n_6),
         .D(instSkidAW_n_35),
         .Q(ENABLE_NOISE),
-        .R(reset));
+        .S(reset));
   FDRE #(
     .INIT(1'b0)) 
     \state_reg[4] 
@@ -3176,30 +3033,21 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
         .D(instSkidAW_n_29),
         .Q(\state_reg_n_0_[9] ),
         .R(reset));
-  LUT6 #(
-    .INIT(64'h0222022202222222)) 
+  LUT5 #(
+    .INIT(32'h0000E000)) 
     \triangle_message_last[14]_i_1 
-       (.I0(FifoData14_out),
-        .I1(FifoData110_out),
-        .I2(ENABLE_PULSE_2),
-        .I3(FifoData3),
-        .I4(p_0_in6_in),
-        .I5(Pulse2_Message[3]),
+       (.I0(Triangle_Message[3]),
+        .I1(p_0_in3_in),
+        .I2(FifoData33_in),
+        .I3(ENABLE_TRIANGLE),
+        .I4(\FifoData[18]_i_1_n_0 ),
         .O(\triangle_message_last[14]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'h8880)) 
-    \triangle_message_last[14]_i_2 
-       (.I0(ENABLE_TRIANGLE),
-        .I1(FifoData33_in),
-        .I2(p_0_in3_in),
-        .I3(Triangle_Message[3]),
-        .O(FifoData14_out));
   FDCE #(
     .INIT(1'b0)) 
     \triangle_message_last_reg[0] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[0]),
         .Q(triangle_message_last[0]));
   FDCE #(
@@ -3207,7 +3055,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[10] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[10]),
         .Q(triangle_message_last[10]));
   FDCE #(
@@ -3215,7 +3063,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[11] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[11]),
         .Q(triangle_message_last[11]));
   FDCE #(
@@ -3223,7 +3071,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[12] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[12]),
         .Q(triangle_message_last[12]));
   FDCE #(
@@ -3231,7 +3079,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[13] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[13]),
         .Q(triangle_message_last[13]));
   FDCE #(
@@ -3239,7 +3087,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[14] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[14]),
         .Q(triangle_message_last[14]));
   FDCE #(
@@ -3247,7 +3095,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[1] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[1]),
         .Q(triangle_message_last[1]));
   FDCE #(
@@ -3255,7 +3103,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[2] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[2]),
         .Q(triangle_message_last[2]));
   FDCE #(
@@ -3263,7 +3111,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[3] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[3]),
         .Q(p_0_in3_in));
   FDCE #(
@@ -3271,7 +3119,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[4] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[4]),
         .Q(triangle_message_last[4]));
   FDCE #(
@@ -3279,7 +3127,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[5] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[5]),
         .Q(triangle_message_last[5]));
   FDCE #(
@@ -3287,7 +3135,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[6] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[6]),
         .Q(triangle_message_last[6]));
   FDCE #(
@@ -3295,7 +3143,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[7] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[7]),
         .Q(triangle_message_last[7]));
   FDCE #(
@@ -3303,7 +3151,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[8] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[8]),
         .Q(triangle_message_last[8]));
   FDCE #(
@@ -3311,7 +3159,7 @@ module design_1_axi_apu_writer_0_0_axi_apu_writer
     \triangle_message_last_reg[9] 
        (.C(S_AXI_ACLK),
         .CE(\triangle_message_last[14]_i_1_n_0 ),
-        .CLR(\FifoData[27]_i_2_n_0 ),
+        .CLR(\FifoData[18]_i_3_n_0 ),
         .D(Triangle_Message[9]),
         .Q(triangle_message_last[9]));
 endmodule
@@ -3320,29 +3168,29 @@ endmodule
 module design_1_axi_apu_writer_0_0_axi_skid_buf
    (SR,
     S_AXI_ARREADY,
-    S_AXI_ARVALID_0,
+    axi_read_valid_reg,
     S_AXI_ACLK,
     S_AXI_ARESETN,
     S_AXI_ARVALID,
     S_AXI_RREADY,
-    axi_read_valid_reg);
+    axi_read_valid_reg_0);
   output [0:0]SR;
   output S_AXI_ARREADY;
-  output S_AXI_ARVALID_0;
+  output axi_read_valid_reg;
   input S_AXI_ACLK;
   input S_AXI_ARESETN;
   input S_AXI_ARVALID;
   input S_AXI_RREADY;
-  input axi_read_valid_reg;
+  input axi_read_valid_reg_0;
 
   wire [0:0]SR;
   wire S_AXI_ACLK;
   wire S_AXI_ARESETN;
   wire S_AXI_ARREADY;
   wire S_AXI_ARVALID;
-  wire S_AXI_ARVALID_0;
   wire S_AXI_RREADY;
   wire axi_read_valid_reg;
+  wire axi_read_valid_reg_0;
   wire r_valid;
   wire r_valid_i_1__1_n_0;
 
@@ -3358,13 +3206,13 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf
         .O(SR));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
-    .INIT(16'hEEFE)) 
+    .INIT(16'hFCFE)) 
     axi_read_valid_i_1
-       (.I0(S_AXI_ARVALID),
-        .I1(r_valid),
-        .I2(axi_read_valid_reg),
+       (.I0(axi_read_valid_reg_0),
+        .I1(S_AXI_ARVALID),
+        .I2(r_valid),
         .I3(S_AXI_RREADY),
-        .O(S_AXI_ARVALID_0));
+        .O(axi_read_valid_reg));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'h0E00)) 
@@ -3372,7 +3220,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf
        (.I0(S_AXI_ARVALID),
         .I1(r_valid),
         .I2(S_AXI_RREADY),
-        .I3(axi_read_valid_reg),
+        .I3(axi_read_valid_reg_0),
         .O(r_valid_i_1__1_n_0));
   FDRE #(
     .INIT(1'b0)) 
@@ -3407,6 +3255,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     wskd_valid,
     p_6_out,
     Q,
+    \state_reg[31]_0 ,
     p_2_in,
     \state_reg[16] ,
     \state_reg[17] ,
@@ -3423,9 +3272,11 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     \state_reg[28] ,
     \state_reg[29] ,
     \state_reg[30] ,
-    \state_reg[31]_0 ,
     \state_reg[31]_1 ,
-    \state_reg[31]_2 );
+    \state_reg[31]_2 ,
+    S_AXI_WSTRB,
+    r_valid,
+    \state_reg[31]_3 );
   output [0:0]E;
   output axi_write_ready;
   output [0:0]\r_data_reg[1]_0 ;
@@ -3447,6 +3298,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   input wskd_valid;
   input [7:0]p_6_out;
   input [31:0]Q;
+  input [31:0]\state_reg[31]_0 ;
   input [7:0]p_2_in;
   input \state_reg[16] ;
   input \state_reg[17] ;
@@ -3463,9 +3315,11 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   input \state_reg[28] ;
   input \state_reg[29] ;
   input \state_reg[30] ;
-  input \state_reg[31]_0 ;
-  input [31:0]\state_reg[31]_1 ;
+  input \state_reg[31]_1 ;
   input [31:0]\state_reg[31]_2 ;
+  input [3:0]S_AXI_WSTRB;
+  input r_valid;
+  input [3:0]\state_reg[31]_3 ;
 
   wire [31:0]D;
   wire [0:0]E;
@@ -3479,6 +3333,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   wire S_AXI_BREADY;
   wire S_AXI_BREADY_0;
   wire S_AXI_BVALID;
+  wire [3:0]S_AXI_WSTRB;
   wire [1:1]awskd_addr;
   wire axi_write_ready;
   wire [7:0]p_2_in;
@@ -3489,6 +3344,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   wire [3:0]\r_data_reg[0]_0 ;
   wire [0:0]\r_data_reg[1]_0 ;
   wire r_valid;
+  wire r_valid_0;
   wire r_valid_i_1_n_0;
   wire \state[0]_i_2_n_0 ;
   wire \state[10]_i_2_n_0 ;
@@ -3498,6 +3354,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   wire \state[14]_i_2_n_0 ;
   wire \state[15]_i_4_n_0 ;
   wire \state[15]_i_5_n_0 ;
+  wire \state[15]_i_7_n_0 ;
   wire \state[16]_i_2_n_0 ;
   wire \state[17]_i_2_n_0 ;
   wire \state[18]_i_2_n_0 ;
@@ -3508,6 +3365,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   wire \state[22]_i_2_n_0 ;
   wire \state[23]_i_4_n_0 ;
   wire \state[23]_i_5_n_0 ;
+  wire \state[23]_i_7_n_0 ;
   wire \state[24]_i_2_n_0 ;
   wire \state[25]_i_2_n_0 ;
   wire \state[26]_i_2_n_0 ;
@@ -3519,12 +3377,14 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   wire \state[31]_i_5_n_0 ;
   wire \state[31]_i_6_n_0 ;
   wire \state[31]_i_8_n_0 ;
+  wire \state[31]_i_9_n_0 ;
   wire \state[3]_i_2_n_0 ;
   wire \state[4]_i_2_n_0 ;
   wire \state[5]_i_2_n_0 ;
   wire \state[6]_i_2_n_0 ;
   wire \state[7]_i_4_n_0 ;
   wire \state[7]_i_5_n_0 ;
+  wire \state[7]_i_7_n_0 ;
   wire \state[8]_i_2_n_0 ;
   wire \state[9]_i_2_n_0 ;
   wire \state_reg[15] ;
@@ -3545,9 +3405,10 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   wire \state_reg[29] ;
   wire \state_reg[30] ;
   wire \state_reg[31] ;
-  wire \state_reg[31]_0 ;
-  wire [31:0]\state_reg[31]_1 ;
+  wire [31:0]\state_reg[31]_0 ;
+  wire \state_reg[31]_1 ;
   wire [31:0]\state_reg[31]_2 ;
+  wire [3:0]\state_reg[31]_3 ;
   wire \state_reg[7] ;
   wire wskd_valid;
 
@@ -3555,7 +3416,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
   LUT1 #(
     .INIT(2'h1)) 
     S_AXI_AWREADY_INST_0
-       (.I0(r_valid),
+       (.I0(r_valid_0),
         .O(S_AXI_AWREADY));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
@@ -3571,7 +3432,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(S_AXI_BREADY),
         .I1(S_AXI_BVALID),
         .I2(S_AXI_AWVALID),
-        .I3(r_valid),
+        .I3(r_valid_0),
         .I4(S_AXI_ARESETN),
         .I5(wskd_valid),
         .O(axi_write_ready));
@@ -3579,7 +3440,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     .INIT(8'hB8)) 
     \r_data[0]_i_1 
        (.I0(S_AXI_AWADDR[0]),
-        .I1(r_valid),
+        .I1(r_valid_0),
         .I2(r_data[0]),
         .O(\r_data[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
@@ -3587,7 +3448,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     .INIT(8'hB8)) 
     \r_data[1]_i_1 
        (.I0(S_AXI_AWADDR[1]),
-        .I1(r_valid),
+        .I1(r_valid_0),
         .I2(r_data[1]),
         .O(\r_data[1]_i_1_n_0 ));
   FDRE #(
@@ -3611,7 +3472,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     .INIT(8'h0E)) 
     r_valid_i_1
        (.I0(S_AXI_AWVALID),
-        .I1(r_valid),
+        .I1(r_valid_0),
         .I2(axi_write_ready),
         .O(r_valid_i_1_n_0));
   FDRE #(
@@ -3620,13 +3481,13 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.C(S_AXI_ACLK),
         .CE(1'b1),
         .D(r_valid_i_1_n_0),
-        .Q(r_valid),
+        .Q(r_valid_0),
         .R(SR));
   LUT6 #(
     .INIT(64'h4703440000000000)) 
     \reset_state[31]_i_1 
        (.I0(r_data[0]),
-        .I1(r_valid),
+        .I1(r_valid_0),
         .I2(S_AXI_AWADDR[0]),
         .I3(r_data[1]),
         .I4(S_AXI_AWADDR[1]),
@@ -3636,7 +3497,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     .INIT(64'h4703440000000000)) 
     \set_state[31]_i_1 
        (.I0(r_data[1]),
-        .I1(r_valid),
+        .I1(r_valid_0),
         .I2(S_AXI_AWADDR[1]),
         .I3(r_data[0]),
         .I4(S_AXI_AWADDR[0]),
@@ -3648,18 +3509,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[0]_i_2_n_0 ),
         .I1(\state[7]_i_5_n_0 ),
         .I2(p_6_out[0]),
-        .I3(\state_reg[7] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[0]),
+        .I3(Q[0]),
+        .I4(\state_reg[31]_0 [0]),
+        .I5(\state[7]_i_7_n_0 ),
         .O(D[0]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[0]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [0]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [0]),
         .I2(\state_reg[7] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [0]),
+        .I4(\state_reg[31]_0 [0]),
         .I5(p_6_out[0]),
         .O(\state[0]_i_2_n_0 ));
   LUT6 #(
@@ -3668,18 +3529,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[10]_i_2_n_0 ),
         .I1(\state[15]_i_5_n_0 ),
         .I2(p_2_in[2]),
-        .I3(\state_reg[15] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[10]),
+        .I3(Q[10]),
+        .I4(\state_reg[31]_0 [10]),
+        .I5(\state[15]_i_7_n_0 ),
         .O(D[10]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[10]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [10]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [10]),
         .I2(\state_reg[15] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [10]),
+        .I4(\state_reg[31]_0 [10]),
         .I5(p_2_in[2]),
         .O(\state[10]_i_2_n_0 ));
   LUT6 #(
@@ -3688,18 +3549,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[11]_i_2_n_0 ),
         .I1(\state[15]_i_5_n_0 ),
         .I2(p_2_in[3]),
-        .I3(\state_reg[15] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[11]),
+        .I3(Q[11]),
+        .I4(\state_reg[31]_0 [11]),
+        .I5(\state[15]_i_7_n_0 ),
         .O(D[11]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[11]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [11]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [11]),
         .I2(\state_reg[15] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [11]),
+        .I4(\state_reg[31]_0 [11]),
         .I5(p_2_in[3]),
         .O(\state[11]_i_2_n_0 ));
   LUT6 #(
@@ -3708,18 +3569,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[12]_i_2_n_0 ),
         .I1(\state[15]_i_5_n_0 ),
         .I2(p_2_in[4]),
-        .I3(\state_reg[15] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[12]),
+        .I3(Q[12]),
+        .I4(\state_reg[31]_0 [12]),
+        .I5(\state[15]_i_7_n_0 ),
         .O(D[12]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[12]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [12]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [12]),
         .I2(\state_reg[15] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [12]),
+        .I4(\state_reg[31]_0 [12]),
         .I5(p_2_in[4]),
         .O(\state[12]_i_2_n_0 ));
   LUT6 #(
@@ -3728,18 +3589,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[13]_i_2_n_0 ),
         .I1(\state[15]_i_5_n_0 ),
         .I2(p_2_in[5]),
-        .I3(\state_reg[15] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[13]),
+        .I3(Q[13]),
+        .I4(\state_reg[31]_0 [13]),
+        .I5(\state[15]_i_7_n_0 ),
         .O(D[13]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[13]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [13]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [13]),
         .I2(\state_reg[15] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [13]),
+        .I4(\state_reg[31]_0 [13]),
         .I5(p_2_in[5]),
         .O(\state[13]_i_2_n_0 ));
   LUT6 #(
@@ -3748,18 +3609,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[14]_i_2_n_0 ),
         .I1(\state[15]_i_5_n_0 ),
         .I2(p_2_in[6]),
-        .I3(\state_reg[15] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[14]),
+        .I3(Q[14]),
+        .I4(\state_reg[31]_0 [14]),
+        .I5(\state[15]_i_7_n_0 ),
         .O(D[14]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[14]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [14]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [14]),
         .I2(\state_reg[15] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [14]),
+        .I4(\state_reg[31]_0 [14]),
         .I5(p_2_in[6]),
         .O(\state[14]_i_2_n_0 ));
   LUT6 #(
@@ -3769,7 +3630,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
         .I1(axi_write_ready),
         .I2(awskd_addr),
         .I3(r_data[0]),
-        .I4(r_valid),
+        .I4(r_valid_0),
         .I5(S_AXI_AWADDR[0]),
         .O(\r_data_reg[0]_0 [1]));
   LUT6 #(
@@ -3778,18 +3639,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[15]_i_4_n_0 ),
         .I1(\state[15]_i_5_n_0 ),
         .I2(p_2_in[7]),
-        .I3(\state_reg[15] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[15]),
+        .I3(Q[15]),
+        .I4(\state_reg[31]_0 [15]),
+        .I5(\state[15]_i_7_n_0 ),
         .O(D[15]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[15]_i_4 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [15]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [15]),
         .I2(\state_reg[15] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [15]),
+        .I4(\state_reg[31]_0 [15]),
         .I5(p_2_in[7]),
         .O(\state[15]_i_4_n_0 ));
   LUT6 #(
@@ -3797,29 +3658,39 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     \state[15]_i_5 
        (.I0(\state_reg[15] ),
         .I1(r_data[0]),
-        .I2(r_valid),
+        .I2(r_valid_0),
         .I3(S_AXI_AWADDR[0]),
         .I4(r_data[1]),
         .I5(S_AXI_AWADDR[1]),
         .O(\state[15]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000E2E2E200E2)) 
+    \state[15]_i_7 
+       (.I0(S_AXI_AWADDR[1]),
+        .I1(r_valid_0),
+        .I2(r_data[1]),
+        .I3(S_AXI_WSTRB[1]),
+        .I4(r_valid),
+        .I5(\state_reg[31]_3 [1]),
+        .O(\state[15]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hEAFFEAEAEAEAEAEA)) 
     \state[16]_i_1 
        (.I0(\state[16]_i_2_n_0 ),
         .I1(\state[23]_i_5_n_0 ),
         .I2(\state_reg[16] ),
-        .I3(\state_reg[23] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[16]),
+        .I3(Q[16]),
+        .I4(\state_reg[31]_0 [16]),
+        .I5(\state[23]_i_7_n_0 ),
         .O(D[16]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[16]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [16]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [16]),
         .I2(\state_reg[23] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [16]),
+        .I4(\state_reg[31]_0 [16]),
         .I5(\state_reg[16] ),
         .O(\state[16]_i_2_n_0 ));
   LUT6 #(
@@ -3828,18 +3699,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[17]_i_2_n_0 ),
         .I1(\state[23]_i_5_n_0 ),
         .I2(\state_reg[17] ),
-        .I3(\state_reg[23] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[17]),
+        .I3(Q[17]),
+        .I4(\state_reg[31]_0 [17]),
+        .I5(\state[23]_i_7_n_0 ),
         .O(D[17]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[17]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [17]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [17]),
         .I2(\state_reg[23] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [17]),
+        .I4(\state_reg[31]_0 [17]),
         .I5(\state_reg[17] ),
         .O(\state[17]_i_2_n_0 ));
   LUT6 #(
@@ -3848,18 +3719,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[18]_i_2_n_0 ),
         .I1(\state[23]_i_5_n_0 ),
         .I2(\state_reg[18] ),
-        .I3(\state_reg[23] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[18]),
+        .I3(Q[18]),
+        .I4(\state_reg[31]_0 [18]),
+        .I5(\state[23]_i_7_n_0 ),
         .O(D[18]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[18]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [18]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [18]),
         .I2(\state_reg[23] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [18]),
+        .I4(\state_reg[31]_0 [18]),
         .I5(\state_reg[18] ),
         .O(\state[18]_i_2_n_0 ));
   LUT6 #(
@@ -3868,18 +3739,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[19]_i_2_n_0 ),
         .I1(\state[23]_i_5_n_0 ),
         .I2(\state_reg[19] ),
-        .I3(\state_reg[23] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[19]),
+        .I3(Q[19]),
+        .I4(\state_reg[31]_0 [19]),
+        .I5(\state[23]_i_7_n_0 ),
         .O(D[19]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[19]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [19]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [19]),
         .I2(\state_reg[23] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [19]),
+        .I4(\state_reg[31]_0 [19]),
         .I5(\state_reg[19] ),
         .O(\state[19]_i_2_n_0 ));
   LUT6 #(
@@ -3888,18 +3759,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[1]_i_2_n_0 ),
         .I1(\state[7]_i_5_n_0 ),
         .I2(p_6_out[1]),
-        .I3(\state_reg[7] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[1]),
+        .I3(Q[1]),
+        .I4(\state_reg[31]_0 [1]),
+        .I5(\state[7]_i_7_n_0 ),
         .O(D[1]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[1]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [1]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [1]),
         .I2(\state_reg[7] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [1]),
+        .I4(\state_reg[31]_0 [1]),
         .I5(p_6_out[1]),
         .O(\state[1]_i_2_n_0 ));
   LUT6 #(
@@ -3908,18 +3779,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[20]_i_2_n_0 ),
         .I1(\state[23]_i_5_n_0 ),
         .I2(\state_reg[20] ),
-        .I3(\state_reg[23] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[20]),
+        .I3(Q[20]),
+        .I4(\state_reg[31]_0 [20]),
+        .I5(\state[23]_i_7_n_0 ),
         .O(D[20]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[20]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [20]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [20]),
         .I2(\state_reg[23] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [20]),
+        .I4(\state_reg[31]_0 [20]),
         .I5(\state_reg[20] ),
         .O(\state[20]_i_2_n_0 ));
   LUT6 #(
@@ -3928,18 +3799,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[21]_i_2_n_0 ),
         .I1(\state[23]_i_5_n_0 ),
         .I2(\state_reg[21] ),
-        .I3(\state_reg[23] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[21]),
+        .I3(Q[21]),
+        .I4(\state_reg[31]_0 [21]),
+        .I5(\state[23]_i_7_n_0 ),
         .O(D[21]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[21]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [21]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [21]),
         .I2(\state_reg[23] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [21]),
+        .I4(\state_reg[31]_0 [21]),
         .I5(\state_reg[21] ),
         .O(\state[21]_i_2_n_0 ));
   LUT6 #(
@@ -3948,18 +3819,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[22]_i_2_n_0 ),
         .I1(\state[23]_i_5_n_0 ),
         .I2(\state_reg[22] ),
-        .I3(\state_reg[23] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[22]),
+        .I3(Q[22]),
+        .I4(\state_reg[31]_0 [22]),
+        .I5(\state[23]_i_7_n_0 ),
         .O(D[22]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[22]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [22]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [22]),
         .I2(\state_reg[23] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [22]),
+        .I4(\state_reg[31]_0 [22]),
         .I5(\state_reg[22] ),
         .O(\state[22]_i_2_n_0 ));
   LUT6 #(
@@ -3969,7 +3840,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
         .I1(axi_write_ready),
         .I2(awskd_addr),
         .I3(r_data[0]),
-        .I4(r_valid),
+        .I4(r_valid_0),
         .I5(S_AXI_AWADDR[0]),
         .O(\r_data_reg[0]_0 [2]));
   LUT6 #(
@@ -3978,18 +3849,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[23]_i_4_n_0 ),
         .I1(\state[23]_i_5_n_0 ),
         .I2(\state_reg[23]_0 ),
-        .I3(\state_reg[23] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[23]),
+        .I3(Q[23]),
+        .I4(\state_reg[31]_0 [23]),
+        .I5(\state[23]_i_7_n_0 ),
         .O(D[23]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[23]_i_4 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [23]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [23]),
         .I2(\state_reg[23] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [23]),
+        .I4(\state_reg[31]_0 [23]),
         .I5(\state_reg[23]_0 ),
         .O(\state[23]_i_4_n_0 ));
   LUT6 #(
@@ -3997,29 +3868,39 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     \state[23]_i_5 
        (.I0(\state_reg[23] ),
         .I1(r_data[0]),
-        .I2(r_valid),
+        .I2(r_valid_0),
         .I3(S_AXI_AWADDR[0]),
         .I4(r_data[1]),
         .I5(S_AXI_AWADDR[1]),
         .O(\state[23]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000E2E2E200E2)) 
+    \state[23]_i_7 
+       (.I0(S_AXI_AWADDR[1]),
+        .I1(r_valid_0),
+        .I2(r_data[1]),
+        .I3(S_AXI_WSTRB[2]),
+        .I4(r_valid),
+        .I5(\state_reg[31]_3 [2]),
+        .O(\state[23]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hEAFFEAEAEAEAEAEA)) 
     \state[24]_i_1 
        (.I0(\state[24]_i_2_n_0 ),
         .I1(\state[31]_i_6_n_0 ),
         .I2(\state_reg[24] ),
-        .I3(\state_reg[31] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[24]),
+        .I3(Q[24]),
+        .I4(\state_reg[31]_0 [24]),
+        .I5(\state[31]_i_8_n_0 ),
         .O(D[24]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[24]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [24]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [24]),
         .I2(\state_reg[31] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [24]),
+        .I4(\state_reg[31]_0 [24]),
         .I5(\state_reg[24] ),
         .O(\state[24]_i_2_n_0 ));
   LUT6 #(
@@ -4028,18 +3909,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[25]_i_2_n_0 ),
         .I1(\state[31]_i_6_n_0 ),
         .I2(\state_reg[25] ),
-        .I3(\state_reg[31] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[25]),
+        .I3(Q[25]),
+        .I4(\state_reg[31]_0 [25]),
+        .I5(\state[31]_i_8_n_0 ),
         .O(D[25]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[25]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [25]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [25]),
         .I2(\state_reg[31] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [25]),
+        .I4(\state_reg[31]_0 [25]),
         .I5(\state_reg[25] ),
         .O(\state[25]_i_2_n_0 ));
   LUT6 #(
@@ -4048,18 +3929,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[26]_i_2_n_0 ),
         .I1(\state[31]_i_6_n_0 ),
         .I2(\state_reg[26] ),
-        .I3(\state_reg[31] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[26]),
+        .I3(Q[26]),
+        .I4(\state_reg[31]_0 [26]),
+        .I5(\state[31]_i_8_n_0 ),
         .O(D[26]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[26]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [26]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [26]),
         .I2(\state_reg[31] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [26]),
+        .I4(\state_reg[31]_0 [26]),
         .I5(\state_reg[26] ),
         .O(\state[26]_i_2_n_0 ));
   LUT6 #(
@@ -4068,18 +3949,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[27]_i_2_n_0 ),
         .I1(\state[31]_i_6_n_0 ),
         .I2(\state_reg[27] ),
-        .I3(\state_reg[31] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[27]),
+        .I3(Q[27]),
+        .I4(\state_reg[31]_0 [27]),
+        .I5(\state[31]_i_8_n_0 ),
         .O(D[27]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[27]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [27]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [27]),
         .I2(\state_reg[31] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [27]),
+        .I4(\state_reg[31]_0 [27]),
         .I5(\state_reg[27] ),
         .O(\state[27]_i_2_n_0 ));
   LUT6 #(
@@ -4088,18 +3969,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[28]_i_2_n_0 ),
         .I1(\state[31]_i_6_n_0 ),
         .I2(\state_reg[28] ),
-        .I3(\state_reg[31] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[28]),
+        .I3(Q[28]),
+        .I4(\state_reg[31]_0 [28]),
+        .I5(\state[31]_i_8_n_0 ),
         .O(D[28]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[28]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [28]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [28]),
         .I2(\state_reg[31] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [28]),
+        .I4(\state_reg[31]_0 [28]),
         .I5(\state_reg[28] ),
         .O(\state[28]_i_2_n_0 ));
   LUT6 #(
@@ -4108,18 +3989,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[29]_i_2_n_0 ),
         .I1(\state[31]_i_6_n_0 ),
         .I2(\state_reg[29] ),
-        .I3(\state_reg[31] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[29]),
+        .I3(Q[29]),
+        .I4(\state_reg[31]_0 [29]),
+        .I5(\state[31]_i_8_n_0 ),
         .O(D[29]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[29]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [29]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [29]),
         .I2(\state_reg[31] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [29]),
+        .I4(\state_reg[31]_0 [29]),
         .I5(\state_reg[29] ),
         .O(\state[29]_i_2_n_0 ));
   LUT6 #(
@@ -4128,18 +4009,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[2]_i_2_n_0 ),
         .I1(\state[7]_i_5_n_0 ),
         .I2(p_6_out[2]),
-        .I3(\state_reg[7] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[2]),
+        .I3(Q[2]),
+        .I4(\state_reg[31]_0 [2]),
+        .I5(\state[7]_i_7_n_0 ),
         .O(D[2]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[2]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [2]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [2]),
         .I2(\state_reg[7] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [2]),
+        .I4(\state_reg[31]_0 [2]),
         .I5(p_6_out[2]),
         .O(\state[2]_i_2_n_0 ));
   LUT6 #(
@@ -4148,18 +4029,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[30]_i_2_n_0 ),
         .I1(\state[31]_i_6_n_0 ),
         .I2(\state_reg[30] ),
-        .I3(\state_reg[31] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[30]),
+        .I3(Q[30]),
+        .I4(\state_reg[31]_0 [30]),
+        .I5(\state[31]_i_8_n_0 ),
         .O(D[30]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[30]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [30]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [30]),
         .I2(\state_reg[31] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [30]),
+        .I4(\state_reg[31]_0 [30]),
         .I5(\state_reg[30] ),
         .O(\state[30]_i_2_n_0 ));
   LUT6 #(
@@ -4169,7 +4050,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
         .I1(axi_write_ready),
         .I2(awskd_addr),
         .I3(r_data[0]),
-        .I4(r_valid),
+        .I4(r_valid_0),
         .I5(S_AXI_AWADDR[0]),
         .O(\r_data_reg[0]_0 [3]));
   LUT6 #(
@@ -4177,65 +4058,75 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     \state[31]_i_2 
        (.I0(\state[31]_i_5_n_0 ),
         .I1(\state[31]_i_6_n_0 ),
-        .I2(\state_reg[31]_0 ),
-        .I3(\state_reg[31] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[31]),
+        .I2(\state_reg[31]_1 ),
+        .I3(Q[31]),
+        .I4(\state_reg[31]_0 [31]),
+        .I5(\state[31]_i_8_n_0 ),
         .O(D[31]));
   LUT3 #(
     .INIT(8'hB8)) 
     \state[31]_i_4 
        (.I0(r_data[1]),
-        .I1(r_valid),
+        .I1(r_valid_0),
         .I2(S_AXI_AWADDR[1]),
         .O(awskd_addr));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[31]_i_5 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [31]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [31]),
         .I2(\state_reg[31] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [31]),
-        .I5(\state_reg[31]_0 ),
+        .I4(\state_reg[31]_0 [31]),
+        .I5(\state_reg[31]_1 ),
         .O(\state[31]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'h0000B0B00A0FBABF)) 
     \state[31]_i_6 
        (.I0(\state_reg[31] ),
         .I1(r_data[0]),
-        .I2(r_valid),
+        .I2(r_valid_0),
         .I3(S_AXI_AWADDR[0]),
         .I4(r_data[1]),
         .I5(S_AXI_AWADDR[1]),
         .O(\state[31]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000E2E2E200E2)) 
+    \state[31]_i_8 
+       (.I0(S_AXI_AWADDR[1]),
+        .I1(r_valid_0),
+        .I2(r_data[1]),
+        .I3(S_AXI_WSTRB[3]),
+        .I4(r_valid),
+        .I5(\state_reg[31]_3 [3]),
+        .O(\state[31]_i_8_n_0 ));
   LUT5 #(
     .INIT(32'h000ACC0A)) 
-    \state[31]_i_8 
+    \state[31]_i_9 
        (.I0(S_AXI_AWADDR[0]),
         .I1(r_data[0]),
         .I2(S_AXI_AWADDR[1]),
-        .I3(r_valid),
+        .I3(r_valid_0),
         .I4(r_data[1]),
-        .O(\state[31]_i_8_n_0 ));
+        .O(\state[31]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hEAFFEAEAEAEAEAEA)) 
     \state[3]_i_1 
        (.I0(\state[3]_i_2_n_0 ),
         .I1(\state[7]_i_5_n_0 ),
         .I2(p_6_out[3]),
-        .I3(\state_reg[7] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[3]),
+        .I3(Q[3]),
+        .I4(\state_reg[31]_0 [3]),
+        .I5(\state[7]_i_7_n_0 ),
         .O(D[3]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[3]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [3]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [3]),
         .I2(\state_reg[7] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [3]),
+        .I4(\state_reg[31]_0 [3]),
         .I5(p_6_out[3]),
         .O(\state[3]_i_2_n_0 ));
   LUT6 #(
@@ -4244,18 +4135,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[4]_i_2_n_0 ),
         .I1(\state[7]_i_5_n_0 ),
         .I2(p_6_out[4]),
-        .I3(\state_reg[7] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[4]),
+        .I3(Q[4]),
+        .I4(\state_reg[31]_0 [4]),
+        .I5(\state[7]_i_7_n_0 ),
         .O(D[4]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[4]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [4]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [4]),
         .I2(\state_reg[7] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [4]),
+        .I4(\state_reg[31]_0 [4]),
         .I5(p_6_out[4]),
         .O(\state[4]_i_2_n_0 ));
   LUT6 #(
@@ -4264,18 +4155,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[5]_i_2_n_0 ),
         .I1(\state[7]_i_5_n_0 ),
         .I2(p_6_out[5]),
-        .I3(\state_reg[7] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[5]),
+        .I3(Q[5]),
+        .I4(\state_reg[31]_0 [5]),
+        .I5(\state[7]_i_7_n_0 ),
         .O(D[5]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[5]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [5]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [5]),
         .I2(\state_reg[7] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [5]),
+        .I4(\state_reg[31]_0 [5]),
         .I5(p_6_out[5]),
         .O(\state[5]_i_2_n_0 ));
   LUT6 #(
@@ -4284,18 +4175,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[6]_i_2_n_0 ),
         .I1(\state[7]_i_5_n_0 ),
         .I2(p_6_out[6]),
-        .I3(\state_reg[7] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[6]),
+        .I3(Q[6]),
+        .I4(\state_reg[31]_0 [6]),
+        .I5(\state[7]_i_7_n_0 ),
         .O(D[6]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[6]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [6]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [6]),
         .I2(\state_reg[7] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [6]),
+        .I4(\state_reg[31]_0 [6]),
         .I5(p_6_out[6]),
         .O(\state[6]_i_2_n_0 ));
   LUT6 #(
@@ -4305,7 +4196,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
         .I1(axi_write_ready),
         .I2(awskd_addr),
         .I3(r_data[0]),
-        .I4(r_valid),
+        .I4(r_valid_0),
         .I5(S_AXI_AWADDR[0]),
         .O(\r_data_reg[0]_0 [0]));
   LUT6 #(
@@ -4314,18 +4205,18 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[7]_i_4_n_0 ),
         .I1(\state[7]_i_5_n_0 ),
         .I2(p_6_out[7]),
-        .I3(\state_reg[7] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[7]),
+        .I3(Q[7]),
+        .I4(\state_reg[31]_0 [7]),
+        .I5(\state[7]_i_7_n_0 ),
         .O(D[7]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[7]_i_4 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [7]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [7]),
         .I2(\state_reg[7] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [7]),
+        .I4(\state_reg[31]_0 [7]),
         .I5(p_6_out[7]),
         .O(\state[7]_i_4_n_0 ));
   LUT6 #(
@@ -4333,29 +4224,39 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
     \state[7]_i_5 
        (.I0(\state_reg[7] ),
         .I1(r_data[0]),
-        .I2(r_valid),
+        .I2(r_valid_0),
         .I3(S_AXI_AWADDR[0]),
         .I4(r_data[1]),
         .I5(S_AXI_AWADDR[1]),
         .O(\state[7]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000E2E2E200E2)) 
+    \state[7]_i_7 
+       (.I0(S_AXI_AWADDR[1]),
+        .I1(r_valid_0),
+        .I2(r_data[1]),
+        .I3(S_AXI_WSTRB[0]),
+        .I4(r_valid),
+        .I5(\state_reg[31]_3 [0]),
+        .O(\state[7]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hEAFFEAEAEAEAEAEA)) 
     \state[8]_i_1 
        (.I0(\state[8]_i_2_n_0 ),
         .I1(\state[15]_i_5_n_0 ),
         .I2(p_2_in[0]),
-        .I3(\state_reg[15] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[8]),
+        .I3(Q[8]),
+        .I4(\state_reg[31]_0 [8]),
+        .I5(\state[15]_i_7_n_0 ),
         .O(D[8]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[8]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [8]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [8]),
         .I2(\state_reg[15] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [8]),
+        .I4(\state_reg[31]_0 [8]),
         .I5(p_2_in[0]),
         .O(\state[8]_i_2_n_0 ));
   LUT6 #(
@@ -4364,27 +4265,29 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf_0
        (.I0(\state[9]_i_2_n_0 ),
         .I1(\state[15]_i_5_n_0 ),
         .I2(p_2_in[1]),
-        .I3(\state_reg[15] ),
-        .I4(\state[31]_i_8_n_0 ),
-        .I5(Q[9]),
+        .I3(Q[9]),
+        .I4(\state_reg[31]_0 [9]),
+        .I5(\state[15]_i_7_n_0 ),
         .O(D[9]));
   LUT6 #(
-    .INIT(64'hABAA0000FBAA0000)) 
+    .INIT(64'hAAAA0808FAAA0808)) 
     \state[9]_i_2 
-       (.I0(\state[31]_i_8_n_0 ),
-        .I1(\state_reg[31]_1 [9]),
+       (.I0(\state[31]_i_9_n_0 ),
+        .I1(\state_reg[31]_2 [9]),
         .I2(\state_reg[15] ),
         .I3(awskd_addr),
-        .I4(\state_reg[31]_2 [9]),
+        .I4(\state_reg[31]_0 [9]),
         .I5(p_2_in[1]),
         .O(\state[9]_i_2_n_0 ));
 endmodule
 
 (* ORIG_REF_NAME = "axi_skid_buf" *) 
 module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
-   (wskd_valid,
+   (r_valid,
+    wskd_valid,
     S_AXI_WREADY,
     D,
+    Q,
     \r_data_reg[35]_0 ,
     \r_data_reg[3]_0 ,
     \r_data_reg[35]_1 ,
@@ -4413,12 +4316,14 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     S_AXI_WVALID,
     S_AXI_ARESETN,
     \r_data_reg[35]_2 ,
-    Q,
+    \set_state_reg[31] ,
     \reset_state_reg[31] ,
     axi_write_ready);
+  output r_valid;
   output wskd_valid;
   output S_AXI_WREADY;
   output [31:0]D;
+  output [3:0]Q;
   output [31:0]\r_data_reg[35]_0 ;
   output \r_data_reg[3]_0 ;
   output \r_data_reg[35]_1 ;
@@ -4447,12 +4352,12 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   input S_AXI_WVALID;
   input S_AXI_ARESETN;
   input [35:0]\r_data_reg[35]_2 ;
-  input [31:0]Q;
+  input [31:0]\set_state_reg[31] ;
   input [31:0]\reset_state_reg[31] ;
   input axi_write_ready;
 
   wire [31:0]D;
-  wire [31:0]Q;
+  wire [3:0]Q;
   wire [0:0]SR;
   wire S_AXI_ACLK;
   wire S_AXI_ARESETN;
@@ -4483,7 +4388,6 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   wire \r_data_reg[35]_1 ;
   wire [35:0]\r_data_reg[35]_2 ;
   wire \r_data_reg[3]_0 ;
-  wire \r_data_reg_n_0_[0] ;
   wire \r_data_reg_n_0_[10] ;
   wire \r_data_reg_n_0_[11] ;
   wire \r_data_reg_n_0_[12] ;
@@ -4494,7 +4398,6 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   wire \r_data_reg_n_0_[17] ;
   wire \r_data_reg_n_0_[18] ;
   wire \r_data_reg_n_0_[19] ;
-  wire \r_data_reg_n_0_[1] ;
   wire \r_data_reg_n_0_[20] ;
   wire \r_data_reg_n_0_[21] ;
   wire \r_data_reg_n_0_[22] ;
@@ -4505,14 +4408,12 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   wire \r_data_reg_n_0_[27] ;
   wire \r_data_reg_n_0_[28] ;
   wire \r_data_reg_n_0_[29] ;
-  wire \r_data_reg_n_0_[2] ;
   wire \r_data_reg_n_0_[30] ;
   wire \r_data_reg_n_0_[31] ;
   wire \r_data_reg_n_0_[32] ;
   wire \r_data_reg_n_0_[33] ;
   wire \r_data_reg_n_0_[34] ;
   wire \r_data_reg_n_0_[35] ;
-  wire \r_data_reg_n_0_[3] ;
   wire \r_data_reg_n_0_[4] ;
   wire \r_data_reg_n_0_[5] ;
   wire \r_data_reg_n_0_[6] ;
@@ -4522,6 +4423,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   wire r_valid;
   wire r_valid_i_1__0_n_0;
   wire [31:0]\reset_state_reg[31] ;
+  wire [31:0]\set_state_reg[31] ;
   wire wskd_valid;
 
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
@@ -4544,7 +4446,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
        (.C(S_AXI_ACLK),
         .CE(r_valid),
         .D(\r_data_reg[35]_2 [0]),
-        .Q(\r_data_reg_n_0_[0] ),
+        .Q(Q[0]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
@@ -4632,7 +4534,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
        (.C(S_AXI_ACLK),
         .CE(r_valid),
         .D(\r_data_reg[35]_2 [1]),
-        .Q(\r_data_reg_n_0_[1] ),
+        .Q(Q[1]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
@@ -4720,7 +4622,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
        (.C(S_AXI_ACLK),
         .CE(r_valid),
         .D(\r_data_reg[35]_2 [2]),
-        .Q(\r_data_reg_n_0_[2] ),
+        .Q(Q[2]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
@@ -4776,7 +4678,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
        (.C(S_AXI_ACLK),
         .CE(r_valid),
         .D(\r_data_reg[35]_2 [3]),
-        .Q(\r_data_reg_n_0_[3] ),
+        .Q(Q[3]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
@@ -4847,7 +4749,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[0]_i_1 
        (.I0(\r_data_reg_n_0_[4] ),
         .I1(\r_data_reg[35]_2 [4]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
         .I5(\reset_state_reg[31] [0]),
@@ -4857,7 +4759,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[10]_i_1 
        (.I0(\r_data_reg_n_0_[14] ),
         .I1(\r_data_reg[35]_2 [14]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
         .I5(\reset_state_reg[31] [10]),
@@ -4867,7 +4769,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[11]_i_1 
        (.I0(\r_data_reg_n_0_[15] ),
         .I1(\r_data_reg[35]_2 [15]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
         .I5(\reset_state_reg[31] [11]),
@@ -4877,7 +4779,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[12]_i_1 
        (.I0(\r_data_reg_n_0_[16] ),
         .I1(\r_data_reg[35]_2 [16]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
         .I5(\reset_state_reg[31] [12]),
@@ -4887,7 +4789,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[13]_i_1 
        (.I0(\r_data_reg_n_0_[17] ),
         .I1(\r_data_reg[35]_2 [17]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
         .I5(\reset_state_reg[31] [13]),
@@ -4897,7 +4799,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[14]_i_1 
        (.I0(\r_data_reg_n_0_[18] ),
         .I1(\r_data_reg[35]_2 [18]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
         .I5(\reset_state_reg[31] [14]),
@@ -4907,7 +4809,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[15]_i_1 
        (.I0(\r_data_reg_n_0_[19] ),
         .I1(\r_data_reg[35]_2 [19]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
         .I5(\reset_state_reg[31] [15]),
@@ -4917,7 +4819,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[16]_i_1 
        (.I0(\r_data_reg_n_0_[20] ),
         .I1(\r_data_reg[35]_2 [20]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
         .I5(\reset_state_reg[31] [16]),
@@ -4927,7 +4829,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[17]_i_1 
        (.I0(\r_data_reg_n_0_[21] ),
         .I1(\r_data_reg[35]_2 [21]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
         .I5(\reset_state_reg[31] [17]),
@@ -4937,7 +4839,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[18]_i_1 
        (.I0(\r_data_reg_n_0_[22] ),
         .I1(\r_data_reg[35]_2 [22]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
         .I5(\reset_state_reg[31] [18]),
@@ -4947,7 +4849,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[19]_i_1 
        (.I0(\r_data_reg_n_0_[23] ),
         .I1(\r_data_reg[35]_2 [23]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
         .I5(\reset_state_reg[31] [19]),
@@ -4957,7 +4859,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[1]_i_1 
        (.I0(\r_data_reg_n_0_[5] ),
         .I1(\r_data_reg[35]_2 [5]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
         .I5(\reset_state_reg[31] [1]),
@@ -4967,7 +4869,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[20]_i_1 
        (.I0(\r_data_reg_n_0_[24] ),
         .I1(\r_data_reg[35]_2 [24]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
         .I5(\reset_state_reg[31] [20]),
@@ -4977,7 +4879,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[21]_i_1 
        (.I0(\r_data_reg_n_0_[25] ),
         .I1(\r_data_reg[35]_2 [25]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
         .I5(\reset_state_reg[31] [21]),
@@ -4987,7 +4889,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[22]_i_1 
        (.I0(\r_data_reg_n_0_[26] ),
         .I1(\r_data_reg[35]_2 [26]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
         .I5(\reset_state_reg[31] [22]),
@@ -4997,7 +4899,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[23]_i_1 
        (.I0(\r_data_reg_n_0_[27] ),
         .I1(\r_data_reg[35]_2 [27]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
         .I5(\reset_state_reg[31] [23]),
@@ -5007,7 +4909,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[24]_i_1 
        (.I0(\r_data_reg_n_0_[28] ),
         .I1(\r_data_reg[35]_2 [28]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
         .I5(\reset_state_reg[31] [24]),
@@ -5017,7 +4919,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[25]_i_1 
        (.I0(\r_data_reg_n_0_[29] ),
         .I1(\r_data_reg[35]_2 [29]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
         .I5(\reset_state_reg[31] [25]),
@@ -5027,7 +4929,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[26]_i_1 
        (.I0(\r_data_reg_n_0_[30] ),
         .I1(\r_data_reg[35]_2 [30]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
         .I5(\reset_state_reg[31] [26]),
@@ -5037,7 +4939,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[27]_i_1 
        (.I0(\r_data_reg_n_0_[31] ),
         .I1(\r_data_reg[35]_2 [31]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
         .I5(\reset_state_reg[31] [27]),
@@ -5047,7 +4949,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[28]_i_1 
        (.I0(\r_data_reg_n_0_[32] ),
         .I1(\r_data_reg[35]_2 [32]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
         .I5(\reset_state_reg[31] [28]),
@@ -5057,7 +4959,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[29]_i_1 
        (.I0(\r_data_reg_n_0_[33] ),
         .I1(\r_data_reg[35]_2 [33]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
         .I5(\reset_state_reg[31] [29]),
@@ -5067,7 +4969,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[2]_i_1 
        (.I0(\r_data_reg_n_0_[6] ),
         .I1(\r_data_reg[35]_2 [6]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
         .I5(\reset_state_reg[31] [2]),
@@ -5077,7 +4979,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[30]_i_1 
        (.I0(\r_data_reg_n_0_[34] ),
         .I1(\r_data_reg[35]_2 [34]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
         .I5(\reset_state_reg[31] [30]),
@@ -5087,7 +4989,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[31]_i_2 
        (.I0(\r_data_reg_n_0_[35] ),
         .I1(\r_data_reg[35]_2 [35]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
         .I5(\reset_state_reg[31] [31]),
@@ -5097,7 +4999,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[3]_i_1 
        (.I0(\r_data_reg_n_0_[7] ),
         .I1(\r_data_reg[35]_2 [7]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
         .I5(\reset_state_reg[31] [3]),
@@ -5107,7 +5009,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[4]_i_1 
        (.I0(\r_data_reg_n_0_[8] ),
         .I1(\r_data_reg[35]_2 [8]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
         .I5(\reset_state_reg[31] [4]),
@@ -5117,7 +5019,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[5]_i_1 
        (.I0(\r_data_reg_n_0_[9] ),
         .I1(\r_data_reg[35]_2 [9]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
         .I5(\reset_state_reg[31] [5]),
@@ -5127,7 +5029,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[6]_i_1 
        (.I0(\r_data_reg_n_0_[10] ),
         .I1(\r_data_reg[35]_2 [10]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
         .I5(\reset_state_reg[31] [6]),
@@ -5137,7 +5039,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[7]_i_1 
        (.I0(\r_data_reg_n_0_[11] ),
         .I1(\r_data_reg[35]_2 [11]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
         .I5(\reset_state_reg[31] [7]),
@@ -5147,7 +5049,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[8]_i_1 
        (.I0(\r_data_reg_n_0_[12] ),
         .I1(\r_data_reg[35]_2 [12]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
         .I5(\reset_state_reg[31] [8]),
@@ -5157,7 +5059,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \reset_state[9]_i_1 
        (.I0(\r_data_reg_n_0_[13] ),
         .I1(\r_data_reg[35]_2 [13]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
         .I5(\reset_state_reg[31] [9]),
@@ -5167,320 +5069,320 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
     \set_state[0]_i_1 
        (.I0(\r_data_reg_n_0_[4] ),
         .I1(\r_data_reg[35]_2 [4]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
-        .I5(Q[0]),
+        .I5(\set_state_reg[31] [0]),
         .O(D[0]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[10]_i_1 
        (.I0(\r_data_reg_n_0_[14] ),
         .I1(\r_data_reg[35]_2 [14]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
-        .I5(Q[10]),
+        .I5(\set_state_reg[31] [10]),
         .O(D[10]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[11]_i_1 
        (.I0(\r_data_reg_n_0_[15] ),
         .I1(\r_data_reg[35]_2 [15]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
-        .I5(Q[11]),
+        .I5(\set_state_reg[31] [11]),
         .O(D[11]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[12]_i_1 
        (.I0(\r_data_reg_n_0_[16] ),
         .I1(\r_data_reg[35]_2 [16]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
-        .I5(Q[12]),
+        .I5(\set_state_reg[31] [12]),
         .O(D[12]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[13]_i_1 
        (.I0(\r_data_reg_n_0_[17] ),
         .I1(\r_data_reg[35]_2 [17]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
-        .I5(Q[13]),
+        .I5(\set_state_reg[31] [13]),
         .O(D[13]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[14]_i_1 
        (.I0(\r_data_reg_n_0_[18] ),
         .I1(\r_data_reg[35]_2 [18]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
-        .I5(Q[14]),
+        .I5(\set_state_reg[31] [14]),
         .O(D[14]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[15]_i_1 
        (.I0(\r_data_reg_n_0_[19] ),
         .I1(\r_data_reg[35]_2 [19]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
-        .I5(Q[15]),
+        .I5(\set_state_reg[31] [15]),
         .O(D[15]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[16]_i_1 
        (.I0(\r_data_reg_n_0_[20] ),
         .I1(\r_data_reg[35]_2 [20]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
-        .I5(Q[16]),
+        .I5(\set_state_reg[31] [16]),
         .O(D[16]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[17]_i_1 
        (.I0(\r_data_reg_n_0_[21] ),
         .I1(\r_data_reg[35]_2 [21]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
-        .I5(Q[17]),
+        .I5(\set_state_reg[31] [17]),
         .O(D[17]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[18]_i_1 
        (.I0(\r_data_reg_n_0_[22] ),
         .I1(\r_data_reg[35]_2 [22]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
-        .I5(Q[18]),
+        .I5(\set_state_reg[31] [18]),
         .O(D[18]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[19]_i_1 
        (.I0(\r_data_reg_n_0_[23] ),
         .I1(\r_data_reg[35]_2 [23]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
-        .I5(Q[19]),
+        .I5(\set_state_reg[31] [19]),
         .O(D[19]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[1]_i_1 
        (.I0(\r_data_reg_n_0_[5] ),
         .I1(\r_data_reg[35]_2 [5]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
-        .I5(Q[1]),
+        .I5(\set_state_reg[31] [1]),
         .O(D[1]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[20]_i_1 
        (.I0(\r_data_reg_n_0_[24] ),
         .I1(\r_data_reg[35]_2 [24]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
-        .I5(Q[20]),
+        .I5(\set_state_reg[31] [20]),
         .O(D[20]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[21]_i_1 
        (.I0(\r_data_reg_n_0_[25] ),
         .I1(\r_data_reg[35]_2 [25]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
-        .I5(Q[21]),
+        .I5(\set_state_reg[31] [21]),
         .O(D[21]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[22]_i_1 
        (.I0(\r_data_reg_n_0_[26] ),
         .I1(\r_data_reg[35]_2 [26]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
-        .I5(Q[22]),
+        .I5(\set_state_reg[31] [22]),
         .O(D[22]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[23]_i_1 
        (.I0(\r_data_reg_n_0_[27] ),
         .I1(\r_data_reg[35]_2 [27]),
-        .I2(\r_data_reg_n_0_[2] ),
+        .I2(Q[2]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [2]),
-        .I5(Q[23]),
+        .I5(\set_state_reg[31] [23]),
         .O(D[23]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[24]_i_1 
        (.I0(\r_data_reg_n_0_[28] ),
         .I1(\r_data_reg[35]_2 [28]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
-        .I5(Q[24]),
+        .I5(\set_state_reg[31] [24]),
         .O(D[24]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[25]_i_1 
        (.I0(\r_data_reg_n_0_[29] ),
         .I1(\r_data_reg[35]_2 [29]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
-        .I5(Q[25]),
+        .I5(\set_state_reg[31] [25]),
         .O(D[25]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[26]_i_1 
        (.I0(\r_data_reg_n_0_[30] ),
         .I1(\r_data_reg[35]_2 [30]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
-        .I5(Q[26]),
+        .I5(\set_state_reg[31] [26]),
         .O(D[26]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[27]_i_1 
        (.I0(\r_data_reg_n_0_[31] ),
         .I1(\r_data_reg[35]_2 [31]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
-        .I5(Q[27]),
+        .I5(\set_state_reg[31] [27]),
         .O(D[27]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[28]_i_1 
        (.I0(\r_data_reg_n_0_[32] ),
         .I1(\r_data_reg[35]_2 [32]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
-        .I5(Q[28]),
+        .I5(\set_state_reg[31] [28]),
         .O(D[28]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[29]_i_1 
        (.I0(\r_data_reg_n_0_[33] ),
         .I1(\r_data_reg[35]_2 [33]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
-        .I5(Q[29]),
+        .I5(\set_state_reg[31] [29]),
         .O(D[29]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[2]_i_1 
        (.I0(\r_data_reg_n_0_[6] ),
         .I1(\r_data_reg[35]_2 [6]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
-        .I5(Q[2]),
+        .I5(\set_state_reg[31] [2]),
         .O(D[2]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[30]_i_1 
        (.I0(\r_data_reg_n_0_[34] ),
         .I1(\r_data_reg[35]_2 [34]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
-        .I5(Q[30]),
+        .I5(\set_state_reg[31] [30]),
         .O(D[30]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[31]_i_2 
        (.I0(\r_data_reg_n_0_[35] ),
         .I1(\r_data_reg[35]_2 [35]),
-        .I2(\r_data_reg_n_0_[3] ),
+        .I2(Q[3]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [3]),
-        .I5(Q[31]),
+        .I5(\set_state_reg[31] [31]),
         .O(D[31]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[3]_i_1 
        (.I0(\r_data_reg_n_0_[7] ),
         .I1(\r_data_reg[35]_2 [7]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
-        .I5(Q[3]),
+        .I5(\set_state_reg[31] [3]),
         .O(D[3]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[4]_i_1 
        (.I0(\r_data_reg_n_0_[8] ),
         .I1(\r_data_reg[35]_2 [8]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
-        .I5(Q[4]),
+        .I5(\set_state_reg[31] [4]),
         .O(D[4]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[5]_i_1 
        (.I0(\r_data_reg_n_0_[9] ),
         .I1(\r_data_reg[35]_2 [9]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
-        .I5(Q[5]),
+        .I5(\set_state_reg[31] [5]),
         .O(D[5]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[6]_i_1 
        (.I0(\r_data_reg_n_0_[10] ),
         .I1(\r_data_reg[35]_2 [10]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
-        .I5(Q[6]),
+        .I5(\set_state_reg[31] [6]),
         .O(D[6]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[7]_i_1 
        (.I0(\r_data_reg_n_0_[11] ),
         .I1(\r_data_reg[35]_2 [11]),
-        .I2(\r_data_reg_n_0_[0] ),
+        .I2(Q[0]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [0]),
-        .I5(Q[7]),
+        .I5(\set_state_reg[31] [7]),
         .O(D[7]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[8]_i_1 
        (.I0(\r_data_reg_n_0_[12] ),
         .I1(\r_data_reg[35]_2 [12]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
-        .I5(Q[8]),
+        .I5(\set_state_reg[31] [8]),
         .O(D[8]));
   LUT6 #(
     .INIT(64'hAFCCAFFFA0CCA000)) 
     \set_state[9]_i_1 
        (.I0(\r_data_reg_n_0_[13] ),
         .I1(\r_data_reg[35]_2 [13]),
-        .I2(\r_data_reg_n_0_[1] ),
+        .I2(Q[1]),
         .I3(r_valid),
         .I4(\r_data_reg[35]_2 [1]),
-        .I5(Q[9]),
+        .I5(\set_state_reg[31] [9]),
         .O(D[9]));
   LUT3 #(
     .INIT(8'hB8)) 
@@ -5533,7 +5435,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   LUT3 #(
     .INIT(8'hB8)) 
     \state[15]_i_3 
-       (.I0(\r_data_reg_n_0_[1] ),
+       (.I0(Q[1]),
         .I1(r_valid),
         .I2(\r_data_reg[35]_2 [1]),
         .O(\r_data_reg[1]_0 ));
@@ -5613,7 +5515,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   LUT3 #(
     .INIT(8'hB8)) 
     \state[23]_i_3 
-       (.I0(\r_data_reg_n_0_[2] ),
+       (.I0(Q[2]),
         .I1(r_valid),
         .I2(\r_data_reg[35]_2 [2]),
         .O(\r_data_reg[2]_0 ));
@@ -5693,7 +5595,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   LUT3 #(
     .INIT(8'hB8)) 
     \state[31]_i_3 
-       (.I0(\r_data_reg_n_0_[3] ),
+       (.I0(Q[3]),
         .I1(r_valid),
         .I2(\r_data_reg[35]_2 [3]),
         .O(\r_data_reg[3]_0 ));
@@ -5741,7 +5643,7 @@ module design_1_axi_apu_writer_0_0_axi_skid_buf__parameterized0
   LUT3 #(
     .INIT(8'hB8)) 
     \state[7]_i_3 
-       (.I0(\r_data_reg_n_0_[0] ),
+       (.I0(Q[0]),
         .I1(r_valid),
         .I2(\r_data_reg[35]_2 [0]),
         .O(\r_data_reg[0]_0 ));

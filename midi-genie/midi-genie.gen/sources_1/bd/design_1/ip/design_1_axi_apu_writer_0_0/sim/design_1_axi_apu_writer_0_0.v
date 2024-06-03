@@ -138,7 +138,7 @@ input wire CPU_Rst;
 input wire [18 : 0] Pulse1_Message;
 input wire [18 : 0] Pulse2_Message;
 input wire [14 : 0] Triangle_Message;
-input wire [27 : 0] Noise_Message;
+input wire [13 : 0] Noise_Message;
 input wire [3 : 0] DMC_Message;
 output wire [27 : 0] FifoData;
 output wire FifoWrite;
@@ -148,7 +148,7 @@ output wire FifoWrite;
     .DEFAULT_PULSE_1(1'B1),
     .DEFAULT_PULSE_2(1'B1),
     .DEFAULT_TRIANGLE(1'B1),
-    .DEFAULT_NOISE(1'B0),
+    .DEFAULT_NOISE(1'B1),
     .DEFAULT_DMC(1'B0)
   ) inst (
     .S_AXI_ACLK(S_AXI_ACLK),

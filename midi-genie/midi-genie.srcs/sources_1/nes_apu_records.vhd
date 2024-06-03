@@ -84,16 +84,16 @@ package nes_apu_records is
     end record t_APU_NOISE;
 
     constant c_APU_NOISE_VECTOR  : integer := 51;
-    constant c_APU_NOISE_MESSAGE : integer := 28;
+    constant c_APU_NOISE_MESSAGE : integer := 14;
     constant c_APU_NOISE_INIT    : t_APU_NOISE := (length_counter_halt => '0',
                                                    constant_volume => '0',
                                                    envelope => (others => '0'),
                                                    volume => (others => '0'),
                                                    noise_mode => '0',
                                                    noise_period => (others => '0'),
-                                                   length_counter => (0 => '1', others => '0'),
-                                                   shift_reg => (others => '0'),
-                                                   shift_reg_at_switch => (others => '0'));
+                                                   length_counter => (others => '0'),
+                                                   shift_reg => (0 => '1', others => '0'),
+                                                   shift_reg_at_switch => (0 => '1', others => '0'));
 
     function f_APU_NOISE_2_VECTOR (rec: t_APU_NOISE) return std_logic_vector;
     function f_VECTOR_2_APU_NOISE (vec: std_logic_vector(c_APU_NOISE_VECTOR - 1 downto 0)) return t_APU_NOISE;
@@ -167,6 +167,7 @@ package nes_apu_records is
     function f_VECTOR_2_APU_FRAME_COUNTER (vec: std_logic_vector(c_APU_FRAME_COUNTER_VECTOR - 1 downto 0)) return t_APU_FRAME_COUNTER;
     function f_APU_FRAME_COUNTER_REG1 (rec: t_APU_FRAME_COUNTER; vec: std_logic_vector(7 downto 0)) return t_APU_FRAME_COUNTER;
     
+    function f_IS_31_CYCLE (start: std_logic_vector(14 downto 0)) return std_logic;
     function f_LENGTH_COUNTER (load:  std_logic_vector(4 downto 0)) return unsigned;
 
 end package nes_apu_records;
@@ -352,14 +353,14 @@ package body nes_apu_records is
         if (rec.length_counter > 0) then
             vec(3) := '1';
         end if;
-        vec(4)            := rec.noise_mode;
-        vec(8 downto 5)   := rec.noise_period;
-        vec(23 downto 9)  := rec.shift_reg_at_switch;
+        vec(4)          := rec.noise_mode;
+        vec(8 downto 5) := rec.noise_period;
         if (rec.constant_volume = '1') then
-            vec(27 downto 24) := std_logic_vector(rec.envelope);
+            vec(12 downto 9) := std_logic_vector(rec.envelope);
         else
-            vec(27 downto 24) := std_logic_vector(rec.volume);
+            vec(12 downto 9) := std_logic_vector(rec.volume);
         end if;
+        vec(13) := f_IS_31_CYCLE(rec.shift_reg_at_switch);
         return vec;
     end;
 
@@ -514,6 +515,44 @@ package body nes_apu_records is
         rec_out.mode        := vec(7);
         rec_out.irq_inhibit := vec(6);
         return rec_out;
+    end;
+
+    function f_IS_31_CYCLE (start: std_logic_vector(14 downto 0)) return std_logic is
+    begin
+        case (start) is
+            when x"0737" => return '1';
+            when x"0958" => return '1';
+            when x"0E6F" => return '1';
+            when x"12B0" => return '1';
+            when x"1587" => return '1';
+            when x"1BE8" => return '1';
+            when x"1CDF" => return '1';
+            when x"2256" => return '1';
+            when x"2561" => return '1';
+            when x"2B0E" => return '1';
+            when x"2C39" => return '1';
+            when x"30E6" => return '1';
+            when x"37D1" => return '1';
+            when x"39BE" => return '1';
+            when x"3E89" => return '1';
+            when x"439B" => return '1';
+            when x"44AC" => return '1';
+            when x"4AC3" => return '1';
+            when x"4DF4" => return '1';
+            when x"512B" => return '1';
+            when x"561C" => return '1';
+            when x"5873" => return '1';
+            when x"5F44" => return '1';
+            when x"61CD" => return '1';
+            when x"66FA" => return '1';
+            when x"6895" => return '1';
+            when x"6FA2" => return '1';
+            when x"737D" => return '1';
+            when x"744A" => return '1';
+            when x"7A25" => return '1';
+            when x"7D12" => return '1';
+            when others  => return '0';
+        end case;
     end;
 
     function f_LENGTH_COUNTER (load:  std_logic_vector(4 downto 0)) return unsigned is

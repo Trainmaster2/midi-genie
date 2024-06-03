@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon May 13 10:46:35 2024" VIVADOVERSION="2022.2.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri May 24 22:46:30 2024" VIVADOVERSION="2022.2.2">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:cmod_a7-35t:part0:1.1" DEVICE="7a35t" NAME="design_1" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -723,7 +723,7 @@
         <PARAMETER NAME="DEFAULT_PULSE_1" VALUE="true"/>
         <PARAMETER NAME="DEFAULT_PULSE_2" VALUE="true"/>
         <PARAMETER NAME="DEFAULT_TRIANGLE" VALUE="true"/>
-        <PARAMETER NAME="DEFAULT_NOISE" VALUE="false"/>
+        <PARAMETER NAME="DEFAULT_NOISE" VALUE="true"/>
         <PARAMETER NAME="DEFAULT_DMC" VALUE="false"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_axi_apu_writer_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
@@ -856,7 +856,7 @@
             <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Triangle_Message"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="27" NAME="Noise_Message" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Noise_Message">
+        <PORT DIR="I" LEFT="13" NAME="Noise_Message" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Noise_Message">
           <CONNECTIONS>
             <CONNECTION INSTANCE="nes_apu_0" PORT="APU_Noise_Message"/>
           </CONNECTIONS>
@@ -1918,8 +1918,8 @@
             <CONNECTION INSTANCE="fifo_transmitter_0" PORT="Clk"/>
             <CONNECTION INSTANCE="midi_fifo_writer" PORT="S_AXI_ACLK"/>
             <CONNECTION INSTANCE="microblaze_0_axi_periph" PORT="M04_ACLK"/>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="Clk"/>
             <CONNECTION INSTANCE="axi_apu_writer_0" PORT="S_AXI_ACLK"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="Clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="locked" SIGIS="undef" SIGNAME="clk_wiz_0_locked">
@@ -7516,7 +7516,7 @@
             <CONNECTION INSTANCE="axi_apu_writer_0" PORT="Triangle_Message"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="27" NAME="APU_Noise_Message" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Noise_Message">
+        <PORT DIR="O" LEFT="13" NAME="APU_Noise_Message" RIGHT="0" SIGIS="undef" SIGNAME="nes_apu_0_APU_Noise_Message">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_apu_writer_0" PORT="Noise_Message"/>
           </CONNECTIONS>
@@ -7553,8 +7553,8 @@
         </PORT>
         <PORT DIR="O" NAME="nes_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="reset_manager_0_nes_resetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="CPU_Rst"/>
             <CONNECTION INSTANCE="axi_apu_writer_0" PORT="CPU_Rst"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="CPU_Rst"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="dual_reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="reset_manager_0_dual_reset">
@@ -7655,8 +7655,8 @@
             <CONNECTION INSTANCE="fifo_transmitter_0" PORT="Reset"/>
             <CONNECTION INSTANCE="midi_fifo_writer" PORT="S_AXI_ARESETN"/>
             <CONNECTION INSTANCE="microblaze_0_axi_periph" PORT="M04_ARESETN"/>
-            <CONNECTION INSTANCE="nes_apu_0" PORT="Reset"/>
             <CONNECTION INSTANCE="axi_apu_writer_0" PORT="S_AXI_ARESETN"/>
+            <CONNECTION INSTANCE="nes_apu_0" PORT="Reset"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

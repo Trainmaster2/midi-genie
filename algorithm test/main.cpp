@@ -8,12 +8,25 @@
 
 using namespace std;
 
+#define TEST_PULSE 0
+#define TEST_TRIANGLE 0
+#define TEST_BITFIELD 0
+#define TEST_DEFINE_CONFIG 0
+#define TEST_STRUCT 0
+#define CALC_AVG_FREQ 0
+#define PRINT_AVG_FREQ 0
+#define TEST_EXTERN_CONST 0
+#define CALC_CYCLE_LENGTH 1
+#define PRINT_CYCLE_LENGTH 1
+#define CALC_SEPARATE_AVG_FREQ 1
+
 #define TEST 0
 
 const double TWELVE_ROOT_TWO = 1.0594630943592952645618252949463417007792043174941856285592084314;
 
 void noise_shift_reg(ushort& reg, bool mode);
 double noise_average_frequency(ushort start, bool mode, set<ushort>& values);
+int noise_length(ushort start, bool mode);
 double note2frequency(double note);
 double frequency2note(double frequency);
 void frequency2notebend(double frequency, int& note, int& bend);
@@ -116,35 +129,46 @@ ostream& operator<<(ostream& os, const map<S, T>& map)
 
 int main()
 {
-    // debug_pulse(1, 153, 7700);
-    // debug_pulse(253, 69, 8256);
-    // debug_pulse(254, 69, 7977);
-    // debug_pulse(2047, 33, 7700);
-    
-    // debug_triangle(8, 115, 7540);
-    // debug_triangle(126, 69, 8256);
-    // debug_triangle(2033, 21, 8186);
+#if TEST_PULSE 
+    debug_pulse(1, 153, 7700);
+    debug_pulse(253, 69, 8256);
+    debug_pulse(254, 69, 7977);
+    debug_pulse(2047, 33, 7700);
+#endif
 
-    // BitFieldUnion bitFieldUnion;
-    // bitFieldUnion.raw = 0b1'100'0'000'00000010;
-    // cout << bitFieldUnion.generic.type << " " << bitFieldUnion.note.type << " " << bitFieldUnion.note.channel << " " << bitFieldUnion.note.onoff << " " << bitFieldUnion.note.timer << endl;
-    // bitFieldUnion.note.timer = 0xef;
-    // cout << bitFieldUnion.raw << endl;
+#if TEST_TRIANGLE
+    debug_triangle(8, 115, 7540);
+    debug_triangle(126, 69, 8256);
+    debug_triangle(2033, 21, 8186);
+#endif
 
-    // #if TEST
-    // cout << "A" << endl;
-    // #else
-    // cout << "B" << endl;
-    // #endif
+#if TEST_BITFIELD
+    BitFieldUnion bitFieldUnion;
+    bitFieldUnion.raw = 0b1'100'0'000'00000010;
+    cout << bitFieldUnion.generic.type << " " << bitFieldUnion.note.type << " " << bitFieldUnion.note.channel << " " << bitFieldUnion.note.onoff << " " << bitFieldUnion.note.timer << endl;
+    bitFieldUnion.note.timer = 0xef;
+    cout << bitFieldUnion.raw << endl;
+#endif
 
-    // LastPulse lastPulse1 = {};
-    // int a = 5;
-    // cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
-    // lastPulse1.note = a;
-    // cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
-    // lastPulse1 = {};
-    // cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
+#if TEST_DEFINE_CONFIG
+    #if TEST
+    cout << "A" << endl;
+    #else
+    cout << "B" << endl;
+    #endif
+#endif
 
+#if TEST_STRUCT
+    LastPulse lastPulse1 = {};
+    int a = 5;
+    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
+    lastPulse1.note = a;
+    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
+    lastPulse1 = {};
+    cout << (a == lastPulse1.note) << ' ' << lastPulse1.note << endl;
+#endif
+
+#if CALC_AVG_FREQ
     // ushort reg, last;
     // ulong count, firstCount;
     // double total;
@@ -187,27 +211,29 @@ int main()
     // // cout << tmp << endl;
     // cout << test << endl;
 
-    // double freq;
-    // set<ushort> values;
-    // map<double, set<ushort>> freq2values;
-    // map<double, ulong> counts;
-    // double value2freq[32768];
+    double freq;
+    set<ushort> values;
+    map<double, set<ushort>> freq2values;
+    map<double, ulong> freq_counts;
+    double value2freq[32768];
 
-    // for (ushort start = 1; start <= 32767; start++)
-    // {
-    //     freq = noise_average_frequency(start, true, values);
-    //     freq2values[freq].merge(values);
-    // }
+    for (ushort start = 1; start <= 32767; start++)
+    {
+        freq = noise_average_frequency(start, true, values);
+        freq2values[freq].merge(values);
+    }
 
-    // value2freq[0] = noise_average_frequency(1, false, values);
-    // for (auto el : freq2values) {for (auto val : el.second) {value2freq[val] = el.first; counts[el.first]++;}}
+    value2freq[0] = noise_average_frequency(1, false, values);
+    for (auto el : freq2values) {for (auto val : el.second) {value2freq[val] = el.first; freq_counts[el.first]++;}}
 
-    // bool first = true;
-    // cout << "const double NOISE_FREQ_LOOKUP[32768] =";
-    // for (auto el : value2freq) {cout << (first?" {":", ") << el; first = false;}
-    // cout << "};" << endl;
+    #if PRINT_AVG_FREQ
+    bool first = true;
+    cout << "const double NOISE_FREQ_LOOKUP[32768] =";
+    for (auto el : value2freq) {cout << (first?" {":", ") << el; first = false;}
+    cout << "};" << endl;
+    #endif
 
-    // cout << counts << endl;
+    cout << freq_counts << endl;
 
     // double last = 0;
     // for (uint i = 0; i < 32768; i++)
@@ -216,8 +242,53 @@ int main()
     //     last = value2freq[i];
     // }
     // cout << 32768 << endl;
+#endif
 
+#if TEST_EXTERN_CONST
     cout << sizeof(TEST_CONST) << ',' << TEST_CONST[0] << ',' << TEST_CONST[1] << endl;
+#endif
+
+#if CALC_CYCLE_LENGTH
+    map<int, set<ushort>> cycle_length;
+    map<int, ulong> length_counts;
+    
+    for (ushort start = 1; start <= 32767; start++)
+    {
+        int length = noise_length(start, true);
+        cycle_length[length].insert(start);
+        length_counts[length]++;
+    }
+
+    cout << length_counts << endl;
+
+    #if PRINT_CYCLE_LENGTH
+    cout << cycle_length[31] << endl;
+    for (auto el : cycle_length[31]) {printf("when x\"%04X\" => return '1';", el); cout << endl;}
+    #endif
+
+#if CALC_SEPARATE_AVG_FREQ
+    #if CALC_AVG_FREQ
+    freq2values.clear();
+    freq_counts.clear();
+    #else
+    double freq;
+    set<ushort> values;
+    map<double, set<ushort>> freq2values;
+    map<double, ulong> freq_counts;
+    #endif
+
+    for (auto entry : cycle_length)
+    {
+        for (auto start : entry.second)
+        {
+            freq = noise_average_frequency(start, true, values);
+            freq2values[freq].merge(values);
+        }
+        for (auto el : freq2values) {for (auto val : el.second) {freq_counts[el.first]++;}}
+        cout << entry.first << ": " << freq_counts << endl;
+    }
+#endif
+#endif
 }
 
 void noise_shift_reg(ushort& reg, bool mode)
@@ -234,13 +305,24 @@ double noise_average_frequency(ushort start, bool mode, set<ushort>& values)
     ulong pulses = 0;
     values.clear();
     do {
-        noise_shift_reg(reg, true);
+        noise_shift_reg(reg, mode);
         length++;
         values.insert(reg);
         if (!last && (reg & 0b1)) {pulses++;}
         last = reg & 0b1;
     } while (reg != start);
     return length / pulses;
+}
+
+int noise_length(ushort start, bool mode)
+{
+    ushort reg = start;
+    int length = 0;
+    do {
+        noise_shift_reg(reg, mode);
+        length++;
+    } while (reg != start);
+    return length;
 }
 
 double note2frequency(double note)

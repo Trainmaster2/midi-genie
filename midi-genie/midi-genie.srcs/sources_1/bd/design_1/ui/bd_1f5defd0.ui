@@ -55,8 +55,8 @@ preplace inst microblaze_0_local_memory -pg 1 -lvl 5 -x 1670 -y 1190 -defaultsOS
 preplace inst midi_fifo_writer -pg 1 -lvl 6 -x 2140 -y 650 -defaultsOSRD
 preplace inst midi_fifo -pg 1 -lvl 7 -x 2540 -y 550 -defaultsOSRD
 preplace inst fifo_transmitter_0 -pg 1 -lvl 6 -x 2140 -y 470 -defaultsOSRD
-preplace inst nes_apu_0 -pg 1 -lvl 5 -x 1670 -y 180 -defaultsOSRD
 preplace inst axi_apu_writer_0 -pg 1 -lvl 6 -x 2140 -y 140 -defaultsOSRD
+preplace inst nes_apu_0 -pg 1 -lvl 5 -x 1670 -y 180 -defaultsOSRD
 preplace netloc apu_fifo_dout 1 5 2 1960 940 2370J
 preplace netloc apu_fifo_empty 1 5 2 1950 740 2330J
 preplace netloc apu_fifo_reader_FifoRead 1 1 6 240 820 NJ 820 NJ 820 1450J 980 1910J 1100 2350
@@ -114,6 +114,6 @@ pagesize -pg 1 -db -bbox -sgen -200 0 2850 1420
 {
    "da_axi4_cnt":"4",
    "da_board_cnt":"6",
-   "da_clkrst_cnt":"26",
+   "da_clkrst_cnt":"27",
    "da_mb_cnt":"2"
 }

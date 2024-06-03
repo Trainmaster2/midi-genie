@@ -37,8 +37,8 @@ struct NoiseBitField{
     u32 onoff   : 1;
     u32 mode    : 1;
     u32 period  : 4;
-    u32 start   : 15;
     u32 volume  : 4;
+    u32 length  : 1;
 };
 
 struct DMCBitField{
@@ -96,7 +96,7 @@ struct LastDMC{
 
 #define print_pulse_message(pulseMessage) xil_printf("Channel: %d, On/Off: %d, Timer: 0x%03x, Volume: 0x%01x\r\n", pulseMessage.channel, pulseMessage.onoff, pulseMessage.timer, pulseMessage.volume)
 #define print_triangle_message(triangleMessage) xil_printf("Channel: %d, On/Off: %d(%d), Timer: 0x%03x\r\n", triangleMessage.channel, triangleMessage.onoff, triangleMessage.timer >= 2, triangleMessage.timer)
-#define print_noise_message(noiseMessage) xil_printf("Channel: %d, On/Off: %d, Mode: %d, Period: 0x%01x, Start: 0x%04x, Volume: 0x%01x\r\n", noiseMessage.channel, noiseMessage.onoff, noiseMessage.mode, noiseMessage.period, noiseMessage.start, noiseMessage.volume)
+#define print_noise_message(noiseMessage) xil_printf("Channel: %d, On/Off: %d, Mode: %d, Period: 0x%01x, Volume: 0x%01x, Length: %d\r\n", noiseMessage.channel, noiseMessage.onoff, noiseMessage.mode, noiseMessage.period, noiseMessage.volume, noiseMessage.length)
 #define print_dmc_message(dmcMessage) xil_printf("Channel: %d\r\n", pulseMessage.channel)
 
 #else

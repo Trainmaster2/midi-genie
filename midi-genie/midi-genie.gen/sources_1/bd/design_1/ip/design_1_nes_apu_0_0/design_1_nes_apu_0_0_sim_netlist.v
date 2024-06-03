@@ -1,7 +1,7 @@
 // Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-// Date        : Thu May  9 15:21:01 2024
+// Date        : Fri May 24 22:47:33 2024
 // Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/trainmaster2/Documents/midi-genie/midi-genie/midi-genie.gen/sources_1/bd/design_1/ip/design_1_nes_apu_0_0/design_1_nes_apu_0_0_sim_netlist.v
@@ -42,12 +42,12 @@ module design_1_nes_apu_0_0
   output [18:0]APU_Pulse1_Message;
   output [18:0]APU_Pulse2_Message;
   output [14:0]APU_Triangle_Message;
-  output [27:0]APU_Noise_Message;
+  output [13:0]APU_Noise_Message;
   output [3:0]APU_DMC_Message;
 
   wire \<const0> ;
   wire \<const1> ;
-  wire [27:3]\^APU_Noise_Message ;
+  wire [13:3]\^APU_Noise_Message ;
   wire [18:3]\^APU_Pulse1_Message ;
   wire [18:3]\^APU_Pulse2_Message ;
   wire [14:3]\^APU_Triangle_Message ;
@@ -63,23 +63,7 @@ module design_1_nes_apu_0_0
   assign APU_DMC_Message[2] = \<const1> ;
   assign APU_DMC_Message[1] = \<const0> ;
   assign APU_DMC_Message[0] = \<const0> ;
-  assign APU_Noise_Message[27:24] = \^APU_Noise_Message [27:24];
-  assign APU_Noise_Message[23] = \<const0> ;
-  assign APU_Noise_Message[22] = \<const0> ;
-  assign APU_Noise_Message[21] = \<const0> ;
-  assign APU_Noise_Message[20] = \<const0> ;
-  assign APU_Noise_Message[19] = \<const0> ;
-  assign APU_Noise_Message[18] = \<const0> ;
-  assign APU_Noise_Message[17] = \<const0> ;
-  assign APU_Noise_Message[16] = \<const0> ;
-  assign APU_Noise_Message[15] = \<const0> ;
-  assign APU_Noise_Message[14] = \<const0> ;
-  assign APU_Noise_Message[13] = \<const0> ;
-  assign APU_Noise_Message[12] = \<const0> ;
-  assign APU_Noise_Message[11] = \<const0> ;
-  assign APU_Noise_Message[10] = \<const0> ;
-  assign APU_Noise_Message[9] = \<const0> ;
-  assign APU_Noise_Message[8:3] = \^APU_Noise_Message [8:3];
+  assign APU_Noise_Message[13:3] = \^APU_Noise_Message [13:3];
   assign APU_Noise_Message[2] = \<const0> ;
   assign APU_Noise_Message[1] = \<const1> ;
   assign APU_Noise_Message[0] = \<const1> ;
@@ -100,7 +84,7 @@ module design_1_nes_apu_0_0
   VCC VCC
        (.P(\<const1> ));
   design_1_nes_apu_0_0_nes_apu inst
-       (.APU_Noise_Message({\^APU_Noise_Message [27:24],\^APU_Noise_Message [8:3]}),
+       (.APU_Noise_Message(\^APU_Noise_Message ),
         .APU_Pulse1_Message({\^APU_Pulse1_Message [18:13],\^APU_Pulse1_Message [3]}),
         .\APU_Pulse1_reg[timer][8]_0 (\^APU_Pulse1_Message [12]),
         .APU_Pulse2_Message({\^APU_Pulse2_Message [18:15],\^APU_Pulse2_Message [3]}),
@@ -133,15 +117,15 @@ module design_1_nes_apu_0_0_nes_apu
     APU_Triangle_Message,
     Reset,
     CPU_Rst,
-    CPU_Addr,
-    CPU_RW,
-    CPU_RomSel,
     CPU_Data,
-    CPU_M2);
+    CPU_M2,
+    CPU_Addr,
+    CPU_RomSel,
+    CPU_RW);
   output \APU_Pulse2_reg[timer][9]_0 ;
   output \APU_Pulse2_reg[timer][10]_0 ;
   output \APU_Pulse2_reg[timer][8]_0 ;
-  output [9:0]APU_Noise_Message;
+  output [10:0]APU_Noise_Message;
   output [7:0]Q;
   output \APU_Pulse1_reg[timer][8]_0 ;
   output [7:0]\APU_Pulse2_reg[timer][7]_0 ;
@@ -150,14 +134,13 @@ module design_1_nes_apu_0_0_nes_apu
   output [11:0]APU_Triangle_Message;
   input Reset;
   input CPU_Rst;
-  input [14:0]CPU_Addr;
-  input CPU_RW;
-  input CPU_RomSel;
   input [7:0]CPU_Data;
   input CPU_M2;
+  input [14:0]CPU_Addr;
+  input CPU_RomSel;
+  input CPU_RW;
 
   wire \APU_Counter[mode]_i_1_n_0 ;
-  wire \APU_Counter[mode]_i_2_n_0 ;
   wire \APU_Counter_reg[mode]__0 ;
   wire APU_Half_CE20_out;
   wire APU_Half_CE_i_10_n_0;
@@ -181,7 +164,6 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Noise[length_counter][3]_i_2_n_0 ;
   wire \APU_Noise[length_counter][4]_i_1_n_0 ;
   wire \APU_Noise[length_counter][4]_i_2_n_0 ;
-  wire \APU_Noise[length_counter][4]_i_3_n_0 ;
   wire \APU_Noise[length_counter][5]_i_1_n_0 ;
   wire \APU_Noise[length_counter][5]_i_2_n_0 ;
   wire \APU_Noise[length_counter][5]_i_3_n_0 ;
@@ -190,9 +172,10 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Noise[length_counter][5]_i_6_n_0 ;
   wire \APU_Noise[length_counter][5]_i_7_n_0 ;
   wire \APU_Noise[length_counter_halt] ;
+  wire \APU_Noise[noise_mode]_i_1_n_0 ;
   wire \APU_Noise[noise_period] ;
   wire \APU_Noise[noise_period][3]_i_2_n_0 ;
-  wire \APU_Noise[noise_period][3]_i_3_n_0 ;
+  wire \APU_Noise[shift_reg_at_switch] ;
   wire \APU_Noise[volume] ;
   wire \APU_Noise[volume][0]_i_1_n_0 ;
   wire \APU_Noise[volume][1]_i_1_n_0 ;
@@ -201,7 +184,27 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Noise[volume][3]_i_3_n_0 ;
   wire \APU_Noise[volume][3]_i_4_n_0 ;
   wire \APU_Noise[volume][3]_i_5_n_0 ;
-  wire [9:0]APU_Noise_Message;
+  wire [10:0]APU_Noise_Message;
+  wire \APU_Noise_Message[13]_INST_0_i_10_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_11_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_12_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_13_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_14_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_15_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_16_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_17_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_18_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_19_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_1_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_20_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_2_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_3_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_4_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_5_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_6_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_7_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_8_n_0 ;
+  wire \APU_Noise_Message[13]_INST_0_i_9_n_0 ;
   wire \APU_Noise_reg[constant_volume]__0 ;
   wire \APU_Noise_reg[envelope_n_0_][0] ;
   wire \APU_Noise_reg[envelope_n_0_][1] ;
@@ -209,6 +212,10 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Noise_reg[envelope_n_0_][3] ;
   wire [5:0]\APU_Noise_reg[length_counter] ;
   wire \APU_Noise_reg[length_counter_halt_n_0_] ;
+  wire \APU_Noise_reg[shift][14]_i_1_n_0 ;
+  wire \APU_Noise_reg[shift][14]_i_2_n_0 ;
+  wire [14:0]\APU_Noise_reg[shift_reg_at_switch] ;
+  wire \APU_Noise_reg[shift_reg_n_0_][0] ;
   wire [3:0]\APU_Noise_reg[volume] ;
   wire \APU_Pulse1[length_counter][0]_i_1_n_0 ;
   wire \APU_Pulse1[length_counter][1]_i_1_n_0 ;
@@ -255,6 +262,7 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Pulse1[timer][7]_i_1_n_0 ;
   wire \APU_Pulse1[timer][7]_i_3_n_0 ;
   wire \APU_Pulse1[timer][7]_i_4_n_0 ;
+  wire \APU_Pulse1[timer][7]_i_5_n_0 ;
   wire \APU_Pulse1[timer][8]_i_1_n_0 ;
   wire \APU_Pulse1[timer][8]_i_2_n_0 ;
   wire \APU_Pulse1[timer][9]_i_1_n_0 ;
@@ -267,6 +275,7 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Pulse1[volume][3]_i_3_n_0 ;
   wire \APU_Pulse1[volume][3]_i_4_n_0 ;
   wire \APU_Pulse1[volume][3]_i_5_n_0 ;
+  wire \APU_Pulse1[volume][3]_i_6_n_0 ;
   wire [6:0]APU_Pulse1_Message;
   wire \APU_Pulse1_Message[3]_INST_0_i_10_n_0 ;
   wire \APU_Pulse1_Message[3]_INST_0_i_11_n_0 ;
@@ -320,9 +329,10 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Pulse2[length_counter][5]_i_5_n_0 ;
   wire \APU_Pulse2[length_counter][5]_i_6_n_0 ;
   wire \APU_Pulse2[length_counter][5]_i_7_n_0 ;
+  wire \APU_Pulse2[length_counter][5]_i_8_n_0 ;
   wire \APU_Pulse2[length_counter_halt] ;
-  wire \APU_Pulse2[length_counter_halt]_i_2_n_0 ;
   wire \APU_Pulse2[sweep_enable] ;
+  wire \APU_Pulse2[sweep_shift][2]_i_2_n_0 ;
   wire \APU_Pulse2[timer][0]_i_1_n_0 ;
   wire \APU_Pulse2[timer][0]_i_2_n_0 ;
   wire \APU_Pulse2[timer][10]_i_1_n_0 ;
@@ -352,6 +362,8 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Pulse2[timer][7]_i_2_n_0 ;
   wire \APU_Pulse2[timer][7]_i_3_n_0 ;
   wire \APU_Pulse2[timer][7]_i_4_n_0 ;
+  wire \APU_Pulse2[timer][7]_i_5_n_0 ;
+  wire \APU_Pulse2[timer][7]_i_6_n_0 ;
   wire \APU_Pulse2[timer][8]_i_1_n_0 ;
   wire \APU_Pulse2[timer][8]_i_2_n_0 ;
   wire \APU_Pulse2[timer][9]_i_1_n_0 ;
@@ -364,6 +376,7 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Pulse2[volume][3]_i_3_n_0 ;
   wire \APU_Pulse2[volume][3]_i_4_n_0 ;
   wire \APU_Pulse2[volume][3]_i_5_n_0 ;
+  wire \APU_Pulse2[volume][3]_i_6_n_0 ;
   wire [4:0]APU_Pulse2_Message;
   wire \APU_Pulse2_Message[3]_INST_0_i_10_n_0 ;
   wire \APU_Pulse2_Message[3]_INST_0_i_11_n_0 ;
@@ -426,8 +439,8 @@ module design_1_nes_apu_0_0_nes_apu
   wire APU_Quarter_CE_i_6_n_0;
   wire APU_Quarter_CE_i_7_n_0;
   wire APU_Quarter_CE_i_8_n_0;
-  wire APU_Quarter_CE_i_9_n_0;
   wire \APU_Status[noise_active] ;
+  wire \APU_Status[pulse1_active]_i_2_n_0 ;
   wire \APU_Status_reg[noise_active_n_0_] ;
   wire \APU_Status_reg[pulse1_active_n_0_] ;
   wire \APU_Status_reg[pulse2_active_n_0_] ;
@@ -448,7 +461,6 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Triangle[length_counter][5]_i_5_n_0 ;
   wire \APU_Triangle[length_counter][5]_i_6_n_0 ;
   wire \APU_Triangle[length_counter][5]_i_7_n_0 ;
-  wire \APU_Triangle[length_counter][5]_i_8_n_0 ;
   wire \APU_Triangle[length_counter_halt] ;
   wire \APU_Triangle[linear_counter] ;
   wire \APU_Triangle[linear_counter][4]_i_2_n_0 ;
@@ -457,7 +469,6 @@ module design_1_nes_apu_0_0_nes_apu
   wire \APU_Triangle[timer][10]_i_2_n_0 ;
   wire \APU_Triangle[timer][7]_i_1_n_0 ;
   wire \APU_Triangle[timer][7]_i_2_n_0 ;
-  wire \APU_Triangle[timer][7]_i_3_n_0 ;
   wire \APU_Triangle[timer][8]_i_1_n_0 ;
   wire \APU_Triangle[timer][9]_i_1_n_0 ;
   wire [11:0]APU_Triangle_Message;
@@ -582,10 +593,13 @@ module design_1_nes_apu_0_0_nes_apu
   wire [7:0]Q;
   wire Reset;
   wire [3:0]noise_envelope_divider;
+  wire [10:0]noise_shift_timer;
+  wire [10:0]noise_shift_timer_1;
   wire [6:0]p_0_in;
   wire [9:0]p_0_in3_in;
   wire p_1_in;
   wire [7:0]p_2_in;
+  wire [13:0]p_2_in_0;
   wire \procFrameCounter.counter[0]_i_2_n_0 ;
   wire \procFrameCounter.counter[0]_i_3_n_0 ;
   wire \procFrameCounter.counter[0]_i_4_n_0 ;
@@ -637,6 +651,20 @@ module design_1_nes_apu_0_0_nes_apu
   wire \procMainLogic.noise_envelope_divider[3]_i_1_n_0 ;
   wire \procMainLogic.noise_envelope_start_i_1_n_0 ;
   wire \procMainLogic.noise_envelope_start_reg_n_0 ;
+  wire \procMainLogic.noise_shift_mode_i_1_n_0 ;
+  wire \procMainLogic.noise_shift_mode_reg_n_0 ;
+  wire \procMainLogic.noise_shift_timer[10]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[10]_i_3_n_0 ;
+  wire \procMainLogic.noise_shift_timer[1]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[2]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[2]_i_3_n_0 ;
+  wire \procMainLogic.noise_shift_timer[3]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[4]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[5]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[6]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[7]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[8]_i_2_n_0 ;
+  wire \procMainLogic.noise_shift_timer[9]_i_2_n_0 ;
   wire \procMainLogic.pulse1_envelope_divider[0]_i_1_n_0 ;
   wire \procMainLogic.pulse1_envelope_divider[1]_i_1_n_0 ;
   wire \procMainLogic.pulse1_envelope_divider[2]_i_1_n_0 ;
@@ -687,22 +715,15 @@ module design_1_nes_apu_0_0_nes_apu
   wire [3:3]\NLW_procFrameCounter.counter_reg[12]_i_1_O_UNCONNECTED ;
 
   LUT6 #(
-    .INIT(64'hFFFFFBFF00000800)) 
+    .INIT(64'hBFFFFFFF80000000)) 
     \APU_Counter[mode]_i_1 
        (.I0(CPU_Data[7]),
-        .I1(\APU_Pulse2[timer][7]_i_3_n_0 ),
-        .I2(\APU_Counter[mode]_i_2_n_0 ),
-        .I3(CPU_Addr[1]),
-        .I4(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[2]),
+        .I3(\APU_Triangle[length_counter][5]_i_5_n_0 ),
+        .I4(\APU_Status[pulse1_active]_i_2_n_0 ),
         .I5(\APU_Counter_reg[mode]__0 ),
         .O(\APU_Counter[mode]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
-  LUT2 #(
-    .INIT(4'h7)) 
-    \APU_Counter[mode]_i_2 
-       (.I0(CPU_Addr[2]),
-        .I1(CPU_Addr[4]),
-        .O(\APU_Counter[mode]_i_2_n_0 ));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
@@ -723,16 +744,16 @@ module design_1_nes_apu_0_0_nes_apu
         .I5(APU_Half_CE_i_6_n_0),
         .O(APU_Half_CE20_out));
   LUT6 #(
-    .INIT(64'h0000004000000000)) 
+    .INIT(64'h0000000800000000)) 
     APU_Half_CE_i_10
-       (.I0(\procFrameCounter.counter_reg [5]),
-        .I1(\procFrameCounter.counter_reg [0]),
-        .I2(\procFrameCounter.counter_reg [1]),
+       (.I0(\procFrameCounter.counter_reg [0]),
+        .I1(\procFrameCounter.counter_reg [1]),
+        .I2(\procFrameCounter.counter_reg [5]),
         .I3(APU_Half_CE_i_13_n_0),
         .I4(\procFrameCounter.counter_reg [13]),
         .I5(\procFrameCounter.counter_reg [11]),
         .O(APU_Half_CE_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT5 #(
     .INIT(32'hFEFFFFFF)) 
     APU_Half_CE_i_11
@@ -742,14 +763,14 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(\procFrameCounter.counter_reg [7]),
         .I4(\procFrameCounter.counter_reg [9]),
         .O(APU_Half_CE_i_11_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT2 #(
     .INIT(4'h7)) 
     APU_Half_CE_i_12
        (.I0(\procFrameCounter.counter_reg [9]),
         .I1(\procFrameCounter.counter_reg [12]),
         .O(APU_Half_CE_i_12_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT2 #(
     .INIT(4'h7)) 
     APU_Half_CE_i_13
@@ -780,7 +801,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\procFrameCounter.counter_reg [6]),
         .I3(\procFrameCounter.counter_reg [14]),
         .O(APU_Half_CE_i_4_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT5 #(
     .INIT(32'hFBFFFFFF)) 
     APU_Half_CE_i_5
@@ -809,7 +830,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\procFrameCounter.counter_reg [1]),
         .I5(\APU_Counter_reg[mode]__0 ),
         .O(APU_Half_CE_i_7_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT5 #(
     .INIT(32'hFFFFEFFF)) 
     APU_Half_CE_i_8
@@ -819,7 +840,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(\procFrameCounter.counter_reg [13]),
         .I4(\procFrameCounter.counter_reg [0]),
         .O(APU_Half_CE_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT5 #(
     .INIT(32'hFFDFFFFF)) 
     APU_Half_CE_i_9
@@ -837,7 +858,7 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(APU_Half_CE20_out),
         .Q(APU_Half_CE_reg_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT5 #(
     .INIT(32'h77744474)) 
     \APU_Noise[length_counter][0]_i_1 
@@ -867,7 +888,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1[length_counter][2]_i_3_n_0 ),
         .I5(\APU_Noise[length_counter][5]_i_5_n_0 ),
         .O(\APU_Noise[length_counter][2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT2 #(
     .INIT(4'h1)) 
     \APU_Noise[length_counter][2]_i_2 
@@ -884,7 +905,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1[length_counter][3]_i_3_n_0 ),
         .I5(\APU_Noise[length_counter][5]_i_5_n_0 ),
         .O(\APU_Noise[length_counter][3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \APU_Noise[length_counter][3]_i_2 
@@ -893,7 +914,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\APU_Noise_reg[length_counter] [2]),
         .O(\APU_Noise[length_counter][3]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hAA8AA888A888A888)) 
+    .INIT(64'hBB8BB888B888B888)) 
     \APU_Noise[length_counter][4]_i_1 
        (.I0(\APU_Noise[length_counter][4]_i_2_n_0 ),
         .I1(\APU_Noise[length_counter][5]_i_3_n_0 ),
@@ -902,30 +923,25 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse2[length_counter][4]_i_3_n_0 ),
         .I5(\APU_Status_reg[noise_active_n_0_] ),
         .O(\APU_Noise[length_counter][4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
-  LUT4 #(
-    .INIT(16'hF6FF)) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  LUT5 #(
+    .INIT(32'hAAAAAAA9)) 
     \APU_Noise[length_counter][4]_i_2 
        (.I0(\APU_Noise_reg[length_counter] [4]),
-        .I1(\APU_Noise[length_counter][4]_i_3_n_0 ),
-        .I2(\APU_Noise_reg[length_counter_halt_n_0_] ),
-        .I3(APU_Half_CE_reg_n_0),
-        .O(\APU_Noise[length_counter][4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT4 #(
-    .INIT(16'h0001)) 
-    \APU_Noise[length_counter][4]_i_3 
-       (.I0(\APU_Noise_reg[length_counter] [2]),
-        .I1(\APU_Noise_reg[length_counter] [0]),
+        .I1(\APU_Noise_reg[length_counter] [3]),
         .I2(\APU_Noise_reg[length_counter] [1]),
-        .I3(\APU_Noise_reg[length_counter] [3]),
-        .O(\APU_Noise[length_counter][4]_i_3_n_0 ));
-  LUT3 #(
-    .INIT(8'hBA)) 
+        .I3(\APU_Noise_reg[length_counter] [0]),
+        .I4(\APU_Noise_reg[length_counter] [2]),
+        .O(\APU_Noise[length_counter][4]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hAAAAAEBAAAAAAAAA)) 
     \APU_Noise[length_counter][5]_i_1 
        (.I0(\APU_Noise[length_counter][5]_i_3_n_0 ),
-        .I1(\APU_Noise[length_counter][5]_i_4_n_0 ),
-        .I2(\APU_Noise[noise_period][3]_i_2_n_0 ),
+        .I1(CPU_Addr[3]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[1]),
+        .I4(\APU_Noise[length_counter][5]_i_4_n_0 ),
+        .I5(\APU_Pulse2[timer][7]_i_4_n_0 ),
         .O(\APU_Noise[length_counter][5]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h0054FF54FF540054)) 
@@ -937,26 +953,25 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Noise[length_counter][5]_i_7_n_0 ),
         .I5(\APU_Noise_reg[length_counter] [5]),
         .O(\APU_Noise[length_counter][5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT4 #(
-    .INIT(16'h00D0)) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  LUT3 #(
+    .INIT(8'h08)) 
     \APU_Noise[length_counter][5]_i_3 
-       (.I0(\APU_Noise[length_counter][5]_i_7_n_0 ),
-        .I1(\APU_Noise_reg[length_counter] [5]),
-        .I2(APU_Half_CE_reg_n_0),
-        .I3(\APU_Noise_reg[length_counter_halt_n_0_] ),
+       (.I0(APU_Noise_Message[0]),
+        .I1(APU_Half_CE_reg_n_0),
+        .I2(\APU_Noise_reg[length_counter_halt_n_0_] ),
         .O(\APU_Noise[length_counter][5]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFDDFFFFFFFFFDFF)) 
+    .INIT(64'hFFFFF7FFF7FFF7FF)) 
     \APU_Noise[length_counter][5]_i_4 
        (.I0(CPU_Addr[2]),
-        .I1(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
-        .I2(CPU_Data[3]),
-        .I3(CPU_Addr[4]),
-        .I4(CPU_Addr[1]),
-        .I5(CPU_Addr[3]),
+        .I1(CPU_Addr[0]),
+        .I2(CPU_RW),
+        .I3(CPU_RomSel),
+        .I4(CPU_Addr[4]),
+        .I5(CPU_Data[3]),
         .O(\APU_Noise[length_counter][5]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'h47)) 
     \APU_Noise[length_counter][5]_i_5 
@@ -964,13 +979,14 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(CPU_Addr[4]),
         .I2(\APU_Status_reg[noise_active_n_0_] ),
         .O(\APU_Noise[length_counter][5]_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \APU_Noise[length_counter][5]_i_6 
        (.I0(CPU_Data[3]),
         .I1(CPU_Addr[4]),
         .O(\APU_Noise[length_counter][5]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT5 #(
     .INIT(32'h00000001)) 
     \APU_Noise[length_counter][5]_i_7 
@@ -980,45 +996,43 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(\APU_Noise_reg[length_counter] [2]),
         .I4(\APU_Noise_reg[length_counter] [4]),
         .O(\APU_Noise[length_counter][5]_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000400000000)) 
-    \APU_Noise[length_counter_halt]_i_1 
-       (.I0(CPU_Addr[0]),
-        .I1(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I2(\APU_Noise[noise_period][3]_i_3_n_0 ),
-        .I3(CPU_Addr[1]),
-        .I4(CPU_Addr[4]),
-        .I5(CPU_Addr[2]),
-        .O(\APU_Noise[length_counter_halt] ));
-  LUT6 #(
-    .INIT(64'h0004000000000000)) 
-    \APU_Noise[noise_period][3]_i_1 
-       (.I0(CPU_Addr[0]),
-        .I1(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I2(\APU_Noise[noise_period][3]_i_3_n_0 ),
-        .I3(CPU_Addr[4]),
-        .I4(CPU_Addr[1]),
-        .I5(CPU_Addr[2]),
-        .O(\APU_Noise[noise_period] ));
   LUT5 #(
-    .INIT(32'h00000001)) 
-    \APU_Noise[noise_period][3]_i_2 
-       (.I0(CPU_Addr[10]),
-        .I1(CPU_Addr[11]),
-        .I2(CPU_Addr[8]),
-        .I3(CPU_Addr[9]),
-        .I4(\APU_Triangle[timer][7]_i_2_n_0 ),
-        .O(\APU_Noise[noise_period][3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+    .INIT(32'h00000010)) 
+    \APU_Noise[length_counter_halt]_i_1 
+       (.I0(CPU_Addr[1]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[2]),
+        .I3(CPU_Addr[0]),
+        .I4(\APU_Triangle[timer][10]_i_2_n_0 ),
+        .O(\APU_Noise[length_counter_halt] ));
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT3 #(
-    .INIT(8'hDF)) 
-    \APU_Noise[noise_period][3]_i_3 
-       (.I0(CPU_Addr[3]),
-        .I1(CPU_RW),
-        .I2(CPU_RomSel),
-        .O(\APU_Noise[noise_period][3]_i_3_n_0 ));
+    .INIT(8'hB8)) 
+    \APU_Noise[noise_mode]_i_1 
+       (.I0(CPU_Data[7]),
+        .I1(\APU_Noise[noise_period] ),
+        .I2(APU_Noise_Message[1]),
+        .O(\APU_Noise[noise_mode]_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'h00000800)) 
+    \APU_Noise[noise_period][3]_i_1 
+       (.I0(\APU_Noise[noise_period][3]_i_2_n_0 ),
+        .I1(CPU_RomSel),
+        .I2(CPU_RW),
+        .I3(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I4(CPU_Addr[0]),
+        .O(\APU_Noise[noise_period] ));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT4 #(
+    .INIT(16'h0080)) 
+    \APU_Noise[noise_period][3]_i_2 
+       (.I0(CPU_Addr[1]),
+        .I1(CPU_Addr[2]),
+        .I2(CPU_Addr[3]),
+        .I3(CPU_Addr[4]),
+        .O(\APU_Noise[noise_period][3]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h5F5F5F5F5F5F5F5D)) 
+    .INIT(64'hAFAFAFAFAFAFAFAE)) 
     \APU_Noise[volume][0]_i_1 
        (.I0(\APU_Noise[volume][3]_i_5_n_0 ),
         .I1(\APU_Noise_reg[volume] [2]),
@@ -1028,17 +1042,17 @@ module design_1_nes_apu_0_0_nes_apu
         .I5(\APU_Noise_reg[length_counter_halt_n_0_] ),
         .O(\APU_Noise[volume][0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hFF5555FFFF5555FD)) 
+    .INIT(64'hFFCCCCFFFFCCCCFE)) 
     \APU_Noise[volume][1]_i_1 
-       (.I0(\APU_Noise[volume][3]_i_5_n_0 ),
-        .I1(\APU_Noise_reg[volume] [3]),
+       (.I0(\APU_Noise_reg[length_counter_halt_n_0_] ),
+        .I1(\APU_Noise[volume][3]_i_5_n_0 ),
         .I2(\APU_Noise_reg[volume] [2]),
-        .I3(\APU_Noise_reg[volume] [1]),
-        .I4(\APU_Noise_reg[volume] [0]),
-        .I5(\APU_Noise_reg[length_counter_halt_n_0_] ),
+        .I3(\APU_Noise_reg[volume] [0]),
+        .I4(\APU_Noise_reg[volume] [1]),
+        .I5(\APU_Noise_reg[volume] [3]),
         .O(\APU_Noise[volume][1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hDDD7DDD7DDD7DDD5)) 
+    .INIT(64'hEEEBEEEBEEEBEEEA)) 
     \APU_Noise[volume][2]_i_1 
        (.I0(\APU_Noise[volume][3]_i_5_n_0 ),
         .I1(\APU_Noise_reg[volume] [2]),
@@ -1048,7 +1062,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I5(\APU_Noise_reg[length_counter_halt_n_0_] ),
         .O(\APU_Noise[volume][2]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h88808888AAAAAAAA)) 
+    .INIT(64'hAAAAAAAA88808888)) 
     \APU_Noise[volume][3]_i_1 
        (.I0(APU_Quarter_CE),
         .I1(\APU_Noise[volume][3]_i_3_n_0 ),
@@ -1058,14 +1072,14 @@ module design_1_nes_apu_0_0_nes_apu
         .I5(\APU_Noise[volume][3]_i_5_n_0 ),
         .O(\APU_Noise[volume] ));
   LUT6 #(
-    .INIT(64'hDDDDDDD7DDDDDDD5)) 
+    .INIT(64'hFFFFFFFFCCCCCCC2)) 
     \APU_Noise[volume][3]_i_2 
-       (.I0(\APU_Noise[volume][3]_i_5_n_0 ),
+       (.I0(\APU_Noise_reg[length_counter_halt_n_0_] ),
         .I1(\APU_Noise_reg[volume] [3]),
-        .I2(\APU_Noise_reg[volume] [2]),
+        .I2(\APU_Noise_reg[volume] [1]),
         .I3(\APU_Noise_reg[volume] [0]),
-        .I4(\APU_Noise_reg[volume] [1]),
-        .I5(\APU_Noise_reg[length_counter_halt_n_0_] ),
+        .I4(\APU_Noise_reg[volume] [2]),
+        .I5(\APU_Noise[volume][3]_i_5_n_0 ),
         .O(\APU_Noise[volume][3]_i_2_n_0 ));
   LUT4 #(
     .INIT(16'h0001)) 
@@ -1083,47 +1097,239 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\APU_Noise_reg[volume] [2]),
         .O(\APU_Noise[volume][3]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'h5555555545555555)) 
+    .INIT(64'hAAAAEAAAAAAAAAAA)) 
     \APU_Noise[volume][3]_i_5 
        (.I0(\procMainLogic.noise_envelope_start_reg_n_0 ),
-        .I1(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
-        .I2(CPU_Addr[2]),
-        .I3(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I4(CPU_Addr[3]),
-        .I5(\procMainLogic.triangle_linear_reload_i_3_n_0 ),
+        .I1(\APU_Noise[noise_period][3]_i_2_n_0 ),
+        .I2(CPU_Addr[0]),
+        .I3(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I4(CPU_RW),
+        .I5(CPU_RomSel),
         .O(\APU_Noise[volume][3]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \APU_Noise_Message[24]_INST_0 
-       (.I0(\APU_Noise_reg[envelope_n_0_][0] ),
-        .I1(\APU_Noise_reg[constant_volume]__0 ),
-        .I2(\APU_Noise_reg[volume] [0]),
-        .O(APU_Noise_Message[6]));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \APU_Noise_Message[25]_INST_0 
+    \APU_Noise_Message[10]_INST_0 
        (.I0(\APU_Noise_reg[envelope_n_0_][1] ),
         .I1(\APU_Noise_reg[constant_volume]__0 ),
         .I2(\APU_Noise_reg[volume] [1]),
         .O(APU_Noise_Message[7]));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \APU_Noise_Message[26]_INST_0 
+    \APU_Noise_Message[11]_INST_0 
        (.I0(\APU_Noise_reg[envelope_n_0_][2] ),
         .I1(\APU_Noise_reg[constant_volume]__0 ),
         .I2(\APU_Noise_reg[volume] [2]),
         .O(APU_Noise_Message[8]));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \APU_Noise_Message[27]_INST_0 
+    \APU_Noise_Message[12]_INST_0 
        (.I0(\APU_Noise_reg[envelope_n_0_][3] ),
         .I1(\APU_Noise_reg[constant_volume]__0 ),
         .I2(\APU_Noise_reg[volume] [3]),
         .O(APU_Noise_Message[9]));
+  LUT5 #(
+    .INIT(32'hAAAAEEEA)) 
+    \APU_Noise_Message[13]_INST_0 
+       (.I0(\APU_Noise_Message[13]_INST_0_i_1_n_0 ),
+        .I1(\APU_Noise_Message[13]_INST_0_i_2_n_0 ),
+        .I2(\APU_Noise_Message[13]_INST_0_i_3_n_0 ),
+        .I3(\APU_Noise_Message[13]_INST_0_i_4_n_0 ),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [0]),
+        .O(APU_Noise_Message[10]));
+  LUT6 #(
+    .INIT(64'h0000008080000000)) 
+    \APU_Noise_Message[13]_INST_0_i_1 
+       (.I0(\APU_Noise_Message[13]_INST_0_i_5_n_0 ),
+        .I1(\APU_Noise_Message[13]_INST_0_i_6_n_0 ),
+        .I2(\APU_Noise_Message[13]_INST_0_i_7_n_0 ),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [1]),
+        .I4(\APU_Noise_Message[13]_INST_0_i_8_n_0 ),
+        .I5(\APU_Noise_Message[13]_INST_0_i_9_n_0 ),
+        .O(\APU_Noise_Message[13]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'h0AA0C00C)) 
+    \APU_Noise_Message[13]_INST_0_i_10 
+       (.I0(\APU_Noise_Message[13]_INST_0_i_17_n_0 ),
+        .I1(\APU_Noise_Message[13]_INST_0_i_18_n_0 ),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [14]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [12]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .O(\APU_Noise_Message[13]_INST_0_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'h0990000000000000)) 
+    \APU_Noise_Message[13]_INST_0_i_11 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [11]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [13]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [14]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [12]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .I5(\APU_Noise_Message[13]_INST_0_i_19_n_0 ),
+        .O(\APU_Noise_Message[13]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'h4100004000000000)) 
+    \APU_Noise_Message[13]_INST_0_i_12 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [12]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [14]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [13]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [11]),
+        .I5(\APU_Noise_Message[13]_INST_0_i_20_n_0 ),
+        .O(\APU_Noise_Message[13]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'h0081810042000042)) 
+    \APU_Noise_Message[13]_INST_0_i_13 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [4]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [5]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [8]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [6]),
+        .I5(\APU_Noise_reg[shift_reg_at_switch] [1]),
+        .O(\APU_Noise_Message[13]_INST_0_i_13_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  LUT4 #(
+    .INIT(16'h6009)) 
+    \APU_Noise_Message[13]_INST_0_i_14 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [9]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [2]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [6]),
+        .O(\APU_Noise_Message[13]_INST_0_i_14_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  LUT3 #(
+    .INIT(8'h42)) 
+    \APU_Noise_Message[13]_INST_0_i_15 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [4]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [5]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .O(\APU_Noise_Message[13]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'h0100008080000008)) 
+    \APU_Noise_Message[13]_INST_0_i_16 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [4]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [5]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [6]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [2]),
+        .I5(\APU_Noise_reg[shift_reg_at_switch] [9]),
+        .O(\APU_Noise_Message[13]_INST_0_i_16_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'h18000024)) 
+    \APU_Noise_Message[13]_INST_0_i_17 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [9]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [12]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [10]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [8]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [11]),
+        .O(\APU_Noise_Message[13]_INST_0_i_17_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'h81000042)) 
+    \APU_Noise_Message[13]_INST_0_i_18 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [9]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [10]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [12]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [8]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [11]),
+        .O(\APU_Noise_Message[13]_INST_0_i_18_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'h24000018)) 
+    \APU_Noise_Message[13]_INST_0_i_19 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [9]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [12]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [10]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [8]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [11]),
+        .O(\APU_Noise_Message[13]_INST_0_i_19_n_0 ));
+  LUT6 #(
+    .INIT(64'h28FF28FF28FF2800)) 
+    \APU_Noise_Message[13]_INST_0_i_2 
+       (.I0(\APU_Noise_Message[13]_INST_0_i_10_n_0 ),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [13]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [11]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [6]),
+        .I4(\APU_Noise_Message[13]_INST_0_i_11_n_0 ),
+        .I5(\APU_Noise_Message[13]_INST_0_i_12_n_0 ),
+        .O(\APU_Noise_Message[13]_INST_0_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'h42000088)) 
+    \APU_Noise_Message[13]_INST_0_i_20 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [9]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [10]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [12]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [8]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [11]),
+        .O(\APU_Noise_Message[13]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'h0082280000000000)) 
+    \APU_Noise_Message[13]_INST_0_i_3 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [3]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [9]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [2]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [6]),
+        .I5(\APU_Noise_Message[13]_INST_0_i_13_n_0 ),
+        .O(\APU_Noise_Message[13]_INST_0_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h00008800000000F0)) 
+    \APU_Noise_Message[13]_INST_0_i_4 
+       (.I0(\APU_Noise_Message[13]_INST_0_i_14_n_0 ),
+        .I1(\APU_Noise_Message[13]_INST_0_i_15_n_0 ),
+        .I2(\APU_Noise_Message[13]_INST_0_i_16_n_0 ),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [1]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [3]),
+        .I5(\APU_Noise_Message[13]_INST_0_i_8_n_0 ),
+        .O(\APU_Noise_Message[13]_INST_0_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h0820100401408002)) 
+    \APU_Noise_Message[13]_INST_0_i_5 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [10]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [12]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [9]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [2]),
+        .I5(\APU_Noise_Message[13]_INST_0_i_8_n_0 ),
+        .O(\APU_Noise_Message[13]_INST_0_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h2800002800282800)) 
+    \APU_Noise_Message[13]_INST_0_i_6 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [0]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [5]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [7]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [2]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [3]),
+        .I5(\APU_Noise_reg[shift_reg_at_switch] [6]),
+        .O(\APU_Noise_Message[13]_INST_0_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h0600006000066000)) 
+    \APU_Noise_Message[13]_INST_0_i_7 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [10]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [14]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [11]),
+        .I3(\APU_Noise_reg[shift_reg_at_switch] [6]),
+        .I4(\APU_Noise_reg[shift_reg_at_switch] [8]),
+        .I5(\APU_Noise_reg[shift_reg_at_switch] [13]),
+        .O(\APU_Noise_Message[13]_INST_0_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \APU_Noise_Message[13]_INST_0_i_8 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [6]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [8]),
+        .O(\APU_Noise_Message[13]_INST_0_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  LUT3 #(
+    .INIT(8'h96)) 
+    \APU_Noise_Message[13]_INST_0_i_9 
+       (.I0(\APU_Noise_reg[shift_reg_at_switch] [5]),
+        .I1(\APU_Noise_reg[shift_reg_at_switch] [4]),
+        .I2(\APU_Noise_reg[shift_reg_at_switch] [3]),
+        .O(\APU_Noise_Message[13]_INST_0_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
     \APU_Noise_Message[3]_INST_0 
@@ -1134,6 +1340,14 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Noise_reg[length_counter] [1]),
         .I5(\APU_Noise_reg[length_counter] [3]),
         .O(APU_Noise_Message[0]));
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \APU_Noise_Message[9]_INST_0 
+       (.I0(\APU_Noise_reg[envelope_n_0_][0] ),
+        .I1(\APU_Noise_reg[constant_volume]__0 ),
+        .I2(\APU_Noise_reg[volume] [0]),
+        .O(APU_Noise_Message[6]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
@@ -1179,14 +1393,14 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(CPU_Data[3]),
         .Q(\APU_Noise_reg[envelope_n_0_][3] ));
-  FDPE #(
-    .INIT(1'b1),
+  FDCE #(
+    .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \APU_Noise_reg[length_counter][0] 
        (.C(CPU_M2),
         .CE(\APU_Noise[length_counter][5]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(\APU_Noise[length_counter][0]_i_1_n_0 ),
-        .PRE(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .Q(\APU_Noise_reg[length_counter] [0]));
   FDCE #(
     .INIT(1'b0),
@@ -1247,9 +1461,9 @@ module design_1_nes_apu_0_0_nes_apu
     .IS_C_INVERTED(1'b1)) 
     \APU_Noise_reg[noise_mode] 
        (.C(CPU_M2),
-        .CE(\APU_Noise[noise_period] ),
+        .CE(1'b1),
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
-        .D(CPU_Data[7]),
+        .D(\APU_Noise[noise_mode]_i_1_n_0 ),
         .Q(APU_Noise_Message[1]));
   FDCE #(
     .INIT(1'b0),
@@ -1287,6 +1501,301 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(CPU_Data[3]),
         .Q(APU_Noise_Message[5]));
+  LUT2 #(
+    .INIT(4'h8)) 
+    \APU_Noise_reg[shift][14]_i_1 
+       (.I0(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I1(APU_Tick_CE),
+        .O(\APU_Noise_reg[shift][14]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h55566656AAA666A6)) 
+    \APU_Noise_reg[shift][14]_i_2 
+       (.I0(\APU_Noise_reg[shift_reg_n_0_][0] ),
+        .I1(p_2_in_0[0]),
+        .I2(\procMainLogic.noise_shift_mode_reg_n_0 ),
+        .I3(\APU_Noise[noise_period] ),
+        .I4(CPU_Data[7]),
+        .I5(p_2_in_0[5]),
+        .O(\APU_Noise_reg[shift][14]_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'h00000880)) 
+    \APU_Noise_reg[shift_at_switch][14]_i_1 
+       (.I0(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I1(CPU_Addr[3]),
+        .I2(APU_Noise_Message[1]),
+        .I3(CPU_Data[7]),
+        .I4(\APU_Pulse2[timer][7]_i_3_n_0 ),
+        .O(\APU_Noise[shift_reg_at_switch] ));
+  FDPE #(
+    .INIT(1'b1),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][0] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .D(p_2_in_0[0]),
+        .PRE(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .Q(\APU_Noise_reg[shift_reg_n_0_][0] ));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][10] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[10]),
+        .Q(p_2_in_0[9]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][11] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[11]),
+        .Q(p_2_in_0[10]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][12] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[12]),
+        .Q(p_2_in_0[11]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][13] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[13]),
+        .Q(p_2_in_0[12]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][14] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(\APU_Noise_reg[shift][14]_i_2_n_0 ),
+        .Q(p_2_in_0[13]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][1] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[1]),
+        .Q(p_2_in_0[0]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][2] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[2]),
+        .Q(p_2_in_0[1]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][3] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[3]),
+        .Q(p_2_in_0[2]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][4] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[4]),
+        .Q(p_2_in_0[3]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][5] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[5]),
+        .Q(p_2_in_0[4]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][6] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[6]),
+        .Q(p_2_in_0[5]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][7] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[7]),
+        .Q(p_2_in_0[6]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][8] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[8]),
+        .Q(p_2_in_0[7]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg][9] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise_reg[shift][14]_i_1_n_0 ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[9]),
+        .Q(p_2_in_0[8]));
+  FDPE #(
+    .INIT(1'b1),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][0] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .D(\APU_Noise_reg[shift_reg_n_0_][0] ),
+        .PRE(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [0]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][10] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[9]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [10]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][11] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[10]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [11]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][12] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[11]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [12]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][13] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[12]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [13]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][14] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[13]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [14]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][1] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[0]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [1]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][2] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[1]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [2]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][3] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[2]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [3]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][4] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[3]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [4]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][5] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[4]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [5]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][6] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[5]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [6]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][7] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[6]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [7]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][8] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[7]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [8]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \APU_Noise_reg[shift_reg_at_switch][9] 
+       (.C(CPU_M2),
+        .CE(\APU_Noise[shift_reg_at_switch] ),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(p_2_in_0[8]),
+        .Q(\APU_Noise_reg[shift_reg_at_switch] [9]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
@@ -1323,7 +1832,7 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(\APU_Noise[volume][3]_i_2_n_0 ),
         .Q(\APU_Noise_reg[volume] [3]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'h74777444)) 
     \APU_Pulse1[length_counter][0]_i_1 
@@ -1363,7 +1872,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1[length_counter][5]_i_6_n_0 ),
         .I5(\APU_Pulse1[length_counter][2]_i_3_n_0 ),
         .O(\APU_Pulse1[length_counter][2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT2 #(
     .INIT(4'h1)) 
     \APU_Pulse1[length_counter][2]_i_2 
@@ -1390,7 +1899,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1[length_counter][5]_i_6_n_0 ),
         .I5(\APU_Pulse1[length_counter][3]_i_3_n_0 ),
         .O(\APU_Pulse1[length_counter][3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \APU_Pulse1[length_counter][3]_i_2 
@@ -1418,7 +1927,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1_reg[length_counter] [4]),
         .I5(\APU_Pulse1[length_counter][4]_i_3_n_0 ),
         .O(\APU_Pulse1[length_counter][4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \APU_Pulse1[length_counter][4]_i_2 
@@ -1427,7 +1936,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\APU_Pulse1_reg[length_counter] [1]),
         .I3(\APU_Pulse1_reg[length_counter] [3]),
         .O(\APU_Pulse1[length_counter][4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT4 #(
     .INIT(16'h07F7)) 
     \APU_Pulse1[length_counter][4]_i_3 
@@ -1436,15 +1945,14 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(CPU_Addr[4]),
         .I3(CPU_Data[0]),
         .O(\APU_Pulse1[length_counter][4]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAAFBAAAAAAAAAAA)) 
+  LUT5 #(
+    .INIT(32'hBFBFBFAA)) 
     \APU_Pulse1[length_counter][5]_i_1 
        (.I0(\APU_Pulse1[length_counter][5]_i_3_n_0 ),
         .I1(CPU_Data[0]),
         .I2(CPU_Addr[4]),
-        .I3(CPU_Addr[2]),
-        .I4(CPU_Addr[1]),
-        .I5(\APU_Pulse2[timer][10]_i_4_n_0 ),
+        .I3(\APU_Status[noise_active] ),
+        .I4(\APU_Pulse1[timer][10]_i_4_n_0 ),
         .O(\APU_Pulse1[length_counter][5]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h0CAA0CAA0CAA0C08)) 
@@ -1456,7 +1964,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1[length_counter][5]_i_6_n_0 ),
         .I5(\APU_Pulse1[length_counter][5]_i_7_n_0 ),
         .O(\APU_Pulse1[length_counter][5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \APU_Pulse1[length_counter][5]_i_3 
@@ -1464,7 +1972,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(APU_Half_CE_reg_n_0),
         .I2(\APU_Pulse1_Message[3]_INST_0_i_3_n_0 ),
         .O(\APU_Pulse1[length_counter][5]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[length_counter][5]_i_4 
@@ -1472,7 +1980,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(CPU_Addr[4]),
         .I2(\APU_Status_reg[pulse1_active_n_0_] ),
         .O(\APU_Pulse1[length_counter][5]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT3 #(
     .INIT(8'hEF)) 
     \APU_Pulse1[length_counter][5]_i_5 
@@ -1480,7 +1988,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse1_reg[length_counter_halt_n_0_] ),
         .I2(APU_Half_CE_reg_n_0),
         .O(\APU_Pulse1[length_counter][5]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \APU_Pulse1[length_counter][5]_i_6 
@@ -1497,7 +2005,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(CPU_Data[3]),
         .I4(CPU_Data[6]),
         .O(\APU_Pulse1[length_counter][5]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
     .INIT(32'h00000001)) 
     \APU_Pulse1[length_counter][5]_i_8 
@@ -1508,40 +2016,40 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1_reg[length_counter] [4]),
         .O(\APU_Pulse1[length_counter][5]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000008)) 
+    .INIT(64'h0000000000000002)) 
     \APU_Pulse1[length_counter_halt]_i_1 
-       (.I0(\APU_Pulse2[timer][7]_i_3_n_0 ),
-        .I1(\APU_Pulse1[length_counter_halt]_i_2_n_0 ),
-        .I2(CPU_Addr[1]),
-        .I3(CPU_Addr[4]),
-        .I4(CPU_Addr[0]),
-        .I5(CPU_Addr[2]),
+       (.I0(\APU_Pulse1[length_counter_halt]_i_2_n_0 ),
+        .I1(CPU_Addr[1]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[0]),
+        .I4(CPU_Addr[2]),
+        .I5(\APU_Triangle[timer][7]_i_2_n_0 ),
         .O(\APU_Pulse1[length_counter_halt] ));
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \APU_Pulse1[length_counter_halt]_i_2 
-       (.I0(CPU_RomSel),
-        .I1(CPU_RW),
+       (.I0(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I1(CPU_Addr[3]),
         .O(\APU_Pulse1[length_counter_halt]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000004)) 
+    .INIT(64'h0000000000004000)) 
     \APU_Pulse1[sweep_shift][2]_i_1 
-       (.I0(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
-        .I1(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I2(CPU_Addr[2]),
-        .I3(CPU_Addr[3]),
+       (.I0(\APU_Triangle[timer][7]_i_2_n_0 ),
+        .I1(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I2(CPU_Addr[0]),
+        .I3(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
         .I4(CPU_Addr[4]),
         .I5(CPU_Addr[1]),
         .O(\APU_Pulse1[sweep_enable] ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
-  LUT3 #(
-    .INIT(8'hDF)) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  LUT2 #(
+    .INIT(4'h1)) 
     \APU_Pulse1[sweep_shift][2]_i_2 
-       (.I0(CPU_Addr[0]),
-        .I1(CPU_RW),
-        .I2(CPU_RomSel),
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[3]),
         .O(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[timer][0]_i_1 
@@ -1585,14 +2093,14 @@ module design_1_nes_apu_0_0_nes_apu
         .I5(CPU_Rst),
         .O(\APU_Pulse1[timer][10]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000040000)) 
+    .INIT(64'h0000000000004000)) 
     \APU_Pulse1[timer][10]_i_4 
-       (.I0(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
-        .I1(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I2(CPU_Addr[3]),
-        .I3(CPU_Addr[4]),
-        .I4(CPU_Addr[1]),
-        .I5(CPU_Addr[2]),
+       (.I0(\APU_Triangle[timer][7]_i_2_n_0 ),
+        .I1(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I2(CPU_Addr[0]),
+        .I3(\APU_Pulse1[timer][7]_i_4_n_0 ),
+        .I4(CPU_Addr[2]),
+        .I5(CPU_Addr[3]),
         .O(\APU_Pulse1[timer][10]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h0000000055551555)) 
@@ -1621,7 +2129,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(pulse1_sweep_divider[0]),
         .I2(pulse1_sweep_divider[1]),
         .O(\APU_Pulse1[timer][10]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[timer][1]_i_1 
@@ -1639,7 +2147,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(Reset),
         .I5(CPU_Rst),
         .O(\APU_Pulse1[timer][1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[timer][2]_i_1 
@@ -1657,7 +2165,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(Reset),
         .I5(CPU_Rst),
         .O(\APU_Pulse1[timer][2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[timer][3]_i_1 
@@ -1699,7 +2207,7 @@ module design_1_nes_apu_0_0_nes_apu
        (.I0(Q[0]),
         .I1(p_0_in3_in[0]),
         .O(\APU_Pulse1[timer][3]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[timer][4]_i_1 
@@ -1717,7 +2225,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(Reset),
         .I5(CPU_Rst),
         .O(\APU_Pulse1[timer][4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[timer][5]_i_1 
@@ -1735,7 +2243,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(Reset),
         .I5(CPU_Rst),
         .O(\APU_Pulse1[timer][5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[timer][6]_i_1 
@@ -1754,42 +2262,48 @@ module design_1_nes_apu_0_0_nes_apu
         .I5(CPU_Rst),
         .O(\APU_Pulse1[timer][6]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAABAAAAAAAAAA)) 
+    .INIT(64'hAAAAAAABAAAAAAAA)) 
     \APU_Pulse1[timer][7]_i_1 
        (.I0(\APU_Pulse1[timer][10]_i_5_n_0 ),
-        .I1(CPU_Addr[3]),
-        .I2(CPU_Addr[2]),
-        .I3(CPU_Addr[1]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Pulse1[timer][7]_i_3_n_0 ),
+        .I1(CPU_Addr[0]),
+        .I2(\APU_Pulse1[timer][7]_i_3_n_0 ),
+        .I3(CPU_Addr[3]),
+        .I4(CPU_Addr[2]),
+        .I5(\APU_Pulse1[timer][7]_i_4_n_0 ),
         .O(\APU_Pulse1[timer][7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1[timer][7]_i_2 
-       (.I0(\APU_Pulse1[timer][7]_i_4_n_0 ),
+       (.I0(\APU_Pulse1[timer][7]_i_5_n_0 ),
         .I1(\APU_Pulse1[timer][10]_i_5_n_0 ),
         .I2(CPU_Data[7]),
         .O(p_2_in[7]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'h0400)) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT3 #(
+    .INIT(8'hDF)) 
     \APU_Pulse1[timer][7]_i_3 
-       (.I0(CPU_Addr[0]),
-        .I1(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I2(CPU_RW),
-        .I3(CPU_RomSel),
+       (.I0(CPU_RomSel),
+        .I1(CPU_RW),
+        .I2(\APU_Pulse2[timer][7]_i_4_n_0 ),
         .O(\APU_Pulse1[timer][7]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
+    \APU_Pulse1[timer][7]_i_4 
+       (.I0(CPU_Addr[1]),
+        .I1(CPU_Addr[4]),
+        .O(\APU_Pulse1[timer][7]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h2E22000000000000)) 
-    \APU_Pulse1[timer][7]_i_4 
+    \APU_Pulse1[timer][7]_i_5 
        (.I0(Pulse1_Target05_out[7]),
         .I1(\APU_Pulse1_reg[sweep_negate]__0 ),
         .I2(Pulse1_Target1),
         .I3(Pulse1_Target01_out[7]),
         .I4(Reset),
         .I5(CPU_Rst),
-        .O(\APU_Pulse1[timer][7]_i_4_n_0 ));
+        .O(\APU_Pulse1[timer][7]_i_5_n_0 ));
   LUT5 #(
     .INIT(32'hAACFAAC0)) 
     \APU_Pulse1[timer][8]_i_1 
@@ -1894,16 +2408,25 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\APU_Pulse1_reg[volume] [2]),
         .O(\APU_Pulse1[volume][3]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAAAAAAABAAAAA)) 
+    .INIT(64'hAAAAEAAAAAAAAAAA)) 
     \APU_Pulse1[volume][3]_i_5 
        (.I0(\procMainLogic.pulse1_envelope_start_reg_n_0 ),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Addr[1]),
-        .I3(CPU_Addr[4]),
-        .I4(\APU_Pulse2[timer][7]_i_3_n_0 ),
-        .I5(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
+        .I1(\APU_Pulse1[volume][3]_i_6_n_0 ),
+        .I2(CPU_Addr[0]),
+        .I3(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I4(CPU_RW),
+        .I5(CPU_RomSel),
         .O(\APU_Pulse1[volume][3]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  LUT4 #(
+    .INIT(16'h0100)) 
+    \APU_Pulse1[volume][3]_i_6 
+       (.I0(CPU_Addr[3]),
+        .I1(CPU_Addr[2]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[1]),
+        .O(\APU_Pulse1[volume][3]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1_Message[15]_INST_0 
@@ -1911,7 +2434,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse1_reg[constant_volume]__0 ),
         .I2(\APU_Pulse1_reg[volume] [0]),
         .O(APU_Pulse1_Message[3]));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1_Message[16]_INST_0 
@@ -1919,7 +2442,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse1_reg[constant_volume]__0 ),
         .I2(\APU_Pulse1_reg[volume] [1]),
         .O(APU_Pulse1_Message[4]));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1_Message[17]_INST_0 
@@ -1927,7 +2450,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse1_reg[constant_volume]__0 ),
         .I2(\APU_Pulse1_reg[volume] [2]),
         .O(APU_Pulse1_Message[5]));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse1_Message[18]_INST_0 
@@ -1970,7 +2493,7 @@ module design_1_nes_apu_0_0_nes_apu
        (.I0(Q[4]),
         .I1(p_0_in3_in[4]),
         .O(\APU_Pulse1_Message[3]_INST_0_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \APU_Pulse1_Message[3]_INST_0_i_13 
@@ -1984,8 +2507,8 @@ module design_1_nes_apu_0_0_nes_apu
     \APU_Pulse1_Message[3]_INST_0_i_2 
        (.I0(APU_Pulse1_Message[1]),
         .I1(APU_Pulse1_Message[2]),
-        .I2(Q[5]),
-        .I3(Q[6]),
+        .I2(Q[4]),
+        .I3(Q[7]),
         .I4(\APU_Pulse1_Message[3]_INST_0_i_8_n_0 ),
         .O(\APU_Pulse1_Message[3]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -2035,8 +2558,8 @@ module design_1_nes_apu_0_0_nes_apu
   LUT4 #(
     .INIT(16'hFFFE)) 
     \APU_Pulse1_Message[3]_INST_0_i_8 
-       (.I0(Q[7]),
-        .I1(Q[4]),
+       (.I0(Q[6]),
+        .I1(Q[5]),
         .I2(\APU_Pulse1_reg[timer][8]_0 ),
         .I3(Q[3]),
         .O(\APU_Pulse1_Message[3]_INST_0_i_8_n_0 ));
@@ -2372,37 +2895,37 @@ module design_1_nes_apu_0_0_nes_apu
         .D(\APU_Pulse1[volume][3]_i_2_n_0 ),
         .PRE(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .Q(\APU_Pulse1_reg[volume] [3]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT5 #(
-    .INIT(32'h74777444)) 
+    .INIT(32'hB800B8FF)) 
     \APU_Pulse2[length_counter][0]_i_1 
-       (.I0(\APU_Pulse2_reg[length_counter] [0]),
-        .I1(\APU_Pulse2[length_counter][5]_i_3_n_0 ),
-        .I2(CPU_Data[1]),
-        .I3(CPU_Addr[4]),
-        .I4(\APU_Status_reg[pulse2_active_n_0_] ),
+       (.I0(CPU_Data[1]),
+        .I1(CPU_Addr[4]),
+        .I2(\APU_Status_reg[pulse2_active_n_0_] ),
+        .I3(\APU_Pulse2[length_counter][5]_i_4_n_0 ),
+        .I4(\APU_Pulse2_reg[length_counter] [0]),
         .O(\APU_Pulse2[length_counter][0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h9F909F909F909090)) 
+    .INIT(64'hA8FFA800A800A8FF)) 
     \APU_Pulse2[length_counter][1]_i_1 
-       (.I0(\APU_Pulse2_reg[length_counter] [0]),
-        .I1(\APU_Pulse2_reg[length_counter] [1]),
-        .I2(\APU_Pulse2[length_counter][5]_i_3_n_0 ),
+       (.I0(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
+        .I1(\APU_Pulse2[length_counter][5]_i_6_n_0 ),
+        .I2(\APU_Pulse1[length_counter][1]_i_2_n_0 ),
         .I3(\APU_Pulse2[length_counter][5]_i_4_n_0 ),
-        .I4(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
-        .I5(\APU_Pulse1[length_counter][1]_i_2_n_0 ),
+        .I4(\APU_Pulse2_reg[length_counter] [0]),
+        .I5(\APU_Pulse2_reg[length_counter] [1]),
         .O(\APU_Pulse2[length_counter][1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h6F606F606F606060)) 
+    .INIT(64'hA800A8FFA8FFA800)) 
     \APU_Pulse2[length_counter][2]_i_1 
-       (.I0(\APU_Pulse2_reg[length_counter] [2]),
-        .I1(\APU_Pulse2[length_counter][2]_i_2_n_0 ),
-        .I2(\APU_Pulse2[length_counter][5]_i_3_n_0 ),
+       (.I0(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
+        .I1(\APU_Pulse2[length_counter][5]_i_6_n_0 ),
+        .I2(\APU_Pulse1[length_counter][2]_i_3_n_0 ),
         .I3(\APU_Pulse2[length_counter][5]_i_4_n_0 ),
-        .I4(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
-        .I5(\APU_Pulse1[length_counter][2]_i_3_n_0 ),
+        .I4(\APU_Pulse2_reg[length_counter] [2]),
+        .I5(\APU_Pulse2[length_counter][2]_i_2_n_0 ),
         .O(\APU_Pulse2[length_counter][2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT2 #(
     .INIT(4'h1)) 
     \APU_Pulse2[length_counter][2]_i_2 
@@ -2410,16 +2933,16 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse2_reg[length_counter] [1]),
         .O(\APU_Pulse2[length_counter][2]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h6F606F606F606060)) 
+    .INIT(64'hA800A8FFA8FFA800)) 
     \APU_Pulse2[length_counter][3]_i_1 
-       (.I0(\APU_Pulse2_reg[length_counter] [3]),
-        .I1(\APU_Pulse2[length_counter][3]_i_2_n_0 ),
-        .I2(\APU_Pulse2[length_counter][5]_i_3_n_0 ),
+       (.I0(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
+        .I1(\APU_Pulse2[length_counter][5]_i_6_n_0 ),
+        .I2(\APU_Pulse1[length_counter][3]_i_3_n_0 ),
         .I3(\APU_Pulse2[length_counter][5]_i_4_n_0 ),
-        .I4(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
-        .I5(\APU_Pulse1[length_counter][3]_i_3_n_0 ),
+        .I4(\APU_Pulse2_reg[length_counter] [3]),
+        .I5(\APU_Pulse2[length_counter][3]_i_2_n_0 ),
         .O(\APU_Pulse2[length_counter][3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \APU_Pulse2[length_counter][3]_i_2 
@@ -2428,16 +2951,16 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\APU_Pulse2_reg[length_counter] [2]),
         .O(\APU_Pulse2[length_counter][3]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h3CAA3CAA3CAA3C00)) 
+    .INIT(64'hF0F0F00066666666)) 
     \APU_Pulse2[length_counter][4]_i_1 
-       (.I0(\APU_Pulse2[length_counter][5]_i_4_n_0 ),
-        .I1(\APU_Pulse2[length_counter][4]_i_2_n_0 ),
-        .I2(\APU_Pulse2_reg[length_counter] [4]),
-        .I3(\APU_Pulse2[length_counter][5]_i_3_n_0 ),
-        .I4(\APU_Pulse2[length_counter][4]_i_3_n_0 ),
-        .I5(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
+       (.I0(\APU_Pulse2[length_counter][4]_i_2_n_0 ),
+        .I1(\APU_Pulse2_reg[length_counter] [4]),
+        .I2(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
+        .I3(\APU_Pulse2[length_counter][4]_i_3_n_0 ),
+        .I4(\APU_Pulse2[length_counter][5]_i_6_n_0 ),
+        .I5(\APU_Pulse2[length_counter][5]_i_4_n_0 ),
         .O(\APU_Pulse2[length_counter][4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \APU_Pulse2[length_counter][4]_i_2 
@@ -2455,151 +2978,154 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(CPU_Data[3]),
         .I4(CPU_Data[4]),
         .O(\APU_Pulse2[length_counter][4]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAAEEEAAAAAAAAAA)) 
+  LUT5 #(
+    .INIT(32'h1A00FFFF)) 
     \APU_Pulse2[length_counter][5]_i_1 
-       (.I0(\APU_Pulse2[length_counter][5]_i_3_n_0 ),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Data[1]),
-        .I3(CPU_Addr[1]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Pulse2[timer][10]_i_4_n_0 ),
+       (.I0(CPU_Addr[1]),
+        .I1(CPU_Data[1]),
+        .I2(CPU_Addr[4]),
+        .I3(\APU_Pulse2[length_counter][5]_i_3_n_0 ),
+        .I4(\APU_Pulse2[length_counter][5]_i_4_n_0 ),
         .O(\APU_Pulse2[length_counter][5]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hA8FFA800A800A8A8)) 
     \APU_Pulse2[length_counter][5]_i_2 
-       (.I0(\APU_Pulse2[length_counter][5]_i_4_n_0 ),
-        .I1(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
+       (.I0(\APU_Pulse2[length_counter][5]_i_5_n_0 ),
+        .I1(\APU_Pulse2[length_counter][5]_i_6_n_0 ),
         .I2(\APU_Pulse1[length_counter][5]_i_7_n_0 ),
-        .I3(\APU_Pulse2[length_counter][5]_i_6_n_0 ),
+        .I3(\APU_Pulse2[length_counter][5]_i_7_n_0 ),
         .I4(\APU_Pulse2_reg[length_counter] [5]),
-        .I5(\APU_Pulse2[length_counter][5]_i_7_n_0 ),
+        .I5(\APU_Pulse2[length_counter][5]_i_8_n_0 ),
         .O(\APU_Pulse2[length_counter][5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
-  LUT3 #(
-    .INIT(8'h08)) 
+  LUT6 #(
+    .INIT(64'h0000400000000000)) 
     \APU_Pulse2[length_counter][5]_i_3 
-       (.I0(\APU_Pulse2_Message[3]_INST_0_i_3_n_0 ),
-        .I1(APU_Half_CE_reg_n_0),
-        .I2(\APU_Pulse2_reg[length_counter_halt_n_0_] ),
+       (.I0(CPU_Addr[3]),
+        .I1(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I2(CPU_Addr[2]),
+        .I3(CPU_Addr[0]),
+        .I4(CPU_RW),
+        .I5(CPU_RomSel),
         .O(\APU_Pulse2[length_counter][5]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  LUT3 #(
+    .INIT(8'hDF)) 
+    \APU_Pulse2[length_counter][5]_i_4 
+       (.I0(APU_Half_CE_reg_n_0),
+        .I1(\APU_Pulse2_reg[length_counter_halt_n_0_] ),
+        .I2(\APU_Pulse2_Message[3]_INST_0_i_3_n_0 ),
+        .O(\APU_Pulse2[length_counter][5]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \APU_Pulse2[length_counter][5]_i_4 
-       (.I0(CPU_Data[1]),
-        .I1(CPU_Addr[4]),
-        .I2(\APU_Status_reg[pulse2_active_n_0_] ),
-        .O(\APU_Pulse2[length_counter][5]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
     \APU_Pulse2[length_counter][5]_i_5 
        (.I0(CPU_Data[1]),
         .I1(CPU_Addr[4]),
+        .I2(\APU_Status_reg[pulse2_active_n_0_] ),
         .O(\APU_Pulse2[length_counter][5]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    \APU_Pulse2[length_counter][5]_i_6 
+       (.I0(CPU_Data[1]),
+        .I1(CPU_Addr[4]),
+        .O(\APU_Pulse2[length_counter][5]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT2 #(
     .INIT(4'hB)) 
-    \APU_Pulse2[length_counter][5]_i_6 
+    \APU_Pulse2[length_counter][5]_i_7 
        (.I0(\APU_Pulse2_reg[length_counter_halt_n_0_] ),
         .I1(APU_Half_CE_reg_n_0),
-        .O(\APU_Pulse2[length_counter][5]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+        .O(\APU_Pulse2[length_counter][5]_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
-    \APU_Pulse2[length_counter][5]_i_7 
+    \APU_Pulse2[length_counter][5]_i_8 
        (.I0(\APU_Pulse2_reg[length_counter] [4]),
         .I1(\APU_Pulse2_reg[length_counter] [3]),
         .I2(\APU_Pulse2_reg[length_counter] [1]),
         .I3(\APU_Pulse2_reg[length_counter] [0]),
         .I4(\APU_Pulse2_reg[length_counter] [2]),
-        .O(\APU_Pulse2[length_counter][5]_i_7_n_0 ));
+        .O(\APU_Pulse2[length_counter][5]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000080000)) 
+    .INIT(64'h0000000000000010)) 
     \APU_Pulse2[length_counter_halt]_i_1 
-       (.I0(\APU_Pulse1[length_counter_halt]_i_2_n_0 ),
-        .I1(\APU_Pulse2[length_counter_halt]_i_2_n_0 ),
-        .I2(CPU_Addr[1]),
+       (.I0(\APU_Pulse1[timer][7]_i_3_n_0 ),
+        .I1(CPU_Addr[0]),
+        .I2(CPU_Addr[2]),
         .I3(CPU_Addr[4]),
-        .I4(CPU_Addr[2]),
+        .I4(CPU_Addr[1]),
         .I5(CPU_Addr[3]),
         .O(\APU_Pulse2[length_counter_halt] ));
   LUT6 #(
-    .INIT(64'h0000000000000001)) 
-    \APU_Pulse2[length_counter_halt]_i_2 
-       (.I0(\APU_Triangle[timer][7]_i_2_n_0 ),
-        .I1(CPU_Addr[9]),
-        .I2(CPU_Addr[8]),
-        .I3(CPU_Addr[11]),
-        .I4(CPU_Addr[10]),
-        .I5(CPU_Addr[0]),
-        .O(\APU_Pulse2[length_counter_halt]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000040000)) 
+    .INIT(64'h0000000000002000)) 
     \APU_Pulse2[sweep_shift][2]_i_1 
-       (.I0(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
-        .I1(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I2(CPU_Addr[1]),
-        .I3(CPU_Addr[4]),
-        .I4(CPU_Addr[2]),
+       (.I0(CPU_RomSel),
+        .I1(CPU_RW),
+        .I2(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I3(CPU_Addr[0]),
+        .I4(\APU_Pulse2[sweep_shift][2]_i_2_n_0 ),
         .I5(CPU_Addr[3]),
         .O(\APU_Pulse2[sweep_enable] ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(8'hEF)) 
+    \APU_Pulse2[sweep_shift][2]_i_2 
+       (.I0(CPU_Addr[1]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[2]),
+        .O(\APU_Pulse2[sweep_shift][2]_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'hCA0A0A0A)) 
     \APU_Pulse2[timer][0]_i_1 
-       (.I0(\APU_Pulse2[timer][0]_i_2_n_0 ),
-        .I1(\APU_Pulse2[timer][10]_i_5_n_0 ),
-        .I2(CPU_Data[0]),
+       (.I0(CPU_Data[0]),
+        .I1(\APU_Pulse2[timer][0]_i_2_n_0 ),
+        .I2(\APU_Pulse2[timer][10]_i_5_n_0 ),
+        .I3(Reset),
+        .I4(CPU_Rst),
         .O(\APU_Pulse2[timer][0]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h2E22000000000000)) 
+  LUT4 #(
+    .INIT(16'h2F20)) 
     \APU_Pulse2[timer][0]_i_2 
-       (.I0(Pulse2_Target02_out[0]),
-        .I1(\APU_Pulse2_reg[sweep_negate]__0 ),
-        .I2(Pulse2_Target1),
-        .I3(Pulse2_Target00_out[0]),
-        .I4(Reset),
-        .I5(CPU_Rst),
+       (.I0(Pulse2_Target00_out[0]),
+        .I1(Pulse2_Target1),
+        .I2(\APU_Pulse2_reg[sweep_negate]__0 ),
+        .I3(Pulse2_Target02_out[0]),
         .O(\APU_Pulse2[timer][0]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAFCFFAAAA0C00)) 
+    .INIT(64'h8888F0FF8888F000)) 
     \APU_Pulse2[timer][10]_i_1 
        (.I0(\APU_Pulse2[timer][10]_i_2_n_0 ),
-        .I1(CPU_Data[2]),
-        .I2(\APU_Pulse2[timer][10]_i_3_n_0 ),
+        .I1(\APU_Pulse2[timer][10]_i_3_n_0 ),
+        .I2(CPU_Data[2]),
         .I3(\APU_Pulse2[timer][10]_i_4_n_0 ),
         .I4(\APU_Pulse2[timer][10]_i_5_n_0 ),
         .I5(\APU_Pulse2_reg[timer][10]_0 ),
         .O(\APU_Pulse2[timer][10]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h2E22000000000000)) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     \APU_Pulse2[timer][10]_i_2 
-       (.I0(Pulse2_Target02_out[10]),
-        .I1(\APU_Pulse2_reg[sweep_negate]__0 ),
-        .I2(Pulse2_Target1),
-        .I3(Pulse2_Target00_out[10]),
-        .I4(Reset),
-        .I5(CPU_Rst),
+       (.I0(CPU_Rst),
+        .I1(Reset),
         .O(\APU_Pulse2[timer][10]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT3 #(
-    .INIT(8'hBF)) 
+  LUT4 #(
+    .INIT(16'h2F20)) 
     \APU_Pulse2[timer][10]_i_3 
-       (.I0(CPU_Addr[4]),
-        .I1(CPU_Addr[1]),
-        .I2(CPU_Addr[2]),
+       (.I0(Pulse2_Target00_out[10]),
+        .I1(Pulse2_Target1),
+        .I2(\APU_Pulse2_reg[sweep_negate]__0 ),
+        .I3(Pulse2_Target02_out[10]),
         .O(\APU_Pulse2[timer][10]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT5 #(
-    .INIT(32'h00400000)) 
+  LUT6 #(
+    .INIT(64'h0000000020000000)) 
     \APU_Pulse2[timer][10]_i_4 
-       (.I0(CPU_Addr[3]),
-        .I1(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I2(CPU_RomSel),
-        .I3(CPU_RW),
-        .I4(CPU_Addr[0]),
+       (.I0(\APU_Pulse1[timer][7]_i_4_n_0 ),
+        .I1(\APU_Triangle[timer][7]_i_2_n_0 ),
+        .I2(CPU_Addr[0]),
+        .I3(CPU_Addr[2]),
+        .I4(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I5(CPU_Addr[3]),
         .O(\APU_Pulse2[timer][10]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h0000000055551555)) 
@@ -2628,43 +3154,42 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse2_reg[sweep_shift_n_0_][0] ),
         .I2(\APU_Pulse2_reg[sweep_shift_n_0_][1] ),
         .O(\APU_Pulse2[timer][10]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT5 #(
+    .INIT(32'h3A0A0A0A)) 
     \APU_Pulse2[timer][1]_i_1 
-       (.I0(\APU_Pulse2[timer][1]_i_2_n_0 ),
-        .I1(\APU_Pulse2[timer][10]_i_5_n_0 ),
-        .I2(CPU_Data[1]),
+       (.I0(CPU_Data[1]),
+        .I1(\APU_Pulse2[timer][1]_i_2_n_0 ),
+        .I2(\APU_Pulse2[timer][10]_i_5_n_0 ),
+        .I3(Reset),
+        .I4(CPU_Rst),
         .O(\APU_Pulse2[timer][1]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h2E22000000000000)) 
+  LUT4 #(
+    .INIT(16'hBB0F)) 
     \APU_Pulse2[timer][1]_i_2 
-       (.I0(Pulse2_Target02_out[1]),
-        .I1(\APU_Pulse2_reg[sweep_negate]__0 ),
-        .I2(Pulse2_Target1),
-        .I3(Pulse2_Target00_out[1]),
-        .I4(Reset),
-        .I5(CPU_Rst),
+       (.I0(Pulse2_Target1),
+        .I1(Pulse2_Target00_out[1]),
+        .I2(Pulse2_Target02_out[1]),
+        .I3(\APU_Pulse2_reg[sweep_negate]__0 ),
         .O(\APU_Pulse2[timer][1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT5 #(
+    .INIT(32'hCA0A0A0A)) 
     \APU_Pulse2[timer][2]_i_1 
-       (.I0(\APU_Pulse2[timer][2]_i_2_n_0 ),
-        .I1(\APU_Pulse2[timer][10]_i_5_n_0 ),
-        .I2(CPU_Data[2]),
+       (.I0(CPU_Data[2]),
+        .I1(\APU_Pulse2[timer][2]_i_2_n_0 ),
+        .I2(\APU_Pulse2[timer][10]_i_5_n_0 ),
+        .I3(Reset),
+        .I4(CPU_Rst),
         .O(\APU_Pulse2[timer][2]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h2E22000000000000)) 
+  LUT4 #(
+    .INIT(16'h2F20)) 
     \APU_Pulse2[timer][2]_i_2 
-       (.I0(Pulse2_Target02_out[2]),
-        .I1(\APU_Pulse2_reg[sweep_negate]__0 ),
-        .I2(Pulse2_Target1),
-        .I3(Pulse2_Target00_out[2]),
-        .I4(Reset),
-        .I5(CPU_Rst),
+       (.I0(Pulse2_Target00_out[2]),
+        .I1(Pulse2_Target1),
+        .I2(\APU_Pulse2_reg[sweep_negate]__0 ),
+        .I3(Pulse2_Target02_out[2]),
         .O(\APU_Pulse2[timer][2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2[timer][3]_i_1 
@@ -2714,7 +3239,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(Pulse2_Target1_carry_i_17_n_0),
         .I3(\APU_Pulse2_reg[timer][7]_0 [0]),
         .O(\APU_Pulse2[timer][3]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2[timer][4]_i_1 
@@ -2732,7 +3257,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(Reset),
         .I5(CPU_Rst),
         .O(\APU_Pulse2[timer][4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2[timer][5]_i_1 
@@ -2750,7 +3275,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(Reset),
         .I5(CPU_Rst),
         .O(\APU_Pulse2[timer][5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2[timer][6]_i_1 
@@ -2768,83 +3293,95 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(Reset),
         .I5(CPU_Rst),
         .O(\APU_Pulse2[timer][6]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAAAAABAAAAAAAAA)) 
+  LUT4 #(
+    .INIT(16'hAABA)) 
     \APU_Pulse2[timer][7]_i_1 
        (.I0(\APU_Pulse2[timer][10]_i_5_n_0 ),
-        .I1(\APU_Pulse2[timer][10]_i_3_n_0 ),
-        .I2(CPU_RomSel),
-        .I3(CPU_RW),
-        .I4(CPU_Addr[0]),
-        .I5(\APU_Pulse2[timer][7]_i_3_n_0 ),
+        .I1(\APU_Pulse2[timer][7]_i_3_n_0 ),
+        .I2(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I3(CPU_Addr[3]),
         .O(\APU_Pulse2[timer][7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2[timer][7]_i_2 
-       (.I0(\APU_Pulse2[timer][7]_i_4_n_0 ),
+       (.I0(\APU_Pulse2[timer][7]_i_5_n_0 ),
         .I1(\APU_Pulse2[timer][10]_i_5_n_0 ),
         .I2(CPU_Data[7]),
         .O(\APU_Pulse2[timer][7]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000001)) 
+    .INIT(64'hFFFDFFFFFFFFFFFF)) 
     \APU_Pulse2[timer][7]_i_3 
-       (.I0(\APU_Triangle[timer][7]_i_2_n_0 ),
-        .I1(CPU_Addr[9]),
-        .I2(CPU_Addr[8]),
-        .I3(CPU_Addr[11]),
-        .I4(CPU_Addr[10]),
-        .I5(CPU_Addr[3]),
+       (.I0(CPU_RomSel),
+        .I1(CPU_RW),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[0]),
+        .I4(CPU_Addr[2]),
+        .I5(CPU_Addr[1]),
         .O(\APU_Pulse2[timer][7]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h00000001)) 
+    \APU_Pulse2[timer][7]_i_4 
+       (.I0(CPU_Addr[10]),
+        .I1(CPU_Addr[11]),
+        .I2(CPU_Addr[8]),
+        .I3(CPU_Addr[9]),
+        .I4(\APU_Pulse2[timer][7]_i_6_n_0 ),
+        .O(\APU_Pulse2[timer][7]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h2E22000000000000)) 
-    \APU_Pulse2[timer][7]_i_4 
+    \APU_Pulse2[timer][7]_i_5 
        (.I0(Pulse2_Target02_out[7]),
         .I1(\APU_Pulse2_reg[sweep_negate]__0 ),
         .I2(Pulse2_Target1),
         .I3(Pulse2_Target00_out[7]),
         .I4(Reset),
         .I5(CPU_Rst),
-        .O(\APU_Pulse2[timer][7]_i_4_n_0 ));
+        .O(\APU_Pulse2[timer][7]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAFCFFAAAA0C00)) 
+    .INIT(64'hFFFFFFFEFFFFFFFF)) 
+    \APU_Pulse2[timer][7]_i_6 
+       (.I0(CPU_Addr[13]),
+        .I1(CPU_Addr[6]),
+        .I2(CPU_Addr[5]),
+        .I3(CPU_Addr[7]),
+        .I4(CPU_Addr[12]),
+        .I5(CPU_Addr[14]),
+        .O(\APU_Pulse2[timer][7]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h3030AAFF3030AA00)) 
     \APU_Pulse2[timer][8]_i_1 
-       (.I0(\APU_Pulse2[timer][8]_i_2_n_0 ),
-        .I1(CPU_Data[0]),
-        .I2(\APU_Pulse2[timer][10]_i_3_n_0 ),
+       (.I0(CPU_Data[0]),
+        .I1(\APU_Pulse2[timer][8]_i_2_n_0 ),
+        .I2(\APU_Pulse2[timer][10]_i_2_n_0 ),
         .I3(\APU_Pulse2[timer][10]_i_4_n_0 ),
         .I4(\APU_Pulse2[timer][10]_i_5_n_0 ),
         .I5(\APU_Pulse2_reg[timer][8]_0 ),
         .O(\APU_Pulse2[timer][8]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h2E22000000000000)) 
+  LUT4 #(
+    .INIT(16'hBB0F)) 
     \APU_Pulse2[timer][8]_i_2 
-       (.I0(Pulse2_Target02_out[8]),
-        .I1(\APU_Pulse2_reg[sweep_negate]__0 ),
-        .I2(Pulse2_Target1),
-        .I3(Pulse2_Target00_out[8]),
-        .I4(Reset),
-        .I5(CPU_Rst),
+       (.I0(Pulse2_Target1),
+        .I1(Pulse2_Target00_out[8]),
+        .I2(Pulse2_Target02_out[8]),
+        .I3(\APU_Pulse2_reg[sweep_negate]__0 ),
         .O(\APU_Pulse2[timer][8]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAFCFFAAAA0C00)) 
+    .INIT(64'h3030AAFF3030AA00)) 
     \APU_Pulse2[timer][9]_i_1 
-       (.I0(\APU_Pulse2[timer][9]_i_2_n_0 ),
-        .I1(CPU_Data[1]),
-        .I2(\APU_Pulse2[timer][10]_i_3_n_0 ),
+       (.I0(CPU_Data[1]),
+        .I1(\APU_Pulse2[timer][9]_i_2_n_0 ),
+        .I2(\APU_Pulse2[timer][10]_i_2_n_0 ),
         .I3(\APU_Pulse2[timer][10]_i_4_n_0 ),
         .I4(\APU_Pulse2[timer][10]_i_5_n_0 ),
         .I5(\APU_Pulse2_reg[timer][9]_0 ),
         .O(\APU_Pulse2[timer][9]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h2E22000000000000)) 
+  LUT4 #(
+    .INIT(16'hBB0F)) 
     \APU_Pulse2[timer][9]_i_2 
-       (.I0(Pulse2_Target02_out[9]),
-        .I1(\APU_Pulse2_reg[sweep_negate]__0 ),
-        .I2(Pulse2_Target1),
-        .I3(Pulse2_Target00_out[9]),
-        .I4(Reset),
-        .I5(CPU_Rst),
+       (.I0(Pulse2_Target1),
+        .I1(Pulse2_Target00_out[9]),
+        .I2(Pulse2_Target02_out[9]),
+        .I3(\APU_Pulse2_reg[sweep_negate]__0 ),
         .O(\APU_Pulse2[timer][9]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'hAFAFAFAFAFAFAFAE)) 
@@ -2912,16 +3449,25 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\APU_Pulse2_reg[volume] [2]),
         .O(\APU_Pulse2[volume][3]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAAAAABAAAAAAA)) 
+    .INIT(64'hAAAAAAAAAABAAAAA)) 
     \APU_Pulse2[volume][3]_i_5 
        (.I0(\procMainLogic.pulse2_envelope_start_reg_n_0 ),
-        .I1(CPU_Addr[4]),
-        .I2(CPU_Addr[1]),
-        .I3(CPU_Addr[2]),
-        .I4(\APU_Pulse2[timer][7]_i_3_n_0 ),
-        .I5(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
+        .I1(CPU_Addr[3]),
+        .I2(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I3(\APU_Pulse2[volume][3]_i_6_n_0 ),
+        .I4(CPU_Addr[1]),
+        .I5(CPU_Addr[4]),
         .O(\APU_Pulse2[volume][3]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT4 #(
+    .INIT(16'hDFFF)) 
+    \APU_Pulse2[volume][3]_i_6 
+       (.I0(CPU_RomSel),
+        .I1(CPU_RW),
+        .I2(CPU_Addr[0]),
+        .I3(CPU_Addr[2]),
+        .O(\APU_Pulse2[volume][3]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2_Message[15]_INST_0 
@@ -2929,7 +3475,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse2_reg[constant_volume]__0 ),
         .I2(\APU_Pulse2_reg[volume] [0]),
         .O(APU_Pulse2_Message[1]));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2_Message[16]_INST_0 
@@ -2937,7 +3483,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse2_reg[constant_volume]__0 ),
         .I2(\APU_Pulse2_reg[volume] [1]),
         .O(APU_Pulse2_Message[2]));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2_Message[17]_INST_0 
@@ -2945,7 +3491,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse2_reg[constant_volume]__0 ),
         .I2(\APU_Pulse2_reg[volume] [2]),
         .O(APU_Pulse2_Message[3]));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \APU_Pulse2_Message[18]_INST_0 
@@ -2995,10 +3541,10 @@ module design_1_nes_apu_0_0_nes_apu
   LUT5 #(
     .INIT(32'h00000001)) 
     \APU_Pulse2_Message[3]_INST_0_i_2 
-       (.I0(\APU_Pulse2_reg[timer][8]_0 ),
+       (.I0(\APU_Pulse2_reg[timer][7]_0 [6]),
         .I1(\APU_Pulse2_reg[timer][7]_0 [7]),
-        .I2(\APU_Pulse2_reg[timer][7]_0 [6]),
-        .I3(\APU_Pulse2_reg[timer][9]_0 ),
+        .I2(\APU_Pulse2_reg[timer][7]_0 [4]),
+        .I3(\APU_Pulse2_reg[timer][7]_0 [5]),
         .I4(\APU_Pulse2_Message[3]_INST_0_i_8_n_0 ),
         .O(\APU_Pulse2_Message[3]_INST_0_i_2_n_0 ));
   LUT6 #(
@@ -3048,10 +3594,10 @@ module design_1_nes_apu_0_0_nes_apu
   LUT4 #(
     .INIT(16'hFFFE)) 
     \APU_Pulse2_Message[3]_INST_0_i_8 
-       (.I0(\APU_Pulse2_reg[timer][7]_0 [4]),
+       (.I0(\APU_Pulse2_reg[timer][8]_0 ),
         .I1(\APU_Pulse2_reg[timer][7]_0 [3]),
-        .I2(\APU_Pulse2_reg[timer][10]_0 ),
-        .I3(\APU_Pulse2_reg[timer][7]_0 [5]),
+        .I2(\APU_Pulse2_reg[timer][9]_0 ),
+        .I3(\APU_Pulse2_reg[timer][10]_0 ),
         .O(\APU_Pulse2_Message[3]_INST_0_i_8_n_0 ));
   LUT6 #(
     .INIT(64'h333398C8CCCC98C8)) 
@@ -3417,15 +3963,15 @@ module design_1_nes_apu_0_0_nes_apu
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({NLW_APU_Quarter_CE2_carry__2_O_UNCONNECTED[3:2],APU_Quarter_CE2[14:13]}),
         .S({1'b0,1'b0,\procFrameCounter.counter_reg [14:13]}));
-  LUT6 #(
-    .INIT(64'h008A008A008AAAAA)) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT5 #(
+    .INIT(32'h008AAAAA)) 
     APU_Quarter_CE_i_1
        (.I0(APU_Tick_CE),
         .I1(APU_Quarter_CE_i_2_n_0),
         .I2(APU_Quarter_CE_i_3_n_0),
         .I3(APU_Half_CE_i_3_n_0),
         .I4(APU_Quarter_CE_i_4_n_0),
-        .I5(APU_Quarter_CE_i_5_n_0),
         .O(APU_Quarter_CE14_out));
   LUT6 #(
     .INIT(64'h0000080000000000)) 
@@ -3447,24 +3993,25 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\procFrameCounter.counter_reg [3]),
         .I5(APU_Half_CE_i_7_n_0),
         .O(APU_Quarter_CE_i_3_n_0));
-  LUT5 #(
-    .INIT(32'h7FEFFBFB)) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFF7FFFFADF)) 
     APU_Quarter_CE_i_4
-       (.I0(\procFrameCounter.counter_reg [5]),
-        .I1(\procFrameCounter.counter_reg [7]),
+       (.I0(\procFrameCounter.counter_reg [8]),
+        .I1(\procFrameCounter.counter_reg [9]),
         .I2(\procFrameCounter.counter_reg [4]),
-        .I3(\procFrameCounter.counter_reg [9]),
-        .I4(\procFrameCounter.counter_reg [8]),
+        .I3(\procFrameCounter.counter_reg [7]),
+        .I4(\procFrameCounter.counter_reg [5]),
+        .I5(APU_Quarter_CE_i_5_n_0),
         .O(APU_Quarter_CE_i_4_n_0));
   LUT6 #(
-    .INIT(64'hFFFEEFFEEFFFEFFF)) 
+    .INIT(64'hFFFFFFFFFFFFBFFE)) 
     APU_Quarter_CE_i_5
        (.I0(APU_Quarter_CE_i_6_n_0),
-        .I1(APU_Quarter_CE_i_7_n_0),
-        .I2(\procFrameCounter.counter_reg [2]),
-        .I3(\procFrameCounter.counter_reg [3]),
-        .I4(\procFrameCounter.counter_reg [4]),
-        .I5(\procFrameCounter.counter_reg [5]),
+        .I1(\procFrameCounter.counter_reg [1]),
+        .I2(\procFrameCounter.counter_reg [0]),
+        .I3(\procFrameCounter.counter_reg [2]),
+        .I4(APU_Quarter_CE_i_7_n_0),
+        .I5(APU_Quarter_CE_i_8_n_0),
         .O(APU_Quarter_CE_i_5_n_0));
   LUT5 #(
     .INIT(32'hF7DFDFDF)) 
@@ -3476,32 +4023,22 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\procFrameCounter.counter_reg [8]),
         .O(APU_Quarter_CE_i_6_n_0));
   LUT5 #(
-    .INIT(32'hFFFFAEEE)) 
+    .INIT(32'hFFFFFFD3)) 
     APU_Quarter_CE_i_7
-       (.I0(APU_Quarter_CE_i_8_n_0),
-        .I1(\procFrameCounter.counter_reg [2]),
-        .I2(\procFrameCounter.counter_reg [1]),
-        .I3(\procFrameCounter.counter_reg [0]),
-        .I4(APU_Quarter_CE_i_9_n_0),
+       (.I0(\procFrameCounter.counter_reg [8]),
+        .I1(\procFrameCounter.counter_reg [9]),
+        .I2(\procFrameCounter.counter_reg [12]),
+        .I3(\procFrameCounter.counter_reg [6]),
+        .I4(\procFrameCounter.counter_reg [14]),
         .O(APU_Quarter_CE_i_7_n_0));
   LUT4 #(
-    .INIT(16'hFEEE)) 
+    .INIT(16'hE677)) 
     APU_Quarter_CE_i_8
-       (.I0(\procFrameCounter.counter_reg [14]),
-        .I1(\procFrameCounter.counter_reg [6]),
-        .I2(\procFrameCounter.counter_reg [12]),
-        .I3(\procFrameCounter.counter_reg [9]),
-        .O(APU_Quarter_CE_i_8_n_0));
-  LUT6 #(
-    .INIT(64'h545454FF54FF54FF)) 
-    APU_Quarter_CE_i_9
        (.I0(\procFrameCounter.counter_reg [2]),
-        .I1(\procFrameCounter.counter_reg [0]),
-        .I2(\procFrameCounter.counter_reg [1]),
-        .I3(\procFrameCounter.counter_reg [9]),
-        .I4(\procFrameCounter.counter_reg [8]),
-        .I5(\procFrameCounter.counter_reg [12]),
-        .O(APU_Quarter_CE_i_9_n_0));
+        .I1(\procFrameCounter.counter_reg [3]),
+        .I2(\procFrameCounter.counter_reg [4]),
+        .I3(\procFrameCounter.counter_reg [5]),
+        .O(APU_Quarter_CE_i_8_n_0));
   FDCE #(
     .INIT(1'b0)) 
     APU_Quarter_CE_reg
@@ -3510,14 +4047,23 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(APU_Quarter_CE14_out),
         .Q(APU_Quarter_CE));
-  LUT4 #(
-    .INIT(16'h0080)) 
+  LUT6 #(
+    .INIT(64'h0000000008000000)) 
     \APU_Status[pulse1_active]_i_1 
-       (.I0(\APU_Pulse2[timer][10]_i_4_n_0 ),
-        .I1(CPU_Addr[2]),
-        .I2(CPU_Addr[4]),
-        .I3(CPU_Addr[1]),
+       (.I0(CPU_Addr[0]),
+        .I1(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I2(\APU_Triangle[timer][7]_i_2_n_0 ),
+        .I3(\APU_Status[pulse1_active]_i_2_n_0 ),
+        .I4(CPU_Addr[2]),
+        .I5(CPU_Addr[1]),
         .O(\APU_Status[noise_active] ));
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
+    \APU_Status[pulse1_active]_i_2 
+       (.I0(CPU_Addr[4]),
+        .I1(CPU_Addr[3]),
+        .O(\APU_Status[pulse1_active]_i_2_n_0 ));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
@@ -3554,6 +4100,7 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(CPU_Data[2]),
         .Q(\APU_Status_reg[triangle_active_n_0_] ));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT1 #(
     .INIT(2'h1)) 
     APU_Tick_CE_i_1
@@ -3567,37 +4114,36 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(p_1_in),
         .Q(APU_Tick_CE));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT5 #(
-    .INIT(32'h00FFB8B8)) 
+    .INIT(32'h74777444)) 
     \APU_Triangle[length_counter][0]_i_1 
-       (.I0(CPU_Data[2]),
-        .I1(CPU_Addr[4]),
-        .I2(\APU_Status_reg[triangle_active_n_0_] ),
-        .I3(\APU_Triangle_reg[length_counter] [0]),
-        .I4(\APU_Triangle[length_counter][5]_i_3_n_0 ),
+       (.I0(\APU_Triangle_reg[length_counter] [0]),
+        .I1(\APU_Triangle[length_counter][5]_i_3_n_0 ),
+        .I2(CPU_Data[2]),
+        .I3(CPU_Addr[4]),
+        .I4(\APU_Status_reg[triangle_active_n_0_] ),
         .O(\APU_Triangle[length_counter][0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFF9090909090)) 
+    .INIT(64'h909090909F9F9F90)) 
     \APU_Triangle[length_counter][1]_i_1 
-       (.I0(\APU_Triangle_reg[length_counter] [0]),
-        .I1(\APU_Triangle_reg[length_counter] [1]),
+       (.I0(\APU_Triangle_reg[length_counter] [1]),
+        .I1(\APU_Triangle_reg[length_counter] [0]),
         .I2(\APU_Triangle[length_counter][5]_i_3_n_0 ),
-        .I3(\APU_Pulse1[length_counter][1]_i_2_n_0 ),
-        .I4(\APU_Triangle[length_counter][5]_i_5_n_0 ),
+        .I3(\APU_Triangle[length_counter][5]_i_7_n_0 ),
+        .I4(\APU_Pulse1[length_counter][1]_i_2_n_0 ),
         .I5(\APU_Triangle[length_counter][5]_i_6_n_0 ),
         .O(\APU_Triangle[length_counter][1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFF6060606060)) 
+    .INIT(64'h606060606F6F6F60)) 
     \APU_Triangle[length_counter][2]_i_1 
        (.I0(\APU_Triangle_reg[length_counter] [2]),
         .I1(\APU_Triangle[length_counter][2]_i_2_n_0 ),
         .I2(\APU_Triangle[length_counter][5]_i_3_n_0 ),
-        .I3(\APU_Pulse1[length_counter][2]_i_3_n_0 ),
-        .I4(\APU_Triangle[length_counter][5]_i_5_n_0 ),
+        .I3(\APU_Triangle[length_counter][5]_i_7_n_0 ),
+        .I4(\APU_Pulse1[length_counter][2]_i_3_n_0 ),
         .I5(\APU_Triangle[length_counter][5]_i_6_n_0 ),
         .O(\APU_Triangle[length_counter][2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT2 #(
     .INIT(4'h1)) 
     \APU_Triangle[length_counter][2]_i_2 
@@ -3605,16 +4151,16 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Triangle_reg[length_counter] [1]),
         .O(\APU_Triangle[length_counter][2]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFF6060606060)) 
+    .INIT(64'h606060606F6F6F60)) 
     \APU_Triangle[length_counter][3]_i_1 
        (.I0(\APU_Triangle_reg[length_counter] [3]),
         .I1(\APU_Triangle[length_counter][3]_i_2_n_0 ),
         .I2(\APU_Triangle[length_counter][5]_i_3_n_0 ),
-        .I3(\APU_Pulse1[length_counter][3]_i_3_n_0 ),
-        .I4(\APU_Triangle[length_counter][5]_i_5_n_0 ),
+        .I3(\APU_Triangle[length_counter][5]_i_7_n_0 ),
+        .I4(\APU_Pulse1[length_counter][3]_i_3_n_0 ),
         .I5(\APU_Triangle[length_counter][5]_i_6_n_0 ),
         .O(\APU_Triangle[length_counter][3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \APU_Triangle[length_counter][3]_i_2 
@@ -3623,140 +4169,130 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\APU_Triangle_reg[length_counter] [2]),
         .O(\APU_Triangle[length_counter][3]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hE0FFFFE0E0E0E0E0)) 
+    .INIT(64'h3333333333200020)) 
     \APU_Triangle[length_counter][4]_i_1 
        (.I0(\APU_Pulse2[length_counter][4]_i_3_n_0 ),
-        .I1(\APU_Triangle[length_counter][5]_i_5_n_0 ),
-        .I2(\APU_Triangle[length_counter][5]_i_6_n_0 ),
-        .I3(\APU_Triangle_reg[length_counter] [4]),
-        .I4(\APU_Triangle[length_counter][4]_i_2_n_0 ),
+        .I1(\APU_Triangle[length_counter][4]_i_2_n_0 ),
+        .I2(\APU_Status_reg[triangle_active_n_0_] ),
+        .I3(CPU_Addr[4]),
+        .I4(CPU_Data[2]),
         .I5(\APU_Triangle[length_counter][5]_i_3_n_0 ),
         .O(\APU_Triangle[length_counter][4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'h0001)) 
-    \APU_Triangle[length_counter][4]_i_2 
-       (.I0(\APU_Triangle_reg[length_counter] [2]),
-        .I1(\APU_Triangle_reg[length_counter] [0]),
-        .I2(\APU_Triangle_reg[length_counter] [1]),
-        .I3(\APU_Triangle_reg[length_counter] [3]),
-        .O(\APU_Triangle[length_counter][4]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAABAAAAAAAAAAA)) 
+    .INIT(64'h000002FD00000000)) 
+    \APU_Triangle[length_counter][4]_i_2 
+       (.I0(\APU_Triangle[length_counter][2]_i_2_n_0 ),
+        .I1(\APU_Triangle_reg[length_counter] [2]),
+        .I2(\APU_Triangle_reg[length_counter] [3]),
+        .I3(\APU_Triangle_reg[length_counter] [4]),
+        .I4(\APU_Triangle_reg[length_counter_halt]__0 ),
+        .I5(APU_Half_CE_reg_n_0),
+        .O(\APU_Triangle[length_counter][4]_i_2_n_0 ));
+  LUT3 #(
+    .INIT(8'hBA)) 
     \APU_Triangle[length_counter][5]_i_1 
        (.I0(\APU_Triangle[length_counter][5]_i_3_n_0 ),
         .I1(\APU_Triangle[length_counter][5]_i_4_n_0 ),
-        .I2(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I3(CPU_RomSel),
-        .I4(CPU_RW),
-        .I5(CPU_Addr[0]),
+        .I2(\APU_Triangle[length_counter][5]_i_5_n_0 ),
         .O(\APU_Triangle[length_counter][5]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hE0FFE0E0E0E0E0E0)) 
+    .INIT(64'h0054FF54FF540054)) 
     \APU_Triangle[length_counter][5]_i_2 
-       (.I0(\APU_Pulse1[length_counter][5]_i_7_n_0 ),
-        .I1(\APU_Triangle[length_counter][5]_i_5_n_0 ),
-        .I2(\APU_Triangle[length_counter][5]_i_6_n_0 ),
-        .I3(\APU_Triangle[length_counter][5]_i_7_n_0 ),
-        .I4(\APU_Triangle_reg[length_counter] [5]),
-        .I5(\APU_Triangle[length_counter][5]_i_8_n_0 ),
+       (.I0(\APU_Triangle[length_counter][5]_i_6_n_0 ),
+        .I1(\APU_Triangle[length_counter][5]_i_7_n_0 ),
+        .I2(\APU_Pulse1[length_counter][5]_i_7_n_0 ),
+        .I3(\APU_Triangle[length_counter][5]_i_3_n_0 ),
+        .I4(\APU_Triangle_Message[3]_INST_0_i_2_n_0 ),
+        .I5(\APU_Triangle_reg[length_counter] [5]),
         .O(\APU_Triangle[length_counter][5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  LUT4 #(
+    .INIT(16'h00B0)) 
     \APU_Triangle[length_counter][5]_i_3 
-       (.I0(\APU_Triangle_Message[3]_INST_0_i_2_n_0 ),
-        .I1(APU_Half_CE_reg_n_0),
-        .I2(\APU_Triangle_reg[length_counter_halt]__0 ),
+       (.I0(\APU_Triangle_reg[length_counter] [5]),
+        .I1(\APU_Triangle_Message[3]_INST_0_i_2_n_0 ),
+        .I2(APU_Half_CE_reg_n_0),
+        .I3(\APU_Triangle_reg[length_counter_halt]__0 ),
         .O(\APU_Triangle[length_counter][5]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
-    .INIT(32'hFFFBCFFF)) 
+    .INIT(32'hFAFFFFDF)) 
     \APU_Triangle[length_counter][5]_i_4 
+       (.I0(CPU_Addr[4]),
+        .I1(CPU_Data[2]),
+        .I2(CPU_Addr[2]),
+        .I3(CPU_Addr[1]),
+        .I4(CPU_Addr[3]),
+        .O(\APU_Triangle[length_counter][5]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  LUT4 #(
+    .INIT(16'h0800)) 
+    \APU_Triangle[length_counter][5]_i_5 
+       (.I0(CPU_Addr[0]),
+        .I1(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I2(CPU_RW),
+        .I3(CPU_RomSel),
+        .O(\APU_Triangle[length_counter][5]_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  LUT3 #(
+    .INIT(8'h47)) 
+    \APU_Triangle[length_counter][5]_i_6 
        (.I0(CPU_Data[2]),
         .I1(CPU_Addr[4]),
-        .I2(CPU_Addr[1]),
-        .I3(CPU_Addr[3]),
-        .I4(CPU_Addr[2]),
-        .O(\APU_Triangle[length_counter][5]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+        .I2(\APU_Status_reg[triangle_active_n_0_] ),
+        .O(\APU_Triangle[length_counter][5]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT2 #(
     .INIT(4'h8)) 
-    \APU_Triangle[length_counter][5]_i_5 
+    \APU_Triangle[length_counter][5]_i_7 
        (.I0(CPU_Data[2]),
         .I1(CPU_Addr[4]),
-        .O(\APU_Triangle[length_counter][5]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT4 #(
-    .INIT(16'h00E2)) 
-    \APU_Triangle[length_counter][5]_i_6 
-       (.I0(\APU_Status_reg[triangle_active_n_0_] ),
-        .I1(CPU_Addr[4]),
-        .I2(CPU_Data[2]),
-        .I3(\APU_Triangle[length_counter][5]_i_3_n_0 ),
-        .O(\APU_Triangle[length_counter][5]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT2 #(
-    .INIT(4'hB)) 
-    \APU_Triangle[length_counter][5]_i_7 
-       (.I0(\APU_Triangle_reg[length_counter_halt]__0 ),
-        .I1(APU_Half_CE_reg_n_0),
         .O(\APU_Triangle[length_counter][5]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'hFFFFFFFE)) 
-    \APU_Triangle[length_counter][5]_i_8 
-       (.I0(\APU_Triangle_reg[length_counter] [4]),
-        .I1(\APU_Triangle_reg[length_counter] [3]),
-        .I2(\APU_Triangle_reg[length_counter] [1]),
-        .I3(\APU_Triangle_reg[length_counter] [0]),
-        .I4(\APU_Triangle_reg[length_counter] [2]),
-        .O(\APU_Triangle[length_counter][5]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
-    .INIT(8'h74)) 
+    .INIT(8'h8B)) 
     \APU_Triangle[linear_counter][0]_i_1 
-       (.I0(\APU_Triangle_reg[linear_counter] [0]),
+       (.I0(\APU_Triangle_reg[linear_counter_load] [0]),
         .I1(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
-        .I2(\APU_Triangle_reg[linear_counter_load] [0]),
-        .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
-  LUT4 #(
-    .INIT(16'h9F90)) 
-    \APU_Triangle[linear_counter][1]_i_1 
-       (.I0(\APU_Triangle_reg[linear_counter] [0]),
-        .I1(\APU_Triangle_reg[linear_counter] [1]),
-        .I2(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
-        .I3(\APU_Triangle_reg[linear_counter_load] [1]),
-        .O(p_0_in[1]));
-  LUT5 #(
-    .INIT(32'hA9FFA900)) 
-    \APU_Triangle[linear_counter][2]_i_1 
-       (.I0(\APU_Triangle_reg[linear_counter] [2]),
-        .I1(\APU_Triangle_reg[linear_counter] [1]),
         .I2(\APU_Triangle_reg[linear_counter] [0]),
-        .I3(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
-        .I4(\APU_Triangle_reg[linear_counter_load] [2]),
-        .O(p_0_in[2]));
-  LUT6 #(
-    .INIT(64'hAAA9FFFFAAA90000)) 
-    \APU_Triangle[linear_counter][3]_i_1 
-       (.I0(\APU_Triangle_reg[linear_counter] [3]),
-        .I1(\APU_Triangle_reg[linear_counter] [2]),
+        .O(p_0_in[0]));
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  LUT4 #(
+    .INIT(16'hB88B)) 
+    \APU_Triangle[linear_counter][1]_i_1 
+       (.I0(\APU_Triangle_reg[linear_counter_load] [1]),
+        .I1(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
         .I2(\APU_Triangle_reg[linear_counter] [0]),
         .I3(\APU_Triangle_reg[linear_counter] [1]),
-        .I4(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
-        .I5(\APU_Triangle_reg[linear_counter_load] [3]),
+        .O(p_0_in[1]));
+  LUT5 #(
+    .INIT(32'hB8B8B88B)) 
+    \APU_Triangle[linear_counter][2]_i_1 
+       (.I0(\APU_Triangle_reg[linear_counter_load] [2]),
+        .I1(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
+        .I2(\APU_Triangle_reg[linear_counter] [2]),
+        .I3(\APU_Triangle_reg[linear_counter] [1]),
+        .I4(\APU_Triangle_reg[linear_counter] [0]),
+        .O(p_0_in[2]));
+  LUT6 #(
+    .INIT(64'hB8B8B8B8B8B8B88B)) 
+    \APU_Triangle[linear_counter][3]_i_1 
+       (.I0(\APU_Triangle_reg[linear_counter_load] [3]),
+        .I1(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
+        .I2(\APU_Triangle_reg[linear_counter] [3]),
+        .I3(\APU_Triangle_reg[linear_counter] [2]),
+        .I4(\APU_Triangle_reg[linear_counter] [0]),
+        .I5(\APU_Triangle_reg[linear_counter] [1]),
         .O(p_0_in[3]));
   LUT4 #(
-    .INIT(16'h6F60)) 
+    .INIT(16'h8BB8)) 
     \APU_Triangle[linear_counter][4]_i_1 
-       (.I0(\APU_Triangle_reg[linear_counter] [4]),
-        .I1(\APU_Triangle[linear_counter][4]_i_2_n_0 ),
-        .I2(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
-        .I3(\APU_Triangle_reg[linear_counter_load] [4]),
+       (.I0(\APU_Triangle_reg[linear_counter_load] [4]),
+        .I1(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
+        .I2(\APU_Triangle_reg[linear_counter] [4]),
+        .I3(\APU_Triangle[linear_counter][4]_i_2_n_0 ),
         .O(p_0_in[4]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \APU_Triangle[linear_counter][4]_i_2 
@@ -3766,14 +4302,14 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(\APU_Triangle_reg[linear_counter] [3]),
         .O(\APU_Triangle[linear_counter][4]_i_2_n_0 ));
   LUT4 #(
-    .INIT(16'h6F60)) 
+    .INIT(16'h8BB8)) 
     \APU_Triangle[linear_counter][5]_i_1 
-       (.I0(\APU_Triangle_reg[linear_counter] [5]),
-        .I1(\APU_Triangle[linear_counter][5]_i_2_n_0 ),
-        .I2(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
-        .I3(\APU_Triangle_reg[linear_counter_load] [5]),
+       (.I0(\APU_Triangle_reg[linear_counter_load] [5]),
+        .I1(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
+        .I2(\APU_Triangle_reg[linear_counter] [5]),
+        .I3(\APU_Triangle[linear_counter][5]_i_2_n_0 ),
         .O(p_0_in[5]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT5 #(
     .INIT(32'h00000001)) 
     \APU_Triangle[linear_counter][5]_i_2 
@@ -3784,102 +4320,92 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Triangle_reg[linear_counter] [4]),
         .O(\APU_Triangle[linear_counter][5]_i_2_n_0 ));
   LUT4 #(
-    .INIT(16'hAA2A)) 
+    .INIT(16'hAA8A)) 
     \APU_Triangle[linear_counter][6]_i_1 
        (.I0(APU_Quarter_CE),
         .I1(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
         .I2(\APU_Triangle_Message[3]_INST_0_i_1_n_0 ),
         .I3(\APU_Triangle_reg[linear_counter] [6]),
         .O(\APU_Triangle[linear_counter] ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT4 #(
-    .INIT(16'h6F60)) 
+    .INIT(16'h8BB8)) 
     \APU_Triangle[linear_counter][6]_i_2 
-       (.I0(\APU_Triangle_reg[linear_counter] [6]),
-        .I1(\APU_Triangle_Message[3]_INST_0_i_1_n_0 ),
-        .I2(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
-        .I3(\APU_Triangle_reg[linear_counter_load] [6]),
+       (.I0(\APU_Triangle_reg[linear_counter_load] [6]),
+        .I1(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
+        .I2(\APU_Triangle_reg[linear_counter] [6]),
+        .I3(\APU_Triangle_Message[3]_INST_0_i_1_n_0 ),
         .O(p_0_in[6]));
-  LUT6 #(
-    .INIT(64'h0000000000000001)) 
+  LUT5 #(
+    .INIT(32'h00000001)) 
     \APU_Triangle[linear_counter_load][6]_i_1 
-       (.I0(\APU_Triangle[timer][7]_i_2_n_0 ),
-        .I1(\APU_Triangle[timer][7]_i_3_n_0 ),
-        .I2(CPU_Addr[1]),
-        .I3(CPU_Addr[4]),
-        .I4(CPU_Addr[0]),
-        .I5(CPU_Addr[2]),
+       (.I0(CPU_Addr[2]),
+        .I1(CPU_Addr[0]),
+        .I2(CPU_Addr[4]),
+        .I3(CPU_Addr[1]),
+        .I4(\APU_Triangle[timer][10]_i_2_n_0 ),
         .O(\APU_Triangle[length_counter_halt] ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT6 #(
+    .INIT(64'hFFEFFFFF00200000)) 
     \APU_Triangle[timer][10]_i_1 
        (.I0(CPU_Data[2]),
         .I1(\APU_Triangle[timer][10]_i_2_n_0 ),
-        .I2(APU_Triangle_Message[11]),
-        .O(\APU_Triangle[timer][10]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000040000)) 
-    \APU_Triangle[timer][10]_i_2 
-       (.I0(\APU_Triangle[timer][7]_i_2_n_0 ),
-        .I1(CPU_Addr[0]),
-        .I2(\APU_Triangle[timer][7]_i_3_n_0 ),
+        .I2(CPU_Addr[0]),
         .I3(CPU_Addr[2]),
-        .I4(CPU_Addr[1]),
-        .I5(CPU_Addr[4]),
+        .I4(\APU_Pulse1[timer][7]_i_4_n_0 ),
+        .I5(APU_Triangle_Message[11]),
+        .O(\APU_Triangle[timer][10]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  LUT4 #(
+    .INIT(16'hDFFF)) 
+    \APU_Triangle[timer][10]_i_2 
+       (.I0(CPU_Addr[3]),
+        .I1(CPU_RW),
+        .I2(CPU_RomSel),
+        .I3(\APU_Pulse2[timer][7]_i_4_n_0 ),
         .O(\APU_Triangle[timer][10]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000100)) 
+    .INIT(64'h0000020000000000)) 
     \APU_Triangle[timer][7]_i_1 
-       (.I0(\APU_Triangle[timer][7]_i_2_n_0 ),
+       (.I0(\APU_Pulse2[timer][7]_i_4_n_0 ),
         .I1(CPU_Addr[0]),
         .I2(CPU_Addr[2]),
-        .I3(CPU_Addr[1]),
-        .I4(CPU_Addr[4]),
-        .I5(\APU_Triangle[timer][7]_i_3_n_0 ),
+        .I3(\APU_Pulse1[timer][7]_i_4_n_0 ),
+        .I4(\APU_Triangle[timer][7]_i_2_n_0 ),
+        .I5(CPU_Addr[3]),
         .O(\APU_Triangle[timer][7]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFEFFFFFFFF)) 
+  LUT2 #(
+    .INIT(4'hB)) 
     \APU_Triangle[timer][7]_i_2 
-       (.I0(CPU_Addr[13]),
-        .I1(CPU_Addr[6]),
-        .I2(CPU_Addr[5]),
-        .I3(CPU_Addr[7]),
-        .I4(CPU_Addr[12]),
-        .I5(CPU_Addr[14]),
+       (.I0(CPU_RW),
+        .I1(CPU_RomSel),
         .O(\APU_Triangle[timer][7]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFEFFFFFFFFFFFF)) 
-    \APU_Triangle[timer][7]_i_3 
-       (.I0(CPU_Addr[10]),
-        .I1(CPU_Addr[11]),
-        .I2(CPU_Addr[8]),
-        .I3(CPU_Addr[9]),
-        .I4(\APU_Pulse1[length_counter_halt]_i_2_n_0 ),
-        .I5(CPU_Addr[3]),
-        .O(\APU_Triangle[timer][7]_i_3_n_0 ));
-  LUT3 #(
-    .INIT(8'hB8)) 
+    .INIT(64'hFFEFFFFF00200000)) 
     \APU_Triangle[timer][8]_i_1 
        (.I0(CPU_Data[0]),
         .I1(\APU_Triangle[timer][10]_i_2_n_0 ),
-        .I2(APU_Triangle_Message[9]),
+        .I2(CPU_Addr[0]),
+        .I3(CPU_Addr[2]),
+        .I4(\APU_Pulse1[timer][7]_i_4_n_0 ),
+        .I5(APU_Triangle_Message[9]),
         .O(\APU_Triangle[timer][8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT6 #(
+    .INIT(64'hFFEFFFFF00200000)) 
     \APU_Triangle[timer][9]_i_1 
        (.I0(CPU_Data[1]),
         .I1(\APU_Triangle[timer][10]_i_2_n_0 ),
-        .I2(APU_Triangle_Message[10]),
+        .I2(CPU_Addr[0]),
+        .I3(CPU_Addr[2]),
+        .I4(\APU_Pulse1[timer][7]_i_4_n_0 ),
+        .I5(APU_Triangle_Message[10]),
         .O(\APU_Triangle[timer][9]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
-  LUT3 #(
-    .INIT(8'h0B)) 
+  LUT4 #(
+    .INIT(16'hB0BB)) 
     \APU_Triangle_Message[3]_INST_0 
        (.I0(\APU_Triangle_reg[linear_counter] [6]),
         .I1(\APU_Triangle_Message[3]_INST_0_i_1_n_0 ),
-        .I2(\APU_Triangle_Message[3]_INST_0_i_2_n_0 ),
+        .I2(\APU_Triangle_reg[length_counter] [5]),
+        .I3(\APU_Triangle_Message[3]_INST_0_i_2_n_0 ),
         .O(APU_Triangle_Message[0]));
   LUT6 #(
     .INIT(64'h0000000000000001)) 
@@ -3891,15 +4417,15 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Triangle_reg[linear_counter] [3]),
         .I5(\APU_Triangle_reg[linear_counter] [5]),
         .O(\APU_Triangle_Message[3]_INST_0_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000001)) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h00000001)) 
     \APU_Triangle_Message[3]_INST_0_i_2 
-       (.I0(\APU_Triangle_reg[length_counter] [5]),
-        .I1(\APU_Triangle_reg[length_counter] [2]),
+       (.I0(\APU_Triangle_reg[length_counter] [4]),
+        .I1(\APU_Triangle_reg[length_counter] [1]),
         .I2(\APU_Triangle_reg[length_counter] [0]),
-        .I3(\APU_Triangle_reg[length_counter] [1]),
+        .I3(\APU_Triangle_reg[length_counter] [2]),
         .I4(\APU_Triangle_reg[length_counter] [3]),
-        .I5(\APU_Triangle_reg[length_counter] [4]),
         .O(\APU_Triangle_Message[3]_INST_0_i_2_n_0 ));
   FDCE #(
     .INIT(1'b0),
@@ -4309,7 +4835,7 @@ module design_1_nes_apu_0_0_nes_apu
        (.I0(Q[0]),
         .I1(p_0_in3_in[0]),
         .O(Pulse1_Target0_carry_i_4_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT5 #(
     .INIT(32'hA0800080)) 
     Pulse1_Target0_carry_i_5
@@ -4439,7 +4965,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1_reg[sweep_shift_n_0_][0] ),
         .I5(Pulse1_Target1_carry_i_20_n_0),
         .O(p_0_in3_in[6]));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     Pulse1_Target1_carry_i_12
@@ -4457,7 +4983,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse1_reg[sweep_shift_n_0_][0] ),
         .I5(Pulse1_Target1_carry_i_26_n_0),
         .O(Pulse1_Target1_carry_i_13_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     Pulse1_Target1_carry_i_14
@@ -4465,7 +4991,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse1_reg[sweep_shift_n_0_][0] ),
         .I2(Pulse1_Target1_carry_i_26_n_0),
         .O(p_0_in3_in[4]));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     Pulse1_Target1_carry_i_15
@@ -4473,7 +4999,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse1_reg[sweep_shift_n_0_][0] ),
         .I2(Pulse1_Target1_carry_i_25_n_0),
         .O(p_0_in3_in[3]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     Pulse1_Target1_carry_i_16
@@ -4488,7 +5014,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse1_reg[sweep_shift_n_0_][0] ),
         .I2(Pulse1_Target1_carry_i_23_n_0),
         .O(p_0_in3_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     Pulse1_Target1_carry_i_18
@@ -4496,7 +5022,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I1(\APU_Pulse1_reg[sweep_shift_n_0_][0] ),
         .I2(Pulse1_Target1_carry_i_22_n_0),
         .O(p_0_in3_in[2]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     Pulse1_Target1_carry_i_19
@@ -4514,7 +5040,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(p_0_in3_in[4]),
         .I4(Q[4]),
         .O(Pulse1_Target1_carry_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     Pulse1_Target1_carry_i_20
@@ -4524,7 +5050,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(\APU_Pulse1_reg[sweep_shift_n_0_][2] ),
         .I4(Q[6]),
         .O(Pulse1_Target1_carry_i_20_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     Pulse1_Target1_carry_i_21
@@ -4812,7 +5338,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(\APU_Pulse2_reg[timer][7]_0 [7]),
         .I5(Pulse2_Target1_carry_i_11_n_0),
         .O(Pulse2_Target1_carry_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     Pulse2_Target1_carry_i_10
@@ -4821,7 +5347,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I2(\APU_Pulse2_reg[timer][7]_0 [7]),
         .I3(\APU_Pulse2_reg[sweep_shift_n_0_][2] ),
         .O(Pulse2_Target1_carry_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT5 #(
     .INIT(32'h0A0ACFC0)) 
     Pulse2_Target1_carry_i_11
@@ -4831,7 +5357,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I3(\APU_Pulse2_reg[timer][7]_0 [6]),
         .I4(\APU_Pulse2_reg[sweep_shift_n_0_][1] ),
         .O(Pulse2_Target1_carry_i_11_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     Pulse2_Target1_carry_i_12
@@ -4978,7 +5504,7 @@ module design_1_nes_apu_0_0_nes_apu
         .I4(Pulse2_Target1_carry_i_17_n_0),
         .I5(\APU_Pulse2_reg[timer][7]_0 [0]),
         .O(Pulse2_Target1_carry_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     Pulse2_Target1_carry_i_9
@@ -5275,44 +5801,44 @@ module design_1_nes_apu_0_0_nes_apu
         .D(\procFrameCounter.counter_reg[8]_i_1_n_6 ),
         .Q(\procFrameCounter.counter_reg [9]));
   LUT6 #(
-    .INIT(64'h0F0F0F0EAAAAAAAA)) 
+    .INIT(64'h88BB88BB88BB88BA)) 
     \procMainLogic.noise_envelope_divider[0]_i_1 
        (.I0(\APU_Noise_reg[envelope_n_0_][0] ),
-        .I1(noise_envelope_divider[3]),
-        .I2(noise_envelope_divider[0]),
-        .I3(noise_envelope_divider[1]),
-        .I4(noise_envelope_divider[2]),
-        .I5(\APU_Noise[volume][3]_i_5_n_0 ),
+        .I1(\APU_Noise[volume][3]_i_5_n_0 ),
+        .I2(noise_envelope_divider[3]),
+        .I3(noise_envelope_divider[0]),
+        .I4(noise_envelope_divider[1]),
+        .I5(noise_envelope_divider[2]),
         .O(\procMainLogic.noise_envelope_divider[0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hF00FF00EAAAAAAAA)) 
+    .INIT(64'hBB8888BBBB8888BA)) 
     \procMainLogic.noise_envelope_divider[1]_i_1 
        (.I0(\APU_Noise_reg[envelope_n_0_][1] ),
-        .I1(noise_envelope_divider[3]),
-        .I2(noise_envelope_divider[0]),
-        .I3(noise_envelope_divider[1]),
-        .I4(noise_envelope_divider[2]),
-        .I5(\APU_Noise[volume][3]_i_5_n_0 ),
+        .I1(\APU_Noise[volume][3]_i_5_n_0 ),
+        .I2(noise_envelope_divider[3]),
+        .I3(noise_envelope_divider[0]),
+        .I4(noise_envelope_divider[1]),
+        .I5(noise_envelope_divider[2]),
         .O(\procMainLogic.noise_envelope_divider[1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hA9A9FFFFA9A80000)) 
+    .INIT(64'hD8D8D88DD8D8D88C)) 
     \procMainLogic.noise_envelope_divider[2]_i_1 
-       (.I0(noise_envelope_divider[2]),
-        .I1(noise_envelope_divider[1]),
-        .I2(noise_envelope_divider[0]),
-        .I3(noise_envelope_divider[3]),
-        .I4(\APU_Noise[volume][3]_i_5_n_0 ),
-        .I5(\APU_Noise_reg[envelope_n_0_][2] ),
+       (.I0(\APU_Noise[volume][3]_i_5_n_0 ),
+        .I1(\APU_Noise_reg[envelope_n_0_][2] ),
+        .I2(noise_envelope_divider[2]),
+        .I3(noise_envelope_divider[1]),
+        .I4(noise_envelope_divider[0]),
+        .I5(noise_envelope_divider[3]),
         .O(\procMainLogic.noise_envelope_divider[2]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hFE01FFFFFE000000)) 
+    .INIT(64'hDDDDDDD88888888C)) 
     \procMainLogic.noise_envelope_divider[3]_i_1 
-       (.I0(noise_envelope_divider[2]),
-        .I1(noise_envelope_divider[1]),
-        .I2(noise_envelope_divider[0]),
-        .I3(noise_envelope_divider[3]),
-        .I4(\APU_Noise[volume][3]_i_5_n_0 ),
-        .I5(\APU_Noise_reg[envelope_n_0_][3] ),
+       (.I0(\APU_Noise[volume][3]_i_5_n_0 ),
+        .I1(\APU_Noise_reg[envelope_n_0_][3] ),
+        .I2(noise_envelope_divider[2]),
+        .I3(noise_envelope_divider[1]),
+        .I4(noise_envelope_divider[0]),
+        .I5(noise_envelope_divider[3]),
         .O(\procMainLogic.noise_envelope_divider[3]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0),
@@ -5351,10 +5877,10 @@ module design_1_nes_apu_0_0_nes_apu
         .D(\procMainLogic.noise_envelope_divider[3]_i_1_n_0 ),
         .Q(noise_envelope_divider[3]));
   LUT5 #(
-    .INIT(32'h1FFF1000)) 
+    .INIT(32'h2FFF2000)) 
     \procMainLogic.noise_envelope_start_i_1 
-       (.I0(APU_Quarter_CE),
-        .I1(\APU_Noise[volume][3]_i_5_n_0 ),
+       (.I0(\APU_Noise[volume][3]_i_5_n_0 ),
+        .I1(APU_Quarter_CE),
         .I2(CPU_Rst),
         .I3(Reset),
         .I4(\procMainLogic.noise_envelope_start_reg_n_0 ),
@@ -5368,6 +5894,336 @@ module design_1_nes_apu_0_0_nes_apu
         .D(\procMainLogic.noise_envelope_start_i_1_n_0 ),
         .Q(\procMainLogic.noise_envelope_start_reg_n_0 ),
         .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \procMainLogic.noise_shift_mode_i_1 
+       (.I0(CPU_Data[7]),
+        .I1(\APU_Noise[noise_period] ),
+        .I2(\procMainLogic.noise_shift_mode_reg_n_0 ),
+        .O(\procMainLogic.noise_shift_mode_i_1_n_0 ));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_mode_reg 
+       (.C(CPU_M2),
+        .CE(1'b1),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(\procMainLogic.noise_shift_mode_i_1_n_0 ),
+        .Q(\procMainLogic.noise_shift_mode_reg_n_0 ));
+  LUT6 #(
+    .INIT(64'h02A2000002A2FFFF)) 
+    \procMainLogic.noise_shift_timer[0]_i_1 
+       (.I0(APU_Noise_Message[5]),
+        .I1(APU_Noise_Message[3]),
+        .I2(APU_Noise_Message[4]),
+        .I3(APU_Noise_Message[2]),
+        .I4(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I5(noise_shift_timer[0]),
+        .O(noise_shift_timer_1[0]));
+  LUT5 #(
+    .INIT(32'hFFD0D0D0)) 
+    \procMainLogic.noise_shift_timer[10]_i_1 
+       (.I0(\procMainLogic.noise_shift_timer[10]_i_2_n_0 ),
+        .I1(noise_shift_timer[9]),
+        .I2(noise_shift_timer[10]),
+        .I3(\procMainLogic.noise_shift_timer[10]_i_3_n_0 ),
+        .I4(APU_Noise_Message[2]),
+        .O(noise_shift_timer_1[10]));
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  LUT4 #(
+    .INIT(16'h0001)) 
+    \procMainLogic.noise_shift_timer[10]_i_2 
+       (.I0(noise_shift_timer[7]),
+        .I1(noise_shift_timer[6]),
+        .I2(\procMainLogic.noise_shift_timer[6]_i_2_n_0 ),
+        .I3(noise_shift_timer[8]),
+        .O(\procMainLogic.noise_shift_timer[10]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  LUT4 #(
+    .INIT(16'h8000)) 
+    \procMainLogic.noise_shift_timer[10]_i_3 
+       (.I0(APU_Noise_Message[3]),
+        .I1(APU_Noise_Message[4]),
+        .I2(APU_Noise_Message[5]),
+        .I3(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .O(\procMainLogic.noise_shift_timer[10]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  LUT4 #(
+    .INIT(16'hB88B)) 
+    \procMainLogic.noise_shift_timer[1]_i_1 
+       (.I0(\procMainLogic.noise_shift_timer[1]_i_2_n_0 ),
+        .I1(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I2(noise_shift_timer[1]),
+        .I3(noise_shift_timer[0]),
+        .O(noise_shift_timer_1[1]));
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  LUT4 #(
+    .INIT(16'h8809)) 
+    \procMainLogic.noise_shift_timer[1]_i_2 
+       (.I0(APU_Noise_Message[5]),
+        .I1(APU_Noise_Message[2]),
+        .I2(APU_Noise_Message[4]),
+        .I3(APU_Noise_Message[3]),
+        .O(\procMainLogic.noise_shift_timer[1]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h8E008EFF8EFF8E00)) 
+    \procMainLogic.noise_shift_timer[2]_i_1 
+       (.I0(APU_Noise_Message[5]),
+        .I1(\procMainLogic.noise_shift_timer[2]_i_2_n_0 ),
+        .I2(APU_Noise_Message[3]),
+        .I3(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I4(noise_shift_timer[2]),
+        .I5(\procMainLogic.noise_shift_timer[2]_i_3_n_0 ),
+        .O(noise_shift_timer_1[2]));
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
+    \procMainLogic.noise_shift_timer[2]_i_2 
+       (.I0(APU_Noise_Message[2]),
+        .I1(APU_Noise_Message[4]),
+        .O(\procMainLogic.noise_shift_timer[2]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  LUT2 #(
+    .INIT(4'h1)) 
+    \procMainLogic.noise_shift_timer[2]_i_3 
+       (.I0(noise_shift_timer[1]),
+        .I1(noise_shift_timer[0]),
+        .O(\procMainLogic.noise_shift_timer[2]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h2A98FFFF2A980000)) 
+    \procMainLogic.noise_shift_timer[3]_i_1 
+       (.I0(APU_Noise_Message[5]),
+        .I1(APU_Noise_Message[2]),
+        .I2(APU_Noise_Message[3]),
+        .I3(APU_Noise_Message[4]),
+        .I4(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I5(\procMainLogic.noise_shift_timer[3]_i_2_n_0 ),
+        .O(noise_shift_timer_1[3]));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  LUT4 #(
+    .INIT(16'hAAA9)) 
+    \procMainLogic.noise_shift_timer[3]_i_2 
+       (.I0(noise_shift_timer[3]),
+        .I1(noise_shift_timer[2]),
+        .I2(noise_shift_timer[1]),
+        .I3(noise_shift_timer[0]),
+        .O(\procMainLogic.noise_shift_timer[3]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFDDD5588008800)) 
+    \procMainLogic.noise_shift_timer[4]_i_1 
+       (.I0(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I1(APU_Noise_Message[5]),
+        .I2(APU_Noise_Message[3]),
+        .I3(APU_Noise_Message[4]),
+        .I4(APU_Noise_Message[2]),
+        .I5(\procMainLogic.noise_shift_timer[4]_i_2_n_0 ),
+        .O(noise_shift_timer_1[4]));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  LUT5 #(
+    .INIT(32'hAAAAAAA9)) 
+    \procMainLogic.noise_shift_timer[4]_i_2 
+       (.I0(noise_shift_timer[4]),
+        .I1(noise_shift_timer[3]),
+        .I2(noise_shift_timer[0]),
+        .I3(noise_shift_timer[1]),
+        .I4(noise_shift_timer[2]),
+        .O(\procMainLogic.noise_shift_timer[4]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h88A880A8AAAAAAAA)) 
+    \procMainLogic.noise_shift_timer[5]_i_1 
+       (.I0(\procMainLogic.noise_shift_timer[5]_i_2_n_0 ),
+        .I1(APU_Noise_Message[5]),
+        .I2(APU_Noise_Message[4]),
+        .I3(APU_Noise_Message[3]),
+        .I4(APU_Noise_Message[2]),
+        .I5(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .O(noise_shift_timer_1[5]));
+  LUT6 #(
+    .INIT(64'hAAAAAAAAAAAAAAA9)) 
+    \procMainLogic.noise_shift_timer[5]_i_2 
+       (.I0(noise_shift_timer[5]),
+        .I1(noise_shift_timer[4]),
+        .I2(noise_shift_timer[2]),
+        .I3(noise_shift_timer[1]),
+        .I4(noise_shift_timer[0]),
+        .I5(noise_shift_timer[3]),
+        .O(\procMainLogic.noise_shift_timer[5]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hEAFFEA00EA00EAFF)) 
+    \procMainLogic.noise_shift_timer[6]_i_1 
+       (.I0(APU_Noise_Message[5]),
+        .I1(APU_Noise_Message[3]),
+        .I2(APU_Noise_Message[4]),
+        .I3(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I4(noise_shift_timer[6]),
+        .I5(\procMainLogic.noise_shift_timer[6]_i_2_n_0 ),
+        .O(noise_shift_timer_1[6]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \procMainLogic.noise_shift_timer[6]_i_2 
+       (.I0(noise_shift_timer[5]),
+        .I1(noise_shift_timer[4]),
+        .I2(noise_shift_timer[2]),
+        .I3(noise_shift_timer[1]),
+        .I4(noise_shift_timer[0]),
+        .I5(noise_shift_timer[3]),
+        .O(\procMainLogic.noise_shift_timer[6]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h33333333CCCCCCC8)) 
+    \procMainLogic.noise_shift_timer[7]_i_1 
+       (.I0(\procMainLogic.noise_shift_timer[7]_i_2_n_0 ),
+        .I1(\procMainLogic.noise_shift_timer[8]_i_2_n_0 ),
+        .I2(noise_shift_timer[9]),
+        .I3(noise_shift_timer[10]),
+        .I4(noise_shift_timer[8]),
+        .I5(noise_shift_timer[7]),
+        .O(noise_shift_timer_1[7]));
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  LUT4 #(
+    .INIT(16'hC8C0)) 
+    \procMainLogic.noise_shift_timer[7]_i_2 
+       (.I0(APU_Noise_Message[4]),
+        .I1(APU_Noise_Message[5]),
+        .I2(APU_Noise_Message[3]),
+        .I3(APU_Noise_Message[2]),
+        .O(\procMainLogic.noise_shift_timer[7]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h8F80808F8F808F80)) 
+    \procMainLogic.noise_shift_timer[8]_i_1 
+       (.I0(APU_Noise_Message[4]),
+        .I1(APU_Noise_Message[5]),
+        .I2(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I3(noise_shift_timer[8]),
+        .I4(noise_shift_timer[7]),
+        .I5(\procMainLogic.noise_shift_timer[8]_i_2_n_0 ),
+        .O(noise_shift_timer_1[8]));
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  LUT2 #(
+    .INIT(4'h1)) 
+    \procMainLogic.noise_shift_timer[8]_i_2 
+       (.I0(noise_shift_timer[6]),
+        .I1(\procMainLogic.noise_shift_timer[6]_i_2_n_0 ),
+        .O(\procMainLogic.noise_shift_timer[8]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h800080FF80FF8000)) 
+    \procMainLogic.noise_shift_timer[9]_i_1 
+       (.I0(APU_Noise_Message[5]),
+        .I1(APU_Noise_Message[4]),
+        .I2(APU_Noise_Message[3]),
+        .I3(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ),
+        .I4(noise_shift_timer[9]),
+        .I5(\procMainLogic.noise_shift_timer[10]_i_2_n_0 ),
+        .O(noise_shift_timer_1[9]));
+  LUT6 #(
+    .INIT(64'h0000000000000001)) 
+    \procMainLogic.noise_shift_timer[9]_i_2 
+       (.I0(\procMainLogic.noise_shift_timer[6]_i_2_n_0 ),
+        .I1(noise_shift_timer[6]),
+        .I2(noise_shift_timer[9]),
+        .I3(noise_shift_timer[10]),
+        .I4(noise_shift_timer[8]),
+        .I5(noise_shift_timer[7]),
+        .O(\procMainLogic.noise_shift_timer[9]_i_2_n_0 ));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[0] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[0]),
+        .Q(noise_shift_timer[0]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[10] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[10]),
+        .Q(noise_shift_timer[10]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[1] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[1]),
+        .Q(noise_shift_timer[1]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[2] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[2]),
+        .Q(noise_shift_timer[2]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[3] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[3]),
+        .Q(noise_shift_timer[3]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[4] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[4]),
+        .Q(noise_shift_timer[4]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[5] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[5]),
+        .Q(noise_shift_timer[5]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[6] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[6]),
+        .Q(noise_shift_timer[6]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[7] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[7]),
+        .Q(noise_shift_timer[7]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[8] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[8]),
+        .Q(noise_shift_timer[8]));
+  FDCE #(
+    .INIT(1'b0),
+    .IS_C_INVERTED(1'b1)) 
+    \procMainLogic.noise_shift_timer_reg[9] 
+       (.C(CPU_M2),
+        .CE(APU_Tick_CE),
+        .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
+        .D(noise_shift_timer_1[9]),
+        .Q(noise_shift_timer[9]));
   LUT6 #(
     .INIT(64'h88BB88BB88BB88BA)) 
     \procMainLogic.pulse1_envelope_divider[0]_i_1 
@@ -5516,7 +6372,7 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(\procMainLogic.pulse1_sweep_divider[2]_i_1_n_0 ),
         .Q(pulse1_sweep_divider[2]));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'h0E)) 
     \procMainLogic.pulse1_sweep_reload_i_1 
@@ -5609,7 +6465,7 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(\procMainLogic.pulse2_envelope_divider[3]_i_1_n_0 ),
         .Q(pulse2_envelope_divider[3]));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \procMainLogic.pulse2_envelope_start_i_1 
@@ -5682,7 +6538,7 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(\procMainLogic.pulse2_sweep_divider[2]_i_1_n_0 ),
         .Q(pulse2_sweep_divider[2]));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'h0E)) 
     \procMainLogic.pulse2_sweep_reload_i_1 
@@ -5699,30 +6555,31 @@ module design_1_nes_apu_0_0_nes_apu
         .CLR(\APU_Pulse1[timer][10]_i_2_n_0 ),
         .D(\procMainLogic.pulse2_sweep_reload_i_1_n_0 ),
         .Q(\procMainLogic.pulse2_sweep_reload_reg_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT3 #(
-    .INIT(8'h0D)) 
+    .INIT(8'h8A)) 
     \procMainLogic.triangle_linear_reload_i_1 
-       (.I0(APU_Quarter_CE),
+       (.I0(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
         .I1(\APU_Triangle_reg[length_counter_halt]__0 ),
-        .I2(\procMainLogic.triangle_linear_reload_i_2_n_0 ),
+        .I2(APU_Quarter_CE),
         .O(\procMainLogic.triangle_linear_reload_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h5555555554555555)) 
+    .INIT(64'hAAAAAAAAABAAAAAA)) 
     \procMainLogic.triangle_linear_reload_i_2 
        (.I0(\procMainLogic.triangle_linear_reload_reg_n_0 ),
         .I1(CPU_Addr[2]),
-        .I2(\APU_Pulse1[sweep_shift][2]_i_2_n_0 ),
-        .I3(\APU_Noise[noise_period][3]_i_2_n_0 ),
-        .I4(CPU_Addr[3]),
-        .I5(\procMainLogic.triangle_linear_reload_i_3_n_0 ),
+        .I2(\procMainLogic.triangle_linear_reload_i_3_n_0 ),
+        .I3(CPU_Addr[0]),
+        .I4(\APU_Pulse2[timer][7]_i_4_n_0 ),
+        .I5(\APU_Triangle[timer][7]_i_2_n_0 ),
         .O(\procMainLogic.triangle_linear_reload_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
-  LUT2 #(
-    .INIT(4'hB)) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  LUT3 #(
+    .INIT(8'hDF)) 
     \procMainLogic.triangle_linear_reload_i_3 
-       (.I0(CPU_Addr[4]),
-        .I1(CPU_Addr[1]),
+       (.I0(CPU_Addr[3]),
+        .I1(CPU_Addr[4]),
+        .I2(CPU_Addr[1]),
         .O(\procMainLogic.triangle_linear_reload_i_3_n_0 ));
   FDCE #(
     .INIT(1'b0),

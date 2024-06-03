@@ -92,7 +92,7 @@ input wire CPU_RW;
 output wire [18 : 0] APU_Pulse1_Message;
 output wire [18 : 0] APU_Pulse2_Message;
 output wire [14 : 0] APU_Triangle_Message;
-output wire [27 : 0] APU_Noise_Message;
+output wire [13 : 0] APU_Noise_Message;
 output wire [3 : 0] APU_DMC_Message;
 
   nes_apu inst (

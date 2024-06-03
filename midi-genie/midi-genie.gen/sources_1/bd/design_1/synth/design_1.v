@@ -1,7 +1,7 @@
 //Copyright 1986-2023 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2.2 (lin64) Build 3788238 Tue Feb 21 19:59:23 MST 2023
-//Date        : Mon May 13 10:46:34 2024
+//Date        : Fri May 24 22:46:29 2024
 //Host        : tm2-pavilion-popos running 64-bit Pop!_OS 22.04 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=32,numReposBlks=24,numNonXlnxBlks=0,numHierBlks=8,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=6,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=6,da_clkrst_cnt=26,da_mb_cnt=2,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=32,numReposBlks=24,numNonXlnxBlks=0,numHierBlks=8,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=6,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_board_cnt=6,da_clkrst_cnt=27,da_mb_cnt=2,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (btn1,
     led,
@@ -201,7 +201,7 @@ module design_1
   wire microblaze_0_interrupt_INTERRUPT;
   wire [2:0]microblaze_0_intr;
   wire [3:0]nes_apu_0_APU_DMC_Message;
-  wire [27:0]nes_apu_0_APU_Noise_Message;
+  wire [13:0]nes_apu_0_APU_Noise_Message;
   wire [18:0]nes_apu_0_APU_Pulse1_Message;
   wire [18:0]nes_apu_0_APU_Pulse2_Message;
   wire [14:0]nes_apu_0_APU_Triangle_Message;

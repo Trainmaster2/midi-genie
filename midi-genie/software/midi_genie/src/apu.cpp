@@ -186,7 +186,7 @@ void play_noise_message(NoiseBitField noiseMessage)
 
         if ((noiseMessage.period != noise.period) || (noiseMessage.mode != noise.mode) || (noiseMessage.volume != noise.volume))
         {
-            noise2midi(noiseMessage.mode, noiseMessage.start, noiseMessage.period, note, bend);
+            noise2midi(noiseMessage.mode, noiseMessage.period, noiseMessage.length, note, bend);
             if (note != noise.note) {stop_notes(noiseMessage.channel);}
 #if USE_FINE_ADJUST
             if (bend != noise.bend) {pitch_bend(noiseMessage.channel, bend);}
@@ -203,7 +203,7 @@ void play_noise_message(NoiseBitField noiseMessage)
 
         if ((noiseMessage.period != noise.period) || (noiseMessage.mode != noise.mode))
         {
-            noise2midi(noiseMessage.mode, noiseMessage.start, noiseMessage.period, note, bend);
+            noise2midi(noiseMessage.mode, noiseMessage.period, noiseMessage.length, note, bend);
             if (note != noise.note) {stop_notes(noiseMessage.channel);}
 
 #if USE_VOLUME

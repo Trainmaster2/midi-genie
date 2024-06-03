@@ -197,10 +197,10 @@ begin
                         APU_Noise <= f_APU_NOISE_REG1(APU_Noise, CPU_Data);
                     when X"400E" =>
                         APU_Noise <= f_APU_NOISE_REG3(APU_Noise, CPU_Data);
+                        noise_shift_mode := CPU_Data(7) = '1';
                     when X"400F" =>
                         APU_Noise <= f_APU_NOISE_REG4(APU_Noise, CPU_Data, APU_Status.noise_active);
                         noise_envelope_start := true;
-                        noise_shift_mode := CPU_Data(7) = '1';
                     
                     when X"4010" =>
                         APU_DMC <= f_APU_DMC_REG1(APU_DMC, CPU_Data);
